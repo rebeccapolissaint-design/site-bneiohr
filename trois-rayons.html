@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Les Trois Rayons de Lumière — Bnei Ohr</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/><style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── Nav (identical to site) ── */
+body {
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background: #050505; color: #f0f0f0; font-family: 'Cormorant Garamond', serif; overflow-x: hidden; }
+nav { position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; background: rgba(5,5,5,0.92); border-bottom: 1px solid rgba(212,175,55,0.15); backdrop-filter: blur(8px); }
+.nav-logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+.nav-logo-hebrew { font-family: 'Noto Serif Hebrew', serif; font-size: 1.3rem; color: #d4af37; text-shadow: 0 0 15px rgba(212,175,55,0.4); }
+.nav-logo-text { font-family: 'Cinzel', serif; font-size: .85rem; letter-spacing: .2em; color: #d4af37; text-transform: uppercase; }
+.nav-links { display: flex; gap: 1.8rem; list-style: none; }
+.nav-links a { font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .12em; color: #a0a0a0; text-decoration: none; text-transform: uppercase; transition: color .3s; }
+.nav-links a:hover, .nav-links a.active { color: #d4af37; }
+/* ── Footer (identical to site) ── */
+footer { position: relative; z-index: 1; background: #050505; border-top: 1px solid rgba(212,175,55,.1); padding: 3rem 2rem; text-align: center; }
+.footer-logo { font-family: 'Noto Serif Hebrew', serif; font-size: 1.8rem; color: rgba(212,175,55,.4); display: block; margin-bottom: .5rem; }
+.footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.footer-links a { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .2em; color: #606060; text-decoration: none; text-transform: uppercase; transition: color .3s; }
+.footer-links a:hover { color: #d4af37; }
+.footer-copy { font-size: .8rem; color: #404040; letter-spacing: .1em; }
+.footer-mentions { font-family: 'Cinzel', serif; font-size: .55rem; letter-spacing: .15em; color: #303030; margin-top: .5rem; }
+.footer-mentions a { color: #404040; text-decoration: none; }
+.footer-mentions a:hover { color: #d4af37; }
+/* ── Page content ── */
+:root {
+--gold:       #c9a84c;
+--gold-light: #e8c97a;
+--gold-dim:   #8a6f35;
+--bg-dark:    #050505;
+--bg-mid:     #0c0c12;
+--bg-card:    #0e0e18;
+--text-off:   #d4c9a8;
+--text-dim:   #8a8070;
+--blue:       #5b8dd9;
+--blue-dim:   #2a4a7a;
+--green:      #6bbf85;
+--green-dim:  #2a6040;
+--white-ray:  #dce8f5;
+--white-dim:  #4a5a70;
+}
+.page-wrap { padding-top: 80px; }
+/* ── Header ── */
+.page-header {
+text-align: center;
+padding: 5rem 2rem 3.5rem;
+position: relative;
+overflow-y: auto;
+}
+.page-header::before {
+content: '';
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.09) 0%, transparent 70%);
+}
+.page-sup {
+font-family: 'Cinzel', serif;
+font-size: 0.62rem;
+letter-spacing: 0.4em;
+color: var(--gold-dim);
+text-transform: uppercase;
+margin-bottom: 1.4rem;
+position: relative;
+}
+.page-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(1.5rem, 5vw, 2.6rem);
+font-weight: 400;
+line-height: 1.2;
+color: #fff;
+position: relative;
+margin-bottom: 0.4rem;
+}
+.page-title em { color: var(--gold); font-style: normal; }
+.header-divider {
+width: 50px; height: 1px;
+background: linear-gradient(to right, transparent, var(--gold), transparent);
+margin: 1.8rem auto;
+position: relative;
+}
+.page-intro {
+font-size: clamp(1rem, 3vw, 1.25rem);
+font-style: italic;
+font-weight: 300;
+line-height: 1.85;
+max-width: 640px;
+margin: 0 auto 1rem;
+color: var(--text-off);
+position: relative;
+}
+.page-precision {
+font-size: 0.88rem;
+font-style: normal;
+color: var(--text-dim);
+max-width: 580px;
+margin: 0.8rem auto 0;
+border-left: 2px solid var(--gold-dim);
+padding-left: 1rem;
+line-height: 1.7;
+position: relative;
+}
+/* ── Ray cards ── */
+.rays-section {
+padding: 1rem 1.5rem 4rem;
+max-width: 860px;
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 2rem;
+}
+.ray-card {
+border: 1px solid rgba(201,168,76,0.12);
+background: var(--bg-card);
+padding: 2.5rem 2rem;
+position: relative;
+overflow-y: auto;
+transition: border-color 0.4s;
+}
+.ray-card::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+}
+.ray-card.blue  { border-color: rgba(91,141,217,0.25); }
+.ray-card.blue::before  { background: linear-gradient(to right, transparent, var(--blue), transparent); }
+.ray-card.blue:hover  { border-color: rgba(91,141,217,0.5); }
+.ray-card.green { border-color: rgba(107,191,133,0.25); }
+.ray-card.green::before { background: linear-gradient(to right, transparent, var(--green), transparent); }
+.ray-card.green:hover { border-color: rgba(107,191,133,0.5); }
+.ray-card.white { border-color: rgba(220,232,245,0.2); }
+.ray-card.white::before { background: linear-gradient(to right, transparent, var(--white-ray), transparent); }
+.ray-card.white:hover { border-color: rgba(220,232,245,0.45); }
+.ray-card::after {
+content: '';
+position: absolute;
+inset: 0;
+opacity: 0;
+transition: opacity 0.5s;
+pointer-events: none;
+}
+.ray-card.blue::after  { background: radial-gradient(ellipse 70% 50% at 10% 50%, rgba(91,141,217,0.05) 0%, transparent 70%); }
+.ray-card.green::after { background: radial-gradient(ellipse 70% 50% at 10% 50%, rgba(107,191,133,0.05) 0%, transparent 70%); }
+.ray-card.white::after { background: radial-gradient(ellipse 70% 50% at 10% 50%, rgba(220,232,245,0.04) 0%, transparent 70%); }
+.ray-card:hover::after { opacity: 1; }
+.ray-top { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+.ray-glyph {
+width: 58px; height: 58px;
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-family: 'Cormorant Garamond', serif;
+font-size: 1.3rem; font-weight: 600;
+flex-shrink: 0; letter-spacing: 0.02em;
+}
+.blue  .ray-glyph { background: rgba(91,141,217,0.15); color: var(--blue); border: 1px solid rgba(91,141,217,0.3); }
+.green .ray-glyph { background: rgba(107,191,133,0.12); color: var(--green); border: 1px solid rgba(107,191,133,0.3); }
+.white .ray-glyph { background: rgba(220,232,245,0.08); color: var(--white-ray); border: 1px solid rgba(220,232,245,0.25); }
+.ray-meta { flex: 1; }
+.ray-level { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.35em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 0.4rem; }
+.ray-name { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 3.5vw, 1.5rem); font-weight: 400; line-height: 1.1; margin-bottom: 0.3rem; }
+.blue  .ray-name { color: var(--blue); }
+.green .ray-name { color: var(--green); }
+.white .ray-name { color: var(--white-ray); }
+.ray-subtitle { font-style: italic; font-size: 0.95rem; color: var(--text-dim); }
+.ray-sefira {
+display: inline-block;
+font-family: 'Cinzel', serif;
+font-size: 0.6rem; letter-spacing: 0.2em;
+padding: 0.3rem 0.8rem;
+border: 1px solid;
+text-transform: uppercase;
+margin-bottom: 1.2rem;
+}
+.blue  .ray-sefira { color: var(--blue-dim); border-color: var(--blue-dim); }
+.green .ray-sefira { color: var(--green-dim); border-color: var(--green-dim); }
+.white .ray-sefira { color: var(--white-dim); border-color: var(--white-dim); }
+.ray-body { font-size: clamp(0.95rem, 2.5vw, 1.1rem); font-weight: 300; line-height: 1.85; color: var(--text-off); }
+.ray-body p + p { margin-top: 0.9rem; }
+/* ── Ethics box ── */
+.ethics-box {
+max-width: 860px;
+margin: 1rem auto 5rem;
+padding: 2rem 2.2rem;
+border: 1px solid rgba(201,168,76,0.2);
+background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+position: relative;
+}
+.ethics-box::before {
+content: '⚠';
+position: absolute;
+top: -0.8rem; left: 50%;
+transform: translateX(-50%);
+background: var(--bg-dark);
+padding: 0 0.6rem;
+color: var(--gold-dim);
+font-size: 1rem;
+}
+.ethics-title { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; text-align: center; margin-bottom: 1rem; }
+.ethics-body { font-size: 0.92rem; line-height: 1.8; color: var(--text-dim); text-align: center; max-width: 640px; margin: 0 auto; }
+.ethics-body strong { color: var(--text-off); font-weight: 600; }
+/* ── Responsive ── */
+@media(max-width: 768px) {
+nav { padding: 1rem 1.5rem; }
+.nav-links { display: none; }
+.ray-card { padding: 1.8rem 1.2rem; }
+}
+</style>
+</head>
+<body><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="index.html#contact">Contact</a></li></ul>
+</nav><div class="page-wrap"><header class="page-header"><p class="page-sup">Parcours symbolique — Bnei Ohr</p><h1 class="page-title">
+Les Trois Rayons de Lumière —<br><em>Parcours Symbolique</em></h1><div class="header-divider"></div><p class="page-intro">
+Dans la pensée kabbalistique (telle qu'interprétée dans l'ésotérisme occidental),
+la Lumière d'Ein Sof traverse plusieurs niveaux de filtrage pour nous atteindre
+sans détruire notre vase. Chez Bnei Ohr, les trois rayons sont des repères
+de Kavvanah — intention profonde — pour travailler sur notre Nefesh (âme).
+</p><p class="page-precision">
+Cette compréhension est personnelle et ne relève pas de la tradition juive orthodoxe.
+Elle s'inscrit dans une démarche de réflexion spirituelle et d'exploration symbolique libre.
+</p></header><div class="rays-section"><article class="ray-card blue"><div class="ray-top"><div class="ray-glyph">גבו</div><div class="ray-meta"><p class="ray-level">Niveau I</p><h2 class="ray-name">Rayon Bleu</h2><p class="ray-subtitle">Protection et Structure</p></div></div><span class="ray-sefira">Gevurah — גְּבוּרָה</span><div class="ray-body"><p>
+Dans la symbolique kabbalistique occidentale, Gevurah représente la force
+juste et la capacité de discernement. Le Rayon Bleu évoque cette qualité :
+non pas une muraille, mais une clarté intérieure qui permet d'avancer
+sans se dissoudre dans ce qui nous dépasse.
+</p><p>
+Ce premier niveau d'exploration invite à poser des fondations symboliques —
+apprendre à reconnaître ses propres limites, à nommer ses peurs,
+et à les transformer en outils de connaissance de soi.
+C'est une exploration personnelle, sans cadre dogmatique.
+</p></div></article><article class="ray-card green"><div class="ray-top"><div class="ray-glyph">תפ</div><div class="ray-meta"><p class="ray-level">Niveau II</p><h2 class="ray-name">Rayon Vert</h2><p class="ray-subtitle">Harmonie et Beauté</p></div></div><span class="ray-sefira">Tiferet — תִּפְאֶרֶת</span><div class="ray-body"><p>
+Tiferet est traditionnellement le cœur de l'Arbre de Vie — le point d'équilibre
+entre miséricorde et rigueur. Le Rayon Vert symbolise cette recherche d'harmonie :
+accueillir les contraires sans les nier, trouver la beauté au cœur de la tension.
+</p><p>
+Dans ce second niveau de réflexion symbolique, l'explorateur approfondit
+les correspondances entre les Sefirot et les forces qu'il perçoit dans sa vie.
+Il apprend à se situer au centre de ses propres polarités — non pour les résoudre,
+mais pour les habiter avec conscience.
+</p></div></article><article class="ray-card white"><div class="ray-top"><div class="ray-glyph">כת</div><div class="ray-meta"><p class="ray-level">Niveau III</p><h2 class="ray-name">Rayon Blanc</h2><p class="ray-subtitle">Unité et Transcendance</p></div></div><span class="ray-sefira">Keter — כֶּתֶר</span><div class="ray-body"><p>
+Keter, la couronne, désigne dans l'ésotérisme occidental ce qui échappe
+à toute définition — la source d'Ein Sof, lumière sans fin.
+Le Rayon Blanc n'est pas une arrivée, mais une orientation :
+vivre la connaissance plutôt que la posséder.
+</p><p>
+À ce troisième niveau, la personne ne cherche plus à accumuler des savoirs
+mais à laisser les symboles agir en elle. Elle transmet son expérience personnelle
+sans prétendre à une autorité. C'est une invitation à l'incarnation des symboles —
+non un titre, non une maîtrise.
+</p></div></article></div><div class="ethics-box"><p class="ethics-title">Cadre éthique — Bnei Ohr</p><p class="ethics-body">
+Les trois rayons présentés ici sont des <strong>repères symboliques et pédagogiques</strong>,
+librement inspirés de traditions kabbalistiques telles qu'interprétées dans l'ésotérisme occidental.
+Ils ne constituent pas une transmission formelle, ne délivrent aucun titre rituel,
+et ne remplacent aucun cheminement religieux, maçonnique ou vodou.
+<br><br>
+Bnei Ohr est un espace d'<strong>exploration personnelle et symbolique</strong>,
+fondé par Chilot, enraciné dans l'âme d'Haïti.
+Toute interprétation reste la responsabilité de celui ou celle qui s'en empare.
+</p></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="mentions-legales.html">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p><p class="footer-mentions">Haïti — <a href="mailto:bneiohr.haiti77@gmail.com">bneiohr.haiti77@gmail.com</a> — <a href="mentions-legales.html">Mentions légales & Confidentialité</a></p>
+</footer><script>
+window.addEventListener('scroll', () => {
+const nav = document.querySelector('nav');
+nav.style.background = window.scrollY > 50 ? 'rgba(5,5,5,.98)' : 'rgba(5,5,5,.92)';
+});
+</script></body>
+</html>

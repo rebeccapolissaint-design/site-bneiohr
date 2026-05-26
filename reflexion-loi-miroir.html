@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>La Loi du Miroir — Pourquoi on déteste dans l'autre ce qui est en nous — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#040406;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(140px)}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(212,175,55,.05),transparent);top:-200px;right:-180px}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(80,60,160,.05),transparent);bottom:-160px;left:-160px}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(4,4,6,.93);border-bottom:1px solid rgba(212,175,55,.1);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 18px rgba(212,175,55,.5)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
+/* HERO IMAGE */
+.article-hero{position:relative;width:100%;height:70vw;max-height:520px;min-height:260px;overflow-y: auto;margin-top:64px}
+.article-hero img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.65)}
+.article-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(4,4,6,0) 30%,rgba(4,4,6,.85) 100%)}
+.article-hero-body{position:absolute;bottom:0;left:0;right:0;padding:2rem 2rem 2.5rem;max-width:820px}
+.article-tag{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.35em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.6rem}
+.article-hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4vw,2.2rem);font-weight:400;color:#fff;line-height:1.2}
+.article-hero-title span{color:#d4af37}
+/* MAIN */
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 6rem;position:relative;z-index:1}
+/* LEAD */
+.article-lead{font-size:clamp(1.1rem,2.8vw,1.35rem);font-weight:300;font-style:italic;color:rgba(232,228,220,.7);line-height:1.9;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(212,175,55,.1)}
+/* BODY TEXT */
+.article-body{font-size:clamp(1rem,2.5vw,1.12rem);color:rgba(232,228,220,.65);line-height:2;margin-bottom:1.8rem}
+.article-body em{color:#d4af37;font-style:italic}
+.article-body strong{color:#e8e4dc;font-weight:600}
+/* PULL QUOTE */
+.pull-quote{margin:2.5rem 0;padding:1.8rem 2rem;border-left:3px solid #d4af37;background:rgba(212,175,55,.04);position:relative}
+.pull-quote::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:4rem;color:rgba(212,175,55,.2);position:absolute;top:-.5rem;left:1rem;line-height:1}
+.pull-quote p{font-size:clamp(1.1rem,3vw,1.3rem);font-style:italic;color:rgba(232,228,220,.75);line-height:1.75;padding-left:1.5rem}
+/* CONCEPT BOX */
+.concept-box{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.15);padding:1.8rem 2rem;margin:2.5rem 0}
+.concept-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.6rem;display:block}
+.concept-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:#d4af37;opacity:.6;display:block;margin-bottom:.5rem;direction:rtl}
+.concept-title{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.1em;color:#fff;display:block;margin-bottom:.8rem}
+.concept-text{font-size:1rem;color:rgba(232,228,220,.6);line-height:1.9}
+.concept-text em{color:#d4af37;font-style:italic}
+/* STEPS */
+.reflection-steps{margin:2.5rem 0;display:flex;
+flex-wrap:wrap;flex-direction:column;gap:1.2rem}
+.ref-step{display:flex;
+flex-wrap:wrap;gap:1.2rem;align-items:flex-start;padding:1.2rem 1.4rem;border:1px solid rgba(212,175,55,.1);background:rgba(10,10,18,.6)}
+.ref-step-num{font-family:'Cinzel',serif;font-size:1.4rem;color:rgba(212,175,55,.3);flex-shrink:0;width:32px;font-weight:400;line-height:1}
+.ref-step-body{flex:1;min-width:0}
+.ref-step-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;color:#fff;display:block;margin-bottom:.35rem;text-transform:uppercase}
+.ref-step-text{font-size:.97rem;color:rgba(232,228,220,.55);line-height:1.85}
+.ref-step-text em{color:#d4af37;font-style:italic}
+/* CONCLUSION */
+.article-conclusion{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.15);border-left:3px solid #d4af37;padding:1.8rem 2rem;margin:3rem 0}
+.article-conclusion p{font-size:1.05rem;color:rgba(232,228,220,.7);line-height:1.9;font-style:italic}
+.article-conclusion em{color:#d4af37;font-style:normal}
+/* SIGNATURE */
+.article-sig{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1)}
+.sig-logo{font-family:'Noto Serif Hebrew',serif;font-size:2rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.4rem}
+.sig-name{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;color:rgba(212,175,55,.35);text-transform:uppercase}
+/* NAV BOTTOM */
+.nav-bottom{display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1);flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.65rem 1.3rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.04)}
+footer{position:relative;z-index:1;background:#040406;border-top:1px solid rgba(212,175,55,.1);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-size:.8rem;color:#303030;letter-spacing:.1em}
+</style>
+</head>
+<body><div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back">Accueil</a>
+</nav><div class="article-hero"><img src="https://i.postimg.cc/R0RksYHM/Screenshot-20260521-114728-Gallery.jpg"
+alt="La Loi du Miroir — Bnei Ohr"/><div class="article-hero-overlay"></div><div class="article-hero-body"><span class="article-tag">✦ Psychologie Spirituelle · Réflexion ✦</span><h1 class="article-hero-title">Pourquoi on déteste dans l'autre<br/><span>ce qui est en nous ?</span></h1></div>
+</div><main class="article-wrap"><p class="article-lead">Est-ce que ça ne t'est jamais arrivé qu'une personne, dès qu'elle apparaît ou dès qu'elle parle, te met hors de toi ? Tu l'entends parler avec arrogance, tu la vois mentir ou agir avec mesquinerie — et ça t'envahit d'une colère si forte que tu ressens une vraie haine pour elle.</p><p class="article-body">À Bnei Ohr, nous enseignons une loi secrète qu'on appelle <em>la Loi du Miroir</em>. Cette loi nous révèle que le monde dans lequel nous vivons est comme un immense miroir. Si un défaut chez quelqu'un d'autre gâche ta journée et te fait battre le cœur fort — ce n'est pas seulement parce que cette personne est mauvaise. C'est parce qu'il y a une <em>antenne intérieure</em> en toi qui capte exactement cette fréquence-là.</p><div class="pull-quote"><p>Le monde n'est pas devant toi — il est en toi. Ce que tu vois dans l'autre n'est jamais neutre : c'est toujours une information sur toi-même.</p></div><div class="concept-box"><span class="concept-label">✦ Concept Clé — Kabbale ✦</span><span class="concept-heb">אֵין עוֹד מִלְבַדּוֹ</span><span class="concept-title">Ein Od Milvado — Il n'y a rien d'autre que Lui</span><p class="concept-text">Ce principe kabbalistique fondamental enseigne que toute la réalité est <em>Une</em>. Dieu est partout — dans ce que nous aimons comme dans ce qui nous dérange. Si quelque chose dans le monde extérieur nous touche profondément, c'est parce qu'il existe une correspondance directe avec quelque chose dans notre monde intérieur. Il n'y a pas de séparation réelle entre « moi » et « l'autre ».</p></div><p class="article-body">Parfois, <strong>c'est exactement ce défaut que tu portes toi-même</strong>, dans un coin de toi qui n'est pas encore guéri. Parfois aussi, c'est parce que cette personne a la liberté de faire quelque chose que toi, tu t'es interdit — et ton désir d'être aussi libre se transforme en colère contre elle.</p><p class="article-body">Un homme qui se dit honnête et qui ne supporte pas les menteurs ? Il porte peut-être lui-même un mensonge qu'il ne s'autorise pas à regarder en face. Une femme qui déteste les gens arrogants ? Il est possible qu'elle étouffe en elle-même un orgueil qu'elle juge inacceptable. Ce n'est pas une règle absolue — mais c'est une porte qui mérite d'être ouverte.</p><div class="pull-quote"><p>Avant de condamner quelqu'un, pose-toi cette question : quelle partie de moi se regarde dans cette personne ?</p></div><p class="article-body">Dès que nous commençons à comprendre cela, nous cessons de passer notre temps à juger les autres et à colporter des ragots. Au lieu de nous battre contre la personne, nous revenons à l'<em>Unité (Ein Od Milvado)</em> — nous regardons à l'intérieur de notre propre vase — et nous demandons : <strong>« Quelle partie de moi se regarde dans cette personne ? »</strong></p><p class="article-body">C'est à ce moment-là que nous cessons de voyager comme des victimes pour devenir de vrais <em>Opérateurs</em> — des êtres qui nettoient leur propre lumière plutôt que de pointer la saleté chez les autres.</p><div style="margin:3rem 0"><span style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;text-align:center;margin-bottom:1.5rem">✦ Pratique — Comment travailler avec la Loi du Miroir ✦</span><div class="reflection-steps"><div class="ref-step"><span class="ref-step-num">01</span><div class="ref-step-body"><span class="ref-step-title">Observer sans condamner</span><p class="ref-step-text">La prochaine fois qu'une personne te met hors de toi, au lieu de réagir — <em>pause</em>. Remarque l'intensité de ta réaction. Plus elle est forte, plus l'information est précieuse. Ta colère est un signal, pas une vérité sur l'autre.</p></div></div><div class="ref-step"><span class="ref-step-num">02</span><div class="ref-step-body"><span class="ref-step-title">Poser la question du miroir</span><p class="ref-step-text">Demande-toi honnêtement : <em>« Est-ce que j'ai en moi une version de ce que je vois chez cette personne ? »</em> Pas pour te culpabiliser — pour te libérer. La reconnaissance honnête est le premier acte de guérison.</p></div></div><div class="ref-step"><span class="ref-step-num">03</span><div class="ref-step-body"><span class="ref-step-title">Chercher l'interdit en soi</span><p class="ref-step-text">Si la réponse est non — explore l'autre piste : <em>« Est-ce que cette personne fait quelque chose que j'aimerais faire mais que je m'interdis ? »</em> La liberté qu'on s'interdit à soi-même, on la déteste souvent chez les autres.</p></div></div><div class="ref-step"><span class="ref-step-num">04</span><div class="ref-step-body"><span class="ref-step-title">Revenir à Ein Od Milvado</span><p class="ref-step-text">Rappelle-toi : <em>Il n'y a rien d'autre que Lui</em>. Cette personne qui t'irrite est aussi une manifestation du Divin — envoyée non pour te torturer, mais pour te montrer quelque chose que tu n'aurais pas vu autrement. Remercie-la intérieurement.</p></div></div><div class="ref-step"><span class="ref-step-num">05</span><div class="ref-step-body"><span class="ref-step-title">Nettoyer sa propre lumière</span><p class="ref-step-text">Une fois l'information identifiée — travaille sur <em>toi</em>, pas sur l'autre. Tu n'as pas besoin de changer la personne. Tu n'as même pas besoin de lui parler. Le travail se fait entièrement à l'intérieur de ton propre vase.</p></div></div></div></div><div class="article-conclusion"><p>Chaque personne qui nous énerve est une <em>fenêtre sur nous-mêmes</em>. Le jour où tu cesses de voir tes ennemis comme des obstacles et où tu commences à les voir comme des <em>miroirs envoyés par la Providence</em>, ta vie change. Non pas parce que les gens changent autour de toi — mais parce que toi, tu es devenu(e) quelqu'un qui ne voyage plus comme une victime.</p></div><div class="article-sig"><span class="sig-logo">בְּנֵי אוֹר</span><span class="sig-name">Bnei Ohr — Enseignement Spirituel</span></div><div class="nav-bottom"><a href="index.html" class="nav-btn">← Accueil</a><a href="cercle.html" class="nav-btn">Cercle Intérieur →</a></div></main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Enseignement Ésotérique Kabbalistique</p>
+</footer><script>
+(function(){
+const c=document.getElementById('stars');
+for(let i=0;i<100;i++){
+const s=document.createElement('div');s.className='star';
+const sz=Math.random()*2+.4;
+s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:#fff;--d:${2+Math.random()*6}s;--o:${.07+Math.random()*.4}`;
+c.appendChild(s);
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Initiation — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+height:100%;overflow-y: auto}
+body{background:#000;color:#f0f0f0;font-family:'Cormorant Garamond',serif;cursor:default}
+/* ══ GLOBAL PARTICLES ══ */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.pt{position:absolute;border-radius:50%;animation:ptFloat var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes ptFloat{0%{opacity:0;transform:translateY(0)}50%{opacity:var(--o)}100%{opacity:0;transform:translateY(-30px)}}
+/* ══ STAGES ══ */
+.stage{position:fixed;inset:0;z-index:10;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s ease}
+.stage.active{opacity:1;pointer-events:all}
+/* ══════════════════════════════
+STAGE 0 — WELCOME GATE
+══════════════════════════════ */
+#s0{background:radial-gradient(ellipse 100% 100% at 50% 120%,#1a0a00,#000 60%)}
+.s0-inner{text-align:center;position:relative;z-index:1;padding:2rem}
+.s0-seal{width:120px;height:120px;margin:0 auto 2rem;position:relative}
+.s0-seal svg{width:100%;height:100%;animation:rotateSeal 20s linear infinite}
+@keyframes rotateSeal{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.s0-seal-inner{position:absolute;inset:0;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;font-family:'Noto Serif Hebrew',serif;font-size:2.2rem;color:#d4af37;text-shadow:0 0 30px rgba(212,175,55,.8);animation:none}
+.s0-glow{position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.15),transparent 70%);animation:glowPulse 3s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+.s0-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.5em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:1rem;animation:fadeInDown 1s ease forwards;opacity:0;animation-delay:.3s}
+.s0-title{font-family:'Cinzel',serif;font-size:clamp(2rem,8vw,4rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:.5rem;animation:fadeInDown 1s ease forwards;opacity:0;animation-delay:.6s}
+.s0-title span{color:#d4af37;display:block}
+.s0-sub{font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.4);margin-bottom:2.5rem;animation:fadeInDown 1s ease forwards;opacity:0;animation-delay:.9s}
+.s0-btn{display:inline-block;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:#d4af37;border:1px solid rgba(212,175,55,.5);padding:1rem 2.5rem;cursor:pointer;background:transparent;transition:all .5s;position:relative;overflow-y: auto;animation:fadeInUp 1s ease forwards;opacity:0;animation-delay:1.2s}
+.s0-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(212,175,55,.1),transparent);transform:translateX(-100%);transition:transform .6s}
+.s0-btn:hover::before{transform:translateX(100%)}
+.s0-btn:hover{border-color:#d4af37;background:rgba(212,175,55,.08);color:#fff;box-shadow:0 0 30px rgba(212,175,55,.15)}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+/* ══════════════════════════════
+STAGE 1 — QUIZ
+══════════════════════════════ */
+#s1{background:#030303;overflow-y:auto;align-items:flex-start}
+.s1-wrap{max-width:680px;width:100%;margin:0 auto;padding:4rem 2rem 6rem}
+.quiz-header{text-align:center;margin-bottom:3rem}
+.quiz-step-indicator{display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;gap:.5rem;margin-bottom:2rem}
+.qsi-dot{width:8px;height:8px;border-radius:50%;background:rgba(212,175,55,.2);transition:all .4s}
+.qsi-dot.done{background:#d4af37}
+.qsi-dot.active{background:#d4af37;box-shadow:0 0 10px rgba(212,175,55,.5);width:12px;height:12px}
+.quiz-title{font-family:'Cinzel',serif;font-size:clamp(1.2rem,4vw,2rem);color:#fff;margin-bottom:.5rem}
+.quiz-sub{font-size:1rem;font-style:italic;color:rgba(255,255,255,.35)}
+.question-card{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.12);padding:2rem;display:none;animation:qFadeIn .5s ease forwards}
+.question-card.active{display:block}
+@keyframes qFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.8rem}
+.q-text{font-size:1.15rem;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:1.5rem}
+.q-options{display:flex;
+flex-wrap:wrap;flex-direction:column;gap:.7rem}
+.q-opt{background:transparent;border:1px solid rgba(212,175,55,.18);color:rgba(255,255,255,.65);padding:.9rem 1.2rem;font-family:'Cormorant Garamond',serif;font-size:1rem;cursor:pointer;text-align:left;transition:all .3s;position:relative;overflow-y: auto}
+.q-opt::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#d4af37;transform:scaleY(0);transition:transform .3s}
+.q-opt:hover{border-color:rgba(212,175,55,.45);background:rgba(212,175,55,.06);color:#fff}
+.q-opt:hover::before{transform:scaleY(1)}
+.q-opt.correct{border-color:rgba(107,191,133,.5);background:rgba(107,191,133,.06);color:#6bbf85}
+.q-opt.wrong{border-color:rgba(200,80,80,.5);background:rgba(200,80,80,.05);color:rgba(200,80,80,.8);animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.quiz-feedback{margin-top:1rem;font-size:.9rem;font-style:italic;color:rgba(255,255,255,.4);min-height:1.2em;text-align:center}
+.quiz-fail{text-align:center;padding:2rem;display:none}
+.quiz-fail-icon{font-size:3rem;margin-bottom:1rem}
+.quiz-fail-text{font-family:'Cinzel',serif;font-size:1rem;color:rgba(200,80,80,.8);margin-bottom:1.5rem}
+.quiz-retry-btn{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.25em;color:rgba(212,175,55,.5);border:1px solid rgba(212,175,55,.2);padding:.6rem 1.4rem;background:transparent;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.quiz-retry-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5)}
+/* ══════════════════════════════
+STAGE 2 — SCROLL OF DARKNESS
+══════════════════════════════ */
+#s2{background:#000;overflow-y:scroll;align-items:flex-start;display:none}
+#s2.active{display:flex}
+.scroll-wrap{position:relative;width:100%;min-height:500vh}
+/* Darkness gradient */
+.scroll-bg{position:absolute;inset:0;background:linear-gradient(to bottom,#000 0%,#050005 20%,#0a0005 40%,#050010 60%,#0a0520 70%,#1a0a30 80%,rgba(212,175,55,.15) 92%,rgba(212,175,55,.4) 96%,#d4af37 100%);z-index:0}
+/* Scroll progress bar */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,#d4af37,#fff);z-index:100;transition:width .1s;width:0%}
+/* Scroll instructions */
+.scroll-instruction{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;z-index:50;animation:breathe 2s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.4}50%{opacity:.8}}
+/* Monsters — positioned at various scroll points */
+.monster{position:absolute;opacity:0;transition:opacity .5s;pointer-events:none;z-index:5}
+.monster.visible{opacity:1}
+.monster-img{font-size:clamp(4rem,8vw,8rem);filter:drop-shadow(0 0 20px rgba(200,0,0,.4));animation:monsterFloat 3s ease-in-out infinite alternate}
+@keyframes monsterFloat{from{transform:translateY(0) scale(1)}to{transform:translateY(-15px) scale(1.05)}}
+.monster-left{left:2vw}
+.monster-right{right:2vw}
+.monster-whisper{position:absolute;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;color:rgba(200,0,0,.5);text-transform:uppercase;white-space:nowrap;animation:whisperPulse 2s ease-in-out infinite}
+@keyframes whisperPulse{0%,100%{opacity:.3}50%{opacity:.7}}
+/* Choice scene */
+.choice-scene{position:absolute;width:100%;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;z-index:20;padding:2rem}
+.choice-card{background:rgba(5,0,15,.95);border:1px solid rgba(212,175,55,.3);padding:3rem 2.5rem;max-width:560px;width:100%;text-align:center;box-shadow:0 0 60px rgba(212,175,55,.08),inset 0 0 40px rgba(0,0,0,.5)}
+.choice-elder{font-size:4rem;margin-bottom:1rem;filter:drop-shadow(0 0 15px rgba(212,175,55,.5));animation:elderGlow 3s ease-in-out infinite}
+@keyframes elderGlow{0%,100%{filter:drop-shadow(0 0 15px rgba(212,175,55,.5))}50%{filter:drop-shadow(0 0 30px rgba(212,175,55,.8))}}
+.choice-title{font-family:'Cinzel',serif;font-size:clamp(1rem,3vw,1.4rem);color:#d4af37;margin-bottom:.5rem}
+.choice-sub{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:2rem}
+.choice-options{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.choice-btn{background:transparent;border:1px solid rgba(212,175,55,.25);color:rgba(255,255,255,.7);padding:1.2rem .8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .4s;display:flex;
+flex-wrap:wrap;flex-direction:column;align-items:center;gap:.5rem}
+.choice-btn:hover{transform:translateY(-3px)}
+.choice-btn-icon{font-size:2rem}
+.choice-btn.danger:hover{border-color:rgba(200,50,50,.6);background:rgba(200,50,50,.08);color:rgba(200,80,80,.9)}
+.choice-btn.wisdom:hover{border-color:rgba(212,175,55,.6);background:rgba(212,175,55,.1);color:#d4af37;box-shadow:0 0 20px rgba(212,175,55,.15)}
+/* Light at the end */
+.light-end{position:absolute;bottom:0;left:0;right:0;height:15vh;background:radial-gradient(ellipse 80% 100% at 50% 100%,rgba(212,175,55,.6),transparent);z-index:1}
+.light-orb{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#d4af37 30%,transparent 70%);filter:blur(20px);z-index:2;animation:orbPulse 2s ease-in-out infinite}
+@keyframes orbPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.15)}}
+/* ══ GAME OVER ══ */
+#gameOver{position:fixed;inset:0;z-index:500;background:#000;display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:2rem}
+#gameOver.show{display:flex;
+flex-wrap:wrap;animation:goIn .5s ease}
+@keyframes goIn{from{opacity:0}to{opacity:1}}
+.go-demon{font-size:8rem;animation:demonEat 1s ease-in-out infinite alternate}
+@keyframes demonEat{from{transform:scale(1) rotate(-5deg)}to{transform:scale(1.1) rotate(5deg)}}
+.go-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,5vw,3rem);color:#c00;margin:.5rem 0;text-shadow:0 0 20px rgba(200,0,0,.5)}
+.go-sub{font-size:1rem;font-style:italic;color:rgba(255,255,255,.4);margin-bottom:2rem}
+.go-btn{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.25em;color:rgba(212,175,55,.6);border:1px solid rgba(212,175,55,.25);padding:.7rem 1.8rem;background:transparent;cursor:pointer;transition:all .3s;text-transform:uppercase}
+.go-btn:hover{color:#d4af37;border-color:#d4af37}
+/* ══ ANGEL WIN ══ */
+#angelWin{position:fixed;inset:0;z-index:500;background:radial-gradient(ellipse at center,#1a1200,#000);display:none;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:2rem}
+#angelWin.show{display:flex;
+flex-wrap:wrap;animation:awIn .8s ease}
+@keyframes awIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.aw-light{position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:60vh;background:linear-gradient(to bottom,rgba(255,250,200,.3),transparent);filter:blur(30px);pointer-events:none}
+.aw-angel{font-size:6rem;animation:angelFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 30px rgba(255,250,200,.8))}
+@keyframes angelFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+.aw-title{font-family:'Cinzel',serif;font-size:clamp(1.2rem,4vw,2.2rem);color:#fff;margin:.8rem 0}
+.aw-title span{color:#d4af37}
+.aw-sub{font-size:1rem;font-style:italic;color:rgba(255,255,255,.5);margin-bottom:1.5rem;max-width:400px}
+.aw-word{display:inline-block;font-family:'Noto Serif Hebrew',serif;font-size:2rem;color:#d4af37;border:1px solid rgba(212,175,55,.4);padding:.6rem 1.5rem;letter-spacing:.15em;margin-bottom:1rem;text-shadow:0 0 15px rgba(212,175,55,.5);animation:wordGlow 2s ease-in-out infinite}
+@keyframes wordGlow{0%,100%{box-shadow:0 0 10px rgba(212,175,55,.2)}50%{box-shadow:0 0 30px rgba(212,175,55,.5)}}
+.aw-word-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:2rem}
+.aw-btn{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.3em;color:#d4af37;border:1px solid rgba(212,175,55,.5);padding:.9rem 2rem;background:transparent;cursor:pointer;transition:all .4s;text-transform:uppercase;position:relative;overflow-y: auto}
+.aw-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(212,175,55,.12),transparent);transform:translateX(-100%);transition:transform .5s}
+.aw-btn:hover::before{transform:translateX(100%)}
+.aw-btn:hover{border-color:#d4af37;background:rgba(212,175,55,.1);color:#fff}
+/* ══════════════════════════════
+STAGE 3 — PRAYER
+══════════════════════════════ */
+#s3{background:radial-gradient(ellipse at 50% 0%,#0a0800,#000);overflow-y:auto;align-items:flex-start}
+.s3-wrap{max-width:680px;width:100%;margin:0 auto;padding:4rem 2rem 6rem;text-align:center}
+.s3-icon{font-size:3rem;margin-bottom:1.5rem;animation:s3Float 4s ease-in-out infinite}
+@keyframes s3Float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.s3-eyebrow{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.4em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.8rem}
+.s3-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4vw,2rem);color:#fff;margin-bottom:1.5rem}
+.s3-divider{width:50px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.prayer-text{text-align:left;background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.12);border-left:3px solid rgba(212,175,55,.4);padding:2.5rem;margin:2rem 0;position:relative}
+.prayer-text::before{content:'"';position:absolute;top:-1rem;left:1rem;font-family:'Cinzel',serif;font-size:4rem;color:rgba(212,175,55,.15);line-height:1}
+.prayer-line{font-size:clamp(1rem,2.5vw,1.2rem);line-height:2.2;color:rgba(255,255,255,.8);display:block;margin-bottom:.3rem}
+.prayer-line.big{font-size:clamp(1.1rem,3vw,1.4rem);color:#fff;font-weight:600;letter-spacing:.05em}
+.prayer-line.gold{color:#d4af37}
+.prayer-line.em{font-style:italic;color:rgba(255,255,255,.6)}
+.prayer-line.amen{font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.6rem);color:#d4af37;letter-spacing:.2em;margin-top:1rem;text-align:center}
+.s3-instruction{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.35);margin-bottom:2rem}
+.s3-btn{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:#d4af37;border:1px solid rgba(212,175,55,.4);padding:1rem 2.5rem;background:transparent;cursor:pointer;transition:all .4s;text-transform:uppercase;position:relative;overflow-y: auto}
+.s3-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(212,175,55,.1),transparent);transform:translateX(-100%);transition:.5s}
+.s3-btn:hover::before{transform:translateX(100%)}
+.s3-btn:hover{border-color:#d4af37;background:rgba(212,175,55,.08);color:#fff}
+/* ══════════════════════════════
+STAGE 4 — OATH
+══════════════════════════════ */
+#s4{background:radial-gradient(ellipse at 50% 100%,#0a0500,#000);overflow-y:auto;align-items:flex-start}
+.s4-wrap{max-width:680px;width:100%;margin:0 auto;padding:4rem 2rem 6rem;text-align:center}
+.s4-flame{font-size:3.5rem;margin-bottom:1rem;animation:flameFlicker 1.5s ease-in-out infinite alternate}
+@keyframes flameFlicker{from{transform:scale(1) rotate(-2deg);filter:drop-shadow(0 0 10px rgba(212,175,55,.4))}to{transform:scale(1.05) rotate(2deg);filter:drop-shadow(0 0 25px rgba(212,175,55,.7))}}
+.s4-eyebrow{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.4em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.8rem}
+.s4-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4vw,2rem);color:#fff;margin-bottom:.5rem}
+.s4-sub{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.35);margin-bottom:2rem}
+.oath-scroll{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.15);padding:2.5rem;margin-bottom:2rem;position:relative;text-align:left}
+.oath-scroll::before,.oath-scroll::after{content:'';display:block;height:2px;background:linear-gradient(to right,transparent,rgba(212,175,55,.35),transparent);margin-bottom:1.5rem}
+.oath-scroll::after{margin-top:1.5rem;margin-bottom:0}
+.oath-line{font-size:1.05rem;line-height:2.1;color:rgba(255,255,255,.7);display:block;margin-bottom:.2rem}
+.oath-line strong{color:#d4af37;font-weight:400}
+.oath-sign{display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;gap:1rem;margin:1.5rem 0}
+.oath-sign-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.3))}
+.oath-sign-text{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:rgba(212,175,55,.5)}
+.s4-checkbox-wrap{display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;gap:.8rem;margin-bottom:2rem;cursor:pointer}
+.s4-checkbox{width:18px;height:18px;border:1px solid rgba(212,175,55,.4);background:transparent;appearance:none;cursor:pointer;position:relative;flex-shrink:0;transition:all .3s}
+.s4-checkbox:checked{background:rgba(212,175,55,.2);border-color:#d4af37}
+.s4-checkbox:checked::after{content:'✦';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#d4af37;font-size:.65rem}
+.s4-checkbox-label{font-size:.92rem;font-style:italic;color:rgba(255,255,255,.5)}
+.s4-btn{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.3em;color:#000;background:linear-gradient(135deg,#d4af37,#f0d060);border:none;padding:1.1rem 3rem;cursor:pointer;transition:all .4s;text-transform:uppercase;position:relative;overflow-y: auto;opacity:.4;pointer-events:none}
+.s4-btn.ready{opacity:1;pointer-events:all;animation:btnPulse 2s ease-in-out infinite}
+@keyframes btnPulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.4)}50%{box-shadow:0 0 20px 5px rgba(212,175,55,.2)}}
+.s4-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(212,175,55,.3)}
+/* ══ TRANSITIONS ══ */
+.transition-veil{position:fixed;inset:0;z-index:400;background:#000;opacity:0;pointer-events:none;transition:opacity .6s}
+.transition-veil.show{opacity:1}
+@media(max-width:600px){
+.choice-options{grid-template-columns:1fr}
+.s0-title{font-size:2.5rem}
+}
+/* ══════════════════════════════
+STAGE PASSWORD — GATE
+══════════════════════════════ */
+#sPassword{background:radial-gradient(ellipse 100% 100% at 50% 0%,#0a0500,#000 65%)}
+.sp-inner{text-align:center;position:relative;z-index:1;padding:2rem;max-width:480px;width:100%}
+.sp-key-icon{font-size:3.5rem;margin-bottom:1.5rem;animation:keyFloat 4s ease-in-out infinite;display:block;filter:drop-shadow(0 0 18px rgba(212,175,55,.5))}
+@keyframes keyFloat{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-10px) rotate(8deg)}}
+.sp-eyebrow{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.8rem;display:block;opacity:0;animation:fadeInDown .8s .2s ease forwards}
+.sp-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,5vw,2.2rem);color:#fff;margin-bottom:.4rem;opacity:0;animation:fadeInDown .8s .4s ease forwards}
+.sp-title span{color:#d4af37}
+.sp-sub{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.35);margin-bottom:2.5rem;line-height:1.7;opacity:0;animation:fadeInDown .8s .6s ease forwards}
+.sp-divider{width:50px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.4),transparent);margin:1.2rem auto 2rem}
+.sp-input-wrap{position:relative;margin-bottom:1.2rem;opacity:0;animation:fadeInUp .8s .8s ease forwards}
+.sp-input{width:100%;background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.25);color:#f0f0f0;padding:1rem 1.4rem;font-family:'Cormorant Garamond',serif;font-size:1.15rem;letter-spacing:.08em;text-align:center;outline:none;transition:all .4s}
+.sp-input:focus{border-color:rgba(212,175,55,.6);background:rgba(212,175,55,.07);box-shadow:0 0 20px rgba(212,175,55,.08)}
+.sp-input::placeholder{color:rgba(255,255,255,.2);font-style:italic;font-size:1rem;letter-spacing:.05em}
+.sp-btn{display:inline-block;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.35em;text-transform:uppercase;color:#d4af37;border:1px solid rgba(212,175,55,.5);padding:.9rem 2.2rem;cursor:pointer;background:transparent;transition:all .4s;position:relative;overflow-y: auto;opacity:0;animation:fadeInUp .8s 1s ease forwards}
+.sp-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(212,175,55,.1),transparent);transform:translateX(-100%);transition:transform .5s}
+.sp-btn:hover::before{transform:translateX(100%)}
+.sp-btn:hover{border-color:#d4af37;background:rgba(212,175,55,.08);color:#fff;box-shadow:0 0 25px rgba(212,175,55,.12)}
+.sp-error{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:rgba(200,80,80,.8);text-transform:uppercase;margin-top:.8rem;min-height:1em;transition:opacity .3s;opacity:0}
+.sp-error.visible{opacity:1;animation:shake .4s ease}
+.sp-hint{font-size:.82rem;font-style:italic;color:rgba(255,255,255,.2);margin-top:1.5rem;line-height:1.6}
+</style>
+</head>
+<body><div id="particles"></div>
+<div class="transition-veil" id="veil"></div><div id="gameOver"><div class="aw-light"></div><div class="go-demon">👹</div><h2 class="go-title">Perdu dans les Ténèbres</h2><p class="go-sub">Tu as choisi le pouvoir des ombres.<br>Tu n'es pas encore prêt pour la Lumière de Bnei Ohr.</p><button class="go-btn" onclick="returnHome()">Retourner à l'Accueil</button>
+</div><div id="angelWin"><div class="aw-light"></div><div class="aw-angel">👼</div><h2 class="aw-title">Tu as choisi la <span>Sagesse</span></h2><p class="aw-sub">L'ange de la Lumière te reconnaît.<br>Reçois le Mot de Pouvoir Sacré :</p><div class="aw-word">אוֹר עֶלְיוֹן</div><p class="aw-word-label">Ohr Elyon — Lumière Suprême</p><button class="aw-btn" onclick="proceedToStage(3)">Continuer vers la Prière →</button>
+</div><section class="stage active" id="sPassword"><div class="sp-inner"><span class="sp-key-icon">🗝️</span><p class="sp-eyebrow">Bnei Ohr — Accès Réservé</p><h1 class="sp-title">Chemin<span> d'Initiation</span></h1><p class="sp-sub">Ce chemin est réservé aux initiés.<br>Entre la clé sacrée pour accéder à l'épreuve.</p><div class="sp-divider"></div><div class="sp-input-wrap"><input
+type="text"
+class="sp-input"
+id="passwordInput"
+placeholder="Clé d'accès…"
+autocomplete="off"
+onkeydown="if(event.key==='Enter') checkPassword()"
+/></div><button class="sp-btn" onclick="checkPassword()">✦ Entrer ✦</button><p class="sp-error" id="spError">Clé incorrecte — Cherche encore.</p><p class="sp-hint">La clé t'a été transmise par les gardiens de Bnei Ohr.</p></div>
+</section><section class="stage" id="s0"><div class="s0-inner"><div class="s0-seal"><div class="s0-glow"></div><svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" stroke="rgba(212,175,55,.25)" stroke-width="1.5"/><circle cx="60" cy="60" r="46" stroke="rgba(212,175,55,.12)" stroke-width=".8" stroke-dasharray="4 6"/><polygon points="60,12 104,84 16,84" stroke="rgba(212,175,55,.3)" stroke-width="1" fill="none"/><polygon points="60,108 16,36 104,36" stroke="rgba(212,175,55,.3)" stroke-width="1" fill="none"/><circle cx="60" cy="3" r="2" fill="rgba(212,175,55,.6)"/><circle cx="60" cy="117" r="2" fill="rgba(212,175,55,.6)"/><circle cx="3" cy="60" r="2" fill="rgba(212,175,55,.6)"/><circle cx="117" cy="60" r="2" fill="rgba(212,175,55,.6)"/></svg><div class="s0-seal-inner">בְּנֵי</div></div><p class="s0-eyebrow">École Ésotérique Haïtienne</p><h1 class="s0-title">Bnei Ohr<span>Initiation</span></h1><p class="s0-sub">Un voyage en quatre épreuves vers la Lumière</p><button class="s0-btn" onclick="proceedToStage(1)">Commencer l'Initiation ✦</button></div>
+</section><section class="stage" id="s1"><div class="s1-wrap"><div class="quiz-header"><div class="quiz-step-indicator"><div class="qsi-dot active" id="dot0"></div><div class="qsi-dot" id="dot1"></div><div class="qsi-dot" id="dot2"></div><div class="qsi-dot" id="dot3"></div><div class="qsi-dot" id="dot4"></div></div><h2 class="quiz-title">Épreuve I — Quiz de Connaissance</h2><p class="quiz-sub">5 questions pour révéler ta compréhension</p></div><div class="question-card active" id="q0"><p class="q-num">Question 1 / 5</p><p class="q-text">Dans la Kabbale, quel est le nom de la Lumière Divine sans limite et sans fin qui est la source de toute création ?</p><div class="q-options"><button class="q-opt" onclick="answer(0,0,false)">Keter — La Couronne</button><button class="q-opt" onclick="answer(0,1,true)">Ein Sof — L'Infini</button><button class="q-opt" onclick="answer(0,2,false)">Tiferet — La Beauté</button><button class="q-opt" onclick="answer(0,3,false)">Malkuth — Le Royaume</button></div><p class="quiz-feedback" id="fb0"></p></div><div class="question-card" id="q1"><p class="q-num">Question 2 / 5</p><p class="q-text">Les Klippot, dans la tradition kabalistique, sont des forces qui :</p><div class="q-options"><button class="q-opt" onclick="answer(1,0,false)">Protègent l'initié pendant le sommeil</button><button class="q-opt" onclick="answer(1,1,false)">Représentent les anges gardiens</button><button class="q-opt" onclick="answer(1,2,true)">Sont des coquilles vides parasitant la Lumière</button><button class="q-opt" onclick="answer(1,3,false)">Sont les 10 Sephiroth de l'Arbre de Vie</button></div><p class="quiz-feedback" id="fb1"></p></div><div class="question-card" id="q2"><p class="q-num">Question 3 / 5</p><p class="q-text">Qu'est-ce que le LBRP dans la pratique kabalistique de Bnei Ohr ?</p><div class="q-options"><button class="q-opt" onclick="answer(2,0,false)">Une prière de l'Abbé Julio pour chasser les démons</button><button class="q-opt" onclick="answer(2,1,true)">Le Petit Rituel Banissant du Pentagramme — purification de l'espace</button><button class="q-opt" onclick="answer(2,2,false)">Un carré magique de protection (Kaméa)</button><button class="q-opt" onclick="answer(2,3,false)">Une méditation sur les lettres hébraïques</button></div><p class="quiz-feedback" id="fb2"></p></div><div class="question-card" id="q3"><p class="q-num">Question 4 / 5</p><p class="q-text">Selon la vision de Bnei Ohr, pourquoi un initié ne craint-il pas le Lougarou ?</p><div class="q-options"><button class="q-opt" onclick="answer(3,0,false)">Parce qu'il possède des amulettes puissantes</button><button class="q-opt" onclick="answer(3,1,false)">Parce que le Lougarou n'existe pas en réalité</button><button class="q-opt" onclick="answer(3,2,false)">Parce qu'il connaît des formules secrètes pour l'attaquer</button><button class="q-opt" onclick="answer(3,3,true)">Parce que son champ vibratoire élevé le rend imperméable aux parasites astraux</button></div><p class="quiz-feedback" id="fb3"></p></div><div class="question-card" id="q4"><p class="q-num">Question 5 / 5</p><p class="q-text">Dans la Croix Kabalistique, que signifie le mot « Ateh » prononcé en touchant le sommet du crâne ?</p><div class="q-options"><button class="q-opt" onclick="answer(4,0,false)">La Puissance</button><button class="q-opt" onclick="answer(4,1,false)">Le Royaume</button><button class="q-opt" onclick="answer(4,2,true)">À Toi — pointant vers Keter, la source divine</button><button class="q-opt" onclick="answer(4,3,false)">La Gloire</button></div><p class="quiz-feedback" id="fb4"></p></div><div class="quiz-fail" id="quizFail"><div class="quiz-fail-icon">🌑</div><p class="quiz-fail-text">Ta connaissance n'est pas encore suffisante pour continuer.<br>Étudie les enseignements de Bnei Ohr et reviens.</p><button class="quiz-retry-btn" onclick="retryQuiz()">Recommencer le Quiz</button></div></div>
+</section><section class="stage" id="s2"><div class="scroll-progress" id="scrollProgress"></div><p class="scroll-instruction" id="scrollHint">↓ Descends vers la Lumière ↓</p><div class="scroll-wrap"><div class="scroll-bg"></div><div class="monster monster-left" style="top:8%" id="m1"><div class="monster-img">👁️</div><div class="monster-whisper" style="color:rgba(200,0,0,.5);font-size:.45rem;margin-top:.3rem">RETOURNE...</div></div><div class="monster monster-right" style="top:15%" id="m2"><div class="monster-img">💀</div><div class="monster-whisper" style="right:0;font-size:.45rem;margin-top:.3rem">TU N'ES PAS PRÊT</div></div><div class="monster monster-left" style="top:25%" id="m3"><div class="monster-img">🐍</div><div class="monster-whisper" style="font-size:.45rem;margin-top:.3rem">FUIS...</div></div><div class="monster monster-right" style="top:33%" id="m4"><div class="monster-img">🦇</div></div><div class="monster monster-left" style="top:42%" id="m5"><div class="monster-img">🕷️</div><div class="monster-whisper" style="font-size:.45rem;margin-top:.3rem">LES TÉNÈBRES T'ATTENDENT</div></div><div class="monster monster-right" style="top:52%" id="m6"><div class="monster-img">👻</div></div><div style="position:absolute;top:5%;left:50%;transform:translateX(-50%);text-align:center;z-index:3;width:90%"><p style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;color:rgba(212,175,55,.3);text-transform:uppercase">Épreuve II — Le Passage des Ténèbres</p></div><div style="position:absolute;top:28%;left:50%;transform:translateX(-50%);text-align:center;z-index:3;width:80%;max-width:400px"><p style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:rgba(212,175,55,.25);text-transform:uppercase;font-style:italic">« Celui qui marche dans la Lumière ne craint pas les ombres »</p></div><div style="position:absolute;top:48%;left:50%;transform:translateX(-50%);text-align:center;z-index:3;width:80%;max-width:400px"><p style="font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase;font-style:italic">« Continue... la Lumière t'attend »</p></div><div class="choice-scene" style="top:62%"><div class="choice-card"><div class="choice-elder">🧙</div><h3 class="choice-title">Le Vieillard de la Route</h3><p class="choice-sub">
+Un ancien t'arrête dans les ténèbres.<br>
+« Je peux t'offrir ce que tu désires le plus.<br>Que choisis-tu ? »
+</p><div class="choice-options"><button class="choice-btn danger" onclick="chooseOption('power')"><span class="choice-btn-icon">👑</span>
+Pouvoir
+</button><button class="choice-btn danger" onclick="chooseOption('wealth')"><span class="choice-btn-icon">💰</span>
+Richesse
+</button><button class="choice-btn wisdom" onclick="chooseOption('wisdom')"><span class="choice-btn-icon">✨</span>
+Sagesse
+</button></div></div></div><div class="light-end"></div><div class="light-orb"></div></div>
+</section><section class="stage" id="s3"><div class="s3-wrap"><div class="s3-icon">🕯️</div><p class="s3-eyebrow">Épreuve III — La Prière d'Activation</p><h2 class="s3-title">Prière de Protection &amp; d'Éveil</h2><div class="s3-divider"></div><p class="s3-instruction">Lis cette prière à voix haute, lentement, avec toute ton intention.</p><div class="prayer-text"><span class="prayer-line big">Béni soit le nom de l'Éternel,</span><span class="prayer-line gold">béni soit le nom de HASHEM,</span><span class="prayer-line big">béni soit le nom de EHYEH ASHER JEHOVAH,</span><span class="prayer-line em">Dieu de l'univers, Dieu de tous les temps,</span><span class="prayer-line em">Créateur de tout ce qui vit et de tout ce qui existe.</span><span class="prayer-line"> </span><span class="prayer-line">Gloire à Jésus-Christ, premier être créé des mains de la sagesse,</span><span class="prayer-line gold">le Tout-Puissant qui donne la victoire aux serviteurs de l'Éternel.</span><span class="prayer-line"> </span><span class="prayer-line">Donnez-moi, Seigneur, le courage de comprendre ma mission sur cette terre.</span><span class="prayer-line">Transformez mon être en sanctifiant mon âme,</span><span class="prayer-line gold">en illuminant mon esprit, en fortifiant mon organisme.</span><span class="prayer-line"> </span><span class="prayer-line">Bénissez mes proches et tout ce que j'entreprends</span><span class="prayer-line">par le nom de Jésus, le maître des maîtres,</span><span class="prayer-line">par Métatron, le chef des anges,</span><span class="prayer-line">et par tous les saints et toutes les saintes.</span><span class="prayer-line"> </span><span class="prayer-line em">Je crois par la foi que tout est bien.</span><span class="prayer-line em">Oui, Seigneur — tout est bien.</span><span class="prayer-line amen">Amen !</span></div><button class="s3-btn" onclick="proceedToStage(4)">J'ai récité la Prière — Continuer ✦</button></div>
+</section><section class="stage" id="s4"><div class="s4-wrap"><div class="s4-flame">🔥</div><p class="s4-eyebrow">Épreuve IV — Le Serment</p><h2 class="s4-title">Engagement Solennel du Veilleur</h2><p class="s4-sub">Lis chaque ligne. Elles t'engagent devant la Lumière.</p><div class="oath-scroll"><span class="oath-line">Moi, <strong>chercheur de Lumière</strong>, je m'engage devant l'Éternel</span><span class="oath-line">et devant les forces de <strong>Bnei Ohr</strong> :</span><span class="oath-line"> </span><span class="oath-line">✦ Je jure de ne jamais utiliser les enseignements reçus</span><span class="oath-line">&nbsp;&nbsp;&nbsp;pour nuire, contrôler ou manipuler autrui.</span><span class="oath-line"> </span><span class="oath-line">✦ Je m'engage à poursuivre mon travail intérieur</span><span class="oath-line">&nbsp;&nbsp;&nbsp;avec sincérité, discipline et humilité.</span><span class="oath-line"> </span><span class="oath-line">✦ Je garde dans la <strong>discrétion absolue</strong></span><span class="oath-line">&nbsp;&nbsp;&nbsp;les contenus du Cercle Intérieur.</span><span class="oath-line"> </span><span class="oath-line">✦ Je reconnais que la <strong>Lumière est ma seule ambition</strong> —</span><span class="oath-line">&nbsp;&nbsp;&nbsp;non le pouvoir, non la richesse, non la gloire.</span><span class="oath-line"> </span><span class="oath-line">✦ Je marche désormais sous la protection de <strong>Bnei Ohr</strong>,</span><span class="oath-line">&nbsp;&nbsp;&nbsp;enfant de la Lumière, Veilleur de l'Éternel.</span><div class="oath-sign"><div class="oath-sign-line"></div><div class="oath-sign-text">אוֹר</div><div class="oath-sign-line" style="background:linear-gradient(to left,transparent,rgba(212,175,55,.3))"></div></div></div><label class="s4-checkbox-wrap"><input type="checkbox" class="s4-checkbox" id="oathCheck" onchange="toggleOathBtn()"/><span class="s4-checkbox-label">Je m'engage solennellement à respecter ce serment.</span></label><button class="s4-btn" id="oathBtn" onclick="enterCircle()">
+✦ J'Entre dans le Cercle de Lumière ✦
+</button></div>
+</section><script>
+/* ── Password Gate ── */
+function normalizeKey(str) {
+return str
+.toLowerCase()
+.normalize('NFD')
+.replace(/[\u0300-\u036f]/g, '') // strip accents
+.replace(/\s+/g, ' ')
+.trim();
+}
+const SECRET_KEY = normalizeKey('Lumière divine B');
+function checkPassword() {
+const input = document.getElementById('passwordInput');
+const errorEl = document.getElementById('spError');
+const val = normalizeKey(input.value);
+if (val === SECRET_KEY) {
+errorEl.classList.remove('visible');
+const veil = document.getElementById('veil');
+veil.classList.add('show');
+setTimeout(() => {
+document.getElementById('sPassword').classList.remove('active');
+document.getElementById('s0').classList.add('active');
+setTimeout(() => veil.classList.remove('show'), 200);
+}, 600);
+} else {
+errorEl.classList.remove('visible');
+void errorEl.offsetWidth; // reflow to re-trigger animation
+errorEl.classList.add('visible');
+input.value = '';
+input.focus();
+}
+}
+/* ── Particles ── */
+(function(){
+const c=document.getElementById('particles');
+for(let i=0;i<80;i++){
+const p=document.createElement('div');p.className='pt';
+const sz=Math.random()*2+.5;
+p.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:#d4af37;--d:${(Math.random()*6+3).toFixed(1)}s;--o:${(Math.random()*.25+.05).toFixed(2)};animation-delay:${(Math.random()*4).toFixed(1)}s`;
+c.appendChild(p);
+}
+})();
+/* ── Stage management ── */
+let currentStage = 0;
+let quizPassed = false;
+let choiceMade = false;
+function proceedToStage(n) {
+const veil = document.getElementById('veil');
+veil.classList.add('show');
+setTimeout(() => {
+document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+const next = document.getElementById('s'+n);
+next.classList.add('active');
+if (n === 2) { next.style.display='flex'; setupScroll(); }
+currentStage = n;
+window.scrollTo(0,0);
+next.scrollTo && next.scrollTo(0,0);
+setTimeout(() => veil.classList.remove('show'), 200);
+}, 600);
+}
+/* ── Quiz ── */
+let currentQ = 0;
+let wrongCount = 0;
+function answer(qIdx, optIdx, correct) {
+const card = document.getElementById('q'+qIdx);
+const opts = card.querySelectorAll('.q-opt');
+const fb = document.getElementById('fb'+qIdx);
+opts.forEach(o => o.style.pointerEvents='none');
+if (correct) {
+opts[optIdx].classList.add('correct');
+fb.textContent = '✦ Juste. Ta connaissance est réelle.';
+fb.style.color = 'rgba(107,191,133,.7)';
+updateDot(qIdx, 'done');
+setTimeout(() => {
+card.classList.remove('active');
+currentQ++;
+if (currentQ < 5) {
+document.getElementById('q'+currentQ).classList.add('active');
+updateDot(currentQ, 'active');
+} else {
+setTimeout(() => proceedToStage(2), 600);
+}
+}, 900);
+} else {
+opts[optIdx].classList.add('wrong');
+wrongCount++;
+fb.textContent = '✗ Inexact. Réfléchis encore.';
+fb.style.color = 'rgba(200,80,80,.7)';
+if (wrongCount >= 3) {
+setTimeout(() => {
+document.querySelectorAll('.question-card').forEach(c=>c.style.display='none');
+document.getElementById('quizFail').style.display='block';
+}, 800);
+} else {
+setTimeout(() => {
+opts[optIdx].classList.remove('wrong');
+opts.forEach(o=>o.style.pointerEvents='');
+fb.textContent='';
+}, 1200);
+}
+}
+}
+function updateDot(idx, state) {
+const dots = document.querySelectorAll('.qsi-dot');
+dots.forEach(d=>d.classList.remove('active'));
+if (state==='done') dots[idx].classList.add('done');
+if (state==='active') dots[idx].classList.add('active');
+}
+function retryQuiz() {
+wrongCount=0; currentQ=0;
+document.querySelectorAll('.question-card').forEach((c,i) => {
+c.style.display='';
+c.classList.remove('active');
+if(i===0) c.classList.add('active');
+c.querySelectorAll('.q-opt').forEach(o=>{o.classList.remove('correct','wrong');o.style.pointerEvents='';});
+document.getElementById('fb'+i).textContent='';
+});
+document.querySelectorAll('.qsi-dot').forEach((d,i)=>{d.classList.remove('done','active');if(i===0)d.classList.add('active');});
+document.getElementById('quizFail').style.display='none';
+}
+/* ── Scroll Experience ── */
+function setupScroll() {
+const s2 = document.getElementById('s2');
+s2.addEventListener('scroll', onS2Scroll);
+}
+const monsterThresholds = [0.04,0.10,0.18,0.26,0.36,0.46];
+let monstersShown = [false,false,false,false,false,false];
+function onS2Scroll() {
+const s2 = document.getElementById('s2');
+const scrollEl = s2.querySelector('.scroll-wrap');
+const maxScroll = scrollEl.scrollHeight - s2.clientHeight;
+const pct = s2.scrollTop / maxScroll;
+// Progress bar
+document.getElementById('scrollProgress').style.width = (pct*100)+'%';
+// Hide scroll hint after start
+if (pct > 0.02) document.getElementById('scrollHint').style.opacity='0';
+// Show monsters
+monsterThresholds.forEach((t,i) => {
+if (pct >= t && !monstersShown[i]) {
+monstersShown[i] = true;
+const m = document.getElementById('m'+(i+1));
+if(m) { m.classList.add('visible'); setTimeout(()=>m.classList.remove('visible'), 4000); }
+}
+});
+}
+/* ── Choice ── */
+function chooseOption(choice) {
+if (choiceMade) return;
+choiceMade = true;
+if (choice === 'wisdom') {
+setTimeout(() => {
+document.getElementById('angelWin').classList.add('show');
+}, 300);
+} else {
+setTimeout(() => {
+document.getElementById('gameOver').classList.add('show');
+}, 300);
+}
+}
+function returnHome() {
+window.location.href = 'index.html';
+}
+/* ── Angel → Stage 3 ── */
+// proceedToStage already handles this via aw-btn
+/* ── Oath ── */
+function toggleOathBtn() {
+const checked = document.getElementById('oathCheck').checked;
+const btn = document.getElementById('oathBtn');
+btn.classList.toggle('ready', checked);
+}
+function enterCircle() {
+if (!document.getElementById('oathCheck').checked) return;
+const veil = document.getElementById('veil');
+veil.classList.add('show');
+setTimeout(() => { window.location.href = 'rituels-nivo1.html'; }, 800);
+}
+/* ── Override proceedToStage for angelWin ── */
+const origProceed = proceedToStage;
+window.proceedToStage = function(n) {
+document.getElementById('angelWin').classList.remove('show');
+document.getElementById('gameOver').classList.remove('show');
+origProceed(n);
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bnei Ohr — Glossaire de Sagesse</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background-color: #050505;
+color: #d4af37;
+font-family: 'Cormorant Garamond', serif;
+padding: 20px;
+min-min-height: 100vh;
+}
+/* STARS */
+#stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow-y: auto; }
+.star { position: absolute; background: #d4af37; border-radius: 50%; animation: twinkle var(--d) ease-in-out infinite alternate; opacity: 0; }
+@keyframes twinkle { 0% { opacity: 0; } 100% { opacity: var(--o); } }
+.glosye-container {
+max-width: 800px;
+margin: 0 auto;
+position: relative;
+z-index: 1;
+}
+/* HEADER */
+.glosye-header {
+text-align: center;
+padding: 3rem 0 2rem;
+margin-bottom: 2rem;
+}
+.glosye-hebrew-title {
+font-family: 'Noto Serif Hebrew', serif;
+font-size: 3rem;
+color: #d4af37;
+text-shadow: 0 0 30px rgba(212,175,55,0.4);
+display: block;
+margin-bottom: 0.5rem;
+direction: rtl;
+}
+.glosye-main-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(1.2rem, 3vw, 1.8rem);
+letter-spacing: 0.4em;
+color: #d4af37;
+border-bottom: 1px solid rgba(212,175,55,0.4);
+padding-bottom: 1rem;
+margin-bottom: 0.5rem;
+}
+.glosye-subtitle {
+font-style: italic;
+color: #7a6030;
+font-size: 1rem;
+letter-spacing: 0.1em;
+}
+/* BACK BUTTON */
+.back-btn {
+color: #d4af37;
+text-decoration: none;
+border: 1px solid #7a6030;
+padding: 0.6rem 1.5rem;
+display: inline-block;
+margin-bottom: 2rem;
+transition: all 0.3s;
+font-family: 'Cinzel', serif;
+font-size: 0.75rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+}
+.back-btn:hover {
+background: rgba(212,175,55,0.1);
+border-color: #d4af37;
+}
+/* SEARCH */
+.search-box {
+width: 100%;
+background: rgba(212,175,55,0.05);
+border: 1px solid rgba(212,175,55,0.2);
+color: #f0f0f0;
+padding: 0.8rem 1.2rem;
+font-family: 'Cormorant Garamond', serif;
+font-size: 1rem;
+outline: none;
+margin-bottom: 2rem;
+transition: border-color 0.3s;
+}
+.search-box:focus { border-color: #d4af37; }
+.search-box::placeholder { color: #7a6030; }
+/* ALPHABET NAV */
+.alpha-nav {
+display: flex;
+flex-wrap: wrap;
+gap: 0.3rem;
+margin-bottom: 2rem;
+}
+.alpha-btn {
+background: none;
+border: 1px solid rgba(212,175,55,0.2);
+color: #7a6030;
+padding: 0.3rem 0.6rem;
+font-family: 'Cinzel', serif;
+font-size: 0.7rem;
+cursor: pointer;
+transition: all 0.3s;
+letter-spacing: 0.1em;
+}
+.alpha-btn:hover, .alpha-btn.active {
+background: rgba(212,175,55,0.1);
+border-color: #d4af37;
+color: #d4af37;
+}
+/* TERM CARD */
+.term-card {
+border-bottom: 1px solid rgba(212,175,55,0.15);
+padding: 2rem 0;
+margin-bottom: 0.5rem;
+transition: all 0.3s;
+animation: fadeIn 0.5s ease;
+}
+.term-card:hover {
+padding-left: 0.5rem;
+border-bottom-color: rgba(212,175,55,0.4);
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.term-header {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 1rem;
+flex-wrap: wrap;
+}
+.term-left { flex: 1; }
+.transliteration {
+font-family: 'Cinzel', serif;
+font-weight: 600;
+letter-spacing: 0.3em;
+color: #d4af37;
+font-size: 1rem;
+text-transform: uppercase;
+}
+.hebrew-word {
+font-family: 'Noto Serif Hebrew', serif;
+font-size: 2.2rem;
+display: block;
+color: #ffffff;
+margin: 0.3rem 0;
+direction: rtl;
+text-align: right;
+text-shadow: 0 0 20px rgba(212,175,55,0.2);
+}
+.definition {
+color: #a0a0a0;
+line-height: 1.8;
+margin-top: 0.8rem;
+font-size: 1.05rem;
+font-style: italic;
+}
+/* LETTER GROUP */
+.letter-group {
+margin-bottom: 0.5rem;
+}
+.letter-anchor {
+font-family: 'Cinzel', serif;
+font-size: 0.7rem;
+letter-spacing: 0.4em;
+color: rgba(212,175,55,0.3);
+text-transform: uppercase;
+padding: 0.5rem 0;
+display: block;
+}
+/* NO RESULT */
+.no-result {
+text-align: center;
+color: #7a6030;
+font-style: italic;
+padding: 3rem 0;
+display: none;
+}
+/* FOOTER */
+.glosye-footer {
+text-align: center;
+padding: 3rem 0 2rem;
+border-top: 1px solid rgba(212,175,55,0.1);
+margin-top: 2rem;
+}
+.glosye-footer a {
+color: #7a6030;
+text-decoration: none;
+font-family: 'Cinzel', serif;
+font-size: 0.8rem;
+letter-spacing: 0.15em;
+transition: color 0.3s;
+}
+.glosye-footer a:hover { color: #d4af37; }
+@media (max-width: 600px) {
+.term-header { flex-direction: column; }
+.hebrew-word { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body><div id="stars"></div><div class="glosye-container"><a href="bneiohr.html" class="back-btn">← Retour à la Page Principale</a><div class="glosye-header"><span class="glosye-hebrew-title">גְּלוֹסָרְיוּם</span><h1 class="glosye-main-title">Glossaire de Sagesse</h1><p class="glosye-subtitle">Bnei Ohr — בְּנֵי אוֹר — Termes Kabbalistiques Fondamentaux</p></div><input type="text" class="search-box" id="searchBox" placeholder="Rechercher un terme..." oninput="filterTerms()"><div class="alpha-nav" id="alphaNav"></div><div id="termsContainer"></div><p class="no-result" id="noResult">Aucun terme trouvé pour cette recherche.</p><div class="glosye-footer"><a href="bneiohr.html">← Retour à Bnei Ohr</a></div></div><script>
+// ── TERMS DATA ──
+const terms = [
+{
+id: "bitul",
+transliteration: "Bitul",
+hebrew: "בִּטּוּל",
+definition: "Annulation de l'ego. Lorsqu'une personne s'efface pour laisser place à la Lumière divine."
+},
+{
+id: "devekut",
+transliteration: "Devekut",
+hebrew: "דְּבֵקוּת",
+definition: "Adhérence. État dans lequel l'âme reste attachée à la source de lumière dans chaque action."
+},
+{
+id: "ein-sof",
+transliteration: "Ein Sof",
+hebrew: "אֵין סוֹף",
+definition: "Littéralement « Sans Fin ». Il représente Dieu avant toute création, dans une dimension qui dépasse notre intelligence."
+},
+{
+id: "ilan-hachayim",
+transliteration: "Ilan HaChayim",
+hebrew: "אִילָן הַחַיִּים",
+definition: "L'Arbre de Vie. C'est la carte spirituelle qui montre comment les 10 Sefirot se connectent entre elles."
+},
+{
+id: "kavanah",
+transliteration: "Kavanah",
+hebrew: "כַּוָּנָה",
+definition: "Intention. C'est la force et la direction que l'on met dans une prière ou une action pour lui donner une valeur spirituelle."
+},
+{
+id: "keter",
+transliteration: "Keter",
+hebrew: "כֶּתֶר",
+definition: "La Couronne. C'est le point le plus élevé des 10 Sefirot, représentant une volonté qui dépasse notre compréhension."
+},
+{
+id: "kli",
+transliteration: "Kli",
+hebrew: "כְּלִי",
+definition: "Le Vase. C'est notre capacité à recevoir la lumière."
+},
+{
+id: "ohr",
+transliteration: "Ohr",
+hebrew: "אוֹר",
+definition: "La Lumière. C'est l'énergie spirituelle qui émane de l'Ein Sof pour remplir la création."
+},
+{
+id: "olamot",
+transliteration: "Olamot",
+hebrew: "עוֹלָמוֹת",
+definition: "Les Mondes. Il existe 5 grands niveaux de réalité par lesquels la lumière passe avant de nous atteindre."
+},
+{
+id: "reshimu",
+transliteration: "Reshimu",
+hebrew: "רְשִׁימוּ",
+definition: "Trace ou empreinte. La légère trace de lumière qui demeure toujours en nous, même quand nous nous sentons éloignés de la source."
+},
+{
+id: "sefira",
+transliteration: "Sefira",
+hebrew: "סְפִירָה",
+definition: "L'une des 10 attributs ou canaux par lesquels la lumière d'Ein Sof se manifeste dans le monde."
+},
+{
+id: "shechinah",
+transliteration: "Shechinah",
+hebrew: "שְׁכִינָה",
+definition: "La Présence divine qui demeure dans ce monde. Elle représente l'aspect féminin de la lumière."
+},
+{
+id: "tikkun",
+transliteration: "Tikkun",
+hebrew: "תִּקּוּן",
+definition: "Réparation. Le travail que chaque personne doit accomplir pour se réparer soi-même et réparer le monde."
+},
+{
+id: "tsimtsum",
+transliteration: "Tsimtsum",
+hebrew: "צִמְצוּם",
+definition: "Contraction. L'action par laquelle l'Ein Sof se retire pour créer un espace vide permettant notre existence en tant qu'êtres libres."
+}
+];
+// Sort alphabetically
+terms.sort((a, b) => a.transliteration.localeCompare(b.transliteration));
+// ── RENDER ──
+function renderTerms(filtered) {
+const container = document.getElementById('termsContainer');
+const noResult = document.getElementById('noResult');
+container.innerHTML = '';
+if (filtered.length === 0) {
+noResult.style.display = 'block';
+return;
+}
+noResult.style.display = 'none';
+// Group by first letter
+const groups = {};
+filtered.forEach(term => {
+const letter = term.transliteration[0].toUpperCase();
+if (!groups[letter]) groups[letter] = [];
+groups[letter].push(term);
+});
+Object.keys(groups).sort().forEach(letter => {
+const group = document.createElement('div');
+group.className = 'letter-group';
+group.id = 'letter-' + letter;
+const anchor = document.createElement('span');
+anchor.className = 'letter-anchor';
+anchor.textContent = '— ' + letter + ' —';
+group.appendChild(anchor);
+groups[letter].forEach(term => {
+const card = document.createElement('div');
+card.className = 'term-card';
+card.innerHTML = `
+<div class="term-header"><div class="term-left"><span class="transliteration">${term.transliteration}</span><span class="hebrew-word">${term.hebrew}</span></div></div><p class="definition">${term.definition}</p>
+`;
+group.appendChild(card);
+});
+container.appendChild(group);
+});
+}
+// ── ALPHA NAV ──
+function buildAlphaNav() {
+const nav = document.getElementById('alphaNav');
+const letters = [...new Set(terms.map(t => t.transliteration[0].toUpperCase()))].sort();
+letters.forEach(letter => {
+const btn = document.createElement('button');
+btn.className = 'alpha-btn';
+btn.textContent = letter;
+btn.onclick = () => {
+const el = document.getElementById('letter-' + letter);
+if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+};
+nav.appendChild(btn);
+});
+}
+// ── SEARCH ──
+function filterTerms() {
+const q = document.getElementById('searchBox').value.toLowerCase();
+const filtered = terms.filter(t =>
+t.transliteration.toLowerCase().includes(q) ||
+t.definition.toLowerCase().includes(q) ||
+t.hebrew.includes(q)
+);
+renderTerms(filtered);
+}
+// ── STARS ──
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 80; i++) {
+const s = document.createElement('div');
+s.className = 'star';
+const size = Math.random() * 1.5 + 0.5;
+s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--o:${0.1+Math.random()*0.4};animation-delay:${Math.random()*4}s;`;
+starsEl.appendChild(s);
+}
+// ── INIT ──
+buildAlphaNav();
+renderTerms(terms);
+</script><span style="font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .9rem;background:rgba(212,175,55,0.15);color:#d4af37;">KR</span>
+</div>
+</body>
+</html>

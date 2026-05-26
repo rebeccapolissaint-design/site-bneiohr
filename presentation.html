@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Présentation de Bnei Ohr — École Ésotérique Haïtienne</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#050505;color:#e8e4dc;font-family:'Cormorant Garamond',serif}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:.9rem 2rem;background:rgba(5,5,5,0.96);border-bottom:1px solid rgba(212,175,55,0.12);backdrop-filter:blur(8px)}
+.logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.6rem;text-decoration:none}
+.logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:#d4af37}
+.logo-txt{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:#606060;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+/* HERO */
+.page-hero{padding:7rem 2rem 3rem;text-align:center;border-bottom:1px solid rgba(212,175,55,0.08)}
+.eyebrow{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.5em;color:rgba(212,175,55,0.45);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.page-hero h1{font-family:'Cinzel',serif;font-size:clamp(1.2rem,4vw,1.9rem);letter-spacing:.15em;color:#fff;text-transform:uppercase;margin-bottom:.5rem}
+.page-hero h1 span{color:#d4af37}
+.hero-div{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:.8rem auto 1rem}
+.page-hero p{font-style:italic;color:rgba(255,255,255,0.5);max-width:540px;margin:0 auto;font-size:1rem;line-height:1.85}
+/* VIDEO */
+.video-wrap{max-width:100%;margin:0;padding:0}
+.video-label{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:rgba(212,175,55,0.4);text-transform:uppercase;text-align:center;display:block;padding:1.5rem 0 1rem;background:#050505}
+.video-container{position:relative;padding-bottom:56.25%;height:0;overflow-y: auto;border-top:1px solid rgba(212,175,55,0.15);border-bottom:1px solid rgba(212,175,55,0.15);box-shadow:0 0 60px rgba(212,175,55,0.1)}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+/* ARTICLES — 5-card grid */
+.articles-wrap{max-width:1000px;margin:0 auto;padding:3rem 1.5rem 5rem}
+.section-sep{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,0.12),transparent);margin:0 0 2.5rem}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:3rem}
+/* ARTICLE CARD */
+.article-card{
+display:flex;
+flex-wrap:wrap;flex-direction:column;
+background:rgba(212,175,55,0.025);
+border:1px solid rgba(212,175,55,0.12);
+transition:border-color .4s,background .4s;
+position:relative;overflow-y: auto;
+}
+.article-card::before{
+content:'';position:absolute;top:0;left:0;right:0;height:1px;
+background:linear-gradient(to right,transparent,rgba(212,175,55,0.35),transparent);
+transform:scaleX(0);transition:transform .5s;
+}
+.article-card:hover{border-color:rgba(212,175,55,0.3);background:rgba(212,175,55,0.05)}
+.article-card:hover::before{transform:scaleX(1)}
+/* Icon banner */
+.article-banner{width:100%;height:120px;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;border-bottom:1px solid rgba(212,175,55,0.08);background:linear-gradient(135deg,#080600,#0c0900);position:relative;overflow-y: auto;flex-shrink:0}
+.article-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,175,55,0.07) 0%,transparent 70%)}
+.banner-icon{font-family:'Noto Serif Hebrew',serif;font-size:3.2rem;color:rgba(212,175,55,0.7);line-height:1;position:relative;z-index:1;text-shadow:0 0 25px rgba(212,175,55,0.4)}
+.banner-symbol{font-size:3rem;color:rgba(212,175,55,0.65);position:relative;z-index:1;text-shadow:0 0 20px rgba(212,175,55,0.35)}
+.card-body{padding:1.4rem 1.4rem 1.2rem;display:flex;
+flex-wrap:wrap;flex-direction:column;flex:1}
+.article-tag{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,0.4);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.article-title{font-family:'Cinzel',serif;font-size:.88rem;letter-spacing:.05em;color:#fff;margin-bottom:.4rem;line-height:1.35}
+.article-resume{font-style:italic;color:rgba(212,175,55,0.55);font-size:.82rem;margin-bottom:.7rem}
+.article-div{width:25px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-bottom:.8rem}
+.article-text{font-size:.88rem;color:rgba(232,228,220,0.55);line-height:1.8;margin-bottom:1rem;flex:1}
+@media(max-width:760px){.cards-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.cards-grid{grid-template-columns:1fr}}
+/* Expandable detail */
+.article-more{display:none;font-size:.97rem;color:rgba(232,228,220,0.7);line-height:1.9;margin-bottom:1.2rem;border-left:2px solid rgba(212,175,55,0.2);padding-left:1rem;font-style:italic}
+.article-more.open{display:block}
+/* Lire plus button */
+.lire-plus{display:inline-flex;align-items:center;gap:.5rem;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#d4af37;border:1px solid rgba(212,175,55,0.35);padding:.5rem 1.2rem;background:transparent;cursor:pointer;transition:all .3s}
+.lire-plus:hover{background:rgba(212,175,55,0.08);border-color:#d4af37}
+.lire-plus .arrow{transition:transform .3s}
+.lire-plus.open .arrow{transform:rotate(90deg)}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal-box{background:linear-gradient(135deg,#08060f,#0d0a14);border:1px solid rgba(212,175,55,0.25);max-width:520px;width:92%;padding:2.5rem 2rem;position:relative;max-height:85vh;overflow-y:auto;animation:rise .35s ease}
+@keyframes rise{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:rgba(212,175,55,0.5);font-size:1.2rem;cursor:pointer;line-height:1}
+.modal-close:hover{color:#d4af37}
+.modal-tag{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.4em;color:rgba(212,175,55,0.4);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.modal-title{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.1em;color:#d4af37;text-transform:uppercase;margin-bottom:.5rem}
+.modal-div{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-bottom:1.5rem}
+.modal-body{font-size:1rem;color:rgba(232,228,220,0.75);line-height:2}
+.modal-body p{margin-bottom:1rem}
+.modal-body strong{color:#d4af37;font-weight:400}
+@media(max-width:600px){
+.article-banner{height:120px}
+.banner-icon{font-size:3rem}
+nav{padding:.8rem 1.2rem}
+}
+</style>
+</head>
+<body><nav><a href="index.html" class="logo"><span class="logo-heb">בְּנֵי אוֹר</span><span class="logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back">← Accueil</a>
+</nav><div class="page-hero"><span class="eyebrow">Découvrir Bnei Ohr</span><h1>Présentation de <span>Bnei Ohr</span></h1><div class="hero-div"></div><p>Une école ésotérique haïtienne — synthétisant Kabbale, Vodou et traditions mystiques universelles — pour un cheminement initiatique original, enraciné dans l'identité profonde du peuple haïtien.</p>
+</div><div class="video-wrap"><span class="video-label">✦ Découvrir en Vidéo ✦</span><div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/bLJyuYKftWc?modestbranding=1&rel=0&controls=1&disablekb=0&fs=1&iv_load_policy=3&cc_load_policy=0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin"></iframe></div>
+</div><div class="articles-wrap"><div class="section-sep"></div>
+<div class="cards-grid"><div class="article-card"><div class="article-banner"><span class="banner-icon">עֵץ</span></div><div class="card-body"><span class="article-tag">Enseignement</span><h2 class="article-title">L'enseignement de Bnei Ohr</h2><p class="article-resume">Une approche universelle de la Sagesse Antique</p><div class="article-div"></div><p class="article-text">Bnei Ohr transmet une connaissance intégrale qui réunit les principes fondamentaux de la métaphysique et de la philosophie ésotérique. Notre enseignement explore les lois de la Création à travers l'Arbre de Vie, en les rendant accessibles et vivantes pour l'étudiant d'aujourd'hui.</p><div class="article-more" id="more1"><p><strong>Étude de l'Arbre de Vie</strong> et des lois de la Création à travers les grandes traditions de sagesse — explorant les structures de la conscience et les symboles universels de l'éveil spirituel.</p><p>Chaque concept est expliqué dans son contexte original, puis mis en lien avec la réalité spirituelle de l'élève — sans jamais dénaturer la source.</p></div><button class="lire-plus" id="btn1" onclick="toggle(1)">[Lire plus...] <span class="arrow">›</span></button></div></div><div class="article-card"><div class="article-banner"><span class="banner-symbol">◈</span></div><span class="article-tag">Cheminement Intérieur</span><h2 class="article-title">Le Parcours Symbolique au sein de Bnei Ohr</h2><p class="article-resume">Une exploration graduelle de transformation personnelle</p><div class="article-div"></div><p class="article-text">La démarche chez Bnei Ohr n'est pas un rite extérieur — c'est un processus intérieur. Chaque niveau symbolique correspond à un approfondissement réel de la conscience. <em style="color:rgba(212,175,55,0.5);font-size:.9rem;display:block;margin-top:.8rem">Ce cheminement n'octroie aucun titre formel, ne remplace aucune tradition fermée, et ne délivre aucun pouvoir.</em></p><div class="article-more" id="more2"><p>Exploration des <strong>trois niveaux symboliques</strong> :</p><p><strong>Rayon Bleu (Gevurah)</strong> — Protection et structure : bâtir une fondation morale solide.</p><p><strong>Rayon Vert (Tiferet)</strong> — Équilibre et guérison : harmoniser Chesed et Gevurah dans le cœur.</p><p><strong>Rayon Blanc (Keter)</strong> — Nullité et union : retourner à l'essence profonde, au-delà de l'ego.</p></div><button class="lire-plus" id="btn2" onclick="toggle(2)">[Lire plus...] <span class="arrow">›</span></button></div></div><div class="article-card"><div class="article-banner"><span class="banner-icon">לֵב</span></div><span class="article-tag">Philosophie & Éthique</span><h2 class="article-title">La Voie du Cœur</h2><p class="article-resume">Harmoniser l'esprit et le cœur</p><div class="article-div"></div><p class="article-text">La Kabbale classique n'est pas une philosophie abstraite — c'est une éthique vivante. Bnei Ohr enseigne que la connaissance sans transformation morale n'est qu'information.</p><div class="article-more" id="more3"><p><strong>L'éthique kabbalistique au centre de la vie quotidienne</strong> pour transformer notre rapport aux autres et à nous-mêmes.</p><p>Les <em>Midot</em> (qualités morales) — humilité, patience, générosité, discipline — sont travaillées chaque jour comme des instruments d'éveil, et non comme des règles extérieures.</p></div><button class="lire-plus" id="btn3" onclick="toggle(3)">[Lire plus...] <span class="arrow">›</span></button></div></div><div class="article-card"><div class="article-banner"><span class="banner-icon">אָלֶף</span></div><span class="article-tag">Pratique</span><h2 class="article-title">La pratique de la Sagesse Ésotérique</h2><p class="article-resume">Méditation, étude et discipline</p><div class="article-div"></div><p class="article-text">La pratique chez Bnei Ohr repose sur trois piliers indissociables : la méditation, l'étude des textes, et le travail sur les qualités morales. Ces trois piliers se renforcent mutuellement.</p><div class="article-more" id="more4"><p><strong>Méditation sur les lettres hébraïques</strong> et pratique des <em>Kavanot</em> (intentions) — une forme de concentration spirituelle dirigée vers la Lumière d'Ein Sof.</p><p>Chaque matin, l'élève consacre un temps à la contemplation, alignant son intention avec la source de toute réalité — non par obligation, mais par désir sincère d'union.</p></div><button class="lire-plus" id="btn4" onclick="toggle(4)">[Lire plus...] <span class="arrow">›</span></button></div></div><div class="article-card"><div class="article-banner"><span class="banner-symbol">✡</span></div><span class="article-tag">Symbolisme Sacré</span><h2 class="article-title">Le Pantacle et les Symboles de Lumière</h2><p class="article-resume">Le langage visuel des forces spirituelles</p><div class="article-div"></div><p class="article-text">Les symboles sacrés ne sont pas de simples décorations — ils sont des portes. Bnei Ohr enseigne le symbolisme kabbalistique comme un langage universel qui parle directement à l'âme.</p><div class="article-more" id="more5"><p><strong>Étude du symbolisme sacré comme clé de compréhension de l'univers.</strong></p><p>Le Pantacle, l'Étoile de David, les lettres hébraïques, et les symboles des Sefirot sont étudiés dans leur contexte kabbalistique originel — non comme objets magiques, mais comme cartes de la réalité spirituelle.</p></div><button class="lire-plus" id="btn5" onclick="toggle(5)">[Lire plus...] <span class="arrow">›</span></button></div></div></div>
+</div><div style="max-width:780px;margin:0 auto 4rem;padding:0 1.5rem"><div style="border:1px solid rgba(212,175,55,0.2);background:rgba(212,175,55,0.03);padding:2.5rem 2rem;text-align:center;position:relative;overflow-y: auto"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#d4af37,transparent)"></div><span style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:rgba(212,175,55,0.4);text-transform:uppercase;display:block;margin-bottom:.8rem">✦ Aller Plus Loin ✦</span><h3 style="font-family:'Cinzel',serif;font-size:clamp(1rem,2.5vw,1.3rem);letter-spacing:.1em;color:#fff;text-transform:uppercase;margin-bottom:.6rem">La Kabbale et le Christianisme</h3><p style="font-style:italic;color:rgba(255,255,255,0.5);font-size:.95rem;line-height:1.85;max-width:480px;margin:0 auto 1.5rem">Explorez les symboles universels partagés entre la Kabbale classique et la spiritualité chrétienne — Verbe Créateur, Trinité, Shekhina, Résurrection.</p><a href="kabbalah-chretienne.html" style="display:inline-flex;align-items:center;gap:.6rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#d4af37;border:1px solid rgba(212,175,55,0.4);padding:.7rem 1.8rem;text-decoration:none;background:transparent;transition:all .3s" onmouseover="this.style.background='rgba(212,175,55,0.08)';this.style.borderColor='#d4af37'" onmouseout="this.style.background='transparent';this.style.borderColor='rgba(212,175,55,0.4)'">
+Lire l'étude complète →
+</a></div>
+</div><div class="modal-bg" id="modalBg" onclick="if(event.target===this)this.classList.remove('open')"><div class="modal-box"><button class="modal-close" onclick="document.getElementById('modalBg').classList.remove('open')">✕</button><span class="modal-tag" id="mTag"></span><div class="modal-title" id="mTitle"></div><div class="modal-div"></div><div class="modal-body" id="mBody"></div></div>
+</div><script>
+function toggle(n) {
+var more = document.getElementById("more" + n);
+var btn = document.getElementById("btn" + n);
+var isOpen = more.classList.contains("open");
+more.classList.toggle("open");
+btn.classList.toggle("open");
+btn.innerHTML = isOpen
+? "[Lire plus...] <span class=\"arrow\">›</span>"
+: "[Réduire] <span class=\"arrow open\">›</span>";
+}
+</script>
+</body>
+</html>

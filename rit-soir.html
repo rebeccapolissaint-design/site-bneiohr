@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rituels du Soir — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#020406;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(2,4,6,.93);border-bottom:1px solid rgba(80,60,130,.2);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37}.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(130,100,200,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(130,100,200,.2);padding:.4rem 1rem;transition:all .3s}.nav-back:hover{color:#b0a0e0;border-color:rgba(130,100,200,.5)}
+.veil{position:fixed;inset:0;z-index:2000;background:#000;opacity:0;pointer-events:none;transition:opacity .6s}.veil.show{opacity:1}
+.hero{position:relative;min-height:60vh;display:flex;
+flex-wrap:wrap;align-items:flex-end;justify-content:center;padding:2rem 2rem 4rem;overflow-y: auto;background:radial-gradient(ellipse at 50% 0%,rgba(30,10,60,.25),#020406 65%)}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:700px;padding-top:6rem}
+.hero-moon{font-size:4rem;display:block;margin-bottom:1rem;filter:drop-shadow(0 0 20px rgba(180,160,240,.3))}
+.hero-num{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.45em;color:rgba(130,100,200,.6);text-transform:uppercase;display:inline-block;border:1px solid rgba(130,100,200,.25);padding:.3rem 1rem;margin-bottom:1.2rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,6vw,3rem);color:#fff;line-height:1.15;margin-bottom:.5rem}
+.hero-title span{color:#d4af37}
+.hero-timing{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;color:rgba(180,160,240,.5);text-transform:uppercase;display:block;margin-bottom:1rem}
+.hero-div{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(130,100,200,.5),transparent);margin:.8rem auto 0}
+.content{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:3rem 2rem 6rem}
+.block{margin-bottom:2.8rem}
+.block-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.38em;color:rgba(212,175,55,.45);text-transform:uppercase;display:flex;
+flex-wrap:wrap;align-items:center;gap:.8rem;margin-bottom:.9rem}
+.block-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(212,175,55,.15),transparent)}
+.intro-text{font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.42);line-height:1.95;margin-bottom:2rem}
+.heb-text{font-family:'Noto Serif Hebrew',serif;font-size:1.25rem;color:rgba(212,175,55,.82);line-height:2;direction:rtl;text-align:right;padding:1.2rem 1.5rem;background:rgba(212,175,55,.03);border-right:2px solid rgba(212,175,55,.3);display:block}
+.prono-text{font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9;padding:.9rem 1.3rem;border-left:2px solid rgba(130,100,200,.25);background:rgba(130,100,200,.02)}
+.trad-text{font-size:1.05rem;color:rgba(232,228,220,.62);line-height:1.9;padding:1rem 1.3rem;background:rgba(212,175,55,.025);border-left:2px solid rgba(212,175,55,.2)}
+/* Ritual section separator */
+.rit-divider{display:flex;
+flex-wrap:wrap;align-items:center;gap:1rem;margin:3.5rem 0 2rem}
+.rit-divider-line{flex:1;height:1px;background:rgba(130,100,200,.15)}
+.rit-divider-icon{font-size:1.2rem;color:rgba(130,100,200,.3)}
+/* Cheshbon questions */
+.questions-list{display:flex;
+flex-wrap:wrap;flex-direction:column;gap:1rem;margin:.5rem 0}
+.q-item{border:1px solid rgba(130,100,200,.12);background:rgba(130,100,200,.02);padding:1.2rem 1.5rem;display:flex;
+flex-wrap:wrap;gap:1rem;align-items:flex-start}
+.q-num{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;color:rgba(130,100,200,.5);border:1px solid rgba(130,100,200,.25);width:28px;height:28px;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+.q-text{font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.82}
+.note-box{border:1px solid rgba(130,100,200,.15);background:rgba(130,100,200,.02);padding:1.5rem 1.8rem;margin-top:1.5rem}
+.note-label{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.3em;color:rgba(130,100,200,.45);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.note-text{font-size:.97rem;font-style:italic;color:rgba(255,255,255,.35);line-height:1.85}
+.nav-bottom{display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(130,100,200,.1);flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(130,100,200,.45);text-decoration:none;text-transform:uppercase;border:1px solid rgba(130,100,200,.2);padding:.65rem 1.3rem;transition:all .3s}.nav-btn:hover{color:#b0a0e0;border-color:rgba(130,100,200,.5);background:rgba(130,100,200,.04)}
+footer{position:relative;z-index:1;background:#020406;border-top:1px solid rgba(130,100,200,.08);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.4rem}
+.footer-copy{font-size:.75rem;color:#383838;letter-spacing:.1em}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="veil" id="veil"></div>
+<nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="kabal.html" class="nav-back">← Rituels</a>
+</nav><section class="hero"><div class="hero-inner"><span class="hero-moon">🌙</span><span class="hero-num">Rituels 5 & 6 · Soir · Classique / Bnei Ohr</span><h1 class="hero-title">Fermer les <span>Portes du Jour</span></h1><span class="hero-timing">🌙 Soir — Avant le Sommeil</span><div class="hero-div"></div></div>
+</section><main class="content"><p class="intro-text">Deux pratiques complémentaires pour clore la journée avec conscience et confier son âme au Créateur avant de partir dans le voyage de la nuit.</p><div class="block"><p class="block-label">Rituel 5 — Kriyat Shema</p><p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem;display:block">Prière avant de Dormir · Classique · Siddour</p><p class="intro-text" style="margin-bottom:1.5rem">Confier son âme au Créateur avant de partir dans le voyage de la nuit. Le Shema est l'affirmation ultime de l'unité divine — la dernière pensée consciente avant le sommeil.</p><span class="heb-text">שְׁמַע יִשְׂרָאֵל יְיָ אֱלֹהֵינוּ יְיָ אֶחָד. בָּרוּךְ שֶׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד.</span><p class="prono-text" style="margin-top:.8rem">Chèma Yisraèl, Adonay Èlo-ènou, Adonay Èkad. Barouk chèm kèvod malkouto lè-olam va-èd.</p><p class="trad-text" style="margin-top:.8rem">Écoute, Israël — le Seigneur est notre Dieu, le Seigneur est Un. Loué soit le Nom de Sa glorieuse royauté pour l'éternité des éternités.</p></div><div class="rit-divider"><div class="rit-divider-line"></div><span class="rit-divider-icon">✦</span><div class="rit-divider-line"></div></div><div class="block"><p class="block-label">Rituel 6 — Cheshbon HaNefesh</p><p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.4rem;display:block">Bilan de l'Âme · Classique / Bnei Ohr</p><p style="font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.18em;color:rgba(160,100,220,.4);text-transform:uppercase;margin-bottom:1.2rem;display:block">Prononciation : Kèch-bon Ha-nèfèch</p><p class="intro-text" style="margin-bottom:1.5rem">S'asseoir dans l'obscurité ou à la lumière d'une bougie. Ce rituel est un examen intérieur sincère — non pour culpabiliser, mais pour <em>se réajuster vers la lumière</em>.</p><p style="font-size:1.05rem;color:rgba(255,255,255,.45);line-height:1.85;margin-bottom:1.5rem">Poser les trois questions suivantes à soi-même, avec honnêteté :</p><div class="questions-list"><div class="q-item"><span class="q-num">1</span><p class="q-text">À quels moments de la journée ai-je agi dans le <em>Chitzoniyout</em> (Kitsoniyout) — dans l'apparence, la surface — au lieu d'agir dans le <em>Pnimiyout</em> (Pnimiyout) — avec toute la profondeur de mon âme ?</p></div><div class="q-item"><span class="q-num">2</span><p class="q-text">La Lumière — l'<em>Ohr</em> — s'est-elle présentée devant moi aujourd'hui, et ai-je fermé les yeux sur elle ?</p></div><div class="q-item"><span class="q-num">3</span><p class="q-text">Qu'est-ce que je peux changer demain pour me rapprocher davantage de ma racine, de mon essence véritable ?</p></div></div><div class="note-box"><span class="note-label">✦ Note de pratique</span><p class="note-text">Le Cheshbon HaNefesh n'est pas un tribunal intérieur. C'est un miroir sacré. On observe sans condamner, on comprend sans se punir. L'objectif est la <em>techouva</em> — le retour vers la lumière — pas la culpabilité.</p></div></div><div class="nav-bottom"><a href="rit-4directions.html" class="nav-btn">← Rituel Précédent</a><a href="rit-shabbat.html" class="nav-btn">Rituel Suivant →</a></div>
+</main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Chemin des Anciens</p></footer>
+<script>
+(function(){const c=document.getElementById('stars');for(let i=0;i<60;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*1.8+.3;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:${Math.random()>.7?'#b0a0e0':'#d4af37'};--d:${(Math.random()*6+2).toFixed(1)}s;--o:${(Math.random()*.2+.04).toFixed(2)}`;c.appendChild(s);}})();
+document.querySelectorAll('a[href]').forEach(a=>{if(a.hostname===location.hostname&&!a.href.includes('#')){a.addEventListener('click',function(e){e.preventDefault();const d=this.href;const v=document.getElementById('veil');v.classList.add('show');setTimeout(()=>location.href=d,500);});}});
+</script>
+</body>
+</html>

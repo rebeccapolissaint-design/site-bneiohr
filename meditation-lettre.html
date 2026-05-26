@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Méditation sur les Lettres Hébraïques — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Noto+Serif+Hebrew:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--gold:#d4af37;--gold-dim:rgba(212,175,55,0.15);--gold-soft:rgba(212,175,55,0.4);
+--deep:#04030a;--surface:rgba(255,255,255,0.03);--text:rgba(232,228,220,0.85)
+}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:var(--deep);color:var(--text);font-family:'Cormorant Garamond',serif;min-min-height: 100vh;overflow-x:hidden}
+/* Stars */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.s{position:absolute;background:#d4af37;border-radius:50%;animation:tw var(--d) ease-in-out infinite alternate}
+@keyframes tw{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:.9rem 2rem;background:rgba(4,3,10,0.95);border-bottom:1px solid rgba(212,175,55,0.12);backdrop-filter:blur(8px)}
+.logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.6rem;text-decoration:none}
+.logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:var(--gold)}
+.logo-txt{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:#606060;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:var(--gold)}
+.hero{position:relative;z-index:1;padding:7rem 2rem 3rem;text-align:center}
+.eyebrow{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.5em;color:var(--gold-soft);text-transform:uppercase;display:block;margin-bottom:.8rem}
+h1{font-family:'Cinzel',serif;font-size:clamp(1.2rem,4vw,2rem);letter-spacing:.15em;color:#fff;text-transform:uppercase;margin-bottom:.5rem}
+h1 span{color:var(--gold)}
+.divider{width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:.8rem auto 1rem}
+.intro{font-style:italic;color:rgba(255,255,255,0.55);max-width:560px;margin:0 auto;font-size:clamp(1rem,2vw,1.15rem);line-height:1.85}
+/* GRID */
+.grid-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:2rem 1.5rem 6rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:1rem}
+/* CARD */
+.card{
+position:relative;height:110px;cursor:pointer;
+transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1);
+}
+.card:hover{transform:scale(1.06)}
+.card.flipped{transform:rotateY(180deg)}
+.front,.back{
+position:absolute;inset:0;backface-visibility:hidden;
+display:flex;
+flex-wrap:wrap;flex-direction:column;align-items:center;justify-content:center;
+border:1px solid rgba(212,175,55,0.18);background:var(--surface);
+border-radius:4px;transition:border-color .3s,box-shadow .3s;
+}
+.card:hover .front{border-color:var(--gold-soft);box-shadow:0 0 20px rgba(212,175,55,0.1)}
+.back{transform:rotateY(180deg);background:rgba(212,175,55,0.06);border-color:var(--gold-soft);padding:.5rem}
+.heb-letter{font-family:'Noto Serif Hebrew',serif;font-size:2.2rem;color:var(--gold);text-shadow:0 2px 12px rgba(212,175,55,0.3);line-height:1}
+.letter-name{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:var(--gold-soft);text-transform:uppercase;margin-top:.3rem}
+.letter-num{font-family:'Cinzel',serif;font-size:.48rem;color:rgba(212,175,55,0.35)}
+/* BACK content */
+.b-val{font-family:'Cinzel',serif;font-size:.7rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.2rem}
+.b-attr{font-family:'Cinzel',serif;font-size:.5rem;color:var(--gold-soft);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.b-msg{font-size:.7rem;font-style:italic;color:rgba(255,255,255,0.7);text-align:center;line-height:1.4}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:1000;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.modal-bg.open{opacity:1;pointer-events:all}
+.modal{background:linear-gradient(135deg,#08060f,#0d0a14);border:1px solid rgba(212,175,55,0.3);max-width:400px;width:90%;padding:2.5rem 2rem;position:relative;animation:rise .4s ease}
+@keyframes rise{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gold-soft);font-size:1.2rem;cursor:pointer}
+.modal-letter{font-family:'Noto Serif Hebrew',serif;font-size:4rem;color:var(--gold);text-shadow:0 0 30px rgba(212,175,55,0.4);display:block;text-align:center;margin-bottom:.3rem}
+.modal-name{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.3em;color:var(--gold-soft);text-transform:uppercase;text-align:center;display:block;margin-bottom:1.5rem}
+.modal-divider{width:40px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 auto 1.5rem}
+.modal-row{display:flex;
+flex-wrap:wrap;justify-content:space-between;margin-bottom:.8rem;padding-bottom:.8rem;border-bottom:1px solid rgba(212,175,55,0.08)}
+.modal-row:last-of-type{border-bottom:none;margin-bottom:1.2rem}
+.modal-label{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:var(--gold-soft);text-transform:uppercase}
+.modal-val{font-family:'Cinzel',serif;font-size:.75rem;color:var(--gold)}
+.modal-msg{font-style:italic;font-size:1rem;color:rgba(255,255,255,0.75);text-align:center;line-height:1.8;padding:.8rem 0}
+/* Section info */
+.info-section{position:relative;z-index:1;max-width:700px;margin:0 auto;padding:0 1.5rem 5rem}
+.info-title{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.4em;color:var(--gold-soft);text-transform:uppercase;display:block;margin-bottom:1rem}
+.info-text{font-size:1.05rem;color:rgba(232,228,220,0.7);line-height:2;margin-bottom:1.5rem}
+.info-text strong{color:var(--gold);font-weight:400}
+/* REYON SECTION */
+.reyon-section{position:relative;z-index:1;padding:5rem 1.5rem 6rem;max-width:980px;margin:0 auto}
+.reyon-eyebrow{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.5em;color:var(--gold-soft);text-transform:uppercase;display:block;text-align:center;margin-bottom:.8rem}
+.reyon-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.7rem);letter-spacing:.15em;color:#fff;text-transform:uppercase;text-align:center;margin-bottom:.5rem}
+.reyon-title span{color:var(--gold)}
+.reyon-intro{font-style:italic;color:rgba(255,255,255,0.5);max-width:620px;margin:.8rem auto 3rem;text-align:center;font-size:1rem;line-height:1.9}
+.reyon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-bottom:3rem}
+.reyon-card{border:1px solid;border-radius:4px;padding:2.2rem 1.8rem;position:relative;overflow-y: auto;transition:transform .3s,box-shadow .3s}
+.reyon-card:hover{transform:translateY(-4px)}
+.reyon-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.reyon-card.ble{border-color:rgba(70,130,200,0.25);background:rgba(70,130,200,0.04)}
+.reyon-card.ble::before{background:linear-gradient(to right,transparent,rgba(70,130,200,0.6),transparent)}
+.reyon-card.ble:hover{box-shadow:0 8px 30px rgba(70,130,200,0.1)}
+.reyon-card.vet{border-color:rgba(80,180,100,0.25);background:rgba(80,180,100,0.04)}
+.reyon-card.vet::before{background:linear-gradient(to right,transparent,rgba(80,180,100,0.6),transparent)}
+.reyon-card.vet:hover{box-shadow:0 8px 30px rgba(80,180,100,0.1)}
+.reyon-card.blan{border-color:rgba(220,215,200,0.2);background:rgba(220,215,200,0.03)}
+.reyon-card.blan::before{background:linear-gradient(to right,transparent,rgba(220,215,200,0.5),transparent)}
+.reyon-card.blan:hover{box-shadow:0 8px 30px rgba(220,215,200,0.08)}
+.reyon-dot{width:40px;height:40px;border-radius:50%;margin:0 auto 1.2rem;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;font-family:'Noto Serif Hebrew',serif;font-size:1rem}
+.ble .reyon-dot{background:rgba(70,130,200,0.15);color:rgba(70,130,200,0.8);border:1px solid rgba(70,130,200,0.3)}
+.vet .reyon-dot{background:rgba(80,180,100,0.15);color:rgba(80,180,100,0.8);border:1px solid rgba(80,180,100,0.3)}
+.blan .reyon-dot{background:rgba(220,215,200,0.1);color:rgba(220,215,200,0.7);border:1px solid rgba(220,215,200,0.2)}
+.reyon-deg{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;text-align:center;display:block;margin-bottom:.5rem}
+.ble .reyon-deg{color:rgba(70,130,200,0.5)}
+.vet .reyon-deg{color:rgba(80,180,100,0.5)}
+.blan .reyon-deg{color:rgba(220,215,200,0.4)}
+.reyon-name{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;text-align:center;display:block;margin-bottom:.3rem}
+.ble .reyon-name{color:rgba(100,160,230,0.9)}
+.vet .reyon-name{color:rgba(100,200,120,0.9)}
+.blan .reyon-name{color:rgba(240,235,220,0.85)}
+.reyon-sub{font-style:italic;font-size:.88rem;text-align:center;display:block;margin-bottom:1.2rem}
+.ble .reyon-sub{color:rgba(70,130,200,0.45)}
+.vet .reyon-sub{color:rgba(80,180,100,0.45)}
+.blan .reyon-sub{color:rgba(220,215,200,0.35)}
+.reyon-sefi{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;text-align:center;display:block;padding:.3rem .8rem;border-radius:2px;margin:0 auto .8rem;width:fit-content}
+.ble .reyon-sefi{color:rgba(70,130,200,0.6);border:1px solid rgba(70,130,200,0.2)}
+.vet .reyon-sefi{color:rgba(80,180,100,0.6);border:1px solid rgba(80,180,100,0.2)}
+.blan .reyon-sefi{color:rgba(220,215,200,0.5);border:1px solid rgba(220,215,200,0.15)}
+.reyon-sep{width:30px;height:1px;margin:.8rem auto 1rem}
+.ble .reyon-sep{background:rgba(70,130,200,0.25)}
+.vet .reyon-sep{background:rgba(80,180,100,0.25)}
+.blan .reyon-sep{background:rgba(220,215,200,0.2)}
+.reyon-desc{font-size:.95rem;line-height:1.9;color:rgba(232,228,220,0.65);text-align:center;margin-bottom:1.2rem}
+.reyon-list{list-style:none;display:flex;
+flex-wrap:wrap;flex-direction:column;gap:.4rem;margin-bottom:1.2rem}
+.reyon-list li{font-size:.85rem;color:rgba(232,228,220,0.5);padding-left:1rem;position:relative;line-height:1.7}
+.reyon-list li::before{content:'✦';position:absolute;left:0;font-size:.45rem;top:.35rem}
+.ble .reyon-list li::before{color:rgba(70,130,200,0.4)}
+.vet .reyon-list li::before{color:rgba(80,180,100,0.4)}
+.blan .reyon-list li::before{color:rgba(220,215,200,0.3)}
+.reyon-obj{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-align:center;display:block;margin-top:1rem;padding-top:1rem;border-top:1px solid}
+.ble .reyon-obj{color:rgba(70,130,200,0.5);border-color:rgba(70,130,200,0.1)}
+.vet .reyon-obj{color:rgba(80,180,100,0.5);border-color:rgba(80,180,100,0.1)}
+.blan .reyon-obj{color:rgba(220,215,200,0.4);border-color:rgba(220,215,200,0.08)}
+.kavvanah-box{border:1px solid rgba(212,175,55,0.12);background:rgba(212,175,55,0.02);padding:2.2rem 2rem;text-align:center;max-width:700px;margin:0 auto}
+.kavvanah-title{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.4em;color:var(--gold-soft);text-transform:uppercase;display:block;margin-bottom:1.5rem}
+.kavvanah-q{font-style:italic;font-size:1rem;color:rgba(232,228,220,0.65);line-height:2;margin-bottom:.5rem}
+.kavvanah-q strong{font-style:normal;font-weight:400}
+.kavvanah-q.qble strong{color:rgba(100,160,230,0.8)}
+.kavvanah-q.qvet strong{color:rgba(100,200,120,0.8)}
+.kavvanah-q.qblan strong{color:rgba(240,235,220,0.75)}
+.reyon-closing{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,0.08)}
+.reyon-closing-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.5rem;color:rgba(212,175,55,0.3);display:block;margin-bottom:.8rem}
+.reyon-closing-txt{font-style:italic;color:rgba(255,255,255,0.35);font-size:.95rem;line-height:1.8;max-width:500px;margin:0 auto}
+@media(max-width:600px){.reyon-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="stars"></div><nav><a href="index.html" class="logo"><span class="logo-heb">בְּנֵי אוֹר</span><span class="logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back">← Accueil</a>
+</nav><div class="hero"><span class="eyebrow">Pratique Spirituelle — Kabbale</span><h1>Méditation sur <span>les Lettres Hébraïques</span></h1><div class="divider"></div><p class="intro">Les 22 lettres de l'alphabet hébreu sont la base de la création selon la Kabbale. Chaque lettre est un canal de lumière. Cliquez sur une lettre pour découvrir sa valeur, son attribut et son message méditatif.</p>
+</div><div class="grid-wrap"><div class="grid" id="grid"></div>
+</div><div class="info-section"><span class="info-title">✦ Les Lettres dans la Kabbale Classique</span><p class="info-text">Selon le <strong>Sefer Yetzirah</strong> (Livre de la Création), Dieu a créé le monde à travers les 22 lettres hébraïques. Chaque lettre possède une <strong>valeur numérique</strong> (Gematria), un <strong>attribut cosmique</strong> (planète, élément ou signe zodiacal), et un <strong>impact spirituel</strong> sur l'âme humaine.</p><p class="info-text">Dans la pratique méditative de Bnei Ohr, on contemple chaque lettre pendant <strong>7 respirations</strong> conscientes — en visualisant sa forme, en prononçant son nom doucement, puis en recevant son message spirituel. C'est une forme de <strong>Kavvanah</strong> — intention consciente — qui ouvre les portes d'une connaissance profonde.</p>
+</div><div class="modal-bg" id="modalBg" onclick="closeModal(event)"><div class="modal" id="modal"><button class="modal-close" onclick="closeModalBtn()">✕</button><span class="modal-letter" id="mLetter"></span><span class="modal-name" id="mName"></span><div class="modal-divider"></div><div class="modal-row"><span class="modal-label">Valeur</span><span class="modal-val" id="mVal"></span></div><div class="modal-row"><span class="modal-label">Attribut</span><span class="modal-val" id="mAttr"></span></div><div class="modal-row"><span class="modal-label">Catégorie</span><span class="modal-val" id="mCat"></span></div><p class="modal-msg" id="mMsg"></p></div>
+</div><script>
+// Stars
+const st=document.getElementById('stars');
+for(let i=0;i<80;i++){const s=document.createElement('div');s.className='s';const z=Math.random()*1.8+.4;s.style.cssText=`width:${z}px;height:${z}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${.08+Math.random()*.3};animation-delay:${Math.random()*6}s`;st.appendChild(s);}
+const letters=[
+{l:"א",n:"Aleph",v:1,attr:"Air",cat:"Mere",msg:"Dans le silence avant tout son, Dieu parle. Respire - tu es le premier souffle de la creation."},
+{l:"ב",n:"Beth",v:2,attr:"Saturne",cat:"Double",msg:"La maison ou reside la Lumiere, c est ton coeur. Entres-y chaque jour avec humilite."},
+{l:"ג",n:"Gimel",v:3,attr:"Jupiter",cat:"Double",msg:"La generosite est le chemin le plus court pour recevoir. Donne sans calcul - le ciel tient compte."},
+{l:"ד",n:"Daleth",v:4,attr:"Mars",cat:"Double",msg:"La porte est toujours ouverte a celui qui frappe avec un coeur pur. Ne te decourage pas."},
+{l:"ה",n:"He",v:5,attr:"Belier",cat:"Simple",msg:"Le souffle est un don divin. Chaque expiration est une action de grace - vis consciemment."},
+{l:"ו",n:"Vav",v:6,attr:"Taureau",cat:"Simple",msg:"Le clou qui relie le ciel a la terre : tu es le lien entre le monde visible et l invisible."},
+{l:"ז",n:"Zayin",v:7,attr:"Gemeaux",cat:"Simple",msg:"Le repos est sacre. Chaque septieme jour, le monde reprend des forces. Toi aussi tu en as le droit."},
+{l:"ח",n:"Heth",v:8,attr:"Cancer",cat:"Simple",msg:"La maison est la ou ton ame trouve la paix. Protege ton espace interieur avec soin."},
+{l:"ט",n:"Teth",v:9,attr:"Lion",cat:"Simple",msg:"Le bien est cache dans tout ce qui semble mauvais. Cherche-le - tu le trouveras toujours."},
+{l:"י",n:"Yod",v:10,attr:"Vierge",cat:"Simple",msg:"Le petit point qui cree tout. Une seule intention pure peut changer un monde."},
+{l:"כ",n:"Kaph",v:20,attr:"Soleil",cat:"Double",msg:"Les mains qui s ouvrent recoivent tous les beaux dons du ciel. Ouvre-les - tu merites la vie."},
+{l:"ל",n:"Lamed",v:30,attr:"Balance",cat:"Simple",msg:"Apprends chaque jour avec humilite. La vraie connaissance commence dans un coeur ouvert."},
+{l:"מ",n:"Mem",v:40,attr:"Eau",cat:"Mere",msg:"Comme l eau, adapte-toi sans perdre ton essence. La flexibilite est une force, pas une faiblesse."},
+{l:"נ",n:"Noun",v:50,attr:"Scorpion",cat:"Simple",msg:"Le poisson nage dans les fondements de l existence. Tu ne peux pas te noyer - tu es ne pour cela."},
+{l:"ס",n:"Samekh",v:60,attr:"Sagittaire",cat:"Simple",msg:"Le cercle sans debut ni fin : Ein Sof t enveloppe dans toutes les directions."},
+{l:"ע",n:"Ayin",v:70,attr:"Capricorne",cat:"Simple",msg:"Vois avec ton oeil spirituel - non pas seulement ce qui est visible, mais ce qui est reel."},
+{l:"פ",n:"Pe",v:80,attr:"Venus",cat:"Double",msg:"Les mots ont le pouvoir de creer ou de detruire. Choisis chaque mot avec sagesse."},
+{l:"צ",n:"Tsaddi",v:90,attr:"Verseau",cat:"Simple",msg:"Le juste est comme une fleche qui vise la verite. Reste droit en toutes circonstances."},
+{l:"ק",n:"Qoph",v:100,attr:"Poissons",cat:"Simple",msg:"Ce qui se cache derriere le voile est plus beau que tout ce que les yeux peuvent voir."},
+{l:"ר",n:"Resh",v:200,attr:"Mercure",cat:"Double",msg:"La tete d ou surgissent toutes les idees - dirige ta pensee avec sagesse pour qu elle devienne lumiere."},
+{l:"ש",n:"Shin",v:300,attr:"Feu",cat:"Mere",msg:"La flamme divine ne brule pas - elle illumine. Laisse la lumiere d Ein Sof agir en toi."},
+{l:"ת",n:"Tav",v:400,attr:"Lune",cat:"Double",msg:"La derniere lettre ferme le cercle. Tous les chemins menent a la maison - tu y as toujours ete."}
+];
+const grid=document.getElementById('grid');
+letters.forEach((d,i)=>{
+const c=document.createElement('div');
+c.className='card';
+c.innerHTML=`
+<div class="front"><span class="heb-letter">${d.l}</span><span class="letter-name">${d.n}</span><span class="letter-num">${d.v}</span></div><div class="back"><span class="heb-letter" style="font-size:1.4rem">${d.l}</span><span class="b-val">${d.v}</span><span class="b-attr">${d.attr}</span><span class="b-msg">${d.msg.substring(0,40)}...</span></div>`;
+c.addEventListener('click',()=>openModal(d));
+grid.appendChild(c);
+});
+function openModal(d){
+document.getElementById('mLetter').textContent=d.l;
+document.getElementById('mName').textContent=d.n;
+document.getElementById('mVal').textContent=d.v+' (Gematria)';
+document.getElementById('mAttr').textContent=d.attr;
+document.getElementById('mCat').textContent=d.cat==='Mere'?'Lettre Mere (אמש)':d.cat==='Double'?'Lettre Double (בגדכפרת)':'Lettre Simple (12 simples)';
+document.getElementById('mMsg').textContent='"'+d.msg+'"';
+document.getElementById('modalBg').classList.add('open');
+}
+function closeModal(e){if(e.target===document.getElementById('modalBg'))document.getElementById('modalBg').classList.remove('open');}
+function closeModalBtn(){document.getElementById('modalBg').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('modalBg').classList.remove('open');});
+</script><div class="reyon-section"><span class="reyon-eyebrow">Chemin Initiatique — Bnei Ohr</span><h2 class="reyon-title">Les Trois Rayons de Lumière — <span>Chemin Initiatique</span></h2><div class="divider"></div><p class="reyon-intro">Dans la Kabbale authentique, la Lumière d'Ein Sof traverse plusieurs niveaux de filtrage pour nous atteindre sans détruire notre vase. Chez Bnei Ohr, les trois rayons sont des outils de Kavvanah — intention profonde — pour travailler sur notre Nefesh (âme).</p><div class="reyon-grid"><div class="reyon-card ble"><div class="reyon-dot">גבו</div><span class="reyon-deg">Niveau 1</span><span class="reyon-name">Rayon Bleu</span><span class="reyon-sub">Protection et Structure</span><span class="reyon-sefi">Gevurah — גְּבוּרָה</span><div class="reyon-sep"></div><p class="reyon-desc">La protection en Kabbale ne signifie pas bâtir un mur. C'est connaître la limite entre « Moi » et « l'Autre » — une stabilité qui permet à la Lumière d'entrer sans mauvaises influences.</p><ul class="reyon-list"><li>Bâtir une fondation morale solide</li><li>Prendre ses distances des influences qui brouillent la conscience</li><li>Développer le Bitul (humilité) devant la Vérité</li></ul><span class="reyon-obj">Objectif : Se tenir dans sa vérité sans peur, avec stabilité</span></div><div class="reyon-card vet"><div class="reyon-dot">תפא</div><span class="reyon-deg">Niveau 2</span><span class="reyon-name">Rayon Vert</span><span class="reyon-sub">Équilibre et Guérison</span><span class="reyon-sefi">Tiferet — תִּפְאֶרֶת</span><div class="reyon-sep"></div><p class="reyon-desc">Le vert est la couleur de la vie qui pousse entre Chesed (Amour) et Gevurah (Limite). La guérison advient quand ces deux forces trouvent l'équilibre dans le cœur.</p><ul class="reyon-list"><li>Ouvrir le cœur (Lev) à une compassion sans émotionnalité</li><li>Réparer les blessures qui empêchent la Lumière de circuler</li><li>Réconcilier la dualité intérieure (ombre et lumière)</li></ul><span class="reyon-obj">Objectif : Devenir un vase sain pour recevoir la connaissance</span></div><div class="reyon-card blan"><div class="reyon-dot">כתר</div><span class="reyon-deg">Niveau 3</span><span class="reyon-name">Rayon Blanc</span><span class="reyon-sub">Nullité et Union</span><span class="reyon-sefi">Keter — כֶּתֶר</span><div class="reyon-sep"></div><p class="reyon-desc">Le blanc n'est pas une couleur — c'est la synthèse de toutes les couleurs. Il représente le retour à l'Ayin (le Néant/la Nullité totale) — retour à l'essence profonde avant toutes les couches de l'Ego.</p><ul class="reyon-list"><li>Purification intérieure pour atteindre une honnêteté absolue</li><li>Retirer toutes les couches de l'Ego qui couvrent l'essence</li><li>Union avec la volonté du Grand Architecte</li></ul><span class="reyon-obj">Objectif : Retourner à son essence profonde — la paix sans limite</span></div></div><div class="kavvanah-box"><span class="kavvanah-title">✦ Pratique de la Kavvanah — Méditation Intérieure ✦</span><p class="kavvanah-q qble"><strong>Bleu :</strong> Ma fondation est-elle assez solide pour recevoir la Lumière ?</p><p class="kavvanah-q qvet"><strong>Vert :</strong> Mon cœur est-il en équilibre pour aimer sans condition ?</p><p class="kavvanah-q qblan"><strong>Blanc :</strong> Suis-je prêt à abandonner toutes mes fausses identités pour atteindre la nullité ?</p></div><div class="reyon-closing"><span class="reyon-closing-heb">מִן הַחֹשֶׁךְ אֶל הָאוֹר</span><p class="reyon-closing-txt">« Chez Bnei Ohr, nous marchons de la Protection (Bleu) vers la Guérison (Vert) pour finalement rayonner dans la Nullité (Blanc). Chaque étape est une transformation totale. »</p></div>
+</div><div style="text-align:center;padding:3rem 2rem 2rem;border-top:1px solid rgba(212,175,55,.08);margin-top:2rem"><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.4em;color:rgba(212,175,55,.35);text-transform:uppercase;margin-bottom:1.2rem">Espace Réservé — Bnei Ohr</p><a href="cercle.html" style="
+display:inline-block;
+font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;
+color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;
+border:1px solid rgba(212,175,55,.18);padding:.6rem 1.6rem;
+transition:all .4s;
+"
+onmouseover="this.style.color='#d4af37';this.style.borderColor='rgba(212,175,55,.5)';this.style.background='rgba(212,175,55,.06)'"
+onmouseout="this.style.color='rgba(212,175,55,.4)';this.style.borderColor='rgba(212,175,55,.18)';this.style.background='transparent'">
+✦ Accès au Cercle Intérieur
+</a><p style="margin-top:1rem;font-size:.8rem;font-style:italic;color:rgba(255,255,255,.18);font-family:'Cormorant Garamond',serif">
+Réservé aux Veilleurs de Lumière
+</p>
+</div><span style="font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .9rem;background:rgba(212,175,55,0.15);color:#d4af37;">KR</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bnei Ohr — בְּנֵי אוֹר — Pitit Limyè a</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+--deep: #0a0a0a;
+--void: #050505;
+--gold: #c9a84c;
+--gold-light: #e8c97a;
+--gold-dim: #7a6030;
+--white: #f0f0f0;
+--white-dim: #a0a0a0;
+--indigo: #0f0f0f;
+--indigo-mid: #141414;
+--glow: rgba(201,168,76,0.12);
+--glow-strong: rgba(201,168,76,0.3);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background: var(--void);
+color: var(--white);
+font-family: 'Cormorant Garamond', Georgia, serif;
+font-size: 18px;
+line-height: 1.8;
+overflow-x: hidden;
+}
+/* ── STARFIELD ── */
+#stars {
+position: fixed;
+top: 0; left: 0;
+width: 100%; height: 100%;
+pointer-events: none;
+z-index: 0;
+overflow-y: auto;
+}
+.star {
+position: absolute;
+background: #c9a84c;
+border-radius: 50%;
+animation: twinkle var(--d) ease-in-out infinite alternate;
+opacity: 0;
+}
+@keyframes twinkle {
+0%   { opacity: 0; transform: scale(0.5); }
+100% { opacity: var(--o); transform: scale(1); }
+}
+/* ── NAV ── */
+nav {
+position: fixed;
+top: 0; width: 100%;
+z-index: 100;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.2rem 4rem;
+background: linear-gradient(to bottom, rgba(5,5,5,0.98) 0%, transparent 100%);
+border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+.nav-logo {
+font-family: 'Cinzel', serif;
+font-size: 1rem;
+letter-spacing: 0.2em;
+color: var(--gold);
+text-decoration: none;
+}
+.nav-logo span {
+font-family: 'Noto Serif Hebrew', serif;
+font-size: 1.1rem;
+margin-left: 0.5rem;
+color: var(--gold-light);
+}
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+}
+.nav-links a {
+color: var(--white-dim);
+text-decoration: none;
+font-size: 0.85rem;
+letter-spacing: 0.15em;
+font-family: 'Cinzel', serif;
+transition: color 0.3s;
+text-transform: uppercase;
+}
+.nav-links a:hover { color: var(--gold); }
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+display: flex;
+gap: 0.5rem;
+}
+.lang-btn {
+background: none;
+border: 1px solid var(--gold-dim);
+color: var(--white-dim);
+padding: 0.2rem 0.6rem;
+font-family: 'Cinzel', serif;
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+cursor: pointer;
+transition: all 0.3s;
+}
+.lang-btn.active, .lang-btn:hover {
+background: var(--gold-dim);
+color: var(--white);
+}
+/* ── HERO ── */
+#hero {
+position: relative;
+min-min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 2rem;
+z-index: 1;
+}
+.hero-glow {
+position: absolute;
+width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+border-radius: 50%;
+top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+animation: pulse-glow 4s ease-in-out infinite alternate;
+pointer-events: none;
+}
+@keyframes pulse-glow {
+0%   { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); }
+100% { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+}
+.hero-hebrew {
+font-family: 'Noto Serif Hebrew', serif;
+font-size: clamp(2.5rem, 6vw, 5rem);
+color: var(--gold);
+letter-spacing: 0.1em;
+margin-bottom: 0.5rem;
+animation: fadeUp 1.5s ease forwards;
+opacity: 0;
+text-shadow: 0 0 40px rgba(201,168,76,0.4);
+}
+.hero-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(1.2rem, 3vw, 2rem);
+letter-spacing: 0.4em;
+color: var(--white);
+text-transform: uppercase;
+margin-bottom: 1.5rem;
+animation: fadeUp 1.5s 0.3s ease forwards;
+opacity: 0;
+}
+.hero-divider {
+width: 120px;
+height: 1px;
+background: linear-gradient(to right, transparent, var(--gold), transparent);
+margin: 1.5rem auto;
+animation: fadeUp 1.5s 0.6s ease forwards;
+opacity: 0;
+}
+.hero-subtitle {
+font-size: clamp(1rem, 2vw, 1.3rem);
+color: var(--white-dim);
+font-style: italic;
+max-width: 600px;
+animation: fadeUp 1.5s 0.9s ease forwards;
+opacity: 0;
+}
+.hero-cta {
+margin-top: 3rem;
+animation: fadeUp 1.5s 1.2s ease forwards;
+opacity: 0;
+}
+.btn-primary {
+display: inline-block;
+border: 1px solid var(--gold);
+color: var(--gold);
+text-decoration: none;
+padding: 0.8rem 2.5rem;
+font-family: 'Cinzel', serif;
+font-size: 0.85rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+transition: all 0.4s;
+position: relative;
+overflow-y: auto;
+}
+.btn-primary::before {
+content: '';
+position: absolute;
+top: 0; left: -100%;
+width: 100%; height: 100%;
+background: var(--glow);
+transition: left 0.4s;
+}
+.btn-primary:hover::before { left: 0; }
+.btn-primary:hover { color: var(--gold-light); box-shadow: 0 0 20px var(--glow-strong); }
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(25px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+/* ── SECTION BASE ── */
+section {
+position: relative;
+z-index: 1;
+padding: 6rem 2rem;
+}
+.section-inner {
+max-width: 900px;
+margin: 0 auto;
+}
+.section-label {
+font-family: 'Cinzel', serif;
+font-size: 0.7rem;
+letter-spacing: 0.4em;
+color: var(--gold-dim);
+text-transform: uppercase;
+margin-bottom: 1rem;
+}
+.section-title {
+font-family: 'Cinzel', serif;
+font-size: clamp(1.5rem, 3vw, 2.2rem);
+color: var(--gold);
+margin-bottom: 2rem;
+line-height: 1.3;
+}
+.section-divider {
+width: 80px;
+height: 1px;
+background: linear-gradient(to right, var(--gold), transparent);
+margin-bottom: 2.5rem;
+}
+.section-text {
+color: var(--white-dim);
+font-size: 1.05rem;
+line-height: 2;
+}
+.section-text p { margin-bottom: 1.5rem; }
+/* ── ABOUT ── */
+#about {
+background: linear-gradient(to bottom, var(--void), #0d0800, var(--void));
+}
+.about-quote {
+border-left: 2px solid var(--gold);
+padding: 1.5rem 2rem;
+margin: 2.5rem 0;
+font-style: italic;
+font-size: 1.2rem;
+color: var(--white);
+background: rgba(201,168,76,0.04);
+}
+.about-quote cite {
+display: block;
+font-size: 0.85rem;
+color: var(--gold-dim);
+margin-top: 0.5rem;
+font-style: normal;
+letter-spacing: 0.1em;
+}
+/* ── SEFIROT VISUAL ── */
+.mission-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 3rem;
+}
+.mission-card {
+border: 1px solid rgba(201,168,76,0.2);
+padding: 2rem 1.5rem;
+text-align: center;
+background: rgba(201,168,76,0.03);
+transition: all 0.4s;
+position: relative;
+overflow-y: auto;
+}
+.mission-card::after {
+content: '';
+position: absolute;
+bottom: 0; left: 0;
+width: 100%; height: 2px;
+background: linear-gradient(to right, transparent, var(--gold), transparent);
+transform: scaleX(0);
+transition: transform 0.4s;
+}
+.mission-card:hover { background: rgba(201,168,76,0.07); }
+.mission-card:hover::after { transform: scaleX(1); }
+.mission-hebrew {
+font-family: 'Noto Serif Hebrew', serif;
+font-size: 2rem;
+color: var(--gold);
+display: block;
+margin-bottom: 0.5rem;
+}
+.mission-name {
+font-family: 'Cinzel', serif;
+font-size: 0.8rem;
+letter-spacing: 0.2em;
+color: var(--gold-dim);
+text-transform: uppercase;
+display: block;
+margin-bottom: 1rem;
+}
+.mission-desc {
+font-size: 0.95rem;
+color: var(--white-dim);
+line-height: 1.7;
+}
+/* ── DEGREES ── */
+#degrees {
+background: var(--deep);
+}
+.degrees-track {
+display: flex;
+flex-direction: column;
+gap: 0;
+margin-top: 3rem;
+position: relative;
+}
+.degrees-track::before {
+content: '';
+position: absolute;
+left: 2.5rem;
+top: 0; bottom: 0;
+width: 1px;
+background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+}
+.degree-item {
+display: flex;
+gap: 2.5rem;
+align-items: flex-start;
+padding: 2.5rem 0;
+border-bottom: 1px solid rgba(201,168,76,0.08);
+transition: all 0.4s;
+}
+.degree-item:hover { padding-left: 0.5rem; }
+.degree-num {
+width: 5rem;
+flex-shrink: 0;
+text-align: center;
+}
+.degree-circle {
+width: 3rem; height: 3rem;
+border: 1px solid var(--gold-dim);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 0.5rem;
+font-family: 'Cinzel', serif;
+font-size: 0.9rem;
+color: var(--gold);
+background: var(--void);
+transition: all 0.4s;
+}
+.degree-item:hover .degree-circle {
+background: var(--gold-dim);
+box-shadow: 0 0 20px var(--glow-strong);
+}
+.degree-content { flex: 1; }
+.degree-title {
+font-family: 'Cinzel', serif;
+font-size: 1.1rem;
+color: var(--gold);
+margin-bottom: 0.3rem;
+}
+.degree-hebrew {
+font-family: 'Noto Serif Hebrew', serif;
+color: var(--gold-dim);
+font-size: 1rem;
+display: block;
+margin-bottom: 0.8rem;
+}
+.degree-desc {
+color: var(--white-dim);
+font-size: 0.95rem;
+line-height: 1.8;
+}
+/* ── SOURCES ── */
+#sources {
+background: linear-gradient(to bottom, var(--void), #0d0800);
+}
+.sources-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1.5rem;
+margin-top: 3rem;
+}
+.source-item {
+display: flex;
+gap: 1rem;
+align-items: flex-start;
+padding: 1.5rem;
+border: 1px solid rgba(201,168,76,0.15);
+background: rgba(201,168,76,0.02);
+transition: border-color 0.3s;
+}
+.source-item:hover { border-color: rgba(201,168,76,0.4); }
+.source-dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(--gold);
+margin-top: 0.6rem;
+flex-shrink: 0;
+}
+.source-name {
+font-family: 'Cinzel', serif;
+font-size: 0.85rem;
+color: var(--gold);
+margin-bottom: 0.3rem;
+}
+.source-desc { font-size: 0.88rem; color: var(--white-dim); }
+/* ── MUSIC ── */
+#music {
+background: var(--deep);
+text-align: center;
+}
+.music-inner {
+max-width: 700px;
+margin: 0 auto;
+}
+.music-symbol {
+font-size: 4rem;
+color: var(--gold);
+display: block;
+margin-bottom: 1.5rem;
+animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-10px); }
+}
+.music-coming {
+font-style: italic;
+color: var(--white-dim);
+font-size: 1rem;
+margin-top: 1.5rem;
+}
+/* ── CONTACT ── */
+#contact {
+background: linear-gradient(to bottom, #0d0800, var(--void));
+text-align: center;
+}
+.contact-inner { max-width: 600px; margin: 0 auto; }
+.contact-form {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+margin-top: 2.5rem;
+text-align: left;
+}
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-label {
+font-family: 'Cinzel', serif;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+color: var(--gold-dim);
+text-transform: uppercase;
+}
+.form-input, .form-textarea {
+background: rgba(201,168,76,0.04);
+border: 1px solid rgba(201,168,76,0.2);
+color: var(--white);
+padding: 0.8rem 1rem;
+font-family: 'Cormorant Garamond', serif;
+font-size: 1rem;
+outline: none;
+transition: border-color 0.3s;
+width: 100%;
+}
+.form-input:focus, .form-textarea:focus {
+border-color: var(--gold);
+background: rgba(201,168,76,0.07);
+}
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+background: none;
+border: 1px solid var(--gold);
+color: var(--gold);
+padding: 0.9rem 2rem;
+font-family: 'Cinzel', serif;
+font-size: 0.8rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.4s;
+align-self: center;
+margin-top: 0.5rem;
+}
+.form-submit:hover {
+background: rgba(201,168,76,0.15);
+box-shadow: 0 0 20px var(--glow);
+color: var(--gold-light);
+}
+/* ── FOOTER ── */
+footer {
+position: relative;
+z-index: 1;
+text-align: center;
+padding: 3rem 2rem;
+border-top: 1px solid rgba(201,168,76,0.1);
+}
+.footer-hebrew {
+font-family: 'Noto Serif Hebrew', serif;
+font-size: 1.5rem;
+color: var(--gold-dim);
+display: block;
+margin-bottom: 0.5rem;
+}
+.footer-copy {
+font-size: 0.8rem;
+color: var(--white-dim);
+letter-spacing: 0.1em;
+opacity: 0.5;
+}
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+nav { padding: 1rem 1.5rem; }
+.nav-links { display: none; }
+.mission-grid { grid-template-columns: 1fr; }
+.sources-grid { grid-template-columns: 1fr; }
+.degrees-track::before { display: none; }
+section { padding: 4rem 1.5rem; }
+}
+#kabbalah { background: linear-gradient(to bottom, var(--void), #0d0800, var(--void)); }
+#byenveni { background: linear-gradient(to bottom, #0d0800, var(--void)); }
+#sefirot { background: var(--deep); }
+/* ── MODAL ── */
+.modal {
+display: none;
+position: fixed;
+z-index: 2000;
+left: 0; top: 0;
+width: 100%; height: 100%;
+background: rgba(0,0,0,0.85);
+backdrop-filter: blur(4px);
+overflow-y: auto;
+}
+.modal-content {
+background: #0d0800;
+border: 1px solid rgba(201,168,76,0.3);
+margin: 5% auto;
+padding: 2.5rem;
+width: 90%;
+max-width: 600px;
+position: relative;
+animation: modalIn 0.4s ease;
+box-shadow: 0 0 60px rgba(201,168,76,0.1);
+}
+@keyframes modalIn {
+from { opacity: 0; transform: translateY(-30px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+.modal-close {
+position: absolute;
+top: 1rem; right: 1.5rem;
+font-size: 1.8rem;
+color: var(--gold-dim);
+cursor: pointer;
+transition: color 0.3s;
+line-height: 1;
+}
+.modal-close:hover { color: var(--gold); }
+.modal-title {
+font-family: 'Cinzel', serif;
+font-size: 1.3rem;
+color: var(--gold);
+margin-bottom: 0.5rem;
+}
+.modal-divider {
+width: 60px; height: 1px;
+background: linear-gradient(to right, var(--gold), transparent);
+margin: 1rem 0 1.5rem;
+}
+.modal-text {
+color: var(--white-dim);
+font-size: 1rem;
+margin-bottom: 1rem;
+line-height: 1.8;
+}
+.modal-subtitle {
+font-family: 'Cinzel', serif;
+font-size: 0.75rem;
+letter-spacing: 0.2em;
+color: var(--gold-dim);
+text-transform: uppercase;
+margin: 1.5rem 0 1rem;
+}
+.modal-steps { display: flex; flex-direction: column; gap: 1rem; }
+.modal-step {
+display: flex;
+gap: 1rem;
+align-items: flex-start;
+padding: 1rem;
+border: 1px solid rgba(201,168,76,0.1);
+background: rgba(201,168,76,0.03);
+}
+.modal-step-num {
+width: 2rem; height: 2rem;
+border: 1px solid var(--gold-dim);
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+font-family: 'Cinzel', serif;
+font-size: 0.75rem;
+color: var(--gold);
+flex-shrink: 0;
+}
+.modal-step strong { color: var(--white); font-size: 0.95rem; }
+.modal-step small { color: var(--white-dim); font-size: 0.85rem; line-height: 1.5; }
+/* ── LANG HIDDEN ── */
+[data-lang] { display: none; }
+body.ht [data-lang="ht"] { display: block; }
+body.fr [data-lang="fr"] { display: block; }
+body.ht [data-lang="both"],
+body.fr [data-lang="both"] { display: block; }
+/* inline spans */
+span[data-lang] { display: none; }
+body.ht span[data-lang="ht"] { display: inline; }
+body.fr span[data-lang="fr"] { display: inline; }
+</style>
+</head><body class="fr"><div id="stars"></div><nav><a href="#hero" class="nav-logo">
+Bnei Ohr <span>בְּנֵי אוֹר</span></a><ul class="nav-links"><li><a href="#about"><span data-lang="ht">Sou Nou</span><span data-lang="fr">À Propos</span></a></li><li><a href="#degrees"><span data-lang="ht">Degre Yo</span><span data-lang="fr">Degrés</span></a></li><li><a href="#sources"><span data-lang="ht">Sous</span><span data-lang="fr">Sources</span></a></li><li><a href="bibliyotek.html"><span data-lang="ht">Bibliyotèk</span><span data-lang="fr">Bibliothèque</span></a></li><li><a href="glosye.html"><span data-lang="ht">Glosye</span><span data-lang="fr">Glossaire</span></a></li><li><a href="#music"><span data-lang="ht">Mizik</span><span data-lang="fr">Musique</span></a></li><li><a href="#contact"><span data-lang="ht">Kontak</span><span data-lang="fr">Contact</span></a></li></ul>
+</nav><section id="hero"><div class="hero-glow"></div><div class="hero-hebrew">בְּנֵי אוֹר</div><div class="hero-title">Bnei Ohr</div><div class="hero-divider"></div><div class="hero-subtitle" data-lang="ht">
+Yon lekòl etid ak pratik Kabbalah otantik —<br>
+rasiné nan tè Ayiti, ouvri sou limyè Ein Sof
+</div><div class="hero-subtitle" data-lang="fr">
+Une école d'étude et de pratique de la Sagesse Ésotérique —<br>
+enracinée en Haïti, ouverte à la lumière de l'Ein Sof
+</div><div class="hero-cta" style="display:flex;
+flex-wrap:wrap; gap:1rem; flex-wrap:wrap; justify-content:center;"><button onclick="openModal()" class="btn-primary"><span data-lang="ht">Antre nan Limyè a</span><span data-lang="fr">Entrer dans la Lumière</span></button><a href="#about" class="btn-primary" style="border-color: var(--gold-dim); color: var(--gold-dim);"><span data-lang="ht">Dekouvri Bnei Ohr</span><span data-lang="fr">Découvrir Bnei Ohr</span></a></div>
+</section><div id="myModal" class="modal" onclick="if(event.target===this)closeModal()"><div class="modal-content"><span class="modal-close" onclick="closeModal()">×</span><div style="text-align:center; margin-bottom:1.5rem;"><span style="font-family:'Noto Serif Hebrew',serif; font-size:3rem; color:var(--gold); text-shadow:0 0 30px rgba(201,168,76,0.4);">בְּנֵי אוֹר</span></div><h2 class="modal-title" data-lang="ht">Byenveni nan Bnei Ohr</h2><h2 class="modal-title" data-lang="fr">Bienvenue dans Bnei Ohr</h2><div class="modal-divider"></div><div data-lang="ht"><p class="modal-text">Ou te jwenn chemen an. Pa aza — pa chans — men paske limyè a te rele ou.</p><p class="modal-text">Bnei Ohr se yon lekòl etid ak pratik Kabbalah jwif otantik, baze ann Ayiti. Nou pa yon relijyon, nou pa yon sèkt. Nou se yon kominote elèv serye ki vle konprann mistè kreyasyon an ak travay sou tèt yo atravè syans espirityèl ki pi ansyen sou latè.</p><p class="modal-subtitle">Kijan pou kòmanse:</p><div class="modal-steps"><div class="modal-step"><span class="modal-step-num">I</span><div><strong>Orev HaOhr</strong> — Krepiskil Limyè a<br><small>Etap premye degre a. Ou aprann fondaman yo: Sefirot, Ilan HaChayim, Olamot.</small></div></div><div class="modal-step"><span class="modal-step-num">II</span><div><strong>Moreh HaDerekh</strong> — Ensèyan Chemen an<br><small>Ou apwofondi etid ou yo epi kòmanse gide lòt moun.</small></div></div><div class="modal-step"><span class="modal-step-num">III</span><div><strong>Baal HaOhr</strong> — Mèt Limyè a<br><small>Ou kapab anseye, transmèt, ak reprezante Bnei Ohr.</small></div></div></div></div><div data-lang="fr"><p class="modal-text">Vous avez trouvé le chemin. Pas par hasard — mais parce que la lumière vous a appelé.</p><p class="modal-text">Bnei Ohr est une école d'étude et de pratique de la sagesse ésotérique, basée en Haïti. Nous ne sommes pas une religion, ni une secte. Nous sommes une communauté d'étudiants sérieux.</p><p class="modal-subtitle">Comment commencer :</p><div class="modal-steps"><div class="modal-step"><span class="modal-step-num">I</span><div><strong>Orev HaOhr</strong> — Crépuscule de la Lumière<br><small>Premier degré. Vous apprenez les fondements : Sefirot, Ilan HaChayim, Olamot.</small></div></div><div class="modal-step"><span class="modal-step-num">II</span><div><strong>Moreh HaDerekh</strong> — Enseignant du Chemin<br><small>Vous approfondissez vos études et guidez d'autres.</small></div></div><div class="modal-step"><span class="modal-step-num">III</span><div><strong>Baal HaOhr</strong> — Maître de la Lumière<br><small>Vous pouvez enseigner et représenter Bnei Ohr.</small></div></div></div></div><div style="text-align:center; margin-top:1.5rem; display:flex;
+flex-wrap:wrap; flex-wrap:wrap; gap:0.8rem; justify-content:center;"><a href="#contact" onclick="closeModal()" class="btn-primary" style="font-size:0.75rem;"><span data-lang="ht">Kontakte Nou pou Kòmanse</span><span data-lang="fr">Nous Contacter pour Commencer</span></a><a href="bibliyotek.html" class="btn-primary" style="font-size:0.75rem; border-color:var(--gold-dim); color:var(--gold-dim);"><span data-lang="ht">Bibliyotèk</span><span data-lang="fr">Bibliothèque</span></a><a href="glosye.html" class="btn-primary" style="font-size:0.75rem; border-color:var(--gold-dim); color:var(--gold-dim);"><span data-lang="ht">Glosye</span><span data-lang="fr">Glossaire</span></a></div></div>
+</div><section id="byenveni"><div class="section-inner"><div class="section-label" data-lang="ht">Byenveni</div><div class="section-label" data-lang="fr">Bienvenue</div><h2 class="section-title" data-lang="ht">Byenveni nan Bnei Ohr</h2><h2 class="section-title" data-lang="fr">Bienvenue dans Bnei Ohr</h2><div class="section-divider"></div><div class="section-text"><div data-lang="ht"><p>Ou te jwenn chemen an. Pa aza — pa chans — men paske limyè a te rele ou.</p><p>Bnei Ohr se yon lekòl etid ak pratik Kabbalah jwif otantik, baze ann Ayiti. Nou pa yon relijyon. Nou pa yon sèkt. Nou se yon kominote elèv serye ki vle konprann mistè kreyasyon an ak travay sou tèt yo atravè syans espirityèl ki pi ansyen sou latè.</p></div><div data-lang="fr"><p>Vous avez trouvé le chemin. Pas par hasard — mais parce que la lumière vous a appelé.</p><p>Bnei Ohr est une école d'étude et de pratique de la sagesse ésotérique, basée en Haïti. Nous ne sommes pas une religion. Nous ne sommes pas une secte. Nous sommes une communauté d'étudiants sérieux qui veulent comprendre le mystère de la création à travers les grandes traditions de sagesse universelle.</p></div></div><div class="degrees-track" style="margin-top:2rem;"><div class="degree-item"><div class="degree-num"><div class="degree-circle">I</div></div><div class="degree-content"><div class="degree-title" data-lang="ht">Etap 1 — Orev HaOhr</div><div class="degree-title" data-lang="fr">Étape 1 — Orev HaOhr</div><span class="degree-hebrew">עֹרֶב הָאוֹר — Krepiskil Limyè a</span><p class="degree-desc" data-lang="ht">Ou kòmanse kòm Ben oswa Bat Ohr — Pitit Limyè a. Ou ap etidye fondaman yo: Sefirot, Ilan HaChayim, Olamot. Pa gen kondisyon anvan — sèlman yon kè ouvri ak yon dezi serye pou aprann.</p><p class="degree-desc" data-lang="fr">Vous commencez comme Ben ou Bat Ohr — Enfant de la Lumière. Vous étudiez les fondements : Sefirot, Ilan HaChayim, Olamot. Aucun prérequis — seulement un cœur ouvert et un désir sincère d'apprendre.</p></div></div><div class="degree-item"><div class="degree-num"><div class="degree-circle">II</div></div><div class="degree-content"><div class="degree-title" data-lang="ht">Etap 2 — Moreh HaDerekh</div><div class="degree-title" data-lang="fr">Étape 2 — Moreh HaDerekh</div><span class="degree-hebrew">מוֹרֶה הַדֶּרֶךְ — Ensèyan Chemen an</span><p class="degree-desc" data-lang="ht">Apre premye degre a, ou vin Talmid Ohr. Ou apwofondi etid ou yo epi ou kòmanse gide lòt moun nan chemen an.</p><p class="degree-desc" data-lang="fr">Après le premier niveau, vous devenez Talmid Ohr. Vous approfondissez vos études et commencez à guider d'autres sur le chemin.</p></div></div><div class="degree-item"><div class="degree-num"><div class="degree-circle">III</div></div><div class="degree-content"><div class="degree-title" data-lang="ht">Etap 3 — Baal HaOhr</div><div class="degree-title" data-lang="fr">Étape 3 — Baal HaOhr</div><span class="degree-hebrew">בַּעַל הָאוֹר — Mèt Limyè a</span><p class="degree-desc" data-lang="ht">Nivo final la — Moreh Ohr. Ou kapab anseye, transmèt, ak reprezante Bnei Ohr nan tout kapasite.</p><p class="degree-desc" data-lang="fr">Le niveau final — Moreh Ohr. Vous pouvez enseigner, transmettre et représenter Bnei Ohr dans toutes ses capacités.</p></div></div></div><blockquote class="about-quote" style="margin-top:2.5rem;"><span data-lang="ht">Pou kòmanse jodi a — kontakte nou via fòmilè kontak la. Di nou ki sa ki mennen ou isit la. Limyè Ein Sof ap tann ou.</span><span data-lang="fr">Pour commencer aujourd'hui — contactez-nous via le formulaire. Dites-nous ce qui vous a amené ici. La lumière de l'Ein Sof vous attend.</span></blockquote><div style="text-align:center; margin-top:2rem;"><a href="#contact" class="btn-primary"><span data-lang="ht">Kontakte Nou</span><span data-lang="fr">Nous Contacter</span></a></div></div>
+</section><section id="about"><div class="section-inner"><div class="section-label" data-lang="ht">Vizyon Nou</div><div class="section-label" data-lang="fr">Notre Vision</div><h2 class="section-title" data-lang="ht">Ki sa Bnei Ohr ye?</h2><h2 class="section-title" data-lang="fr">Qu'est-ce que Bnei Ohr ?</h2><div class="section-divider"></div><div class="section-text"><div data-lang="ht"><p>Bnei Ohr — <em>Pitit Limyè a</em> — se yon kominote etid ak pratik Kabbalah jwif otantik, baze ann Ayiti. Nou transmèt ansèyman Kabbalah yo nan fòm Ayisyan, san nou pa chanje esans yo.</p><p>Misyon nou se <strong>Ayisyanize fòm nan, pandan nou konsève esans otantik Kabbalah la san modifikasyon.</strong></p></div><div data-lang="fr"><p>Bnei Ohr — <em>Enfants de la Lumière</em> — est une communauté d'étude et de pratique de la sagesse ésotérique, basée en Haïti. Nous transmettons ces enseignements sous une forme haïtienne vivante, en respectant la profondeur de chaque tradition.</p><p>Notre mission : <strong>Haïtianiser la forme, tout en préservant l'essence authentique de la Kabbale sans modification.</strong></p></div></div><blockquote class="about-quote"><span data-lang="ht">Nou pran sous nou nan Tanakh, Zohar, Kabbalah Luriyanik, Baal HaSulam — pa nan tradisyon okidentisme, pa nan sinkretis.</span><span data-lang="fr">Nos sources puisent dans les grandes traditions de sagesse universelle — Kabbale, hermétisme, philosophie ésotérique — pour un cheminement intérieur vivant et enraciné.</span><cite>— Manifès Bnei Ohr</cite></blockquote><div class="mission-grid"><div class="mission-card"><span class="mission-hebrew">אוֹר</span><span class="mission-name">Ohr / Limyè</span><p class="mission-desc" data-lang="ht">Kabbalah otantik kòm sous limyè — pa modifye, pa melanje</p><p class="mission-desc" data-lang="fr">La Sagesse Ésotérique comme source de lumière — universelle et vivante</p><a href="ohr.html" style="display:inline-block; margin-top:1rem; color:var(--gold); border:1px solid var(--gold-dim); padding:0.3rem 0.8rem; font-family:'Cinzel',serif; font-size:0.7rem; letter-spacing:0.15em; text-decoration:none; transition:all 0.3s;"><span data-lang="ht">Li Plis →</span><span data-lang="fr">Lire Plus →</span></a></div><div class="mission-card"><span class="mission-hebrew">שֹׁרֶשׁ</span><span class="mission-name">Shoresh / Rasin</span><p class="mission-desc" data-lang="ht">Anrasinen nan tè Ayiti — kiltirèl, lang, reyalite lokal</p><p class="mission-desc" data-lang="fr">Enraciné dans la terre haïtienne — culturel, linguistique, réalité locale</p></div><div class="mission-card"><span class="mission-hebrew">תִּקּוּן</span><span class="mission-name">Tikkun / Reparasyon</span><p class="mission-desc" data-lang="ht">Kontribisyon Bnei Ohr nan reparasyon espirityèl ak sosyal Ayiti</p><p class="mission-desc" data-lang="fr">La contribution de Bnei Ohr à la réparation spirituelle et sociale d'Haïti</p></div></div></div>
+</section><section id="degrees"><div class="section-inner"><div class="section-label" data-lang="ht">Estrikti Inisyatik</div><div class="section-label" data-lang="fr">Structure Initiatique</div><h2 class="section-title" data-lang="ht">Twa Degre Bnei Ohr</h2><h2 class="section-title" data-lang="fr">Les Trois Niveaux de Bnei Ohr</h2><div class="section-divider"></div><div class="degrees-track"><div class="degree-item"><div class="degree-num"><div class="degree-circle">I</div></div><div class="degree-content"><div class="degree-title"><span data-lang="ht">Ben / Bat Ohr — Pitit Limyè a</span><span data-lang="fr">Ben / Bat Ohr — Enfant de la Lumière</span></div><span class="degree-hebrew">בֶּן / בַּת אוֹר — עֹרֶב הָאוֹר</span><p class="degree-desc" data-lang="ht">Pòt antre. Elèv ap aprann fondaman Kabbalah — Sefirot, Ilan HaChayim, Olamot. Etap Orev HaOhr — "Krepiskil Limyè a."</p><p class="degree-desc" data-lang="fr">Porte d'entrée. L'étudiant apprend les fondements de la Kabbale — Sefirot, Ilan HaChayim, Olamot. Étape Orev HaOhr — "Le Crépuscule de la Lumière."</p></div></div><div class="degree-item"><div class="degree-num"><div class="degree-circle">II</div></div><div class="degree-content"><div class="degree-title"><span data-lang="ht">Talmid Ohr — Etidyan Limyè a</span><span data-lang="fr">Talmid Ohr — Étudiant de la Lumière</span></div><span class="degree-hebrew">תַּלְמִיד אוֹר — מוֹרֶה הַדֶּרֶךְ</span><p class="degree-desc" data-lang="ht">Apwofondisman. Pratik meditasyon, liturgi, Zohar. Elèv vin gid pou lòt yo. Etap Moreh HaDerekh — "Ensèyan Chemen an."</p><p class="degree-desc" data-lang="fr">Approfondissement. Pratique de méditation, liturgie, Zohar. L'étudiant devient guide pour les autres. Étape Moreh HaDerekh — "Enseignant du Chemin."</p></div></div><div class="degree-item"><div class="degree-num"><div class="degree-circle">III</div></div><div class="degree-content"><div class="degree-title"><span data-lang="ht">Moreh Ohr — Ensèyan Limyè a</span><span data-lang="fr">Moreh Ohr — Enseignant de la Lumière</span></div><span class="degree-hebrew">מוֹרֶה אוֹר — בַּעַל הָאוֹר</span><p class="degree-desc" data-lang="ht">Maturite. Transmisyon otantik. Kapasite pou anseye, gide, ak reprezante Bnei Ohr. Etap Baal HaOhr — "Mèt Limyè a."</p><p class="degree-desc" data-lang="fr">Maturité. Transmission authentique. Capacité d'enseigner, guider et représenter Bnei Ohr. Étape Baal HaOhr — "Maître de la Lumière."</p></div></div></div></div>
+</section><section id="sources"><div class="section-inner"><div class="section-label" data-lang="ht">Otantisite</div><div class="section-label" data-lang="fr">Authenticité</div><h2 class="section-title" data-lang="ht">Sous Otantik Nou Yo</h2><h2 class="section-title" data-lang="fr">Nos Sources Authentiques</h2><div class="section-divider"></div><div class="section-text"><div data-lang="ht"><p>Bnei Ohr tire ansèyman l sèlman nan sous Kabbalistik klasik yo. Nou rejte okident okilis, grimwa, ak tradisyon sinkretik.</p></div><div data-lang="fr"><p>Bnei Ohr tire ses enseignements uniquement des sources kabbalistiques classiques. Nous rejetons l'occultisme occidental, les grimoires et les traditions syncrétiques.</p></div></div><div class="sources-grid"><div class="source-item"><div class="source-dot"></div><div><div class="source-name">תַּנַ"ךְ — Tanakh</div><p class="source-desc" data-lang="ht">Tèks sakre Ebre fondamantal</p><p class="source-desc" data-lang="fr">Textes sacrés hébraïques fondamentaux</p></div></div><div class="source-item"><div class="source-dot"></div><div><div class="source-name">זֹהַר — Zohar</div><p class="source-desc" data-lang="ht">Travay santral Kabbalah mistik</p><p class="source-desc" data-lang="fr">Œuvre centrale de la Kabbale mystique</p></div></div><div class="source-item"><div class="source-dot"></div><div><div class="source-name">הָאֲרִי — HaAri (Luria)</div><p class="source-desc" data-lang="ht">Kabbalah Luriyanik — Etz Chaim, Pri Etz Chaim</p><p class="source-desc" data-lang="fr">Kabbale lourianique — Etz Chaim, Pri Etz Chaim</p></div></div><div class="source-item"><div class="source-dot"></div><div><div class="source-name">בַּעַל הַסֻּלָּם — Baal HaSulam</div><p class="source-desc" data-lang="ht">Sulam — kòmantè Zohar; Bnei Baruch</p><p class="source-desc" data-lang="fr">Sulam — commentaire du Zohar ; Bnei Baruch</p></div></div><div class="source-item"><div class="source-dot"></div><div><div class="source-name">תַּלְמוּד — Talmud</div><p class="source-desc" data-lang="ht">Tradisyon rabenik klasik</p><p class="source-desc" data-lang="fr">Tradition rabbinique classique</p></div></div><div class="source-item"><div class="source-dot"></div><div><div class="source-name">מִדְרָשׁ — Midrash</div><p class="source-desc" data-lang="ht">Tèks ekzejetik ak naratif klasik</p><p class="source-desc" data-lang="fr">Textes exégétiques et narratifs classiques</p></div></div></div></div>
+</section><section id="music"><div class="music-inner"><div class="section-label" data-lang="ht">Mizik Sakre</div><div class="section-label" data-lang="fr">Musique Sacrée</div><h2 class="section-title" data-lang="ht">Mizik Sakre Bnei Ohr</h2><h2 class="section-title" data-lang="fr">Musique Sacrée Bnei Ohr</h2><div class="section-divider" style="margin: 0 auto 2.5rem;"></div><span class="music-symbol">♪</span><div class="section-text"><div data-lang="ht"><p>Nigunnim Kabbalistik nan fòm Rasin Ayisyan — tanbou, gita, vwa — pou chak sefira ak pratik.</p><p>Premye chante nou an ap baze sou <strong>Malkuth</strong> — pòt antre nan Arbre Lavi a, tè Ayiti nou.</p></div><div data-lang="fr"><p>Nigunnim kabbalistiques sous forme Racines haïtiennes — tambours, guitare, voix — pour chaque sefira et pratique.</p><p>Notre première composition sera basée sur <strong>Malkuth</strong> — porte d'entrée de l'Arbre de Vie, notre terre haïtienne.</p></div></div><p class="music-coming" data-lang="ht">✦ Anrejistreman yo ap vini byento ✦</p><p class="music-coming" data-lang="fr">✦ Les enregistrements arrivent bientôt ✦</p></div>
+</section><section id="contact"><div class="contact-inner"><div class="section-label" data-lang="ht">Rejwenn Nou</div><div class="section-label" data-lang="fr">Nous Rejoindre</div><h2 class="section-title" data-lang="ht">Kontakte Bnei Ohr</h2><h2 class="section-title" data-lang="fr">Contacter Bnei Ohr</h2><div class="section-divider" style="margin: 0 auto 2rem;"></div><div class="section-text"><div data-lang="ht"><p>Ou enterese etidye? Ou gen yon kesyon? Ekri nou.</p></div><div data-lang="fr"><p>Vous êtes intéressé(e) par l'étude ? Vous avez une question ? Écrivez-nous.</p></div></div><form class="contact-form" onsubmit="handleSubmit(event)"><div class="form-group"><label class="form-label" data-lang="ht">Non</label><label class="form-label" data-lang="fr">Nom</label><input type="text" class="form-input" required></div><div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" required></div><div class="form-group"><label class="form-label" data-lang="ht">Mesaj</label><label class="form-label" data-lang="fr">Message</label><textarea class="form-textarea" required></textarea></div><button type="submit" class="form-submit"><span data-lang="ht">Voye Mesaj</span><span data-lang="fr">Envoyer</span></button></form></div>
+</section><section id="kabbalah"><div class="section-inner"><div class="section-label" data-lang="ht">Konesans</div><div class="section-label" data-lang="fr">Connaissance</div><h2 class="section-title" data-lang="ht">Kisa Kabbalah ye?</h2><h2 class="section-title" data-lang="fr">Qu'est-ce que la Kabbale ?</h2><div class="section-divider"></div><div class="section-text"><div data-lang="ht"><p>Kabbalah — <strong>קַבָּלָה</strong> — vle di literalman <em>"sa yo resevwa"</em> oswa <em>"transmisyon"</em> an Ebre. Se tradisyon mistik jwif la ki eksplike mistè kreyasyon an, nati Bondye a, ak chemen retounen nan sous limyè a.</p><p>Kabbalah pa yon envasyon imen — se yon <strong>revelasyon</strong>: ansèyman ki soti nan nivo espirityèl ki depase entèlijans òdinè a, transmèt soti nan mèt an elèv atravè siyek. Rasin li yo nan Tanakh la — epi yo vin elabore nan Zohar, Talmud, ak ansèyman HaAri a.</p><p>Fondaman tout Kabbalah se <strong>Ein Sof — אֵין סוֹף</strong> — <em>"San Fen"</em> — non Bondye nan dimansyon ki depase tout konsèpsyon. Pou li ka kreye, li te fè yon <strong>Tzimtzum</strong> — yon retrè — epi limyè li a desann atravè <strong>10 Sefirot</strong> yo sou <strong>Ilan HaChayim</strong> — Arbre Lavi a.</p><p>Kabbalah otantik pa konfondre ak Kabbalah Kretyen, okiltis, oswa sinkretis. Se yon <strong>syans espirityèl</strong> disiplinè ki mande etid serye ak transmisyon fidèl soti nan sous jwif klasik yo.</p></div><div data-lang="fr"><p>La Kabbale — <strong>קַבָּלָה</strong> — signifie littéralement <em>"ce qui est reçu"</em> ou <em>"transmission"</em> en hébreu. C'est la tradition mystique juive qui explique le mystère de la création, la nature de Dieu, et le chemin du retour vers la source de lumière.</p><p>La Kabbale n'est pas une invention humaine — c'est une <strong>révélation</strong> : des enseignements issus de niveaux spirituels dépassant l'intelligence ordinaire, transmis de maître en disciple à travers les siècles. Ses racines sont dans le Tanakh — puis développées dans le Zohar, le Talmud, et les enseignements du HaAri.</p><p>Le fondement de toute la Kabbale est <strong>Ein Sof — אֵין סוֹף</strong> — <em>"Sans Fin"</em> — le nom de Dieu dans la dimension qui dépasse toute conception. Pour créer, Il a effectué un <strong>Tzimtzum</strong> — un retrait — et Sa lumière descend à travers les <strong>10 Sefirot</strong> sur l'<strong>Ilan HaChayim</strong> — l'Arbre de Vie.</p><p>La sagesse ésotérique est une <strong>science spirituelle</strong> disciplinée qui exige une étude sérieuse et un cheminement intérieur authentique, ancré dans les grandes traditions de lumière.</p></div></div><blockquote class="about-quote"><span data-lang="ht">Kabbalah se chemen retounen an — soti nan Malkuth, atravè tout Sefirot yo, jouk nan Ein Sof.</span><span data-lang="fr">La Kabbale est le chemin du retour — de Malkuth, à travers toutes les Sefirot, jusqu'à l'Ein Sof.</span><cite>— Bnei Ohr</cite></blockquote></div>
+</section><section id="sefirot"><div class="section-inner"><div class="section-label" data-lang="ht">Ansèyman</div><div class="section-label" data-lang="fr">Enseignement</div><h2 class="section-title" data-lang="ht">Dis Sefirot Yo — עֶשֶׂר סְפִירוֹת</h2><h2 class="section-title" data-lang="fr">Les Dix Sefirot — עֶשֶׂר סְפִירוֹת</h2><div class="section-divider"></div><div class="section-text"><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">כֶּתֶר</span><span class="mission-name">Keter — Kouwòn</span><p class="mission-desc" data-lang="ht">Keter se premye Sefira a — pi wo pwen Ilan HaChayim nan. Li reprezante volonte primòdyal Bondye a — premye mouvman ki soti nan Ein Sof anvan nenpòt kreyasyon. Se sous tout sous yo. Moun pa ka konprann Keter ak lespri imen òdinè — li depase tout panse ak tout imajinasyon. Se limyè ki pi pir, ki pi lwen, ki pi pwofon.<br><br><em>Imaj: Yon kouwòn ki briye nan fènwa absoli.</em></p><p class="mission-desc" data-lang="fr">Keter est la première Sefira — le point le plus élevé de l'Ilan HaChayim. Elle représente la volonté primordiale de Dieu — le premier mouvement issu de l'Ein Sof avant toute création. C'est la source de toutes les sources.<br><br><em>Image : Une couronne brillant dans l'obscurité absolue.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">חָכְמָה</span><span class="mission-name">Chokhmah — Sajès</span><p class="mission-desc" data-lang="ht">Chokhmah se premye ekla limyè ki soti nan Keter. Se yon flash — yon entisyon imedyat, san analiz, san refleksyon. Sajès Kabbalistik pa aprann nan liv — li resevwa nan silans ak ouvèti total. Se papa nan sistèm Sefirot yo.<br><br><em>Imaj: Yon zèklè ki ilimine syèl la yon segond.</em></p><p class="mission-desc" data-lang="fr">Chokhmah est le premier éclair de lumière issu de Keter. C'est un flash — une intuition immédiate, sans analyse, sans réflexion. La sagesse kabbalistique ne s'apprend pas dans les livres — elle se reçoit dans le silence.<br><br><em>Image : Un éclair qui illumine le ciel un instant.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">בִּינָה</span><span class="mission-name">Binah — Konpreyansyon</span><p class="mission-desc" data-lang="ht">Binah resevwa limyè Chokhmah nan epi li devlope l, striktire l, bay li fòm. Se manman nan Ilan HaChayim nan — matris kote tout bagay fòme anvan yo desann. Li asosye ak pwofondè, meditasyon, ak kapasite pou wè andedan bagay yo.<br><br><em>Imaj: Yon vant ki pote lavi anvan nesans.</em></p><p class="mission-desc" data-lang="fr">Binah reçoit la lumière de Chokhmah et la développe, la structure, lui donne forme. C'est la mère de l'Ilan HaChayim — la matrice où tout se forme avant de descendre.<br><br><em>Image : Un ventre qui porte la vie avant la naissance.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">חֶסֶד</span><span class="mission-name">Chesed — Gras / Lanmou</span><p class="mission-desc" data-lang="ht">Chesed se premye Sefira nan mond aksyon dirèk la. Li reprezante lanmou san kondisyon, jenerozite san limit, ak gras ki desann sou tout kreyasyon san diskriminasyon. Se bra dwat Bondye a — kote favè ak mizerikòd koule lib.<br><br><em>Imaj: Yon sous dlo ki koule lib pou tout moun.</em></p><p class="mission-desc" data-lang="fr">Chesed est la première Sefira du monde de l'action directe. Elle représente l'amour inconditionnel, la générosité sans limite, et la grâce qui descend sur toute la création.<br><br><em>Image : Une source d'eau qui coule librement pour tous.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">גְּבוּרָה</span><span class="mission-name">Gevurah — Fòs / Jistis</span><p class="mission-desc" data-lang="ht">Gevurah se balans Chesed la. Li reprezante disiplin, limit, fòs, ak jistis. San Gevurah, Chesed ta tounen yon flèv ki debòde epi detwi tout bagay. Se bra gòch Bondye a — kote limit nesesè yo etabli pou pwoteje lòd kreyasyon an.<br><br><em>Imaj: Yon epe ki pwoteje ak ki taye an menm tan.</em></p><p class="mission-desc" data-lang="fr">Gevurah est l'équilibre de Chesed. Elle représente la discipline, la limite, la force et la justice. Sans Gevurah, Chesed deviendrait un fleuve qui déborde et détruit tout.<br><br><em>Image : Une épée qui protège et taille en même temps.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">תִּפְאֶרֶת</span><span class="mission-name">Tiferet — Bote / Amoni</span><p class="mission-desc" data-lang="ht">Tiferet se kè Ilan HaChayim nan — sant ekilibriyòm ant tout fòs yo. Li marye Chesed ak Gevurah, limyè ak limit, lanmou ak jistis. Se kote bote vre a parèt — pa nan ekstrèm, men nan amoni pafè. Tiferet reprezante tou kè imen ki nan chemen retounen nan Bondye.<br><br><em>Imaj: Solèy nan mitan syèl la — ki bay limyè a tout bagay egalman.</em></p><p class="mission-desc" data-lang="fr">Tiferet est le cœur de l'Ilan HaChayim — le centre d'équilibre entre toutes les forces. Elle marie Chesed et Gevurah, lumière et limite, amour et justice.<br><br><em>Image : Le soleil au milieu du ciel — donnant sa lumière à tous également.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">נֶצַח</span><span class="mission-name">Netzach — Viktwa / Etènite</span><p class="mission-desc" data-lang="ht">Netzach reprezante fòs vital la, enèji kreyativ la, ak dezi pwofon ki pouse tout kreyasyon pou kontinye egziste. Li asosye ak atizay, mizik, bote natirèl, ak pasyon. Se Sefira ki konekte kè imen an ak mond natirèl la.<br><br><em>Imaj: Yon rivyè ki pa janm sispann koule.</em></p><p class="mission-desc" data-lang="fr">Netzach représente la force vitale, l'énergie créative, et le désir profond qui pousse toute création à continuer d'exister. Elle est associée à l'art, la musique, la beauté naturelle et la passion.<br><br><em>Image : Une rivière qui ne cesse jamais de couler.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">הוֹד</span><span class="mission-name">Hod — Splandè / Rekonesans</span><p class="mission-desc" data-lang="ht">Hod se balans Netzach la. Kote Netzach se pasyon ak aksyon, Hod se refleksyon ak rekonesans. Li reprezante kapasite pou soumèt devan gran mistè lavi a, pou di mèsi, pou wè bote nan ti bagay chak jou. Se Sefira meditasyon ak priyè.<br><br><em>Imaj: Yon moun ajenou devan bote yon kouche solèy.</em></p><p class="mission-desc" data-lang="fr">Hod est l'équilibre de Netzach. Là où Netzach est passion et action, Hod est réflexion et gratitude. Elle représente la capacité de s'incliner devant le grand mystère de la vie.<br><br><em>Image : Une personne à genoux devant la beauté d'un coucher de soleil.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">יְסוֹד</span><span class="mission-name">Yesod — Fondasyon</span><p class="mission-desc" data-lang="ht">Yesod se kanal ki konekte tout Sefirot anlè yo ak Malkuth anba a. Se zouti transmisyon an. Li reprezante kapasite pou resevwa enèji espirityèl la epi transmèt li fidèlman san pèdi esans li. Yesod asosye tou ak verite, alyans, ak travay transmisyon sakre.<br><br><em>Imaj: Yon pon solid ant syèl ak tè.</em></p><p class="mission-desc" data-lang="fr">Yesod est le canal qui connecte toutes les Sefirot supérieures à Malkuth en bas. C'est l'outil de transmission. Elle représente la capacité de recevoir l'énergie spirituelle et de la transmettre fidèlement.<br><br><em>Image : Un pont solide entre ciel et terre.</em></p></div><div class="mission-card" style="margin-bottom:1.5rem; text-align:left; padding:2rem;"><span class="mission-hebrew">מַלְכוּת</span><span class="mission-name">Malkuth — Wayòm</span><p class="mission-desc" data-lang="ht">Malkuth se dènye Sefira a — pòt antre nan Ilan HaChayim nan pou tout pratikan. Se mond fizik nou, reyalite materyèl la, kò imen an, tè nou mache sou li chak jou. Malkuth resevwa tout limyè ki desann soti nan nèf Sefirot ki anlè yo epi li manifeste yo nan reyalite konkrèt. Pou Bnei Ohr, Malkuth se tè Ayiti nou an — kote travay espirityèl la kòmanse.<br><br><em>Imaj: Tè a anba pye nou — rasin tout bagay.</em></p><p class="mission-desc" data-lang="fr">Malkuth est la dernière Sefira — la porte d'entrée de l'Ilan HaChayim pour tout pratiquant. C'est notre monde physique, la réalité matérielle. Pour Bnei Ohr, Malkuth c'est la terre d'Haïti — là où le travail spirituel commence.<br><br><em>Image : La terre sous nos pieds — racine de toute chose.</em></p></div></div></div>
+</section><section class="content-section" style="background:linear-gradient(to bottom,#050505,#08060f,#050505);"><div class="section-inner"><div class="section-label" data-lang="ht">Chemen Inisyatik</div><div class="section-label" data-lang="fr">Chemin Initiatique</div><h2 class="section-title" data-lang="ht">Twa Reyon Limyè yo — שְׁלֹשָׁה קַוִּים</h2><h2 class="section-title" data-lang="fr">Les Trois Rayons de Lumière — שְׁלֹשָׁה קַוִּים</h2><div class="section-divider"></div><p class="section-text" data-lang="ht" style="text-align:center;font-style:italic;color:rgba(255,255,255,0.55);max-width:600px;margin:0 auto 3rem;">Chemen inisyatik Bnei Ohr a òganize nan twa degre — twa reyon limyè ki mennen elèv la de krepiskil jis nan limyè plen.</p><p class="section-text" data-lang="fr" style="text-align:center;font-style:italic;color:rgba(255,255,255,0.55);max-width:600px;margin:0 auto 3rem;">Le chemin initiatique de Bnei Ohr s'organise en trois niveaux — trois rayons de lumière qui guident l'élève du crépuscule jusqu'à la pleine lumière.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;max-width:960px;margin:0 auto;"><div class="mission-card" style="text-align:center;padding:2.5rem 2rem;border-color:rgba(201,168,76,0.2);position:relative;overflow-y: auto;"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.5),transparent);"></div><span style="font-family:'Noto Serif Hebrew',serif;font-size:3rem;color:rgba(201,168,76,0.35);display:block;margin-bottom:.5rem;">א</span><span style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:rgba(201,168,76,0.4);text-transform:uppercase;display:block;margin-bottom:.8rem;">Degre 1 — Premye Reyon</span><h3 style="font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.15em;color:#c9a84c;text-transform:uppercase;margin-bottom:.3rem;">Orev HaOhr</h3><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.45);font-size:.9rem;display:block;margin-bottom:1.2rem;" data-lang="ht">Krepiskil Limyè a</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.45);font-size:.9rem;display:block;margin-bottom:1.2rem;" data-lang="fr">Le Crépuscule de la Lumière</span><div style="width:30px;height:1px;background:rgba(201,168,76,0.3);margin:0 auto 1.2rem;"></div><p style="font-size:.95rem;color:rgba(255,255,255,0.6);line-height:1.9;font-style:italic;" data-lang="ht">Elèv la kòmanse vwayaj la. Li aprann baz Kabbalah otantik — Sefirot yo, Ilan HaChayim nan, meditasyon fondamantal, ak pratik Kavvanah chak jou. Se moman kote limyè a parèt premye fwa nan lorizon kè a.</p><p style="font-size:.95rem;color:rgba(255,255,255,0.6);line-height:1.9;font-style:italic;" data-lang="fr">L'élève commence son voyage. Il apprend les bases de la Kabbale authentique — les Sefirot, l'Ilan HaChayim, la méditation fondamentale, et la pratique quotidienne de la Kavvanah. C'est le moment où la lumière apparaît pour la première fois à l'horizon du cœur.</p><div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(201,168,76,0.1);"><span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(201,168,76,0.35);text-transform:uppercase;" data-lang="ht">Dire: 6 mwa minimòm</span><span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(201,168,76,0.35);text-transform:uppercase;" data-lang="fr">Durée: 6 mois minimum</span></div></div><div class="mission-card" style="text-align:center;padding:2.5rem 2rem;border-color:rgba(201,168,76,0.35);position:relative;overflow-y: auto;transform:scale(1.02);"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#c9a84c,transparent);"></div><div style="position:absolute;top:.8rem;right:.8rem;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.15em;color:rgba(201,168,76,0.4);text-transform:uppercase;">✦ Sant ✦</div><span style="font-family:'Noto Serif Hebrew',serif;font-size:3rem;color:rgba(201,168,76,0.55);display:block;margin-bottom:.5rem;">מ</span><span style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:rgba(201,168,76,0.5);text-transform:uppercase;display:block;margin-bottom:.8rem;">Degre 2 — Dezyèm Reyon</span><h3 style="font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.15em;color:#e8c97a;text-transform:uppercase;margin-bottom:.3rem;">Moreh HaDerekh</h3><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.45);font-size:.9rem;display:block;margin-bottom:1.2rem;" data-lang="ht">Gid Chemen an</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.45);font-size:.9rem;display:block;margin-bottom:1.2rem;" data-lang="fr">Le Guide du Chemin</span><div style="width:30px;height:1px;background:rgba(201,168,76,0.4);margin:0 auto 1.2rem;"></div><p style="font-size:.95rem;color:rgba(255,255,255,0.7);line-height:1.9;font-style:italic;" data-lang="ht">Pratikan an vin aktif. Li etidye teyori Luriyanik yo an pwofondè — Tsimtsoum, Shevirat HaKelim, Tikkun. Li kòmanse gide lòt moun epi konprann misyon pèsonèl li nan kadre misyon kolektif Bnei Ohr la.</p><p style="font-size:.95rem;color:rgba(255,255,255,0.7);line-height:1.9;font-style:italic;" data-lang="fr">Le pratiquant devient actif. Il étudie en profondeur les théories louryaniques — Tsimtsoum, Shevirat HaKelim, Tikkoun. Il commence à guider d'autres et comprend sa mission personnelle dans le cadre de la mission collective de Bnei Ohr.</p><div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(201,168,76,0.15);"><span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(201,168,76,0.45);text-transform:uppercase;" data-lang="ht">Dire: 1 an minimòm</span><span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(201,168,76,0.45);text-transform:uppercase;" data-lang="fr">Durée: 1 an minimum</span></div></div><div class="mission-card" style="text-align:center;padding:2.5rem 2rem;border-color:rgba(201,168,76,0.2);position:relative;overflow-y: auto;"><div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.5),transparent);"></div><span style="font-family:'Noto Serif Hebrew',serif;font-size:3rem;color:rgba(201,168,76,0.35);display:block;margin-bottom:.5rem;">ש</span><span style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:rgba(201,168,76,0.4);text-transform:uppercase;display:block;margin-bottom:.8rem;">Degre 3 — Twazyèm Reyon</span><h3 style="font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.15em;color:#c9a84c;text-transform:uppercase;margin-bottom:.3rem;">Baal HaOhr</h3><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.45);font-size:.9rem;display:block;margin-bottom:1.2rem;" data-lang="ht">Mèt Limyè a</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.45);font-size:.9rem;display:block;margin-bottom:1.2rem;" data-lang="fr">Le Maître de la Lumière</span><div style="width:30px;height:1px;background:rgba(201,168,76,0.3);margin:0 auto 1.2rem;"></div><p style="font-size:.95rem;color:rgba(255,255,255,0.6);line-height:1.9;font-style:italic;" data-lang="ht">Baal HaOhr pa sèlman konnen — li viv konesans lan. Li gen yon relasyon dirèk, vivan, ak Limyè Ein Sof la. Se nan degre sa a transmisyon reyèl la fèt — pa sèlman tèks, men enèji espirityèl ki pase de kè an kè.</p><p style="font-size:.95rem;color:rgba(255,255,255,0.6);line-height:1.9;font-style:italic;" data-lang="fr">Le Baal HaOhr ne connaît pas seulement — il vit la connaissance. Il a une relation directe et vivante avec la Lumière d'Ein Sof. C'est à ce niveau que la vraie transmission a lieu — non pas seulement des textes, mais une énergie spirituelle qui passe de cœur en cœur.</p><div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(201,168,76,0.1);"><span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(201,168,76,0.35);text-transform:uppercase;" data-lang="ht">Pa gen limit tan</span><span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(201,168,76,0.35);text-transform:uppercase;" data-lang="fr">Sans limite de temps</span></div></div></div><div style="text-align:center;margin-top:4rem;padding:2rem;border-top:1px solid rgba(201,168,76,0.1);"><span style="font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(201,168,76,0.3);display:block;margin-bottom:1rem;">מִן הַחֹשֶׁךְ אֶל הָאוֹר</span><p style="font-style:italic;color:rgba(255,255,255,0.4);font-size:1rem;" data-lang="ht">"Soti nan fènwa — antre nan Limyè."</p><p style="font-style:italic;color:rgba(255,255,255,0.4);font-size:1rem;" data-lang="fr">"Des ténèbres vers la Lumière."</p></div></div>
+</section><footer><span class="footer-hebrew">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Ayiti — Tout dwa rezève</p>
+</footer><script>
+// STARFIELD
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+const s = document.createElement('div');
+s.className = 'star';
+const size = Math.random() * 2 + 0.5;
+s.style.cssText = `
+width:${size}px; height:${size}px;
+top:${Math.random()*100}%;
+left:${Math.random()*100}%;
+--d:${2+Math.random()*4}s;
+--o:${0.2+Math.random()*0.6};
+animation-delay:${Math.random()*4}s;
+`;
+starsEl.appendChild(s);
+}
+// LANG SWITCH
+function setLang(lang) {
+document.body.className = lang;
+document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+}
+// MODAL
+function openModal() {
+document.getElementById('myModal').style.display = 'block';
+document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+document.getElementById('myModal').style.display = 'none';
+document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+// FORM
+function handleSubmit(e) {
+e.preventDefault();
+const btn = e.target.querySelector('.form-submit');
+const isHt = document.body.classList.contains('ht');
+btn.textContent = isHt ? '✓ Voye!' : '✓ Envoyé!';
+btn.style.borderColor = 'var(--gold-light)';
+btn.style.color = 'var(--gold-light)';
+setTimeout(() => {
+btn.innerHTML = isHt
+? '<span data-lang="ht">Voye Mesaj</span><span data-lang="fr" style="display:none">Envoyer</span>'
+: '<span data-lang="ht" style="display:none">Voye Mesaj</span><span data-lang="fr">Envoyer</span>';
+btn.style.borderColor = '';
+btn.style.color = '';
+}, 3000);
+}
+// SCROLL REVEAL
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(e => {
+if (e.isIntersecting) {
+e.target.style.opacity = '1';
+e.target.style.transform = 'translateY(0)';
+}
+});
+}, { threshold: 0.1 });
+document.querySelectorAll('.mission-card, .degree-item, .source-item').forEach(el => {
+el.style.opacity = '0';
+el.style.transform = 'translateY(20px)';
+el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+observer.observe(el);
+});
+</script>
+</body>
+</html>

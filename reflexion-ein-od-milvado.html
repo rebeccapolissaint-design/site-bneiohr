@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ein Od Milvado — Y a-t-il deux Dieux qui se battent dans l'univers ? — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#040406;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(140px)}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(212,175,55,.05),transparent);top:-200px;right:-180px}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(80,60,160,.05),transparent);bottom:-160px;left:-160px}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(4,4,6,.93);border-bottom:1px solid rgba(212,175,55,.1);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 18px rgba(212,175,55,.5)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
+/* HERO IMAGE */
+.article-hero{position:relative;width:100%;height:70vw;max-height:520px;min-height:260px;overflow-y: auto;margin-top:64px}
+.article-hero img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.6)}
+.article-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(4,4,6,0) 20%,rgba(4,4,6,.88) 100%)}
+.article-hero-body{position:absolute;bottom:0;left:0;right:0;padding:2rem 2rem 2.5rem;max-width:820px}
+.article-tag{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.35em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.6rem}
+.article-hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4vw,2.2rem);font-weight:400;color:#fff;line-height:1.2}
+.article-hero-title span{color:#d4af37}
+/* MAIN */
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 6rem;position:relative;z-index:1}
+/* LEAD */
+.article-lead{font-size:clamp(1.1rem,2.8vw,1.35rem);font-weight:300;font-style:italic;color:rgba(232,228,220,.7);line-height:1.9;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(212,175,55,.1)}
+/* BODY TEXT */
+.article-body{font-size:clamp(1rem,2.5vw,1.12rem);color:rgba(232,228,220,.65);line-height:2;margin-bottom:1.8rem}
+.article-body em{color:#d4af37;font-style:italic}
+.article-body strong{color:#e8e4dc;font-weight:600}
+/* PULL QUOTE */
+.pull-quote{margin:2.5rem 0;padding:1.8rem 2rem;border-left:3px solid #d4af37;background:rgba(212,175,55,.04);position:relative}
+.pull-quote::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:4rem;color:rgba(212,175,55,.2);position:absolute;top:-.5rem;left:1rem;line-height:1}
+.pull-quote p{font-size:clamp(1.1rem,3vw,1.3rem);font-style:italic;color:rgba(232,228,220,.75);line-height:1.75;padding-left:1.5rem}
+/* CONCEPT BOX */
+.concept-box{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.15);padding:1.8rem 2rem;margin:2.5rem 0}
+.concept-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.6rem;display:block}
+.concept-heb{font-family:'Noto Serif Hebrew',serif;font-size:2rem;color:#d4af37;opacity:.6;display:block;margin-bottom:.3rem;direction:rtl}
+.concept-translat{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.7rem}
+.concept-title{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.1em;color:#fff;display:block;margin-bottom:.8rem}
+.concept-text{font-size:1rem;color:rgba(232,228,220,.6);line-height:1.9}
+.concept-text em{color:#d4af37;font-style:italic}
+/* COMPARISON */
+.compare-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2.5rem 0}
+@media(max-width:580px){.compare-wrap{grid-template-columns:1fr}}
+.compare-card{padding:1.4rem 1.5rem;border:1px solid var(--bc)}
+.compare-card-lbl{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.28em;color:var(--bc);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.compare-card-title{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.08em;color:#fff;display:block;margin-bottom:.5rem}
+.compare-card-text{font-size:.93rem;color:rgba(232,228,220,.55);line-height:1.8}
+.compare-card-text em{color:var(--bc);font-style:italic}
+/* STEPS */
+.reflection-steps{margin:2.5rem 0;display:flex;
+flex-wrap:wrap;flex-direction:column;gap:1.2rem}
+.ref-step{display:flex;
+flex-wrap:wrap;gap:1.2rem;align-items:flex-start;padding:1.2rem 1.4rem;border:1px solid rgba(212,175,55,.1);background:rgba(10,10,18,.6)}
+.ref-step-num{font-family:'Cinzel',serif;font-size:1.4rem;color:rgba(212,175,55,.3);flex-shrink:0;width:32px;font-weight:400;line-height:1}
+.ref-step-body{flex:1;min-width:0}
+.ref-step-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;color:#fff;display:block;margin-bottom:.35rem;text-transform:uppercase}
+.ref-step-text{font-size:.97rem;color:rgba(232,228,220,.55);line-height:1.85;overflow-wrap:break-word}
+.ref-step-text em{color:#d4af37;font-style:italic}
+/* VERSE BOX */
+.verse-box{text-align:center;margin:3rem 0;padding:2rem;border:1px solid rgba(212,175,55,.15);background:rgba(212,175,55,.03)}
+.verse-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.5rem;color:#d4af37;opacity:.7;direction:rtl;display:block;margin-bottom:.7rem;line-height:1.7}
+.verse-trad{font-size:.95rem;font-style:italic;color:rgba(232,228,220,.45);line-height:1.8}
+.verse-ref{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.25em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-top:.5rem}
+/* CONCLUSION */
+.article-conclusion{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.15);border-left:3px solid #d4af37;padding:1.8rem 2rem;margin:3rem 0}
+.article-conclusion p{font-size:1.05rem;color:rgba(232,228,220,.7);line-height:1.9;font-style:italic}
+.article-conclusion em{color:#d4af37;font-style:normal}
+/* SIGNATURE */
+.article-sig{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1)}
+.sig-logo{font-family:'Noto Serif Hebrew',serif;font-size:2rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.4rem}
+.sig-name{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;color:rgba(212,175,55,.35);text-transform:uppercase}
+/* NAV BOTTOM */
+.nav-bottom{display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1);flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.65rem 1.3rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.04)}
+footer{position:relative;z-index:1;background:#040406;border-top:1px solid rgba(212,175,55,.1);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-size:.8rem;color:#303030;letter-spacing:.1em}
+</style>
+</head>
+<body><div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back">Accueil</a>
+</nav><div class="article-hero"><img src="https://i.postimg.cc/tgMpXTX4/file-00000000479471f5bb86e526bc8643b4.png"
+alt="Ein Od Milvado — Bnei Ohr"/><div class="article-hero-overlay"></div><div class="article-hero-body"><span class="article-tag">⚖️ Théologie Kabbalistique · Réflexion</span><h1 class="article-hero-title">Ein Od Milvado —<br/><span>Y a-t-il deux Dieux qui se battent dans l'univers ?</span></h1></div>
+</div><main class="article-wrap"><p class="article-lead">Si tu as passé ta vie à voir des oncles, des tantes ou des voisins trembler de peur devant un « mauvais esprit » ou une magie supposément plus puissante que Dieu — aujourd'hui nous t'apportons une vérité qui va te libérer.</p><div class="concept-box"><span class="concept-label">✦ Le Principe Fondamental de Bnei Ohr ✦</span><span class="concept-heb">אֵין עוֹד מִלְבַדּוֹ</span><span class="concept-translat">Ein Od Milvado</span><span class="concept-title">« Il n'y a rien d'autre que Lui »</span><p class="concept-text">Ce verset du Deutéronome (4:35) est le pilier central de tout l'enseignement de Bnei Ohr. Il ne dit pas simplement que Dieu est <em>le plus fort</em> parmi d'autres forces — il dit qu'il n'existe <em>rien d'autre</em>. Toute réalité, visible ou invisible, lumineuse ou sombre, est une manifestation unique de la Source divine.</p></div><p class="article-body">Beaucoup de personnes — même parmi les croyants — vivent avec une vision dualiste du monde. D'un côté Dieu, bon et tout-puissant. De l'autre le Diable, mauvais et indépendant, ayant ses propres pouvoirs, capable de contrecarrer les plans divins. <strong>C'est une erreur fondamentale.</strong> Et cette erreur coûte extrêmement cher : elle fabrique des êtres humains qui vivent dans la peur permanente.</p><div class="pull-quote"><p>Il n'y a pas deux chefs dans l'usine de l'univers. Toute l'énergie qui existe — belle ou sombre — sort d'une seule Source et n'a qu'un seul Maître.</p></div><p class="article-body">Toute énergie qui existe — qu'elle paraisse belle ou terrible — vient d'une seule et même Source et n'a qu'un seul Maître. <em>Ein Od Milvado.</em> Il n'y a rien d'autre que Lui.</p><div class="compare-wrap"><div class="compare-card" style="--bc:rgba(200,70,60,.5)"><span class="compare-card-lbl">❌ La Vision Dualiste — Erreur</span><span class="compare-card-title">Deux forces opposées</span><p class="compare-card-text">Dieu contre le Diable. Le Bien contre le Mal. Deux pouvoirs indépendants en guerre perpétuelle. <em>Résultat : peur constante, paralysie, sentiment d'être une victime impuissante.</em></p></div><div class="compare-card" style="--bc:rgba(30,160,100,.6)"><span class="compare-card-lbl">✦ La Vision Kabbalistique — Vérité</span><span class="compare-card-title">Une seule Source absolue</span><p class="compare-card-text">Tout émane de Dieu seul. L'obscurité n'est pas un ennemi — c'est un outil. <em>Résultat : autorité intérieure, paix, responsabilité personnelle au lieu de victimisation.</em></p></div></div><p class="article-body">Ce que nous appelons les ténèbres, la magie noire, les mauvais esprits — tout cela <strong>n'a aucun pouvoir propre</strong>. C'est comme un professeur sévère qui a reçu la <em>permission</em> (en hébreu : <em>Reshout</em>) de placer des épreuves sur ton chemin. Pourquoi ? Non pour te détruire — mais pour te forcer à grandir, à purifier ton vase, et à t'élever.</p><div class="verse-box"><span class="verse-heb">אֵין עוֹד מִלְבַדּוֹ</span><span class="verse-trad">« Il n'y a rien d'autre que Lui. »</span><span class="verse-ref">— Devarim (Deutéronome) 4:35</span></div><p class="article-body">Le Diable, dans la vision kabbalistique, n'est pas un rebelle qui défie Dieu depuis l'extérieur — c'est la <em>Sitra Achra</em> (l'Autre Côté), qui est elle-même un outil divin. Son rôle est de créer la résistance nécessaire à la croissance. <strong>Sans résistance, il n'y a pas de force. Sans obscurité, pas de lumière consciente d'elle-même.</strong></p><div class="pull-quote"><p>La peur des ténèbres leur donne le seul pouvoir qu'elles ont réellement sur toi. Cesse d'avoir peur — et elles perdent leur emprise.</p></div><p class="article-body">Dès que tu cesses de donner ta permission aux ténèbres par ta peur — dès que tu t'alignes sur la fréquence de Dieu — tu réalises qu'il n'existe qu'une seule Source à laquelle respirer. À ce moment-là, aucune mauvaise fréquence ne peut s'accrocher à toi, parce que tu deviens un <em>Poto Mitan</em> qui marche dans la lumière.</p><div style="margin:3rem 0"><span style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;text-align:center;margin-bottom:1.5rem">✦ Comment vivre Ein Od Milvado concrètement ✦</span><div class="reflection-steps"><div class="ref-step"><span class="ref-step-num">01</span><div class="ref-step-body"><span class="ref-step-title">Identifier ses peurs cachées</span><p class="ref-step-text">Quelles forces te font peur ? Quels « pouvoirs » tu crois indépendants de Dieu dans ta vie ? Nomme-les. La peur ne supporte pas d'être regardée en face — en la nommant, tu commences à lui retirer sa substance.</p></div></div><div class="ref-step"><span class="ref-step-num">02</span><div class="ref-step-body"><span class="ref-step-title">Réciter Ein Od Milvado</span><p class="ref-step-text">Face à n'importe quelle peur ou difficulté, répète lentement et avec conviction : <em>« Ein Od Milvado — Il n'y a rien d'autre que Lui. »</em> Ce n'est pas une formule magique — c'est une réorientation de ta conscience vers la réalité vraie.</p></div></div><div class="ref-step"><span class="ref-step-num">03</span><div class="ref-step-body"><span class="ref-step-title">Voir l'épreuve comme un professeur</span><p class="ref-step-text">La prochaine fois qu'une épreuve arrive — au lieu de chercher « qui t'a fait ça » — demande-toi : <em>« Qu'est-ce que Dieu veut me faire développer à travers cette situation ? »</em> Cette seule question change tout : tu passes de victime à élève.</p></div></div><div class="ref-step"><span class="ref-step-num">04</span><div class="ref-step-body"><span class="ref-step-title">Refuser de donner ta permission</span><p class="ref-step-text">Les ténèbres n'ont de prise sur toi qu'avec ta permission — et tu donnes cette permission par la peur. Chaque fois que tu choisis consciemment de ne pas avoir peur, de te centrer en Dieu, <em>tu retires cette permission</em>. C'est ton acte de souveraineté spirituelle.</p></div></div><div class="ref-step"><span class="ref-step-num">05</span><div class="ref-step-body"><span class="ref-step-title">Devenir un Poto Mitan</span><p class="ref-step-text">Dans la tradition haïtienne, le Poto Mitan est le pilier central par lequel la lumière descend. En toi, c'est ton axe intérieur — ta connexion directe et ininterrompue avec la Source. <em>Un Poto Mitan ne tremble pas. Il est le canal, pas la tempête.</em></p></div></div></div></div><div class="article-conclusion"><p>La peur des mauvais esprits et de la magie noire est réelle — mais elle repose sur un <em>mensonge fondamental</em> : qu'il existe une force indépendante de Dieu capable de te nuire sans Sa permission. Ein Od Milvado démantèle ce mensonge à la racine. Il ne reste alors qu'une seule question : <em>est-ce que je m'aligne sur la Source, ou est-ce que je me laisse couper d'elle par la peur ?</em> Le choix t'appartient entièrement.</p></div><div class="article-sig"><span class="sig-logo">בְּנֵי אוֹר</span><span class="sig-name">Bnei Ohr — Enseignement Spirituel</span></div><div class="nav-bottom"><a href="reflexion-loi-miroir.html" class="nav-btn">← La Loi du Miroir</a><a href="index.html" class="nav-btn">Accueil →</a></div></main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Enseignement Ésotérique Kabbalistique</p>
+</footer><script>
+(function(){
+const c=document.getElementById('stars');
+for(let i=0;i<100;i++){
+const s=document.createElement('div');s.className='star';
+const sz=Math.random()*2+.4;
+s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:#fff;--d:${2+Math.random()*6}s;--o:${.07+Math.random()*.4}`;
+c.appendChild(s);
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bnei Ohr — École Ésotérique Haïtienne — Enfants de la Lumière</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,5,0.92);border-bottom:1px solid rgba(212,175,55,0.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,0.4)}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-links{display:flex;
+flex-wrap:wrap;gap:1.8rem;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:#a0a0a0;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:#d4af37}
+/* HERO */
+.hero{position:relative;width:100%;overflow-y: auto}
+.hero-bg{position:relative;width:100%;aspect-ratio:21/9;min-height:340px;background-image:url('https://i.postimg.cc/SRh7ZNSs/1777948390449.jpg');background-size: cover;
+background-position: center;
+filter: brightness(0.55) contrast(1.08);background-repeat:no-repeat;background-position:center;background-color:#050505;display:block;animation:heroFadeIn 1.5s ease forwards}
+@keyframes heroFadeIn{from{opacity:0}to{opacity:1}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,0.55) 0%,rgba(5,5,5,0.2) 35%,rgba(5,5,5,0.25) 55%,rgba(5,5,5,0.85) 88%,rgba(5,5,5,1) 100%)}
+.hero-content{position:absolute;top:4.5rem;left:1.2rem;z-index:2;padding:0;text-align:left}
+.hero-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(212,175,55,0.75);text-transform:uppercase;margin-bottom:.3rem;display:block;opacity:0;animation:fadeUp 1s .3s ease forwards}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(.7rem,1.8vw,1rem);letter-spacing:.15em;color:rgba(255,255,255,.85);text-transform:uppercase;line-height:1.3;margin-bottom:.4rem;text-shadow:0 1px 8px rgba(0,0,0,.8);opacity:0;animation:fadeUp 1s .5s ease forwards}
+.hero-title span{color:#d4af37}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero-caption{background:#050505;padding:1.8rem 2rem;text-align:center;border-bottom:1px solid rgba(212,175,55,.08)}
+.hero-caption-verse{font-size:clamp(.92rem,2.5vw,1.1rem);font-style:italic;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 1.2rem;line-height:1.85}
+.hero-caption-btn{display:inline-block;text-decoration:none;background:transparent;border:1px solid rgba(212,175,55,.6);color:#d4af37;padding:.65rem 1.8rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;transition:all .35s}
+.hero-caption-btn:hover{background:rgba(212,175,55,.12);border-color:#d4af37;color:#fff}
+.scroll-indicator{display:flex;
+flex-wrap:wrap;flex-direction:column;align-items:center;gap:.4rem;padding:1rem 0 1.4rem;background:#050505}
+.scroll-indicator span{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.35);text-transform:uppercase}
+.scroll-dot{width:1px;height:30px;background:linear-gradient(to bottom,rgba(212,175,55,.6),transparent);animation:scrollDot 2s ease-in-out infinite}
+@keyframes scrollDot{0%,100%{opacity:.3}50%{opacity:1}}
+/* STATS */
+.stats-bar{display:flex;
+flex-wrap:wrap;justify-content:center;align-items:center;background:#080600;border-top:1px solid rgba(212,175,55,.12);border-bottom:1px solid rgba(212,175,55,.12);overflow-x:auto}
+.stat-item{flex:1;min-width:0;padding:1.6rem .8rem;text-align:center;border-right:1px solid rgba(212,175,55,.1)}
+.stat-item:last-child{border-right:none}
+.stat-number{font-family:'Cinzel',serif;font-size:clamp(1.4rem,4vw,1.9rem);color:#d4af37;display:block;text-shadow:0 0 15px rgba(212,175,55,.25);line-height:1}
+.stat-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-top:.4rem;display:block}
+/* MISSION BANNER */
+.misyon-banner{position:relative;z-index:1;padding:4rem 2rem;background:linear-gradient(135deg,#080600 0%,#0a0800 50%,#080600 100%);border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08);text-align:center;overflow-y: auto}
+.misyon-banner::before{content:'בְּנֵי אוֹר';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Noto Serif Hebrew',serif;font-size:8rem;color:rgba(212,175,55,.025);pointer-events:none;white-space:nowrap}
+.misyon-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;color:rgba(255,255,255,.75);max-width:720px;margin:0 auto 1rem;line-height:1.9}
+.misyon-text strong{color:#d4af37;font-style:normal;font-weight:400}
+.misyon-signature{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase}
+/* DEGRE SECTION */
+.degre-section{padding:5rem 2rem;background:linear-gradient(to bottom,#050505,#08060f,#050505);position:relative;z-index:1}
+.section-header-center{text-align:center;margin-bottom:3rem}
+.section-eyebrow{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.5em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.8rem;display:block}
+.section-main-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.section-main-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1rem auto 0}
+.degre-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:960px;margin:0 auto}
+.degre-card{border:1px solid rgba(212,175,55,.15);background:rgba(212,175,55,.02);padding:2.5rem 1.8rem;text-align:center;position:relative;overflow-y: auto;transition:all .4s}
+.degre-card:hover{border-color:rgba(212,175,55,.4);transform:translateY(-4px);box-shadow:0 12px 35px rgba(212,175,55,.07)}
+.degre-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(212,175,55,.4),transparent)}
+.degre-icon{font-size:2.5rem;display:block;margin-bottom:1rem;filter:drop-shadow(0 0 10px rgba(212,175,55,.3))}
+.degre-num{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.degre-name{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.3rem}
+.degre-sub{font-style:italic;font-size:.85rem;color:rgba(255,255,255,.4);display:block;margin-bottom:1rem}
+.degre-desc{font-size:.92rem;color:rgba(232,228,220,.6);line-height:1.85}
+/* SOURCES SECTION */
+.sources-section{padding:4rem 2rem;background:#050505;position:relative;z-index:1}
+.sources-grid{display:flex;
+flex-wrap:wrap;flex-wrap:wrap;justify-content:center;gap:1rem;max-width:800px;margin:2rem auto 0}
+.source-pill{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.15em;color:rgba(212,175,55,.6);text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid rgba(212,175,55,.2);background:rgba(212,175,55,.03)}
+/* GRID PAGES */
+.neuf-section{padding:5rem 2rem;background:linear-gradient(to bottom,#050505,#0a0800,#050505)}
+.neuf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1000px;margin:0 auto}
+.neuf-card{position:relative;overflow-y: auto;border:1px solid rgba(212,175,55,.15);text-decoration:none;display:block;transition:all .4s;background:#080800}
+.neuf-card:hover{border-color:rgba(212,175,55,.5);transform:translateY(-5px);box-shadow:0 15px 40px rgba(212,175,55,.08)}
+.neuf-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9) 0%,transparent 60%)}
+.neuf-card-body{position:absolute;bottom:0;left:0;right:0;padding:1.2rem}
+.neuf-card-tag{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.4rem}
+.neuf-card-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#fff;text-transform:uppercase;line-height:1.4}
+.neuf-card-arrow{display:inline-block;margin-top:.5rem;font-size:.75rem;color:rgba(212,175,55,.6);transition:all .3s}
+.neuf-card:hover .neuf-card-arrow{color:#d4af37;transform:translateX(4px)}
+.neuf-card-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#0d0a00,#1a1200);display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center}
+.neuf-card-placeholder span{font-family:'Noto Serif Hebrew',serif;font-size:2.5rem;color:rgba(212,175,55,.25)}
+/* PAWOL */
+.pawol-section{position:relative;z-index:1;padding:5rem 2rem;background:linear-gradient(to bottom,#050505 0%,#0c0900 50%,#050505 100%);text-align:center;overflow-y: auto}
+.pawol-eyebrow{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.5em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.pawol-main-title{font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.7rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;margin-bottom:.8rem}
+.pawol-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto 3rem}
+.pawol-card{max-width:720px;margin:0 auto;padding:3rem 3.5rem;border:1px solid rgba(212,175,55,.18);background:rgba(212,175,55,.02);position:relative}
+.pawol-card::before,.pawol-card::after{content:'✦';position:absolute;top:1.2rem;font-size:.6rem;color:rgba(212,175,55,.3)}
+.pawol-card::before{left:1.2rem}
+.pawol-card::after{right:1.2rem}
+.pawol-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.5rem;color:rgba(212,175,55,.4);display:block;margin-bottom:1.5rem;min-height:2rem;transition:opacity .6s}
+.pawol-quote{font-size:clamp(1.05rem,2.5vw,1.35rem);color:rgba(255,255,255,.88);font-style:italic;line-height:1.85;margin-bottom:1.5rem;min-height:4rem;transition:opacity .6s}
+.pawol-source{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.25em;color:rgba(212,175,55,.55);text-transform:uppercase;transition:opacity .6s}
+.pawol-dots{display:flex;
+flex-wrap:wrap;justify-content:center;gap:.6rem;margin-top:2rem}
+.pawol-dot{width:5px;height:5px;border-radius:50%;background:rgba(212,175,55,.2);transition:background .3s;cursor:pointer}
+.pawol-dot.active{background:#d4af37}
+/* VERSE */
+.verse-section{padding:5rem 2rem;text-align:center;background:#050505}
+.verse-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:rgba(212,175,55,.4);direction:rtl;margin-bottom:1.5rem}
+.verse-text{font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;color:rgba(255,255,255,.7);max-width:700px;margin:0 auto 1rem;line-height:1.9}
+.verse-ref{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:#7a6030;text-transform:uppercase}
+/* CONTACT */
+.contact-section{padding:5rem 2rem;background:#050505;text-align:center;position:relative;z-index:1}
+.contact-form{max-width:500px;margin:2rem auto 0;display:flex;
+flex-wrap:wrap;flex-direction:column;gap:1rem}
+.contact-form input,.contact-form textarea{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.2);color:#f0f0f0;padding:.8rem 1rem;font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;width:100%}
+.contact-form textarea{resize:vertical}
+.contact-form button{background:rgba(212,175,55,.1);border:1px solid #d4af37;color:#d4af37;padding:.9rem 2rem;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.contact-form button:hover{background:rgba(212,175,55,.2)}
+/* FOOTER */
+footer{position:relative;z-index:1;background:#050505;border-top:1px solid rgba(212,175,55,.1);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-links{display:flex;
+flex-wrap:wrap;justify-content:center;gap:2rem;list-style:none;margin-bottom:1.5rem;flex-wrap:wrap}
+.footer-links a{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;color:#606060;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.footer-links a:hover{color:#d4af37}
+.footer-copy{font-size:.8rem;color:#404040;letter-spacing:.1em}
+.footer-mentions{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.15em;color:#303030;margin-top:.5rem}
+.footer-mentions a{color:#404040;text-decoration:none}
+.footer-mentions a:hover{color:#d4af37}
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+.nav-links{display:none}
+.neuf-grid{grid-template-columns:repeat(2,1fr)}
+.degre-grid{grid-template-columns:1fr}
+.hero-bg{aspect-ratio:4/3;background-size:100%;background-position:center 25%}
+.pawol-card{padding:2rem 1.5rem}
+}
+@media(max-width:480px){
+.neuf-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="stars"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><ul class="nav-links"><li><a href="index.html" class="active">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="trois-rayons.html">Les Rayons</a></li><li><a href="#contact">Contact</a></li></ul>
+</nav><section class="hero"><div class="hero-bg"><div class="hero-content"><p class="hero-label">✦ École Ésotérique Haïtienne ✦</p><h1 class="hero-title">Bnei Ohr<br><span>Enfants de la Lumière</span></h1></div></div><div class="hero-caption"><p class="hero-caption-verse">« Une école ésotérique haïtienne — synthétisant Kabbale, Vodou et sagesse universelle — pour un cheminement initiatique enraciné dans l'âme d'Haïti. »</p><a href="presentation.html" class="hero-caption-btn">Découvrir l'École</a></div><div class="scroll-indicator"><span>Défiler vers le bas</span><div class="scroll-dot"></div></div>
+</section><div class="stats-bar"><div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Niveaux d'Exploration</span></div><div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Traditions Intégrées</span></div><div class="stat-item"><span class="stat-number">22</span><span class="stat-label">Modules d'Étude</span></div><div class="stat-item"><span class="stat-number">∞</span><span class="stat-label">Lumière d'Ein Sof</span></div>
+</div><section class="misyon-banner"><p class="misyon-text">« Bnei Ohr est une école ésotérique haïtienne qui <strong>synthétise la Kabbale classique, le Vodou haïtien et les grandes traditions mystiques universelles</strong> — dans un parcours symbolique original, vivant, enraciné dans l'âme profonde du peuple haïtien. »</p><span class="misyon-signature">✦ Mission de Bnei Ohr — Fondée par Chilot ✦</span>
+</section><section class="degre-section"><div class="section-header-center"><span class="section-eyebrow">Repères Pédagogiques</span><h2 class="section-main-title">3 Niveaux d'Exploration Symbolique</h2><div class="section-main-divider"></div></div><div class="degre-grid"><div class="degre-card"><span class="degre-icon">🌅</span><span class="degre-num">Niveau 1 — L'Éveil de la Conscience</span><span class="degre-name">L'Enfant de l'Aube</span><span class="degre-sub">Découverte & Fondements</span><p class="degre-desc">L'explorateur découvre les fondements symboliques : Kabbale, images des Lwa, traditions mystiques. Un travail sur soi-même, sans cadre dogmatique. <em style="color:rgba(212,175,55,0.5);font-size:.85rem">Ce niveau est une invitation à la découverte personnelle, .</em></p></div><div class="degre-card" style="border-color:rgba(212,175,55,.3);transform:scale(1.02)"><span class="degre-icon">🔥</span><span class="degre-num">Niveau 2 — Le Travail avec les Symboles</span><span class="degre-name">Le Porteur de Lumière</span><span class="degre-sub">Étude Approfondie</span><p class="degre-desc">Le pratiquant approfondit les correspondances entre Sefirot et symboles des Lwa. Il apprend à guider d'autres chercheurs. <em style="color:rgba(212,175,55,0.5);font-size:.85rem"></em></p></div><div class="degre-card"><span class="degre-icon">⭐</span><span class="degre-num">Niveau 3 — La Connaissance Vécue</span><span class="degre-name">La Flamme qui Éclaire</span><span class="degre-sub">Incarnation Personnelle</span><p class="degre-desc">La personne vit la connaissance plutôt que de la savoir. Elle transmet une expérience personnelle, en s'inspirant librement des traditions. <em style="color:rgba(212,175,55,0.5);font-size:.85rem"></em></p></div></div>
+</section><div style="position:relative;z-index:1;max-width:760px;margin:-2rem auto 0;padding:0 1.5rem 3rem"><div style="border:1px solid rgba(212,175,55,0.2);background:rgba(212,175,55,0.03);padding:1.5rem 2rem;display:flex;
+flex-wrap:wrap;gap:1rem;align-items:flex-start"><span style="font-size:1.2rem;flex-shrink:0">⚠️</span><div><p style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;color:rgba(212,175,55,0.5);text-transform:uppercase;margin-bottom:.5rem">Cadre Éthique</p><p style="font-size:.92rem;color:rgba(232,228,220,0.6);line-height:1.85;font-style:italic">Les trois niveaux ci-dessus sont des <strong style="color:rgba(212,175,55,0.6);font-weight:400;font-style:normal">repères symboliques et pédagogiques</strong>. Ils ne remplacent aucune cheminement formel religieuse, maçonnique ou vodou. </p></div></div>
+</div><section class="sources-section"><div class="section-header-center"><span class="section-eyebrow">Nos Sources</span><h2 class="section-main-title">Une Synthèse Vivante</h2><div class="section-main-divider"></div></div><div class="sources-grid"><span class="source-pill">✦ Kabbale Classique</span><span class="source-pill">✦ Zohar</span><span class="source-pill">✦ Etz Chaïm</span><span class="source-pill">✦ Vodou Haïtien</span><span class="source-pill">✦ Philosophie des Lwa</span><span class="source-pill">✦ Hermétisme</span><span class="source-pill">✦ Traditions Mystiques Occidentales</span><span class="source-pill">✦ Symbolisme Universel</span></div>
+</section><section class="pawol-section"><span class="pawol-eyebrow">Réflexion du Jour</span><h2 class="pawol-main-title">Paroles de Sagesse</h2><div class="pawol-divider"></div><div class="pawol-card"><span class="pawol-hebrew" id="pawolHebrew"></span><p class="pawol-quote" id="pawolQuote"></p><span class="pawol-source" id="pawolSource"></span></div><div class="pawol-dots" id="pawolDots"></div>
+</section><section class="neuf-section"><div class="section-header-center"><span class="section-eyebrow">Explorer</span><h2 class="section-main-title">Nos Enseignements</h2><div class="section-main-divider"></div></div><div class="neuf-grid"><a href="presentation.html" class="neuf-card"><div class="neuf-card-placeholder"><span>בְּנֵי</span></div><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Présentation</span><div class="neuf-card-title">Découvrir Bnei Ohr</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="vodou.html" class="neuf-card"><div class="neuf-card-placeholder"><span>🌊</span></div><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Héritage Haïtien</span><div class="neuf-card-title">Le Vodou — Âme d'Haïti</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="kabbalah-chretienne.html" class="neuf-card"><div class="neuf-card-placeholder"><span>✡</span></div><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Études</span><div class="neuf-card-title">Kabbale & Christianisme</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="meditation-lettre.html" class="neuf-card"><div class="neuf-card-placeholder"><span>אָלֶף</span></div><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Pratique</span><div class="neuf-card-title">Méditation — 22 Lettres</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="prieres.html" class="neuf-card"><div class="neuf-card-placeholder"><span>תְּפִלָּה</span></div><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Prières</span><div class="neuf-card-title">Prières Kabbalistiques</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="bibliyotek.html" class="neuf-card"><div class="neuf-card-placeholder"><span>בֵּית</span></div><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Ressources</span><div class="neuf-card-title">Bibliothèque de Lumière</div><span class="neuf-card-arrow">Entrer →</span></div></a></div>
+</section><section class="neuf-section" style="padding-top:2rem"><div class="section-header-center"><span class="section-eyebrow">Sagesse du Quotidien</span><h2 class="section-main-title">Réflexions</h2><div class="section-main-divider"></div></div><div class="neuf-grid" style="grid-template-columns:repeat(3,1fr)"><a href="reflexion-loi-miroir.html" class="neuf-card"><img src="https://i.postimg.cc/R0RksYHM/Screenshot-20260521-114728-Gallery.jpg"
+alt="Loi du Miroir" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Psychologie Spirituelle</span><div class="neuf-card-title">Pourquoi on déteste dans l'autre ce qui est en nous ?</div><span class="neuf-card-arrow">Lire →</span></div></a><a href="reflexion-ein-od-milvado.html" class="neuf-card"><img src="https://i.postimg.cc/tgMpXTX4/file-00000000479471f5bb86e526bc8643b4.png"
+alt="Ein Od Milvado" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">⚖️ Théologie Kabbalistique</span><div class="neuf-card-title">Y a-t-il deux Dieux qui se battent dans l'univers ?</div><span class="neuf-card-arrow">Lire →</span></div></a><a href="reflexion-kabbalah-belle.html" class="neuf-card"><img src="https://i.postimg.cc/3wNWCN9b/1779392198813.jpg"
+alt="Kabbalah est belle" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">🌟 Chemin de Lumière</span><div class="neuf-card-title">De Victime à Opérateur — La Kabbale est-elle belle ?</div><span class="neuf-card-arrow">Lire →</span></div></a></div>
+</section><section class="verse-section"><p class="verse-hebrew">אֵין עוֹד מִלְּבַדּוֹ</p><p class="verse-text">« Il n'y a rien d'autre que Lui — Ein Sof, source de toutes les sources, racine de toute réalité visible et invisible. »</p><span class="verse-ref">— Devarim 4:35 | Kabbale Bnei Ohr</span>
+</section><section class="contact-section" id="contact"><span class="section-eyebrow" style="display:block;margin-bottom:.8rem">Rejoignez-nous</span><h2 class="section-main-title" style="margin-bottom:1.5rem">Contacter Bnei Ohr</h2><div class="section-main-divider" style="margin-bottom:.8rem"></div><p style="color:#606060;font-style:italic;max-width:500px;margin:.8rem auto 0;font-size:.95rem;line-height:1.8">Vous souhaitez rejoindre l'école, poser une question ou en savoir plus sur nos enseignements ? Écrivez-nous.</p><form class="contact-form" onsubmit="handleSubmit(event)"><input type="text" placeholder="Votre nom" required><input type="email" placeholder="Votre email" required><textarea placeholder="Votre message" rows="4" required></textarea><button type="submit" id="submitBtn">Envoyer le Message</button></form>
+</section><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="mentions-legales.html">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p><div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(212,175,55,.06)"><a href="initiation.html" style="
+font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;
+color:rgba(212,175,55,.22);text-decoration:none;text-transform:uppercase;
+border:1px solid rgba(212,175,55,.1);padding:.4rem 1rem;
+transition:all .4s;display:inline-block;
+"
+onmouseover="this.style.color='rgba(212,175,55,.65)';this.style.borderColor='rgba(212,175,55,.3)'"
+onmouseout="this.style.color='rgba(212,175,55,.22)';this.style.borderColor='rgba(212,175,55,.1)'">
+✦ Chemin d'Initiation
+</a></div><p class="footer-mentions">Haïti — <a href="mailto:bneiohr.haiti77@gmail.com">bneiohr.haiti77@gmail.com</a> — <a href="mentions-legales.html">Mentions légales & Confidentialité</a></p><div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(212,175,55,.06)"><a href="cercle.html" style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(212,175,55,.25);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.12);padding:.4rem 1rem;transition:all .4s;display:inline-block"
+onmouseover="this.style.color='rgba(212,175,55,.7)';this.style.borderColor='rgba(212,175,55,.35)'"
+onmouseout="this.style.color='rgba(212,175,55,.25)';this.style.borderColor='rgba(212,175,55,.12)'">
+✦ Accès au Cercle
+</a></div><div style="margin-top:1rem"><a href="kabal.html" style="
+font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;
+color:rgba(212,175,55,.22);text-decoration:none;text-transform:uppercase;
+border:1px solid rgba(212,175,55,.1);padding:.4rem 1rem;
+transition:all .4s;display:inline-block;
+"
+onmouseover="this.style.color='rgba(212,175,55,.65)';this.style.borderColor='rgba(212,175,55,.3)'"
+onmouseout="this.style.color='rgba(212,175,55,.22)';this.style.borderColor='rgba(212,175,55,.1)'">
+✦ Etid Kabal
+</a></div>
+</footer><script>
+// Stars
+const starsEl=document.getElementById('stars');
+for(let i=0;i<100;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${.1+Math.random()*.4};animation-delay:${Math.random()*5}s;`;starsEl.appendChild(s);}
+// Submit
+function handleSubmit(e){e.preventDefault();const btn=document.getElementById('submitBtn');btn.textContent='✓ Message Envoyé !';btn.style.color='#a0d4a0';btn.style.borderColor='#a0d4a0';setTimeout(()=>{btn.textContent='Envoyer le Message';btn.style.color='#d4af37';btn.style.borderColor='#d4af37';e.target.reset();},3000);}
+// Pawol
+const pawolList=[
+{hebrew:"אוֹר אֵין סוֹף",quote:"La Lumière d'Ein Sof est sans limite — elle pénètre toute réalité. Cherche-la dans le silence de ton cœur.",source:"Kabbale — Bnei Ohr"},
+{hebrew:"כֶּתֶר עֶלְיוֹן",quote:"La couronne suprême est au-dessus de tout. Lorsque tu abandonnes ta volonté propre, la porte de la connaissance s'ouvre.",source:"Zohar I, 15a"},
+{hebrew:"תִּקּוּן עוֹלָם",quote:"Chaque acte juste répare un fragment du monde. Ta vie entière peut être un Tikkun — une réparation sacrée.",source:"Kabbale Lourianiste"},
+{hebrew:"אֵין עוֹד מִלְּבַדּוֹ",quote:"Il n'y a rien d'autre que Lui. Toute diversité n'est qu'un voile. Quand tu comprends cela, la paix entre.",source:"Devarim 4:35"},
+{hebrew:"צִמְצוּם",quote:"Dieu s'est contracté pour te donner l'espace d'exister. Ta valeur réside dans ton existence même — telle qu'elle est.",source:"Ari z\"l — Etz Chaïm"},
+{hebrew:"נְשָׁמָה",quote:"Ton âme spirituelle n'est jamais blessée, jamais perdue. C'est toi qui l'oublies. Reviens à elle chaque matin.",source:"Zohar II, 94b"},
+{hebrew:"לֵב",quote:"Le cœur est la maison de la Lumière. Ce n'est pas dans les livres que la sagesse réside — c'est dans la profondeur de ton être.",source:"Enseignement de Bnei Ohr"},
+{hebrew:"שְׁכִינָה",quote:"La présence divine descend partout où il y a amour et sagesse. Ouvre ton cœur — elle est déjà là.",source:"Zohar III, 5a"},
+{hebrew:"מַלְכוּת",quote:"La terre sous tes pieds est sacrée. Ne méprise pas la réalité physique — c'est là que la Lumière vient germer.",source:"Kabbale — Malkout"},
+{hebrew:"דַּעַת",quote:"La vraie connaissance n'est pas dans la tête, mais dans le cœur. Elle vient quand tu unifies ce que tu comprends avec ce que tu vis.",source:"Baal HaSoulam"}
+];
+const todayIndex=new Date().getDate()%10;
+let currentPawol=todayIndex;
+const dotsContainer=document.getElementById('pawolDots');
+pawolList.forEach((_,i)=>{const dot=document.createElement('div');dot.className='pawol-dot'+(i===currentPawol?' active':'');dot.addEventListener('click',()=>{currentPawol=i;showPawol(i,true);});dotsContainer.appendChild(dot);});
+function showPawol(index,animate){
+const q=document.getElementById('pawolQuote'),h=document.getElementById('pawolHebrew'),s=document.getElementById('pawolSource');
+const dots=document.querySelectorAll('.pawol-dot');
+if(animate){[q,h,s].forEach(el=>el.style.opacity='0');setTimeout(()=>{h.textContent=pawolList[index].hebrew;q.textContent='"'+pawolList[index].quote+'"';s.textContent='— '+pawolList[index].source;[q,h,s].forEach(el=>el.style.opacity='1');},400);}
+else{h.textContent=pawolList[index].hebrew;q.textContent='"'+pawolList[index].quote+'"';s.textContent='— '+pawolList[index].source;}
+dots.forEach((d,i)=>d.classList.toggle('active',i===index));
+}
+showPawol(currentPawol,false);
+setInterval(()=>{currentPawol=(currentPawol+1)%10;showPawol(currentPawol,true);},8000);
+// Nav scroll
+window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');nav.style.background=window.scrollY>50?'rgba(5,5,5,.98)':'rgba(5,5,5,.92)';});
+</script>
+</body>
+</html>

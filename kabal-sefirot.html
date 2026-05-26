@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>10 Sefirot yo — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.pt{position:absolute;border-radius:50%;animation:ptFloat var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes ptFloat{0%{opacity:0;transform:translateY(0)}50%{opacity:var(--o)}100%{opacity:0;transform:translateY(-30px)}}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,5,.93);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.45);text-decoration:none;text-transform:uppercase;transition:color .3s;border:1px solid rgba(212,175,55,.2);padding:.4rem 1rem}
+.nav-back:hover{color:#d4af37;border-color:rgba(212,175,55,.5)}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-text{display:none}}
+/* TRANSITION VEIL */
+.transition-veil{position:fixed;inset:0;z-index:2000;background:#000;opacity:0;pointer-events:none;transition:opacity .6s}
+.transition-veil.show{opacity:1}
+/* HERO */
+.hero{position:relative;min-height:75vh;display:flex;
+flex-wrap:wrap;align-items:flex-end;justify-content:center;text-align:center;padding:2rem 2rem 5rem;overflow-y: auto}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 30%,rgba(212,175,55,.05),transparent 65%),#050505}
+.hero-img-wrap{position:absolute;inset:0;z-index:0}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(.25) saturate(1.2);display:block}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,.2),rgba(5,5,5,.6) 55%,#050505 100%)}
+.hero-inner{position:relative;z-index:2;max-width:700px}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.5em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:1rem;opacity:0;animation:fadeUp 1s .3s forwards}
+.hero-heb{font-family:'Noto Serif Hebrew',serif;font-size:clamp(2rem,7vw,4.5rem);color:rgba(212,175,55,.18);display:block;margin-bottom:.5rem;line-height:1;opacity:0;animation:fadeUp 1s .4s forwards}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(2rem,6vw,3.8rem);color:#fff;line-height:1.1;margin-bottom:.6rem;opacity:0;animation:fadeUp 1s .5s forwards}
+.hero-title span{color:#d4af37}
+.hero-sub{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:1.4rem;opacity:0;animation:fadeUp 1s .6s forwards}
+.hero-intro{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);line-height:1.9;max-width:600px;margin:0 auto;opacity:0;animation:fadeUp 1s .7s forwards}
+.hero-divider{width:70px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto 0;opacity:0;animation:fadeUp 1s .8s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* CONTENT */
+.content-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:3rem 1.5rem 6rem}
+/* Intro block */
+.intro-block{border-left:3px solid rgba(212,175,55,.35);padding:1.2rem 1.8rem;background:rgba(212,175,55,.025);margin-bottom:3.5rem}
+.intro-block p{font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.5);line-height:1.95}
+.intro-block strong{color:#d4af37;font-weight:400}
+/* Section label */
+.section-lbl{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;text-align:center;margin-bottom:.6rem}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:400;color:#fff;text-align:center;margin-bottom:3rem}
+/* SEFIROT GRID */
+.sefirot-grid{display:flex;
+flex-wrap:wrap;flex-direction:column;gap:1.5rem}
+/* SEFIROT CARD */
+.s-card{border:1px solid rgba(212,175,55,.12);background:rgba(212,175,55,.015);overflow-y: auto;position:relative;transition:border-color .4s}
+.s-card:hover{border-color:rgba(212,175,55,.35)}
+.s-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .5s}
+.s-card:hover::before{transform:scaleX(1)}
+.s-card-header{display:flex;
+flex-wrap:wrap;align-items:stretch;gap:0;cursor:pointer;user-select:none}
+.s-card-color{width:6px;flex-shrink:0;background:var(--accent);opacity:.7}
+.s-card-meta{padding:1.4rem 1.6rem;flex:1;display:flex;
+flex-wrap:wrap;align-items:center;gap:1.4rem}
+.s-card-num{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;flex-shrink:0;width:24px;text-align:center}
+.s-card-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:var(--accent);opacity:.8;flex-shrink:0;min-width:50px;text-align:center;filter:drop-shadow(0 0 8px var(--accent))}
+.s-card-info{flex:1}
+.s-card-name{font-family:'Cinzel',serif;font-size:clamp(.9rem,2.5vw,1.1rem);letter-spacing:.12em;color:#fff;text-transform:uppercase;display:block;margin-bottom:.2rem}
+.s-card-meaning{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:.3rem}
+.s-color-pill{display:inline-flex;align-items:center;gap:.4rem;font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.15em;color:rgba(255,255,255,.3);text-transform:uppercase}
+.s-color-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;flex-shrink:0}
+.s-card-toggle{font-size:1rem;color:rgba(212,175,55,.3);flex-shrink:0;padding-right:1.4rem;transition:transform .3s}
+.s-card-header.open .s-card-toggle{transform:rotate(180deg)}
+/* COLLAPSE */
+.s-collapse{max-height:0;overflow-y: auto;transition:max-height .55s ease}
+.s-collapse.open{max-height:600px}
+.s-card-body{padding:0 1.6rem 1.6rem 4.6rem;border-top:1px solid rgba(212,175,55,.07)}
+.s-tag-row{display:flex;
+flex-wrap:wrap;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+.s-tag{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.18em;color:rgba(212,175,55,.5);border:1px solid rgba(212,175,55,.18);padding:.18rem .6rem;text-transform:uppercase}
+.s-body-text{font-size:1rem;color:rgba(232,228,220,.58);line-height:1.95}
+.s-body-text em{color:rgba(212,175,55,.75);font-style:italic}
+.s-body-text strong{color:#e8e4dc;font-weight:400}
+/* NAV BOTTOM */
+.nav-bottom{display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1);flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.65rem 1.3rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.04)}
+/* FOOTER */
+footer{position:relative;z-index:1;background:#050505;border-top:1px solid rgba(212,175,55,.1);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-size:.8rem;color:#404040;letter-spacing:.1em}
+@media(max-width:600px){
+.s-card-body{padding:0 1.2rem 1.4rem 1.2rem}
+.s-card-meta{gap:1rem;padding:1.2rem}
+.s-card-heb{font-size:1.3rem;min-width:38px}
+}
+</style>
+</head>
+<body><div id="particles"></div>
+<div class="transition-veil" id="veil"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="kabal.html" class="nav-back">← Etid Kabal</a>
+</nav><section class="hero"><div class="hero-bg"></div><div class="hero-img-wrap"><img style="object-fit:cover; object-position:center; filter:brightness(0.55) contrast(1.08);" src="https://i.postimg.cc/KjYjdG6j/Screenshot-20260520-075955-Google.jpg" alt="Sefirot yo — Pyebwa Lavi a"/><div class="hero-img-overlay"></div></div><div class="hero-inner"><span class="hero-eyebrow">Sijè 02 — Fondwaman Kabal</span><span class="hero-heb">סְפִירוֹת</span><h1 class="hero-title">10 <span>Sefirot</span> yo</h1><span class="hero-sub">Etz Chaim — Pyebwa Lavi a</span><p class="hero-intro">Dis kanal kote Limyè san limit Kreyatè a ap desann jiskaske li manifeste nan mond fizik la.</p><div class="hero-divider"></div></div>
+</section><main class="content-wrap"><div class="intro-block"><p><strong>Pyebwa Lavi a (Etz Chaim)</strong> se kat jeyografik nanm nou ak kreyasyon an. Li konpoze de 10 Sefirot (kanal oswa emanasyon) kote Limyè san limit Kreyatè a — <em>Ohr Ein Sof</em> — ap pase pou l desann jiskaske li manifeste nan mond fizik la.</p></div><span class="section-lbl">✦ Detay yo ✦</span><h2 class="section-title">Kanal Limyè Ein Sof la — Detay sou chak Sefirah</h2><div class="sefirot-grid"><div class="s-card" style="--accent:rgba(240,240,255,.7)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">01</span><span class="s-card-heb">כֶּתֶר</span><div class="s-card-info"><span class="s-card-name">Keter — כֶּתֶר</span><span class="s-card-meaning">Kowòn lan</span><span class="s-color-pill"><span class="s-color-dot" style="background:#f0f0ff"></span>Blan Briyan / Transparan · Atziluth</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Volonte Siprèm</span><span class="s-tag">Pwen Zewo</span><span class="s-tag">Sous san limit</span></div><p class="s-body-text">Keter se pwen kote kreyasyon an kòmanse. Li reprezante espas kote dezi Kreyatè a pou l bay la fòme. Li anlè entèlijans imen. Se la nou konekte ak <em>konsyans pi a</em>, kote "Mwen" an disparèt pou l fè yon sèl ak tout la.</p></div></div></div><div class="s-card" style="--accent:rgba(100,160,230,.7)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">02</span><span class="s-card-heb">חָכְמָה</span><div class="s-card-info"><span class="s-card-name">Chokmah — חָכְמָה</span><span class="s-card-meaning">Sajès la</span><span class="s-color-pill"><span class="s-color-dot" style="background:#64a0e6"></span>Ble Syèl / Gri · Atziluth</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Flash Enspirasyon</span><span class="s-tag">Semans panse a</span><span class="s-tag">Fòs Gason Primòdyal</span></div><p class="s-body-text">Chokmah se premye lide ki parèt nan tèt ou tou dousman anvan w kòmanse analize l. Li se <em>sajès pi</em> k ap soti dirèkteman nan sous la. Se li ki bay enèji ak mouvman pou kreyasyon an kòmanse pouse.</p></div></div></div><div class="s-card" style="--accent:rgba(40,50,120,.9)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">03</span><span class="s-card-heb">בִּינָה</span><div class="s-card-info"><span class="s-card-name">Binah — בִּינָה</span><span class="s-card-meaning">Entèlijans / Konpreyansyon</span><span class="s-color-pill"><span class="s-color-dot" style="background:#283278"></span>Nwa / Gwo Ble · Atziluth</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Matris la</span><span class="s-tag">Manman an</span><span class="s-tag">Fòm nan</span><span class="s-tag">Fòs Fi Primòdyal</span></div><p class="s-body-text">Si Chokmah se <em>"semans"</em> la, Binah se <em>"tè"</em> oswa <em>"matris"</em> ki resevwa semans lan pou l ba l fòm. Se la lide a kòmanse estriktire l, kote nou konprann detay yo. Binah limite enèji a pou l ka tounen yon bagay ki ka egziste.</p></div></div></div><div class="s-card" style="--accent:rgba(30,120,255,.7)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">04</span><span class="s-card-heb">חֶסֶד</span><div class="s-card-info"><span class="s-card-name">Chesed — חֶסֶד</span><span class="s-card-meaning">Mizerikòd / Gwo Lanmou</span><span class="s-color-pill"><span class="s-color-dot" style="background:#1e78ff"></span>Ble Elektrik — Reyon Ble · Beriah</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Ekspansyon</span><span class="s-tag">Jenerozite san limit</span><span class="s-tag">Pwoteksyon</span></div><p class="s-body-text">Chesed se dezi pou bay san gad dèyè, san kondisyon, ak san limit. Li lye ak premye nivo inisyasyon nou an — <em>Pwoteksyon ak Reyon Ble a</em> — kote n ap bati yon gwo pwoteksyon renmen toutotou nou anba gidans Archangel Michael.</p></div></div></div><div class="s-card" style="--accent:rgba(200,40,50,.7)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">05</span><span class="s-card-heb">גְּבוּרָה</span><div class="s-card-info"><span class="s-card-name">Gevurah — גְּבוּרָה</span><span class="s-card-meaning">Jistis / Rigo / Fòs</span><span class="s-color-pill"><span class="s-color-dot" style="background:#c82832"></span>Wouj · Beriah</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Kontraksyon</span><span class="s-tag">Limit</span><span class="s-tag">Disiplin</span><span class="s-tag">Jijman</span></div><p class="s-body-text">Gevurah se fòs ki di <em>"Non"</em>. Si te gen Chesed sèlman, dlo a t ap moute kouvri tè a. Gevurah mete baraj la pou dlo a ka itil. Li reprezante <strong>disiplin inisye a</strong> ak fòs li genyen pou l konbat move enfliyans ak laperèz.</p></div></div></div><div class="s-card" style="--accent:rgba(212,175,55,.85)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">06</span><span class="s-card-heb">תִּפְאֶרֶת</span><div class="s-card-info"><span class="s-card-name">Tiferet — תִּפְאֶרֶת</span><span class="s-card-meaning">Bote / Balans</span><span class="s-color-pill"><span class="s-color-dot" style="background:#d4af37"></span>Jòn-Lò / Solèy — Reyon Lò · Beriah</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Kè a</span><span class="s-tag">Amoni</span><span class="s-tag">Solèy la</span><span class="s-tag">Reyon Lò a</span></div><p class="s-body-text">Tiferet sitiye egzakteman <em>nan mitan Pyebwa Lavi a</em>. Li se pwen ekilib ant Chesed (Lanmou) ak Gevurah (Disiplin). Li reprezante bote nanm nou lè li nan balans. Se la frekans <strong>Yeshua HaMashiach</strong> chita pou l gaye amoni ak lapè.</p></div></div></div><div class="s-card" style="--accent:rgba(50,160,80,.7)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">07</span><span class="s-card-heb">נֶצַח</span><div class="s-card-info"><span class="s-card-name">Netzach — נֶצַח</span><span class="s-card-meaning">Viktwa / Etènite</span><span class="s-color-pill"><span class="s-color-dot" style="background:#32a050"></span>Vè — Reyon Vè · Yetzirah</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Pèsistans</span><span class="s-tag">Emosyon Kreyatif</span><span class="s-tag">Gerizon</span><span class="s-tag">Lanati</span></div><p class="s-body-text">Netzach reprezante dezi nou pou nou genyen ak pouse pou pi devan malgre difikilte. Li lye ak dezyèm nivo inisyasyon nou an — <em>Gerizon ak Reyon Vè a</em> — anba gidans Melkisedèk, kote nou netwaye epi restore tout kò enèjetik nou pa mwayen lanati.</p></div></div></div><div class="s-card" style="--accent:rgba(220,110,30,.7)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">08</span><span class="s-card-heb">הוֹד</span><div class="s-card-info"><span class="s-card-name">Hod — הוֹד</span><span class="s-card-meaning">Splendè / Glwa</span><span class="s-color-pill"><span class="s-color-dot" style="background:#dc6e1e"></span>Zoranj · Yetzirah</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Soumisyon Sen</span><span class="s-tag">Lojik</span><span class="s-tag">Kominikasyon</span><span class="s-tag">Estetik</span></div><p class="s-body-text">Si Netzach se pasyon ak emosyon, Hod se <em>entelektyalite ak analiz</em>. Li se kapasite pou nou rann tèt nou vilnerab devan verite a pou nou ka aprann. Li ede nou tradui vizyon espirityèl yo an mo ak lide klè.</p></div></div></div><div class="s-card" style="--accent:rgba(140,80,200,.7)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">09</span><span class="s-card-heb">יְסוֹד</span><div class="s-card-info"><span class="s-card-name">Yesod — יְסוֹד</span><span class="s-card-meaning">Fondasyon an</span><span class="s-color-pill"><span class="s-color-dot" style="background:#8c50c8"></span>Vyolèt / Ajan — Lalin · Yetzirah</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Kalfou a</span><span class="s-tag">Kanal Transmisyon</span><span class="s-tag">Astral la</span><span class="s-tag">Koneksyon Zansèt</span></div><p class="s-body-text">Yesod se gwo antonwa kote tout enèji 8 Sefirot anlè yo rasanble anvan yo desann sou tè a. Li reprezante mond rèv yo, imajinasyon an, ak <em>pòtay kalfou</em> kote fòs Ginen yo ap travay. Se la nou bati <strong>fondasyon solid</strong> rityèl nou yo.</p></div></div></div><div class="s-card" style="--accent:rgba(80,60,40,.9)"><div class="s-card-header" onclick="toggleS(this)"><div class="s-card-color"></div><div class="s-card-meta"><span class="s-card-num">10</span><span class="s-card-heb">מַלְכוּת</span><div class="s-card-info"><span class="s-card-name">Malkuth — מַלְכוּת</span><span class="s-card-meaning">Wayòm nan / Tè a</span><span class="s-color-pill"><span class="s-color-dot" style="background:#503c28"></span>Koulè Tè — Melanj 4 koulè · Assiah</span></div></div><span class="s-card-toggle">▾</span></div><div class="s-collapse"><div class="s-card-body"><div class="s-tag-row"><span class="s-tag">Manifestasyon Fizik</span><span class="s-tag">Kò a</span><span class="s-tag">Aksyon an</span><span class="s-tag">Ayiti</span></div><p class="s-body-text">Malkuth se sèl Sefirah ki pa gen pwòp limyè pa l — li resevwa tout sa k soti anlè a. Li reprezante <em>mond fizik sa n ap viv ladan l lan</em>, kò nou, ak aksyon n ap poze chak jou. Se la <strong>Tikkun</strong> (koreksyon) an dwe fini pou Wayòm Limyè a ka etabli nan matyè a.</p></div></div></div></div><div class="nav-bottom"><a href="kabal-ein-sof.html" class="nav-btn">← Ein Sof & Tsimtsum</a><a href="kabal.html" class="nav-btn">Retounen Etid Kabal →</a></div></main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p>
+</footer><script>
+(function(){
+const c=document.getElementById('particles');
+for(let i=0;i<65;i++){
+const p=document.createElement('div');p.className='pt';
+const sz=Math.random()*2+.4;
+p.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:#d4af37;--d:${(Math.random()*6+3).toFixed(1)}s;--o:${(Math.random()*.18+.03).toFixed(2)};animation-delay:${(Math.random()*4).toFixed(1)}s`;
+c.appendChild(p);
+}
+})();
+function toggleS(header){
+const collapse=header.nextElementSibling;
+const isOpen=collapse.classList.contains('open');
+// Close all
+document.querySelectorAll('.s-collapse.open').forEach(el=>{
+el.classList.remove('open');
+el.previousElementSibling.classList.remove('open');
+});
+// Open clicked if it was closed
+if(!isOpen){
+collapse.classList.add('open');
+header.classList.add('open');
+// Smooth scroll
+setTimeout(()=>header.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+}
+}
+// Smooth nav transitions
+document.querySelectorAll('a[href]').forEach(a=>{
+if(a.hostname===location.hostname&&!a.href.includes('#')){
+a.addEventListener('click',function(e){
+e.preventDefault();
+const dest=this.href;
+const veil=document.getElementById('veil');
+veil.classList.add('show');
+setTimeout(()=>location.href=dest,550);
+});
+}
+});
+</script>
+</body>
+</html>

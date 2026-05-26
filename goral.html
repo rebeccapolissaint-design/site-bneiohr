@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Goral — Divination Kabalistique — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#040406;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(130px)}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(100,60,180,.05),transparent);top:-250px;right:-200px}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(212,175,55,.04),transparent);bottom:-150px;left:-150px}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(4,4,6,.93);border-bottom:1px solid rgba(212,175,55,.1);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 18px rgba(212,175,55,.5)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+/* GATE */
+#gate{position:fixed;inset:0;z-index:900;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;background:#040406;padding:2rem}
+.gate-inner{position:relative;z-index:1;text-align:center;max-width:420px;width:100%;animation:gIn 1.2s ease forwards;opacity:0}
+@keyframes gIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.gate-seal{width:100px;height:100px;margin:0 auto 2rem;position:relative}
+.gate-seal svg{width:100%;height:100%;animation:rotateSeal 25s linear infinite}
+@keyframes rotateSeal{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.gate-seal-inner{position:absolute;inset:0;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:#d4af37;text-shadow:0 0 20px rgba(212,175,55,.7)}
+.seal-glow{position:absolute;inset:0;border-radius:50%;animation:sealPulse 3s ease-out infinite}
+@keyframes sealPulse{0%{box-shadow:0 0 0 0 rgba(212,175,55,.2)}70%{box-shadow:0 0 0 20px rgba(212,175,55,0)}100%{box-shadow:0 0 0 0 rgba(212,175,55,0)}}
+.gate-sup{font-family:'Cinzel',serif;font-size:.53rem;letter-spacing:.4em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.8rem}
+.gate-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:400;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.gate-title span{color:#d4af37}
+.gate-div{width:40px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.3rem auto}
+.gate-verse{font-size:.98rem;font-style:italic;color:rgba(255,255,255,.35);line-height:1.9;margin-bottom:1.8rem}
+.gate-field{position:relative;margin-bottom:1rem}
+.gate-input{width:100%;background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.22);color:#e8e0cc;padding:.9rem 3rem .9rem 1.2rem;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.15em;outline:none;text-align:center;transition:all .3s}
+.gate-input:focus{border-color:rgba(212,175,55,.55);background:rgba(212,175,55,.07)}
+.gate-input::placeholder{color:rgba(255,255,255,.2);letter-spacing:.2em}
+.toggle-pw{position:absolute;right:.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(212,175,55,.35);cursor:pointer;font-size:1rem;transition:color .3s;padding:0}
+.toggle-pw:hover{color:#d4af37}
+.gate-btn{width:100%;background:transparent;border:1px solid rgba(212,175,55,.4);color:#d4af37;padding:.9rem 2rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s;position:relative;overflow-y: auto}
+.gate-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(212,175,55,.08),transparent);transform:translateX(-100%);transition:transform .5s}
+.gate-btn:hover::before{transform:translateX(100%)}
+.gate-btn:hover{border-color:#d4af37;background:rgba(212,175,55,.07);color:#fff}
+.gate-err{margin-top:.8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:rgba(200,70,70,.8);opacity:0;transition:opacity .3s;min-height:1em}
+.gate-err.show{opacity:1}
+.gate-hint{margin-top:1.6rem;font-size:.8rem;font-style:italic;color:rgba(255,255,255,.15)}
+/* CONTENT */
+#content{display:none;padding-top:80px;position:relative;z-index:1}
+/* HERO */
+.page-hero{text-align:center;padding:4.5rem 2rem 3rem;position:relative;overflow-y: auto;border-bottom:1px solid rgba(212,175,55,.08)}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(100,60,180,.07) 0%,transparent 65%)}
+.hero-heb{font-family:'Noto Serif Hebrew',serif;font-size:3rem;color:rgba(212,175,55,.15);display:block;margin-bottom:1rem;letter-spacing:.15em}
+.hero-sup{font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.8rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:400;color:#fff;line-height:1.15;margin-bottom:.6rem}
+.hero-title span{color:#d4af37}
+.hero-sub{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.25em;color:rgba(212,175,55,.35);text-transform:uppercase;margin-bottom:1.4rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.4rem auto}
+.hero-intro{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;font-weight:300;line-height:1.95;max-width:620px;margin:0 auto;color:rgba(255,255,255,.5)}
+.hero-intro em{color:#d4af37;font-style:normal}
+/* WRAP */
+.goral-wrap{max-width:960px;margin:0 auto;padding:3rem 1.5rem 5rem}
+/* INTRO NOTE */
+.intro-note{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.12);border-left:3px solid rgba(212,175,55,.4);padding:1.5rem 1.8rem;margin-bottom:3rem}
+.intro-note-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.intro-note-text{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85}
+.intro-note-text strong{color:#d4af37;font-weight:400}
+/* SECTION TITLE */
+.section-lbl{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.5rem;display:block}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.45rem);font-weight:400;color:#d4af37;margin-bottom:2rem;padding-bottom:.9rem;border-bottom:1px solid rgba(212,175,55,.12)}
+/* GORAL METHODS GRID */
+.methods-grid{display:flex;
+flex-wrap:wrap;flex-direction:column;gap:2.8rem;margin-bottom:4rem}
+/* METHOD CARD */
+.method-card{border:1px solid rgba(212,175,55,.12);background:rgba(212,175,55,.018);overflow-y: auto;position:relative;transition:border-color .5s}
+.method-card:hover{border-color:rgba(212,175,55,.28)}
+.method-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.35),transparent);transform:scaleX(0);transition:transform .6s}
+.method-card:hover::before{transform:scaleX(1)}
+.method-header{display:grid;grid-template-columns:auto 1fr;gap:0}
+.method-visual{display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;padding:2.5rem 2rem;background:linear-gradient(135deg,#060406,#08060f);border-right:1px solid rgba(212,175,55,.08);position:relative;overflow-y: auto;min-height:260px;min-width:220px}
+.method-visual::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(100,60,180,.06),transparent 70%)}
+.method-svg-wrap{position:relative;z-index:1}
+.method-svg{filter:drop-shadow(0 0 12px rgba(212,175,55,.25));transition:filter .5s}
+.method-card:hover .method-svg{filter:drop-shadow(0 0 22px rgba(212,175,55,.45))}
+.method-info{padding:2.5rem 2rem}
+.method-num{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.5rem}
+.method-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,2.5vw,1.4rem);font-weight:400;color:#fff;margin-bottom:.4rem;line-height:1.3}
+.method-heb{font-family:'Noto Serif Hebrew',serif;font-size:.95rem;color:rgba(212,175,55,.5);letter-spacing:.1em;margin-bottom:.3rem;display:block}
+.method-tags{display:flex;
+flex-wrap:wrap;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
+.method-tag{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(212,175,55,.55);border:1px solid rgba(212,175,55,.2);padding:.2rem .65rem;text-transform:uppercase}
+.method-divider{width:35px;height:1px;background:linear-gradient(to right,rgba(212,175,55,.4),transparent);margin:.9rem 0}
+/* COLLAPSE */
+.content-collapse{max-height:0;overflow-y: auto;transition:max-height .6s ease}
+.content-collapse.open{max-height:2000px}
+.method-desc{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.9;margin-bottom:1rem}
+.method-desc strong{color:#d4af37;font-weight:400}
+.method-desc em{color:rgba(212,175,55,.8);font-style:italic}
+/* STEPS */
+.usage-steps{display:flex;
+flex-wrap:wrap;flex-direction:column;gap:.9rem;margin-top:1.4rem}
+.usage-step{display:flex;
+flex-wrap:wrap;align-items:flex-start;gap:1rem}
+.us-num{width:26px;height:26px;border:1px solid rgba(212,175,55,.35);display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.6rem;color:#d4af37;flex-shrink:0;margin-top:.15rem}
+.us-text{font-size:.93rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75}
+.us-text strong{color:#d4af37;font-weight:400}
+/* VOIR PLUS */
+.voir-plus-btn{background:none;border:none;border-top:1px solid rgba(212,175,55,.08);width:100%;padding:.9rem 2rem;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);cursor:pointer;text-align:left;transition:all .3s;display:flex;
+flex-wrap:wrap;align-items:center;gap:.5rem}
+.voir-plus-btn:hover{color:#d4af37;background:rgba(212,175,55,.03)}
+.vp-arrow{display:inline-block;transition:transform .3s;font-size:.7rem}
+.voir-plus-btn.open .vp-arrow{transform:rotate(180deg)}
+/* RITUAL CARD */
+.ritual-card{border:1px solid rgba(212,175,55,.12);background:rgba(212,175,55,.018);padding:2.5rem 2rem;margin-bottom:2rem;position:relative}
+.ritual-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.3),transparent)}
+.ritual-number{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.5rem;display:block}
+.ritual-title{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:400;color:#d4af37;margin-bottom:1rem}
+.ritual-text{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.9}
+.ritual-text strong{color:#d4af37;font-weight:400}
+.ritual-text em{color:rgba(212,175,55,.8)}
+/* AVERTISSEMENT */
+.avert-box{border:1px solid rgba(200,140,40,.2);background:rgba(200,140,40,.03);padding:1.8rem 2rem;margin:3rem 0}
+.avert-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.7rem;display:block}
+.avert-text{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.45);line-height:1.9}
+.avert-text strong{color:rgba(212,175,55,.8);font-weight:400}
+/* BACK */
+.back-cercle{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.08)}
+.back-cercle a{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.back-cercle a:hover{color:#d4af37}
+.back-cercle a::before{content:'← '}
+/* FOOTER */
+footer{position:relative;z-index:1;background:#040406;border-top:1px solid rgba(212,175,55,.08);padding:3rem 2rem;text-align:center;margin-top:3rem}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.35);display:block;margin-bottom:.5rem}
+.footer-links{display:flex;
+flex-wrap:wrap;justify-content:center;gap:2rem;list-style:none;margin-bottom:1.5rem;flex-wrap:wrap}
+.footer-links a{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.18em;color:#505050;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.footer-links a:hover{color:#d4af37}
+.footer-copy{font-size:.78rem;color:#383838;letter-spacing:.1em}
+.footer-mentions{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.12em;color:#2a2a2a;margin-top:.5rem}
+.footer-mentions a{color:#383838;text-decoration:none}
+.footer-mentions a:hover{color:#d4af37}
+@media(max-width:700px){
+.method-header{grid-template-columns:1fr}
+.method-visual{border-right:none;border-bottom:1px solid rgba(212,175,55,.08);min-height:180px}
+nav{padding:1rem 1.2rem}
+}
+</style>
+</head>
+<body><div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div><div id="gate"><div class="gate-inner"><div class="gate-seal"><div class="seal-glow"></div><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="47" stroke="rgba(212,175,55,.25)" stroke-width="1.2"/><circle cx="50" cy="50" r="38" stroke="rgba(212,175,55,.1)" stroke-width=".7" stroke-dasharray="3 6"/><polygon points="50,8 85,68 15,68" stroke="rgba(212,175,55,.3)" stroke-width=".9" fill="none"/><polygon points="50,92 15,32 85,32" stroke="rgba(212,175,55,.3)" stroke-width=".9" fill="none"/></svg><div class="gate-seal-inner">גּ</div></div><p class="gate-sup">Bnei Ohr — Cercle Intérieur</p><h1 class="gate-title">Accès <span>Réservé</span></h1><div class="gate-div"></div><p class="gate-verse">Cette pratique est transmise aux initiés.<br>Entre la clé pour accéder au rituel.</p><div class="gate-field"><input type="password" class="gate-input" id="pwInput" placeholder="Clé d'accès…" autocomplete="off"/><button class="toggle-pw" onclick="togglePw()" title="Afficher / masquer">👁</button></div><button class="gate-btn" onclick="checkPass()">✦ Entrer ✦</button><p class="gate-err" id="gateErr">Clé incorrecte — Cherche encore.</p><p class="gate-hint">La clé t'a été transmise par le Fondateur de Bnei Ohr.</p></div>
+</div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="rituels.html" class="nav-back">Rituels du Cercle</a>
+</nav><div id="content"><div class="page-hero"><span class="hero-heb">גּוֹרָל</span><p class="hero-sup">Pratiques Kabalistiques · C</p><h1 class="hero-title">Goral — <span>Divination Kabalistique</span></h1><p class="hero-sub">L'Art de Consulter les Forces Célestes</p><div class="hero-divider"></div><p class="hero-intro">
+Le <em>Goral</em> est une pratique de divination sacrée issue de la tradition kabalistique.
+Il ne s'agit pas de prédire l'avenir par curiosité, mais de <em>discerner la volonté divine</em>
+dans les décisions importantes de la vie.
+</p></div><div class="goral-wrap"><div class="intro-note"><p class="intro-note-label">✦ Avant de commencer</p><p class="intro-note-text">
+Le <strong>Goral</strong> (גּוֹרָל) signifie littéralement <strong>« sort » ou « destin »</strong> en hébreu.
+Dans la tradition kabalistique, ce mot apparaît dès la Torah — notamment pour le tirage au sort des deux boucs le jour de Yom Kippour (Lévitique 16:8).
+Les Maîtres de la Kabbale ont élaboré plusieurs méthodes de Goral pour aider les âmes sincères à recevoir une guidance céleste
+dans les moments d'incertitude. Ces pratiques ne remplacent jamais le libre-arbitre — elles <strong>éclairent la voie</strong>, elles ne l'imposent pas.
+</p></div><span class="section-lbl">✦ Les Méthodes Sacrées</span><h2 class="section-title">Les Trois Formes du Goral</h2><div class="methods-grid"><div class="method-card"><div class="method-header"><div class="method-visual"><div class="method-svg-wrap"><svg class="method-svg" width="180" height="180" viewBox="0 0 180 180" fill="none"><rect x="20" y="40" width="60" height="80" rx="2" stroke="rgba(212,175,55,.5)" stroke-width="1.2" fill="none"/><rect x="100" y="40" width="60" height="80" rx="2" stroke="rgba(212,175,55,.5)" stroke-width="1.2" fill="none"/><line x1="90" y1="40" x2="90" y2="120" stroke="rgba(212,175,55,.6)" stroke-width="1.5"/><line x1="30" y1="58" x2="70" y2="58" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="30" y1="68" x2="70" y2="68" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="30" y1="78" x2="70" y2="78" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="30" y1="88" x2="70" y2="88" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="30" y1="98" x2="70" y2="98" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="110" y1="58" x2="150" y2="58" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="110" y1="68" x2="150" y2="68" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="110" y1="78" x2="150" y2="78" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="110" y1="88" x2="150" y2="88" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><line x1="110" y1="98" x2="150" y2="98" stroke="rgba(212,175,55,.25)" stroke-width=".6"/><text x="90" y="155" text-anchor="middle" font-size="22" fill="rgba(212,175,55,.45)" font-family="serif">✡</text><text x="90" y="90" text-anchor="middle" font-family="Noto Serif Hebrew" font-size="28" fill="rgba(212,175,55,.9)">א</text><line x1="90" y1="10" x2="90" y2="30" stroke="rgba(212,175,55,.2)" stroke-width=".8"/><line x1="90" y1="135" x2="90" y2="145" stroke="rgba(212,175,55,.2)" stroke-width=".8"/><circle cx="90" cy="90" r="85" stroke="rgba(212,175,55,.06)" stroke-width=".6" stroke-dasharray="2 8"/></svg><p style="font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-align:center;margin-top:.8rem;text-transform:uppercase">Goral HaGra · Torah</p></div></div><div class="method-info"><p class="method-num">Méthode I</p><h2 class="method-title">Goral HaGra — Le Sort du Gaon de Vilna</h2><span class="method-heb">גּוֹרָל הַגְּרָא</span><div class="method-tags"><span class="method-tag">Torah</span><span class="method-tag">Décision</span><span class="method-tag">Guidance divine</span></div><div class="method-divider"></div><div id="md1" class="content-collapse"><p class="method-desc">
+Le <strong>Goral HaGra</strong> est la forme de divination kabalistique la plus respectée.
+Elle fut pratiquée et transmise par le <strong>Gaon de Vilna</strong> (Rabbi Eliyahou ben Shlomo Zalman, 1720–1797),
+l'un des plus grands maîtres kabalistiques de l'histoire. Cette méthode consiste à consulter la Torah —
+le Livre sacré lui-même — comme oracle vivant.
+</p><p class="method-desc">
+Le principe est profond : la Torah n'est pas seulement un code de lois, mais <em>l'expression vivante de la Volonté divine</em>.
+Chaque lettre, chaque mot porte une charge spirituelle. Lorsqu'on ouvre le Livre avec une intention pure,
+la page qui se révèle n'est pas le fruit du hasard — c'est une réponse du Ciel.
+</p><div class="usage-steps"><div class="usage-step"><span class="us-num">1</span><p class="us-text">Se purifier : ablutions rituelles, vêtements propres. Se recueillir en silence pendant au moins dix minutes.</p></div><div class="usage-step"><span class="us-num">2</span><p class="us-text">Formuler mentalement — avec clarté et sincérité — la question ou la décision pour laquelle on cherche guidance. <strong>Une seule question à la fois.</strong></p></div><div class="usage-step"><span class="us-num">3</span><p class="us-text">Prononcer l'intention : <em>« Maître du Monde, révèle-moi Ta Volonté par les mots sacrés de Ta Torah. »</em></p></div><div class="usage-step"><span class="us-num">4</span><p class="us-text">Tenir la Torah fermée entre les deux mains, yeux clos. Méditer sur la question. Puis <strong>ouvrir au hasard</strong>.</p></div><div class="usage-step"><span class="us-num">5</span><p class="us-text">Poser le doigt (sans regarder) sur un verset. Lire ce verset. La réponse se trouve dans son sens littéral, symbolique et numérique (<em>Guematria</em>).</p></div><div class="usage-step"><span class="us-num">6</span><p class="us-text">Ne jamais répéter la consultation pour la même question le même jour. Accepter la réponse avec humilité, même si elle est difficile.</p></div></div></div><button class="voir-plus-btn" onclick="toggleVP(this,'md1')">Voir plus <span class="vp-arrow">▾</span></button></div></div></div><div class="method-card"><div class="method-header"><div class="method-visual"><div class="method-svg-wrap"><svg class="method-svg" width="180" height="180" viewBox="0 0 180 180" fill="none"><path d="M60,140 Q40,80 70,30" stroke="rgba(212,175,55,.55)" stroke-width="1.5" fill="none"/><path d="M60,140 L130,100" stroke="rgba(212,175,55,.55)" stroke-width="1.5" fill="none"/><path d="M70,30 L130,100" stroke="rgba(212,175,55,.4)" stroke-width="1.2" fill="none"/><line x1="72" y1="38" x2="130" y2="100" stroke="rgba(212,175,55,.15)" stroke-width=".7"/><line x1="68" y1="55" x2="130" y2="100" stroke="rgba(212,175,55,.15)" stroke-width=".7"/><line x1="62" y1="73" x2="130" y2="100" stroke="rgba(212,175,55,.15)" stroke-width=".7"/><line x1="59" y1="92" x2="130" y2="100" stroke="rgba(212,175,55,.15)" stroke-width=".7"/><line x1="59" y1="112" x2="130" y2="100" stroke="rgba(212,175,55,.15)" stroke-width=".7"/><circle cx="130" cy="100" r="5" fill="rgba(212,175,55,.5)"/><circle cx="60" cy="140" r="4" fill="rgba(212,175,55,.4)"/><circle cx="70" cy="30" r="4" fill="rgba(212,175,55,.4)"/><text x="145" y="55" font-size="16" fill="rgba(212,175,55,.2)" font-family="serif">♪</text><text x="30" y="105" font-size="12" fill="rgba(212,175,55,.15)" font-family="serif">♫</text><text x="85" y="165" font-size="18" fill="rgba(212,175,55,.25)" font-family="serif">מ</text><circle cx="90" cy="90" r="85" stroke="rgba(212,175,55,.05)" stroke-width=".6" stroke-dasharray="2 8"/></svg><p style="font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-align:center;margin-top:.8rem;text-transform:uppercase">Goral HaPsalims · Psaumes</p></div></div><div class="method-info"><p class="method-num">Méthode II</p><h2 class="method-title">Goral HaPsalims — Le Sort par les Psaumes</h2><span class="method-heb">גּוֹרָל הַתְּהִלִּים</span><div class="method-tags"><span class="method-tag">Psaumes</span><span class="method-tag">Protection</span><span class="method-tag">Guidance émotionnelle</span></div><div class="method-divider"></div><div id="md2" class="content-collapse"><p class="method-desc">
+Le <strong>Goral HaPsalims</strong> utilise le Livre des Psaumes (Téhilim) comme oracle.
+Les Psaumes de David sont chargés d'une puissance émotionnelle et spirituelle unique —
+David lui-même les composait en état d'élévation prophétique. Cette méthode est
+particulièrement adaptée aux questions du <em>cœur</em> : relations, guérison, choix de vie, protection.
+</p><p class="method-desc">
+Contrairement au Goral HaGra qui cherche une guidance intellectuelle et décisionnelle,
+le <strong>Goral HaPsalims cherche une résonance de l'âme</strong>. Le verset qui se révèle
+parle souvent directement à l'état intérieur de la personne plutôt qu'à sa situation externe.
+</p><div class="usage-steps"><div class="usage-step"><span class="us-num">1</span><p class="us-text">Allumer une bougie blanche. S'asseoir en silence. Respirer profondément trois fois.</p></div><div class="usage-step"><span class="us-num">2</span><p class="us-text">Prononcer : <em>« David, Roi d'Israël, toi qui as chanté la douleur et la joie du cœur humain devant l'Éternel — guide ma main vers les mots dont mon âme a besoin. »</em></p></div><div class="usage-step"><span class="us-num">3</span><p class="us-text">Formuler la question intérieurement avec sincérité. Elle peut être vague — <strong>« Que dois-je savoir en ce moment ? »</strong> — ou précise.</p></div><div class="usage-step"><span class="us-num">4</span><p class="us-text">Ouvrir le Livre des Psaumes au hasard. Lire le Psaume entier. Noter le ou les versets qui touchent particulièrement l'âme.</p></div><div class="usage-step"><span class="us-num">5</span><p class="us-text">Méditer sur ces versets pendant vingt minutes. La réponse émerge souvent après la consultation, dans les heures suivantes.</p></div></div></div><button class="voir-plus-btn" onclick="toggleVP(this,'md2')">Voir plus <span class="vp-arrow">▾</span></button></div></div></div><div class="method-card"><div class="method-header"><div class="method-visual"><div class="method-svg-wrap"><svg class="method-svg" width="180" height="180" viewBox="0 0 180 180" fill="none"><circle cx="90" cy="90" r="75" stroke="rgba(212,175,55,.3)" stroke-width="1.2" fill="none"/><circle cx="90" cy="90" r="62" stroke="rgba(212,175,55,.1)" stroke-width=".6" stroke-dasharray="3 6" fill="none"/><text x="90" y="24"  text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.7)">א</text><text x="134" y="42" text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.6)">ב</text><text x="158" y="93" text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.5)">ג</text><text x="134" y="148" text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.5)">ד</text><text x="90" y="168" text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.6)">ה</text><text x="46" y="148" text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.5)">ו</text><text x="22" y="93"  text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.5)">ז</text><text x="46" y="42"  text-anchor="middle" font-family="Noto Serif Hebrew" font-size="14" fill="rgba(212,175,55,.6)">ח</text><text x="90" y="103" text-anchor="middle" font-family="Noto Serif Hebrew" font-size="38" fill="rgba(212,175,55,.95)">י</text><line x1="90" y1="30" x2="90" y2="65" stroke="rgba(212,175,55,.3)" stroke-width=".8"/><circle cx="90" cy="90" r="4" fill="rgba(212,175,55,.4)"/></svg><p style="font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-align:center;margin-top:.8rem;text-transform:uppercase">Goral des Lettres · Aleph-Beth</p></div></div><div class="method-info"><p class="method-num">Méthode III</p><h2 class="method-title">Goral des Lettres — Divination par l'Aleph-Beth</h2><span class="method-heb">גּוֹרָל הָאוֹתִיּוֹת</span><div class="method-tags"><span class="method-tag">Lettres sacrées</span><span class="method-tag">Guematria</span><span class="method-tag">Initié avancé</span></div><div class="method-divider"></div><div id="md3" class="content-collapse"><p class="method-desc">
+Le <strong>Goral des Lettres</strong> est la forme la plus ésotérique du Goral.
+Elle repose sur l'enseignement du <em>Sefer Yetzirah</em> (Livre de la Formation) selon lequel
+<strong>les 22 lettres de l'Aleph-Beth sont les briques fondamentales de la Création</strong>.
+Chaque lettre est une force spirituelle vivante, un canal entre l'infini et le fini.
+Cette méthode est réservée aux initiés ayant une connaissance des lettres et de leur valeur numérique.
+</p><p class="method-desc">
+Le pratiquant écrit les 22 lettres sur de petits cartons ou papiers.
+Il les mélange face cachée, formule sa question, puis tire <strong>trois lettres</strong>.
+La combinaison obtenue est interprétée selon la tradition : valeur numérique totale,
+signification symbolique de chaque lettre, et mot formé par les lettres si applicable.
+</p><div class="usage-steps"><div class="usage-step"><span class="us-num">1</span><p class="us-text">Préparer 22 petits cartons. Écrire une lettre hébraïque sur chacun, <strong>avec de l'encre noire</strong>, en prononçant le nom de la lettre à voix haute.</p></div><div class="usage-step"><span class="us-num">2</span><p class="us-text">Placer les cartons face cachée dans un tissu ou bol propre. Les mélanger dans le sens des aiguilles d'une montre en récitant : <em>« Par les 22 lettres que Tu as gravées, Éternel, révèle-moi la vérité. »</em></p></div><div class="usage-step"><span class="us-num">3</span><p class="us-text">Formuler la question clairement. Tirer <strong>trois cartons</strong> sans regarder. Les poser de gauche à droite (sens de lecture hébreu : droite vers gauche).</p></div><div class="usage-step"><span class="us-num">4</span><p class="us-text">Calculer la <strong>Guematria</strong> des trois lettres. Chercher le mot hébreu correspondant à cette valeur. Ce mot est la clé de la réponse.</p></div><div class="usage-step"><span class="us-num">5</span><p class="us-text">Méditer séparément sur chaque lettre : sa forme, son nom, son élémental (feu, eau, air), et sa position dans l'Arbre de Vie. La synthèse donne la réponse complète.</p></div></div></div><button class="voir-plus-btn" onclick="toggleVP(this,'md3')">Voir plus <span class="vp-arrow">▾</span></button></div></div></div></div><span class="section-lbl" style="margin-top:1rem">✦ Avant Toute Consultation</span><h2 class="section-title">Rituel de Préparation au Goral</h2><div class="ritual-card"><span class="ritual-number">Étape de Purification</span><h3 class="ritual-title">Netilat Yadayim — Lavage Rituel des Mains</h3><p class="ritual-text">
+Avant toute consultation du Goral, procéder au <strong>Netilat Yadayim</strong> — lavage rituel des mains avec un récipient.
+Verser de l'eau trois fois sur chaque main en alternant : <em>droite, gauche, droite, gauche, droite, gauche</em>.
+Ce geste symbolise la transition entre l'espace ordinaire et l'espace sacré.
+Il signale aux forces spirituelles que la consultation qui suit est <strong>intentionnelle et respectueuse</strong>.
+</p></div><div class="ritual-card"><span class="ritual-number">Intention Sacrée</span><h3 class="ritual-title">Kavanah — L'Intention Dirigée</h3><p class="ritual-text">
+Le Goral n'est jamais une simple curiosité. Avant chaque consultation, prononcer à voix basse ou intérieurement :
+<em>« Je consulte ce Goral non par curiosité ni par peur, mais pour aligner ma volonté sur la Volonté divine.
+Que la réponse que je reçois me guide vers le Bien, vers la Vérité, et vers mon chemin d'élévation. »</em>
+Cette <strong>Kavanah</strong> (intention dirigée) est ce qui transforme un simple tirage en acte spirituel authentique.
+</p></div><div class="avert-box"><span class="avert-label">⚠ Avertissement des Maîtres</span><p class="avert-text">
+Les Maîtres kabalistiques enseignent que le Goral ne doit être consulté que pour des <strong>décisions importantes</strong> —
+jamais par habitude ni pour des questions triviales. Une consultation par mois est considérée comme la limite raisonnable.
+<strong>Ne jamais répéter le même Goral</strong> pour la même question — si la réponse ne plaît pas,
+l'accepter avec humilité est en soi un acte spirituel. Le Goral révèle ce que le Ciel permet de révéler ;
+le reste appartient au <em>mystère de la Providence</em>.
+</p></div><div class="back-cercle"><a href="rituels.html">Retour aux Rituels du Cercle</a></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="rituels-nivo1.html">Rituels Nivo I</a></li><li><a href="kamea.html">Kaméa</a></li><li><a href="cercle.html">Cercle Intérieur</a></li></ul><p class="footer-copy">© Bnei Ohr — Cercle Intérieur — Fondé par Chilot</p><p class="footer-mentions">Haïti — <a href="mailto:bneiohr.haiti77@gmail.com">bneiohr.haiti77@gmail.com</a></p></footer></div><script>
+(function(){
+const c=document.getElementById('stars');
+const cols=['#d4af37','#fff','#b8a0e8'];
+for(let i=0;i<70;i++){
+const s=document.createElement('div');s.className='star';
+const sz=Math.random()*1.6+.3;
+const col=cols[Math.floor(Math.random()*cols.length)];
+s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:${col};--d:${(Math.random()*6+2).toFixed(1)}s;--o:${(Math.random()*.2+.03).toFixed(2)};`;
+c.appendChild(s);
+}
+})();
+window.addEventListener('scroll',()=>{
+document.querySelector('nav').style.background=window.scrollY>50?'rgba(4,4,6,.99)':'rgba(4,4,6,.93)';
+});
+const SECRETS=['rituels777','rituels 777','Rituels 777','Rituels777','RITUELS 777','RITUELS777'];
+function checkPass(){
+const val=document.getElementById('pwInput').value.trim();
+const err=document.getElementById('gateErr');
+if(SECRETS.map(s=>s.toLowerCase()).includes(val.toLowerCase())){
+const gate=document.getElementById('gate');
+gate.style.transition='opacity .8s ease';
+gate.style.opacity='0';
+setTimeout(()=>{
+gate.style.display='none';
+document.getElementById('content').style.display='block';
+document.body.style.overflowY='auto';
+},800);
+} else {
+err.classList.add('show');
+document.getElementById('pwInput').style.borderColor='rgba(200,70,70,.5)';
+setTimeout(()=>{err.classList.remove('show');document.getElementById('pwInput').style.borderColor='';},3000);
+}
+}
+document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPass();});
+function togglePw(){
+const i=document.getElementById('pwInput');
+i.type=i.type==='password'?'text':'password';
+}
+function toggleVP(btn,id){
+const el=document.getElementById(id);
+const isOpen=el.classList.contains('open');
+el.classList.toggle('open');
+btn.classList.toggle('open');
+btn.innerHTML=isOpen?'Voir plus <span class="vp-arrow">▾</span>':'Voir moins <span class="vp-arrow">▾</span>';
+}
+</script>
+</body>
+</html>

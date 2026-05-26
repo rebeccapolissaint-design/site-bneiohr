@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bnei Ohr — Musique Sacrée & Méditation</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background: #050505; color: #f0f0f0; font-family: 'Cormorant Garamond', serif; min-min-height: 100vh; }
+#stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.star { position: absolute; background: #d4af37; border-radius: 50%; animation: twinkle var(--d) ease-in-out infinite alternate; opacity: 0; }
+@keyframes twinkle { 0%{opacity:0;} 100%{opacity:var(--o);} }
+nav {
+position: fixed; top: 0; width: 100%; z-index: 1000;
+display: flex; justify-content: space-between; align-items: center;
+padding: 1rem 2rem;
+background: rgba(5,5,5,0.95);
+border-bottom: 1px solid rgba(212,175,55,0.15);
+backdrop-filter: blur(8px);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.nav-logo-hebrew { font-family: 'Noto Serif Hebrew', serif; font-size: 1.2rem; color: #d4af37; }
+.nav-logo-text { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.2em; color: #d4af37; text-transform: uppercase; }
+.nav-back { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.15em; color: #7a6030; text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+.nav-back:hover { color: #d4af37; }
+.container { max-width: 780px; margin: 0 auto; padding: 7rem 1.5rem 5rem; position: relative; z-index: 1; }
+/* PAGE HEADER */
+.page-header { text-align: center; margin-bottom: 4rem; }
+.page-eyebrow { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.5em; color: rgba(212,175,55,0.5); text-transform: uppercase; display: block; margin-bottom: 0.8rem; }
+.page-hebrew { font-family: 'Noto Serif Hebrew', serif; font-size: 2rem; color: rgba(212,175,55,0.35); display: block; margin-bottom: 0.5rem; }
+.page-title { font-family: 'Cinzel', serif; font-size: clamp(1.2rem, 3vw, 1.8rem); letter-spacing: 0.25em; color: #d4af37; text-transform: uppercase; margin-bottom: 0.5rem; }
+.page-divider { width: 60px; height: 1px; background: linear-gradient(to right, transparent, #d4af37, transparent); margin: 1rem auto; }
+.page-subtitle { font-style: italic; color: #606060; font-size: 1rem; }
+/* PLAYER CARD */
+.player-card {
+border: 1px solid rgba(212,175,55,0.2);
+background: rgba(212,175,55,0.02);
+padding: 2.5rem 2rem;
+margin-bottom: 2rem;
+position: relative;
+}
+.player-card::before, .player-card::after {
+content: '✦'; position: absolute;
+font-size: 0.55rem; color: rgba(212,175,55,0.25);
+}
+.player-card::before { top: 1rem; left: 1rem; }
+.player-card::after { top: 1rem; right: 1rem; }
+/* NOW PLAYING */
+.now-playing { text-align: center; margin-bottom: 2rem; }
+.now-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.4em; color: rgba(212,175,55,0.4); text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+.track-name { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.2em; color: #d4af37; text-transform: uppercase; display: block; margin-bottom: 0.3rem; }
+.track-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #606060; font-size: 0.9rem; }
+/* PROGRESS */
+.progress-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem; }
+.ptime { font-family: 'Cinzel', serif; font-size: 0.62rem; color: #7a6030; min-width: 2.8rem; }
+.progress-bar { flex: 1; height: 3px; background: rgba(212,175,55,0.12); cursor: pointer; border-radius: 2px; position: relative; }
+.progress-fill { height: 100%; background: linear-gradient(to right, #7a6030, #d4af37); border-radius: 2px; width: 0%; transition: width 0.1s linear; position: relative; }
+.progress-fill::after { content: ''; position: absolute; right: -4px; top: -3.5px; width: 10px; height: 10px; border-radius: 50%; background: #d4af37; box-shadow: 0 0 8px rgba(212,175,55,0.5); }
+/* CONTROLS */
+.controls { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+.ctrl-btn { background: none; border: none; cursor: pointer; color: #7a6030; font-size: 1rem; transition: color 0.3s; padding: 0; line-height: 1; }
+.ctrl-btn:hover { color: #d4af37; }
+.play-btn {
+width: 3.2rem; height: 3.2rem;
+border: 1px solid #d4af37 !important;
+border-radius: 50%;
+display: flex; align-items: center; justify-content: center;
+color: #d4af37 !important; font-size: 1.1rem !important;
+box-shadow: 0 0 18px rgba(212,175,55,0.12);
+transition: all 0.3s !important;
+}
+.play-btn:hover { background: rgba(212,175,55,0.1) !important; box-shadow: 0 0 30px rgba(212,175,55,0.3) !important; }
+/* VOLUME */
+.vol-row { display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
+.vol-icon { font-size: 0.85rem; color: #7a6030; }
+input[type=range].vol-slider {
+-webkit-appearance: none; width: 110px; height: 3px;
+background: rgba(212,175,55,0.15); border-radius: 2px; outline: none; cursor: pointer;
+}
+input[type=range].vol-slider::-webkit-slider-thumb {
+-webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%;
+background: #d4af37; box-shadow: 0 0 5px rgba(212,175,55,0.4); cursor: pointer;
+}
+/* PLAYLIST */
+.playlist-title { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.4em; color: rgba(212,175,55,0.4); text-transform: uppercase; margin-bottom: 1rem; display: block; }
+.playlist { display: flex; flex-direction: column; gap: 0.5rem; }
+.pl-item {
+display: flex; align-items: center; gap: 0.8rem;
+padding: 0.75rem 1rem; cursor: pointer;
+border: 1px solid rgba(212,175,55,0.08);
+transition: all 0.25s; background: transparent;
+}
+.pl-item:hover { background: rgba(212,175,55,0.05); border-color: rgba(212,175,55,0.25); }
+.pl-item.active { background: rgba(212,175,55,0.07); border-color: rgba(212,175,55,0.4); }
+.pl-num { font-family: 'Cinzel', serif; font-size: 0.62rem; color: rgba(212,175,55,0.35); min-width: 1.5rem; }
+.pl-item.active .pl-num { color: #d4af37; }
+.pl-name { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; color: #808080; text-transform: uppercase; flex: 1; }
+.pl-item.active .pl-name { color: #d4af37; }
+.pl-tag { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; color: #404040; font-style: italic; }
+.pl-playing { font-size: 0.7rem; color: #d4af37; animation: pulse 1.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+/* ADD TRACK NOTE */
+.add-note {
+text-align: center; margin-top: 2.5rem;
+padding: 1.5rem; border: 1px dashed rgba(212,175,55,0.1);
+color: #404040; font-style: italic; font-size: 0.88rem;
+line-height: 1.7;
+}
+footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(212,175,55,0.08); position: relative; z-index: 1; }
+footer a { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; color: #404040; text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+footer a:hover { color: #d4af37; }
+</style>
+</head>
+<body>
+<div id="stars"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="bibliyotek.html" class="nav-back">← Bibliothèque</a>
+</nav><div class="container"><div class="page-header"><span class="page-eyebrow">Espace Spirituel</span><span class="page-hebrew">נִגּוּן</span><h1 class="page-title">Musique Sacrée & Méditation</h1><div class="page-divider"></div><p class="page-subtitle">Laisse le son te rapprocher de la Lumière</p></div><div class="player-card"><div class="now-playing"><span class="now-label">En cours de lecture</span><span class="track-name" id="trackName">Ambiance Méditation</span><span class="track-sub" id="trackSub">Appuie sur ▶ pour commencer</span></div><div class="progress-row"><span class="ptime" id="timeElapsed">0:00</span><div class="progress-bar" id="progressBar" onclick="seekAudio(event)"><div class="progress-fill" id="progressFill"></div></div><span class="ptime" id="timeDuration">0:00</span></div><div class="controls"><button class="ctrl-btn" onclick="prevTrack()" title="Anvan">⏮</button><button class="ctrl-btn play-btn" id="playBtn" onclick="togglePlay()">▶</button><button class="ctrl-btn" onclick="nextTrack()" title="Aprè">⏭</button></div><div class="vol-row"><span class="vol-icon">🔈</span><input type="range" class="vol-slider" id="volSlider" min="0" max="100" step="5" value="80" oninput="setVolume(this.value)"><span class="vol-icon">🔊</span></div><div id="ytContainer" style="display:none;"><iframe id="ytPlayer" width="1" height="1"
+src="https://www.youtube.com/embed/KfM-e7kDCkU?enablejsapi=1&rel=0&modestbranding=1"
+allow="autoplay" frameborder="0"></iframe></div></div><span class="playlist-title">✦ Liste des Pistes</span><div class="playlist" id="playlist"></div><div class="add-note">
+✦ Pou ajoute yon nouvo trak — ban nou lyen YouTube la<br>
+epi nou ap ajoute l nan lis la byento.
+</div></div><footer><a href="bibliyotek.html">← Retour à la Bibliothèque</a>
+&nbsp;&nbsp;✦&nbsp;&nbsp;
+<a href="index.html">Akèy</a>
+</footer><script>
+// Stars
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 80; i++) {
+const s = document.createElement('div'); s.className = 'star';
+const sz = Math.random() * 1.8 + 0.4;
+s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*4}s;--o:${0.1+Math.random()*0.35};animation-delay:${Math.random()*5}s;`;
+starsEl.appendChild(s);
+}
+const tracks = [
+{ name: 'Ambiance Méditation', sub: 'Méditation Bnei Ohr', tag: 'Méditation', videoId: 'KfM-e7kDCkU' }
+];
+let player = null, isPlaying = false, currentIndex = 0, progressTimer = null;
+// Build playlist
+const plContainer = document.getElementById('playlist');
+tracks.forEach((t, i) => {
+const el = document.createElement('div');
+el.className = 'pl-item' + (i === 0 ? ' active' : '');
+el.dataset.index = i;
+el.innerHTML = `
+<span class="pl-num">${String(i+1).padStart(2,'0')}</span><span class="pl-name">${t.name}</span><span class="pl-tag">${t.tag}</span><span class="pl-playing" id="indicator-${i}" style="display:none;">♪</span>
+`;
+el.onclick = () => selectTrack(i);
+plContainer.appendChild(el);
+});
+// YouTube API
+const tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+function onYouTubeIframeAPIReady() {
+player = new YT.Player('ytPlayer', {
+height: '1', width: '1',
+videoId: tracks[0].videoId,
+playerVars: { autoplay: 0, controls: 0, rel: 0, modestbranding: 1 },
+events: { onStateChange, onReady: () => player.setVolume(80) }
+});
+}
+function onStateChange(e) {
+if (e.data === YT.PlayerState.PLAYING) {
+isPlaying = true;
+document.getElementById('playBtn').textContent = '⏸';
+document.getElementById('trackSub').textContent = tracks[currentIndex].sub;
+document.getElementById('indicator-' + currentIndex).style.display = 'inline';
+startProgress();
+} else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+isPlaying = false;
+document.getElementById('playBtn').textContent = '▶';
+document.getElementById('indicator-' + currentIndex).style.display = 'none';
+if (e.data === YT.PlayerState.ENDED) {
+document.getElementById('progressFill').style.width = '0%';
+document.getElementById('timeElapsed').textContent = '0:00';
+nextTrack();
+}
+clearInterval(progressTimer);
+}
+}
+function startProgress() {
+clearInterval(progressTimer);
+progressTimer = setInterval(() => {
+if (!player || !player.getDuration) return;
+const dur = player.getDuration(), cur = player.getCurrentTime();
+if (dur > 0) {
+document.getElementById('progressFill').style.width = (cur/dur*100) + '%';
+document.getElementById('timeElapsed').textContent = fmt(cur);
+document.getElementById('timeDuration').textContent = fmt(dur);
+}
+}, 500);
+}
+function togglePlay() {
+if (!player) return;
+isPlaying ? player.pauseVideo() : player.playVideo();
+}
+function selectTrack(i) {
+document.querySelectorAll('.pl-item').forEach((el, j) => {
+el.classList.toggle('active', j === i);
+document.getElementById('indicator-' + j).style.display = 'none';
+});
+currentIndex = i;
+document.getElementById('trackName').textContent = tracks[i].name;
+document.getElementById('trackSub').textContent = 'Appuie sur ▶ pour commencer';
+document.getElementById('progressFill').style.width = '0%';
+document.getElementById('timeElapsed').textContent = '0:00';
+document.getElementById('timeDuration').textContent = '0:00';
+if (player) { player.loadVideoById(tracks[i].videoId); player.pauseVideo(); }
+isPlaying = false;
+document.getElementById('playBtn').textContent = '▶';
+}
+function prevTrack() { selectTrack((currentIndex - 1 + tracks.length) % tracks.length); }
+function nextTrack() { selectTrack((currentIndex + 1) % tracks.length); }
+function seekAudio(e) {
+if (!player || !player.getDuration) return;
+const bar = document.getElementById('progressBar');
+player.seekTo((e.offsetX / bar.offsetWidth) * player.getDuration(), true);
+}
+function setVolume(v) { if (player) player.setVolume(parseInt(v)); }
+function fmt(s) {
+if (isNaN(s)) return '0:00';
+return Math.floor(s/60) + ':' + (Math.floor(s%60)<10?'0':'') + Math.floor(s%60);
+}
+</script><span style="font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .9rem;background:rgba(212,175,55,0.15);color:#d4af37;">KR</span>
+</div>
+</body>
+</html>

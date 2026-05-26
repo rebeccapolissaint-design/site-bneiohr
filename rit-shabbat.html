@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rituels du Shabbat — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#030404;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(3,4,4,.93);border-bottom:1px solid rgba(212,175,55,.12);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37}.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.45);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.4rem 1rem;transition:all .3s}.nav-back:hover{color:#d4af37;border-color:rgba(212,175,55,.5)}
+.veil{position:fixed;inset:0;z-index:2000;background:#000;opacity:0;pointer-events:none;transition:opacity .6s}.veil.show{opacity:1}
+/* HERO */
+.hero{position:relative;min-height:62vh;display:flex;
+flex-wrap:wrap;align-items:flex-end;justify-content:center;padding:2rem 2rem 4rem;overflow-y: auto;background:radial-gradient(ellipse at 50% 0%,rgba(180,140,30,.06),#030404 65%)}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:700px;padding-top:6rem}
+.hero-candles{font-size:3.5rem;display:block;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(212,175,55,.4))}
+.hero-num{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.45em;color:rgba(212,175,55,.55);text-transform:uppercase;display:inline-block;border:1px solid rgba(212,175,55,.2);padding:.3rem 1rem;margin-bottom:1.2rem}
+.hero-heb{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.8rem,6vw,3.5rem);color:rgba(212,175,55,.18);display:block;margin-bottom:.4rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,2.8rem);color:#fff;line-height:1.2;margin-bottom:.5rem}
+.hero-title span{color:#d4af37}
+.hero-timing{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:1rem}
+.hero-div{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.5),transparent);margin:.8rem auto 0}
+/* CONTENT */
+.content{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:3rem 2rem 6rem}
+.block{margin-bottom:2.8rem}
+.block-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.38em;color:rgba(212,175,55,.45);text-transform:uppercase;display:flex;
+flex-wrap:wrap;align-items:center;gap:.8rem;margin-bottom:.9rem}
+.block-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(212,175,55,.15),transparent)}
+.intro-text{font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.42);line-height:1.95;margin-bottom:1.5rem}
+.heb-text{font-family:'Noto Serif Hebrew',serif;font-size:1.25rem;color:rgba(212,175,55,.85);line-height:2;direction:rtl;text-align:right;padding:1.2rem 1.5rem;background:rgba(212,175,55,.03);border-right:2px solid rgba(212,175,55,.3);display:block}
+.prono-text{font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9;padding:.9rem 1.3rem;border-left:2px solid rgba(160,100,220,.22);background:rgba(160,100,220,.02)}
+.trad-text{font-size:1.05rem;color:rgba(232,228,220,.62);line-height:1.9;padding:1rem 1.3rem;background:rgba(212,175,55,.025);border-left:2px solid rgba(212,175,55,.2)}
+/* Divider between sub-rituals */
+.sub-divider{display:flex;
+flex-wrap:wrap;align-items:center;gap:1rem;margin:3rem 0 2.5rem}
+.sub-divider-line{flex:1;height:1px;background:rgba(212,175,55,.12)}
+.sub-divider-icon{font-size:1rem;color:rgba(212,175,55,.3)}
+/* Lecha Dodi verses */
+.verse-box{border:1px solid rgba(212,175,55,.12);background:rgba(212,175,55,.02);padding:1.5rem 1.8rem;margin-bottom:1rem}
+.verse-label{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.verse-text{font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.52);line-height:1.9}
+.verse-trad{font-size:.95rem;color:rgba(232,228,220,.4);line-height:1.8;margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(212,175,55,.08)}
+.nav-bottom{display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1);flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.65rem 1.3rem;transition:all .3s}.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.04)}
+footer{position:relative;z-index:1;background:#030404;border-top:1px solid rgba(212,175,55,.08);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.4rem}
+.footer-copy{font-size:.75rem;color:#383838;letter-spacing:.1em}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="veil" id="veil"></div>
+<nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="kabal.html" class="nav-back">← Rituels</a>
+</nav><section class="hero"><div class="hero-inner"><span class="hero-candles">🕯️🕯️</span><span class="hero-num">Rituels 7 & 8 · Partie II · Classique</span><span class="hero-heb">שַׁבָּת</span><h1 class="hero-title">Rituels du <span>Shabbat</span></h1><span class="hero-timing">🕯️ Vendredi soir — Accueillir la Reine</span><div class="hero-div"></div></div>
+</section><main class="content"><p class="intro-text">Le Shabbat est la porte du temps sacré — un palais dans le temps, selon l'expression du Rav Abraham Joshua Heschel. Ces deux rituels ouvrent et sanctifient l'entrée dans cet espace hors du temps.</p><div class="block"><p class="block-label">Rituel 7 — Allumage des Bougies de Shabbat</p><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.22em;color:rgba(212,175,55,.38);text-transform:uppercase;margin-bottom:1.2rem;display:block">Vendredi, 18 minutes avant le coucher du soleil · Classique</p><p class="intro-text">Allumer les deux bougies de Shabbat marque la frontière entre le temps ordinaire et le temps sacré. Ce geste transmet une lumière qui remonte jusqu'aux matriaches d'Israël.</p><div class="block"><p class="block-label">Bénédiction — Hébreu</p><span class="heb-text">בָּרוּךְ אַתָּה יְיָ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהַדְלִיק נֵר שֶׁל שַׁבָּת</span></div><div class="block"><p class="block-label">Prononciation</p><p class="prono-text">Barouk Ata Adonay, Èlo-ènou Mèlèk a-olam, achèr kidèchanou bèmitsvotav vè-tsivanou lè-adlik nèr chèl Chabat.</p></div><div class="block"><p class="block-label">Traduction</p><p class="trad-text">Béni sois-Tu, Seigneur notre Dieu, Roi de l'Univers, qui nous as sanctifiés par Tes commandements et nous as ordonné d'allumer la lumière du Shabbat.</p></div></div><div class="sub-divider"><div class="sub-divider-line"></div><span class="sub-divider-icon">✦</span><div class="sub-divider-line"></div></div><div class="block"><p class="block-label">Rituel 8 — Kabbalat Shabbat</p><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.22em;color:rgba(212,175,55,.38);text-transform:uppercase;margin-bottom:.4rem;display:block">Accueillir le Shabbat · Classique · Siddour</p><p style="font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.18em;color:rgba(160,100,220,.4);text-transform:uppercase;margin-bottom:1.2rem;display:block">Prononciation : Kabalat Chabat</p><p class="intro-text">Le Lecha Dodi est le poème mystique par excellence — composé par Rabbi Shlomo Alkabetz au 16ème siècle à Safed. On accueille le Shabbat comme une fiancée, une reine, une présence divine féminine — la Shekhina.</p><div class="verse-box"><span class="verse-label">Refrain — À répéter</span><p class="verse-text">Leka dodi likrat kala, pènèy Chabat nèkabèla.</p><p class="verse-trad">Viens, mon bien-aimé, allons à la rencontre de la fiancée — accueillons la présence du Shabbat.</p></div><div class="verse-box"><span class="verse-label">Clôture — Dernière strophe</span><p class="verse-text">Bo-i vèchalom atèrèt ba-ala, gam bèsimka ouv-tsa-ala.</p><p class="verse-trad">Entre dans la paix, couronne de son Maître, entre dans la joie et l'allégresse — au milieu des fidèles du peuple élu. Entre, ô fiancée ! Entre, ô fiancée !</p></div><div style="border:1px solid rgba(160,100,220,.12);background:rgba(160,100,220,.02);padding:1.4rem 1.8rem;margin-top:1.5rem"><p style="font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.3em;color:rgba(160,100,220,.42);text-transform:uppercase;display:block;margin-bottom:.6rem">✦ Tradition de Safed</p><p style="font-size:.97rem;font-style:italic;color:rgba(255,255,255,.35);line-height:1.85">À la dernière strophe du Lecha Dodi, on se retourne vers l'entrée — symboliquement vers l'Ouest — pour accueillir physiquement la Shekhina, la Présence Divine féminine, qui entre comme une reine dans le foyer. Ce geste vient directement de l'École de Kabbale de Safed, fondée par l'Ari z"l.</p></div></div><div class="nav-bottom"><a href="rit-soir.html" class="nav-btn">← Rituel Précédent</a><a href="rit-protection.html" class="nav-btn">Rituel Suivant →</a></div>
+</main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Chemin des Anciens</p></footer>
+<script>
+(function(){const c=document.getElementById('stars');for(let i=0;i<55;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*1.8+.3;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:#d4af37;--d:${(Math.random()*6+2).toFixed(1)}s;--o:${(Math.random()*.18+.03).toFixed(2)}`;c.appendChild(s);}})();
+document.querySelectorAll('a[href]').forEach(a=>{if(a.hostname===location.hostname&&!a.href.includes('#')){a.addEventListener('click',function(e){e.preventDefault();const d=this.href;const v=document.getElementById('veil');v.classList.add('show');setTimeout(()=>location.href=d,500);});}});
+</script>
+</body>
+</html>

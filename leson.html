@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Le Chemin de la Lumière — Bnei Ohr</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background: #050505; color: #e8e4dc; font-family: 'Cormorant Garamond', serif; }
+#stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow-y: auto; }
+.star { position: absolute; background: #d4af37; border-radius: 50%; animation: twinkle var(--d) ease-in-out infinite alternate; opacity: 0; }
+@keyframes twinkle { 0%{opacity:0;} 100%{opacity:var(--o);} }
+nav {
+position: fixed; top: 0; width: 100%; z-index: 1000;
+display: flex; justify-content: space-between; align-items: center;
+padding: 1rem 2rem;
+background: rgba(5,5,5,0.95);
+border-bottom: 1px solid rgba(212,175,55,0.12);
+backdrop-filter: blur(10px);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+.nav-logo-hebrew { font-family: 'Noto Serif Hebrew', serif; font-size: 1.2rem; color: #d4af37; }
+.nav-logo-text { font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.2em; color: #d4af37; text-transform: uppercase; }
+.nav-back { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.15em; color: #606060; text-decoration: none; text-transform: uppercase; transition: color 0.3s; }
+.nav-back:hover { color: #d4af37; }
+#readingProgress { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(to right, #7a6030, #d4af37); z-index: 9999; width: 0%; transition: width 0.1s; }
+.article-hero {
+position: relative; z-index: 1;
+padding: 8rem 2rem 4rem; text-align: center;
+background: linear-gradient(to bottom, #050505 0%, #0a0800 60%, #050505 100%);
+border-bottom: 1px solid rgba(212,175,55,0.1); overflow-y: auto;
+}
+.article-hero::before {
+content: 'אוֹר'; position: absolute; top: 50%; left: 50%;
+transform: translate(-50%, -50%);
+font-family: 'Noto Serif Hebrew', serif;
+font-size: 14rem; color: rgba(212,175,55,0.018);
+pointer-events: none; line-height: 1;
+}
+.breadcrumb { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.4em; color: rgba(212,175,55,0.35); text-transform: uppercase; display: block; margin-bottom: 1rem; }
+.breadcrumb a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.breadcrumb a:hover { color: rgba(212,175,55,0.7); }
+.article-eyebrow { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.5em; color: rgba(212,175,55,0.5); text-transform: uppercase; display: block; margin-bottom: 1.2rem; }
+.article-main-title { font-family: 'Cinzel', serif; font-size: clamp(1.3rem, 4vw, 2.3rem); letter-spacing: 0.08em; color: #ffffff; line-height: 1.35; max-width: 700px; margin: 0 auto 1rem; }
+.article-main-title em { color: #d4af37; font-style: normal; }
+.article-divider { width: 80px; height: 1px; background: linear-gradient(to right, transparent, #d4af37, transparent); margin: 1.5rem auto; }
+.article-intro-verse { font-size: clamp(1rem, 2.5vw, 1.2rem); font-style: italic; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto; line-height: 2; }
+.article-intro-verse cite { display: block; font-style: normal; font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.25em; color: rgba(212,175,55,0.4); text-transform: uppercase; margin-top: 0.6rem; }
+.meta-bar { display: flex; gap: 1rem; align-items: center; margin: 1.5rem 0 0; justify-content: center; flex-wrap: wrap; }
+.meta-item { font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.2em; color: rgba(212,175,55,0.35); text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid rgba(212,175,55,0.12); }
+.toc-wrapper { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 2.5rem 2rem; border-bottom: 1px solid rgba(212,175,55,0.08); }
+.toc-label { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.4em; color: rgba(212,175,55,0.4); text-transform: uppercase; display: block; margin-bottom: 1.2rem; }
+.toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.toc-list li a { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.08em; color: #606060; text-decoration: none; display: flex; align-items: center; gap: 0.7rem; transition: color 0.2s; text-transform: uppercase; padding: 0.35rem 0; border-bottom: 1px solid rgba(212,175,55,0.05); }
+.toc-list li a::before { content: '✦'; font-size: 0.42rem; color: rgba(212,175,55,0.25); flex-shrink: 0; }
+.toc-list li a:hover { color: #d4af37; }
+.article-body { max-width: 680px; margin: 0 auto; padding: 0 1.5rem 6rem; position: relative; z-index: 1; }
+.article-section { padding: 4rem 0 0; }
+.section-num { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.5em; color: rgba(212,175,55,0.3); text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+.section-title { font-family: 'Cinzel', serif; font-size: clamp(1rem, 2.5vw, 1.4rem); letter-spacing: 0.1em; color: #d4af37; text-transform: uppercase; margin-bottom: 0.4rem; line-height: 1.3; }
+.section-title-divider { width: 35px; height: 1px; background: linear-gradient(to right, #d4af37, transparent); margin-bottom: 2rem; }
+.article-p { font-size: clamp(1.05rem, 2.5vw, 1.2rem); color: rgba(232,228,220,0.85); line-height: 2; margin-bottom: 1.8rem; }
+.article-p:last-child { margin-bottom: 0; }
+.article-p strong { color: #d4af37; font-weight: 400; }
+.article-p em { font-style: italic; color: rgba(255,255,255,0.65); }
+.pull-quote { margin: 2.5rem 0; padding: 1.8rem 2rem 1.8rem 2.5rem; border-left: 2px solid #d4af37; background: rgba(212,175,55,0.03); }
+.pull-quote-text { font-size: clamp(1.05rem, 2.5vw, 1.25rem); font-style: italic; color: rgba(255,255,255,0.82); line-height: 1.9; }
+.pull-quote-source { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; color: rgba(212,175,55,0.5); text-transform: uppercase; display: block; margin-top: 1rem; }
+.hebrew-highlight { text-align: center; margin: 2.5rem 0; padding: 2rem 1rem; border-top: 1px solid rgba(212,175,55,0.08); border-bottom: 1px solid rgba(212,175,55,0.08); }
+.heb-word { font-family: 'Noto Serif Hebrew', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); color: rgba(212,175,55,0.5); display: block; margin-bottom: 0.6rem; line-height: 1.4; }
+.heb-transliteration { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.35em; color: rgba(212,175,55,0.35); text-transform: uppercase; }
+.article-list { margin: 1.5rem 0 1.8rem; display: flex; flex-direction: column; gap: 1rem; }
+.article-list-item { padding: 1.2rem 1.5rem; border: 1px solid rgba(212,175,55,0.1); background: rgba(212,175,55,0.02); }
+.list-item-title { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.15em; color: #d4af37; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+.list-item-text { font-size: 1.05rem; color: rgba(232,228,220,0.75); line-height: 1.9; }
+.section-sep { width: 100%; height: 1px; background: linear-gradient(to right, transparent, rgba(212,175,55,0.12), transparent); margin: 3rem 0 0; }
+.article-closing { text-align: center; margin-top: 4rem; padding: 3rem 1.5rem; border: 1px solid rgba(212,175,55,0.12); background: rgba(212,175,55,0.02); }
+.closing-hebrew { font-family: 'Noto Serif Hebrew', serif; font-size: 1.6rem; color: rgba(212,175,55,0.45); display: block; margin-bottom: 1rem; }
+.closing-text { font-style: italic; color: rgba(255,255,255,0.6); font-size: clamp(1rem, 2.5vw, 1.15rem); line-height: 1.9; max-width: 500px; margin: 0 auto 1.5rem; }
+.closing-sig { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: rgba(212,175,55,0.4); text-transform: uppercase; }
+.article-nav { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; }
+.article-nav a { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.7rem 1.6rem; text-decoration: none; border: 1px solid rgba(212,175,55,0.3); color: #d4af37; transition: all 0.3s; }
+.article-nav a:hover { background: rgba(212,175,55,0.08); border-color: #d4af37; }
+@media (max-width: 600px) {
+.article-hero { padding: 7rem 1.2rem 3rem; }
+.pull-quote { padding: 1.4rem 1.2rem 1.4rem 1.5rem; }
+nav { padding: 0.9rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+<div id="readingProgress"></div>
+<div id="stars"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="index.html" class="nav-back">← Accueil</a>
+</nav><div class="article-hero"><span class="breadcrumb"><a href="index.html">Bnei Ohr</a> &nbsp;✦&nbsp; Accueil</span><span class="article-eyebrow">Introduction — Philosophie Fondamentale</span><h1 class="article-main-title">Le Chemin de la Lumière : <em>Une Introduction à la Philosophie de Bnei Ohr</em></h1><div class="article-divider"></div><p class="article-intro-verse">
+«&nbsp;Au commencement était la Lumière — et la Lumière était bonne.&nbsp;»
+<cite>— Bereshit 1:4</cite></p><div class="meta-bar"><span class="meta-item">✦ Leçon Fondamentale</span><span class="meta-item">✦ Lecture ~ 10 min</span><span class="meta-item">✦ Bnei Ohr — Haïti</span></div>
+</div><div class="toc-wrapper"><span class="toc-label">Sommaire</span><ul class="toc-list"><li><a href="#seksyon-1">Qu'est-ce que Bnei Ohr ?</a></li><li><a href="#seksyon-2">Le Commencement — La Lumière avant tout</a></li><li><a href="#seksyon-3">Ein Sof — L'Infini</a></li><li><a href="#seksyon-4">Pourquoi Haïti ?</a></li><li><a href="#seksyon-5">Forme et Essence — La Distinction Clé</a></li><li><a href="#seksyon-6">Les Trois Portes d'Cheminement</a></li><li><a href="#seksyon-7">Le Chemin Pratique</a></li></ul>
+</div><div class="article-body"><div class="article-section" id="seksyon-1"><span class="section-num">Section 01</span><h2 class="section-title">Qu'est-ce que Bnei Ohr ?</h2><div class="section-title-divider"></div><p class="article-p"><strong>Bnei Ohr</strong> — בְּנֵי אוֹר — signifie <strong>« Enfants de la Lumière »</strong> en hébreu. Ce n'est pas seulement un beau nom ; c'est une promesse, une identité et une mission. Chaque personne qui marche sur ce chemin accepte un engagement fondamental : vivre pour la lumière — non pas pour les apparences, ni pour le pouvoir ou les richesses, mais pour une transformation réelle au fond du cœur.</p><p class="article-p">Bnei Ohr est une école kabbalistique authentique enracinée sur la terre d'Haïti. Elle porte un message clé : <strong>la sagesse mystique juive</strong> — qui compte plus de trois mille ans d'histoire — peut parler en créole, résonner dans le cœur haïtien et transformer sa vie. Non parce que nous en changeons le sens, mais parce que <strong>la vérité n'a pas de frontières</strong>.</p><div class="pull-quote"><p class="pull-quote-text">« Nous haïtianisons la forme — mais nous préservons l'essence de la Kabbale sans aucune modification. La tradition authentique, dans ta langue, pour ton peuple. »</p><span class="pull-quote-source">— Principe Fondamental de Bnei Ohr</span></div><p class="article-p">Cela signifie : les livres sont en créole, les enseignements sont adaptés à la réalité haïtienne, et les exemples viennent de la vie quotidienne. Mais les sources doctrinales — <em>Zohar, Talmud, Kabbale Lourianiste, Baal HaSoulam</em> — restent intactes, originales et authentiques. Pas de mélange, pas de compromis.</p></div><div class="section-sep"></div><div class="article-section" id="seksyon-2"><span class="section-num">Section 02</span><h2 class="section-title">Le Commencement — La Lumière avant tout</h2><div class="section-title-divider"></div><p class="article-p">Le premier mot de la Torah est <em>Bereshit</em> — « Au commencement ». Dans ce commencement, la première chose que Dieu créa fut la <strong>Lumière</strong>. Pas le soleil (qui n'existait pas encore), mais une Lumière spirituelle et intellectuelle ; une Lumière représentant la connaissance, la conscience et la présence divine dans la création.</p><div class="hebrew-highlight"><span class="heb-word">בְּרֵאשִׁית הָיָה אוֹר</span><span class="heb-transliteration">Bereshit haya Ohr — Au commencement était la Lumière</span></div><p class="article-p">La Kabbale nous enseigne que cette Lumière — appelée <em>Ohr HaGanuz</em> (« Lumière Cachée ») — était tellement intense que la création ne pouvait la supporter. C'est pourquoi Dieu la dissimula. Mais où ? À l'intérieur de la Torah elle-même, dans les bonnes actions et dans le cœur de ceux qui La cherchent de toutes leurs forces. Le travail de l'élève kabbaliste est de « re-découvrir » cette Lumière — non pas en la cherchant à l'extérieur, mais en ouvrant les portes intérieures pour qu'elle répare ce qui était brisé.</p><p class="article-p">Pour Bnei Ohr, <strong>Haïti est une terre où cette Lumière peut germer à nouveau</strong>. Un pays qui a accompli l'une des plus grandes révolutions de l'histoire humaine — l'abolition de l'esclavage — est un pays qui a une mission spirituelle particulière dans l'histoire du monde. L'enseignement kabbalistique ne vient pas remplacer ce qu'Haïti est déjà ; <strong>il vient donner plus de force à nos racines</strong>.</p></div><div class="section-sep"></div><div class="article-section" id="seksyon-3"><span class="section-num">Section 03</span><h2 class="section-title">Ein Sof — L'Infini</h2><div class="section-title-divider"></div><p class="article-p">Au cœur de la philosophie kabbalistique se trouve un concept plus fondamental que tous les autres : <strong>Ein Sof</strong> — אֵין סוֹף — qui signifie littéralement « Sans Fin » ou « Infini ». C'est le nom de Dieu dans la Kabbale — mais pas un nom décrivant une personne ou une simple force. C'est une réalité qui <strong>dépasse toute compréhension humaine</strong>.</p><div class="hebrew-highlight"><span class="heb-word">אֵין סוֹף</span><span class="heb-transliteration">Ein Sof — Sans Limite — L'Infini Divin</span></div><p class="article-p">Ein Sof ne peut être décrit. Il n'est ni bon ni mauvais (au sens humain), ni grand ni petit, ni proche ni lointain — car tous ces mots nécessitent une limite pour exister, et Ein Sof n'en a aucune. On ne peut pas Le comprendre avec l'intellect seul ; on peut seulement <em>Le ressentir et Le vivre</em> dans les moments où l'on transcende ses propres limites.</p><div class="pull-quote"><p class="pull-quote-text">אֵין עוֹד מִלְּבַדּוֹ — Il n'y a rien d'autre que Lui. Tout ce que tu vois, tout ce que tu touches, tout ce que tu penses, n'est que la façon dont Il se manifeste.</p><span class="pull-quote-source">— Devarim 4:35</span></div><p class="article-p">C'est l'une des vérités les plus difficiles à accepter, mais aussi celle qui libère le plus : s'il n'y a rien d'autre que Lui, et s'Il est « Bon », alors <strong>toute réalité est fondamentalement bonne</strong>. La souffrance existe, oui. Le mal existe, oui. Mais ce sont des voiles cachant une Lumière toujours présente, attendant d'être découverte.</p></div><div class="section-sep"></div><div class="article-section" id="seksyon-4"><span class="section-num">Section 04</span><h2 class="section-title">Pourquoi Haïti ?</h2><div class="section-title-divider"></div><p class="article-p">Lors de la fondation de Bnei Ohr, une question s'est posée : pourquoi apporter la Kabbale en Haïti ? N'est-ce pas une tradition trop éloignée de nous ?</p><p class="article-p">La réponse est simple : <strong>la vérité n'a pas de passeport</strong>. Le soleil se lève pour tous. La Lumière de l'Ein Sof est l'héritage de quiconque la cherche. Un Haïtien qui étudie le Zohar ne vole rien ; il exerce son droit fondamental à la connaissance.</p><p class="article-p">De plus, Haïti possède un héritage spirituel profond. Nous sommes un peuple qui a toujours compris que la réalité dépasse ce que les yeux peuvent voir. Nous avons une relation vivante avec le monde spirituel. <strong>La Kabbale ne vient pas effacer cela</strong> — elle vient lui donner un langage plus clair et une carte pour ne pas se perdre en chemin.</p></div><div class="section-sep"></div><div class="article-section" id="seksyon-5"><span class="section-num">Section 05</span><h2 class="section-title">Forme et Essence — La Distinction Clé</h2><div class="section-title-divider"></div><p class="article-p">L'un des principes les plus importants de Bnei Ohr est la distinction entre <strong>forme</strong> et <strong>essence</strong>. C'est ce qui nous permet d'adapter les enseignements sans les trahir.</p><div class="article-list"><div class="article-list-item"><span class="list-item-title">✦ Essence</span><p class="list-item-text">C'est le contenu spirituel (Sefirot, Arbre de Vie, Tsimtsoum, 4 Mondes). Cela ne change pas. Cela vient directement des sources originales. Nous ne le mélangeons pas, nous ne le dénaturons pas.</p></div><div class="article-list-item"><span class="list-item-title">✦ Forme</span><p class="list-item-text">C'est le vase (le langage, les exemples, le contexte). C'est là que l'adaptation se fait. Une leçon illustrée par un exemple de la ville de Safed au XIIIe siècle peut être expliquée avec un exemple tiré de la vie quotidienne à Port-au-Prince.</p></div></div><div class="pull-quote"><p class="pull-quote-text">« L'eau conserve toujours la même nature, qu'on la mette dans un verre en fer, une cruche en terre ou un bol en bois. La forme du vase change, mais la nature de l'eau reste identique. »</p><span class="pull-quote-source">— Analogie de Bnei Ohr</span></div></div><div class="section-sep"></div><div class="article-section" id="seksyon-6"><span class="section-num">Section 06</span><h2 class="section-title">Les Trois Portes d'Cheminement</h2><div class="section-title-divider"></div><p class="article-p">Bnei Ohr organise l'apprentissage en trois niveaux :</p><div class="article-list"><div class="article-list-item"><span class="list-item-title">✦ Orev HaOhr — Le Crépuscule de la Lumière</span><p class="list-item-text">C'est l'entrée. L'élève découvre les bases : l'Arbre de Vie, les 10 Sefirot, et la méditation. C'est la phase où l'on frappe à la porte.</p></div><div class="article-list-item"><span class="list-item-title">✦ Moreh HaDerekh — Le Guide du Chemin</span><p class="list-item-text">L'élève devient un pratiquant actif. Il étudie en profondeur les théories lourianniques (Tsimtsoum, Shevirat HaKelim...). Il commence à comprendre sa mission personnelle dans le monde.</p></div><div class="article-list-item"><span class="list-item-title">✦ Baal HaOhr — Le Maître de la Lumière</span><p class="list-item-text">Le niveau le plus avancé. C'est quelqu'un qui a une relation directe avec la Lumière d'Ein Sof. Il ne se contente pas de « savoir » — il vit la connaissance. C'est là que la transmission se fait de cœur à cœur.</p></div></div></div><div class="section-sep"></div><div class="article-section" id="seksyon-7"><span class="section-num">Section 07</span><h2 class="section-title">Le Chemin Pratique</h2><div class="section-title-divider"></div><p class="article-p">La Kabbale n'est pas une philosophie pour faire de beaux discours en salon. <strong>C'est un chemin pratique</strong>. Si la connaissance ne change pas ta façon d'agir, de traiter les autres, ou d'aimer ton prochain, ce n'était pas une vraie connaissance — c'était seulement de l'information.</p><p class="article-p">La pratique comprend la méditation, l'étude des textes sacrés, et le travail sur les <em>Midot</em> (qualités morales) : humilité, patience, générosité et discipline. Bnei Ohr met l'accent sur la <strong>communauté</strong>. La Kabbale n'est pas un chemin solitaire. C'est ensemble, dans l'unité (<em>Yihud</em>), que nous pouvons faire briller la Lumière d'Ein Sof dans le monde.</p></div><div class="section-sep"></div><div class="article-section"><span class="section-num">Conclusion</span><h2 class="section-title">Une Invitation</h2><div class="section-title-divider"></div><p class="article-p">On ne peut pas devenir Enfant de la Lumière seul. <strong>La Lumière n'est pas une affaire privée</strong> ; c'est un feu qui prend plus de force quand toutes les torches se réunissent.</p><p class="article-p">Nous t'invitons, non pas comme simple spectateur, mais comme <strong>participant à un projet qui nous dépasse tous</strong>. Le chemin est long, mais il est beau. Et le premier pas commence au moment où tu décides que la Lumière vaut plus que l'obscurité.</p></div><div class="article-closing"><span class="closing-hebrew">בְּנֵי אוֹר — אַיִן סוֹף</span><p class="closing-text">« Les Enfants de la Lumière ne meurent jamais. Elle peut se cacher un temps, mais comme les étoiles dans le ciel d'Haïti — qu'elles soient couvertes de nuages ou visibles à l'œil nu — elles sont toujours là, t'attendant. »</p><span class="closing-sig">✦ Bnei Ohr — Haïti ✦</span></div><div class="article-nav"><a href="bibliyotek.html">Bibliothèque →</a><a href="kabbalah-chretienne.html">Kabbale & Christianisme →</a><a href="index.html">← Retour à l'Accueil</a></div></div><script>
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 90; i++) {
+const s = document.createElement('div'); s.className = 'star';
+const sz = Math.random() * 1.8 + 0.4;
+s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${0.08+Math.random()*0.3};animation-delay:${Math.random()*5}s;`;
+starsEl.appendChild(s);
+}
+window.addEventListener('scroll', () => {
+const docH = document.documentElement.scrollHeight - window.innerHeight;
+document.getElementById('readingProgress').style.width = (window.scrollY / docH * 100) + '%';
+});
+</script><span style="font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .9rem;background:rgba(212,175,55,0.15);color:#d4af37;">KR</span>
+</div>
+</body>
+</html>

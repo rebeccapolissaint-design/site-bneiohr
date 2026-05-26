@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À Propos — Bnei Ohr — École Ésotérique Haïtienne</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#050505;color:#e8e4dc;font-family:'Cormorant Garamond',serif}
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.s{position:absolute;background:#d4af37;border-radius:50%;animation:tw var(--d) ease-in-out infinite alternate}
+@keyframes tw{0%{opacity:0}100%{opacity:var(--o)}}
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,#7a6030,#d4af37);z-index:9999;width:0%;transition:width .1s}
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:.9rem 2rem;background:rgba(5,5,5,0.96);border-bottom:1px solid rgba(212,175,55,0.12);backdrop-filter:blur(8px)}
+.logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.6rem;text-decoration:none}
+.logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:#d4af37}
+.logo-txt{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:#606060;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+/* HERO */
+.page-hero{position:relative;z-index:1;padding:8rem 2rem 4rem;text-align:center;background:linear-gradient(to bottom,#050505,#0a0800,#050505);border-bottom:1px solid rgba(212,175,55,0.1);overflow-y: auto}
+.page-hero::before{content:'בְּנֵי אוֹר';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Noto Serif Hebrew',serif;font-size:10rem;color:rgba(212,175,55,0.018);pointer-events:none;white-space:nowrap}
+.eyebrow{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.5em;color:rgba(212,175,55,0.45);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4vw,2rem);letter-spacing:.12em;color:#fff;text-transform:uppercase;margin-bottom:.5rem}
+.hero-title span{color:#d4af37}
+.hero-div{width:70px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:.8rem auto 1rem}
+.hero-intro{font-style:italic;color:rgba(255,255,255,0.5);max-width:580px;margin:0 auto;font-size:1rem;line-height:1.9}
+/* BODY */
+.page-body{max-width:740px;margin:0 auto;padding:4rem 1.5rem 6rem;position:relative;z-index:1}
+/* SECTION */
+.a-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid rgba(212,175,55,0.08)}
+.a-section:last-child{border-bottom:none}
+.a-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,0.4);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.a-title{font-family:'Cinzel',serif;font-size:clamp(1rem,2.5vw,1.4rem);letter-spacing:.1em;color:#d4af37;text-transform:uppercase;margin-bottom:.4rem}
+.a-div{width:35px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-bottom:1.8rem}
+.a-p{font-size:clamp(1rem,2.5vw,1.15rem);color:rgba(232,228,220,0.8);line-height:2.05;margin-bottom:1.5rem}
+.a-p strong{color:#d4af37;font-weight:400}
+.a-p em{font-style:italic;color:rgba(255,255,255,0.6)}
+/* FONDATEUR */
+.fondateur-card{border:1px solid rgba(212,175,55,0.2);background:rgba(212,175,55,0.03);padding:2.5rem 2rem;position:relative;overflow-y: auto;margin-bottom:2rem}
+.fondateur-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#d4af37,transparent)}
+.fondateur-icon{font-family:'Noto Serif Hebrew',serif;font-size:3rem;color:rgba(212,175,55,0.35);display:block;text-align:center;margin-bottom:1rem}
+.fondateur-name{font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase;text-align:center;display:block;margin-bottom:.3rem}
+.fondateur-title{font-style:italic;font-size:.9rem;color:rgba(255,255,255,0.4);text-align:center;display:block;margin-bottom:1.5rem}
+.fondateur-div{width:40px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto 1.5rem}
+.fondateur-bio{font-size:1rem;color:rgba(232,228,220,0.7);line-height:2;text-align:center;font-style:italic}
+/* VALEURS */
+.valeurs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
+.valeur-item{border:1px solid rgba(212,175,55,0.1);background:rgba(212,175,55,0.02);padding:1.5rem 1.2rem;text-align:center}
+.valeur-icon{font-size:2rem;display:block;margin-bottom:.6rem}
+.valeur-name{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.15em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.4rem}
+.valeur-desc{font-size:.88rem;color:rgba(232,228,220,0.55);line-height:1.7;font-style:italic}
+/* SOURCES */
+.sources-list{display:flex;
+flex-wrap:wrap;flex-wrap:wrap;gap:.8rem;margin:1.5rem 0}
+.source-tag{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:rgba(212,175,55,0.6);text-transform:uppercase;padding:.4rem 1rem;border:1px solid rgba(212,175,55,0.2);background:rgba(212,175,55,0.03)}
+/* PRIX */
+.prix-box{border:1px solid rgba(212,175,55,0.2);background:rgba(212,175,55,0.03);padding:2rem;text-align:center;margin-top:1.5rem}
+.prix-label{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:rgba(212,175,55,0.4);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.prix-text{font-style:italic;color:rgba(255,255,255,0.6);line-height:1.9;font-size:1rem}
+/* QUOTE */
+.a-quote{margin:2rem 0;padding:1.5rem 1.5rem 1.5rem 2rem;border-left:2px solid rgba(212,175,55,0.3);background:rgba(212,175,55,0.02)}
+.a-quote p{font-style:italic;color:rgba(255,255,255,0.75);line-height:1.9;font-size:1.05rem}
+.a-quote span{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:rgba(212,175,55,0.4);text-transform:uppercase;display:block;margin-top:.7rem}
+.art-nav{display:flex;
+flex-wrap:wrap;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:3rem}
+.art-nav a{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;padding:.7rem 1.6rem;text-decoration:none;border:1px solid rgba(212,175,55,0.3);color:#d4af37;transition:all .3s}
+.art-nav a:hover{background:rgba(212,175,55,0.08);border-color:#d4af37}
+@media(max-width:600px){nav{padding:.9rem 1.2rem}.page-hero{padding:7rem 1.2rem 3rem}.valeurs-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="stars"></div><nav><a href="index.html" class="logo"><span class="logo-heb">בְּנֵי אוֹר</span><span class="logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back">← Accueil</a>
+</nav><div class="page-hero"><span class="eyebrow">Qui Sommes-Nous</span><h1 class="hero-title">À Propos de <span>Bnei Ohr</span></h1><div class="hero-div"></div><p class="hero-intro">Une école ésotérique haïtienne — transparente sur ses origines, ses sources et son chemin.</p>
+</div><div class="page-body"><div class="a-section"><span class="a-eyebrow">Le Fondateur</span><h2 class="a-title">Chilot — Gide Spirituel de Bnei Ohr</h2><div class="a-div"></div><div class="fondateur-card"><span class="fondateur-icon">🕯</span><span class="fondateur-name">Chilot</span><span class="fondateur-title">Fondateur & Gide Spirituel — Bnei Ohr</span><div class="fondateur-div"></div><p class="fondateur-bio">Haïtien, chercheur spirituel et ésotériste, Chilot a fondé Bnei Ohr avec la conviction que le peuple haïtien mérite un enseignement initiatique enraciné dans sa propre identité — une école qui honore à la fois la profondeur de la Kabbale classique, la sagesse du Vodou haïtien, et les grandes traditions mystiques universelles.</p></div><p class="a-p">Chilot n'est pas parti de rien. Sa démarche est née d'une question simple et profonde : <strong>pourquoi les Haïtiens cherchent-ils leur éveil spirituel uniquement dans des traditions étrangères, alors que leur propre héritage — le Vodou — est l'une des traditions spirituelles les plus riches et les plus mal comprises du monde ?</strong></p><p class="a-p">Bnei Ohr est sa réponse à cette question. Non pas une réponse fermée, mais une <em>invitation ouverte</em> — à tout chercheur sincère qui veut explorer la lumière intérieure à travers des outils multiples et complémentaires.</p><div class="a-quote"><p>« Haïti n'a pas besoin de copier les écoles ésotériques d'ailleurs. Elle a en elle-même une profondeur spirituelle suffisante pour bâtir quelque chose d'entièrement original — quelque chose qui lui appartient. »</p><span>— Chilot, Fondateur de Bnei Ohr</span></div></div><div class="a-section"><span class="a-eyebrow">L'École</span><h2 class="a-title">Qu'est-ce que Bnei Ohr ?</h2><div class="a-div"></div><p class="a-p"><strong>Bnei Ohr</strong> — בְּנֵי אוֹר — signifie « Enfants de la Lumière » en hébreu. C'est une école ésotérique haïtienne qui propose un parcours symbolique original en trois niveaux, synthétisant des sources multiples dans une démarche cohérente et respectueuse de chaque tradition.</p><p class="a-p">Bnei Ohr n'est pas une secte, ni un groupe fermé. C'est un espace d'étude et de transformation intérieure, ouvert à tout chercheur sincère — qu'il vienne d'une tradition chrétienne, vodou, ou d'aucune tradition particulière.</p><div class="valeurs-grid"><div class="valeur-item"><span class="valeur-icon">🔍</span><span class="valeur-name">Rigueur</span><p class="valeur-desc">Étude sérieuse des textes et traditions de sagesse — avec rigueur et respect de chaque source.</p></div><div class="valeur-item"><span class="valeur-icon">🌿</span><span class="valeur-name">Enracinement</span><p class="valeur-desc">Ancrage dans l'identité haïtienne et l'héritage spirituel du peuple.</p></div><div class="valeur-item"><span class="valeur-icon">🕊️</span><span class="valeur-name">Respect</span><p class="valeur-desc">Chaque tradition est honorée dans son intégrité — sans hiérarchie.</p></div><div class="valeur-item"><span class="valeur-icon">🔥</span><span class="valeur-name">Transformation</span><p class="valeur-desc">L'objectif n'est pas de savoir — c'est de changer, de grandir, de rayonner.</p></div></div></div><div class="a-section"><span class="a-eyebrow">Nos Sources</span><h2 class="a-title">Une Synthèse Authentique</h2><div class="a-div"></div><p class="a-p">Bnei Ohr puise dans plusieurs grandes traditions spirituelles et ésotériques, qu'elle traite avec respect et sans dénaturer aucune d'elles :</p><div class="sources-list"><span class="source-tag">✦ Kabbale Classique</span><span class="source-tag">✦ Zohar</span><span class="source-tag">✦ Etz Chaïm (Ari z"l)</span><span class="source-tag">✦ Baal HaSoulam / Bnei Baruch</span><span class="source-tag">✦ Vodou Haïtien</span><span class="source-tag">✦ Philosophie des Lwa</span><span class="source-tag">✦ Hermétisme Classique</span><span class="source-tag">✦ Traditions Mystiques Occidentales</span><span class="source-tag">✦ Symbolisme Universel</span></div><p class="a-p">Ces sources sont abordées avec soin et discernement. Chaque enseignement de Bnei Ohr précise clairement <strong>son origine symbolique</strong>, en respectant la profondeur de chacune. L'intégration se fait au niveau de la pratique personnelle de l'élève — par une exploration vivante et consciente.</p></div><div class="a-section"><span class="a-eyebrow">Parcours Symbolique</span><h2 class="a-title">3 Niveaux d'Exploration Symbolique</h2><div class="a-div"></div><p class="a-p">L'enseignement de Bnei Ohr est structuré en trois niveaux progressifs — des <strong>repères pédagogiques et symboliques</strong>, non des cheminements formels religieuses ou maçonniques. Chaque niveau demande un engagement personnel sincère.</p><div class="valeurs-grid"><div class="valeur-item"><span class="valeur-icon">🌅</span><span class="valeur-name">Niveau 1 — L'Éveil</span><p class="valeur-desc">L'Enfant de l'Aube — Découverte personnelle et fondements symboliques.</p></div><div class="valeur-item"><span class="valeur-icon">🔥</span><span class="valeur-name">Niveau 2 — Les Symboles</span><p class="valeur-desc">Le Porteur de Lumière — Étude approfondie des correspondances Kabbale & Lwa.</p></div><div class="valeur-item"><span class="valeur-icon">⭐</span><span class="valeur-name">Niveau 3 — La Flamme</span><p class="valeur-desc">La Flamme qui Éclaire — Connaissance vécue et transmission personnelle de cœur à cœur.</p></div></div></div><div class="a-section"><span class="a-eyebrow">Transparence Financière</span><h2 class="a-title">Un Prix Symbolique</h2><div class="a-div"></div><p class="a-p">Bnei Ohr croit que la sagesse ne devrait pas être réservée à ceux qui ont les moyens de la payer. En même temps, tout travail sérieux nécessite des ressources pour continuer à exister.</p><div class="prix-box"><span class="prix-label">Notre politique tarifaire</span><p class="prix-text">Les enseignements de Bnei Ohr sont accessibles à un <strong style="color:#d4af37;font-style:normal">prix symbolique</strong> — fixé en fonction des possibilités de chaque élève et du contexte haïtien. Aucun chercheur sincère ne sera exclu pour des raisons financières. Contactez-nous pour discuter des modalités.</p></div></div><div class="art-nav"><a href="presentation.html">Présentation →</a><a href="mentions-legales.html">Mentions Légales →</a><a href="index.html">← Accueil</a></div></div><script>
+const st=document.getElementById('stars');
+for(let i=0;i<80;i++){const s=document.createElement('div');s.className='s';const z=Math.random()*1.8+.4;s.style.cssText=`width:${z}px;height:${z}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${.07+Math.random()*.28};animation-delay:${Math.random()*6}s`;st.appendChild(s);}
+window.addEventListener('scroll',()=>{const d=document.documentElement;document.getElementById('prog').style.width=(d.scrollTop/(d.scrollHeight-d.clientHeight)*100)+'%';});
+</script>
+</body>
+</html>

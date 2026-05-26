@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mezouza — Protection pour Toute Situation — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#040406;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh;overflow-y:hidden}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(140px)}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(212,175,55,.055),transparent);top:-220px;right:-180px}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(180,140,30,.045),transparent);bottom:-160px;left:-160px}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(4,4,6,.93);border-bottom:1px solid rgba(212,175,55,.1);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 18px rgba(212,175,55,.5)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
+/* GATE */
+#gate{position:fixed;inset:0;z-index:900;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;background:#040406;padding:2rem}
+.gate-inner{position:relative;z-index:1;text-align:center;max-width:420px;width:100%;animation:gIn 1.2s ease forwards;opacity:0}
+@keyframes gIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.gate-seal{width:100px;height:100px;margin:0 auto 2rem;position:relative}
+.gate-seal svg{width:100%;height:100%;animation:rotateSeal 28s linear infinite}
+@keyframes rotateSeal{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.gate-seal-inner{position:absolute;inset:0;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:#d4af37;text-shadow:0 0 22px rgba(212,175,55,.7)}
+.seal-glow{position:absolute;inset:0;border-radius:50%;animation:sealPulse 3s ease-out infinite}
+@keyframes sealPulse{0%{box-shadow:0 0 0 0 rgba(212,175,55,.2)}70%{box-shadow:0 0 0 22px rgba(212,175,55,0)}100%{box-shadow:0 0 0 0 rgba(212,175,55,0)}}
+.gate-sup{font-family:'Cinzel',serif;font-size:.53rem;letter-spacing:.4em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.8rem}
+.gate-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,5vw,2.2rem);font-weight:400;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.gate-title span{color:#d4af37}
+.gate-div{width:40px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.3rem auto}
+.gate-verse{font-size:.98rem;font-style:italic;color:rgba(255,255,255,.35);line-height:1.9;margin-bottom:1.8rem}
+.gate-field{position:relative;margin-bottom:1rem}
+.gate-input{width:100%;background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.22);color:#e8e0cc;padding:.9rem 3rem .9rem 1.2rem;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.15em;outline:none;text-align:center;transition:all .3s}
+.gate-input:focus{border-color:rgba(212,175,55,.55);background:rgba(212,175,55,.07)}
+.gate-input::placeholder{color:rgba(255,255,255,.2);letter-spacing:.2em}
+.toggle-pw{position:absolute;right:.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(212,175,55,.35);cursor:pointer;font-size:1rem;transition:color .3s;padding:0}
+.toggle-pw:hover{color:#d4af37}
+.gate-btn{width:100%;background:transparent;border:1px solid rgba(212,175,55,.4);color:#d4af37;padding:.9rem 2rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s;position:relative;overflow-y: auto}
+.gate-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(212,175,55,.08),transparent);transform:translateX(-100%);transition:transform .5s}
+.gate-btn:hover::before{transform:translateX(100%)}
+.gate-btn:hover{border-color:#d4af37;background:rgba(212,175,55,.07);color:#fff}
+.gate-err{margin-top:.8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:rgba(200,70,70,.8);opacity:0;transition:opacity .3s;min-height:1em}
+.gate-err.show{opacity:1}
+.gate-hint{margin-top:1.6rem;font-size:.8rem;font-style:italic;color:rgba(255,255,255,.15)}
+/* CONTENT */
+#content{display:none;padding-top:80px;position:relative;z-index:1}
+/* HERO */
+.page-hero{text-align:center;padding:4.5rem 2rem 3rem;position:relative;overflow-y: auto;border-bottom:1px solid rgba(212,175,55,.08)}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(212,175,55,.07) 0%,transparent 65%)}
+.hero-heb{font-family:'Noto Serif Hebrew',serif;font-size:3.2rem;color:rgba(212,175,55,.14);display:block;margin-bottom:1rem;letter-spacing:.08em}
+.hero-sup{font-family:'Cinzel',serif;font-size:.54rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.8rem;display:block}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,2.9rem);font-weight:400;color:#fff;line-height:1.15;margin-bottom:.6rem}
+.hero-title span{color:#d4af37}
+.hero-sub{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.25em;color:rgba(212,175,55,.35);text-transform:uppercase;margin-bottom:1.4rem;display:block}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.4rem auto}
+.hero-intro{font-size:clamp(1rem,2.5vw,1.18rem);font-style:italic;font-weight:300;line-height:1.95;max-width:660px;margin:0 auto;color:rgba(255,255,255,.5)}
+.hero-intro em{color:#d4af37;font-style:normal}
+/* MAIN */
+.main-wrap{max-width:980px;margin:0 auto;padding:3rem 1.5rem 6rem}
+/* INTRO NOTE */
+.intro-note{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.12);border-left:3px solid rgba(212,175,55,.4);padding:1.5rem 1.8rem;margin-bottom:3.5rem}
+.intro-note-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.intro-note-text{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85}
+.intro-note-text strong{color:#d4af37;font-weight:400}
+/* SECTION HEADER */
+.sec-header{text-align:center;margin-bottom:2.5rem}
+.sec-lbl{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.5rem);font-weight:400;color:#fff}
+/* ANATOMY SECTION */
+.anatomy-grid{display:grid;grid-template-columns:1fr 2fr;gap:2rem;margin-bottom:5rem;align-items:start}
+@media(max-width:680px){.anatomy-grid{grid-template-columns:1fr}}
+.anatomy-visual{display:flex;
+flex-wrap:wrap;flex-direction:column;align-items:center;gap:1rem}
+.klaf-wrap{width:80px;background:rgba(245,235,200,.06);border:1px solid rgba(212,175,55,.2);padding:1.5rem .8rem;display:flex;
+flex-wrap:wrap;flex-direction:column;align-items:center;gap:.6rem;position:relative}
+.klaf-wrap::before{content:'קלף';font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.2em;color:rgba(212,175,55,.3);text-transform:uppercase;position:absolute;top:-1.3rem;left:50%;transform:translateX(-50%);white-space:nowrap}
+.klaf-letter{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,.6);text-align:center;line-height:1.4}
+.klaf-shin{font-family:'Noto Serif Hebrew',serif;font-size:2.2rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4);text-align:center}
+.klaf-note{font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.15em;color:rgba(212,175,55,.3);text-align:center;text-transform:uppercase}
+.anatomy-facts{display:flex;
+flex-wrap:wrap;flex-direction:column;gap:.8rem}
+.af-item{background:rgba(212,175,55,.02);border:1px solid rgba(212,175,55,.09);padding:1rem 1.2rem;display:flex;
+flex-wrap:wrap;gap:1rem;align-items:flex-start}
+.af-num{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-transform:uppercase;flex-shrink:0;width:24px;padding-top:.15rem}
+.af-content{flex:1}
+.af-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.08em;color:#fff;display:block;margin-bottom:.25rem}
+.af-text{font-size:.92rem;color:rgba(232,228,220,.5);line-height:1.75}
+.af-text em{color:#d4af37;font-style:italic}
+/* ACCORDION — SITUATIONS */
+.acc-section{margin-bottom:4.5rem}
+.acc-item{border:1px solid rgba(212,175,55,.1);margin-bottom:.8rem;background:rgba(10,10,18,.65);position:relative;overflow-y: auto;transition:border-color .3s}
+.acc-item:hover{border-color:rgba(212,175,55,.25)}
+.acc-item.open{border-color:rgba(212,175,55,.3)}
+.acc-item::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:rgba(212,175,55,.5);transform:scaleY(0);transition:transform .4s}
+.acc-item.open::before{transform:scaleY(1)}
+.acc-header{display:flex;
+flex-wrap:wrap;align-items:center;gap:1rem;padding:1.2rem 1.5rem;cursor:pointer;user-select:none}
+.acc-icon{font-size:1.3rem;flex-shrink:0;width:34px;text-align:center}
+.acc-head-text{flex:1}
+.acc-head-lbl{font-family:'Cinzel',serif;font-size:.43rem;letter-spacing:.28em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.2rem}
+.acc-head-title{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.06em;color:#fff}
+.acc-toggle{font-size:.9rem;color:rgba(212,175,55,.3);transition:transform .3s;flex-shrink:0}
+.acc-item.open .acc-toggle{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow-y: auto;transition:max-height .6s ease}
+.acc-item.open .acc-body{max-height:1000px}
+.acc-content{padding:0 1.5rem 1.5rem 4rem;border-top:1px solid rgba(212,175,55,.07)}
+.acc-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1rem 0}
+@media(max-width:500px){.acc-detail-grid{grid-template-columns:1fr}}
+.acc-detail{background:rgba(212,175,55,.02);border:1px solid rgba(212,175,55,.08);padding:.7rem .9rem}
+.acc-detail-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.28em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.3rem;display:block}
+.acc-detail-val{font-size:.9rem;color:rgba(232,228,220,.6);line-height:1.6}
+.acc-detail-val em{color:#d4af37;font-style:italic}
+.acc-steps{margin-top:1rem}
+.acc-steps-lbl{font-family:'Cinzel',serif;font-size:.43rem;letter-spacing:.28em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.7rem;display:block}
+.acc-step{display:flex;
+flex-wrap:wrap;gap:.8rem;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:1px solid rgba(212,175,55,.06);font-size:.93rem;color:rgba(232,228,220,.55);line-height:1.85;align-items:flex-start}
+.acc-step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.acc-step-n{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;padding-top:.2rem;flex-shrink:0}
+.acc-step-text{flex:1;min-width:0;overflow-wrap:break-word}.acc-step em{color:rgba(212,175,55,.75);font-style:italic}
+.acc-step strong{color:#e8e4dc;font-weight:400}
+.acc-source{margin-top:1rem;font-size:.82rem;font-style:italic;color:rgba(212,175,55,.35);border-top:1px solid rgba(212,175,55,.07);padding-top:.8rem}
+/* KABAL LEVELS TABLE */
+.levels-wrap{overflow-x:auto;margin-bottom:5rem}
+table.lev-tbl{width:100%;border-collapse:collapse;font-size:.88rem}
+table.lev-tbl th{font-family:'Cinzel',serif;font-size:.43rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(212,175,55,.45);padding:.7rem 1rem;border-bottom:1px solid rgba(212,175,55,.15);text-align:left}
+table.lev-tbl td{padding:.65rem 1rem;border-bottom:1px solid rgba(212,175,55,.07);color:rgba(232,228,220,.55);line-height:1.65;vertical-align:top}
+table.lev-tbl td:first-child{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:#d4af37;text-align:center;width:44px}
+table.lev-tbl td.t-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.08em;color:#fff;text-transform:uppercase;white-space:nowrap}
+table.lev-tbl td em{color:#d4af37;font-style:italic}
+table.lev-tbl tr:hover td{background:rgba(212,175,55,.02)}
+/* BERAKHA BOX */
+.berakha-box{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.18);padding:2rem 2rem;margin-bottom:5rem;text-align:center;position:relative;overflow-y: auto}
+.berakha-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,#d4af37,transparent)}
+.berakha-lbl{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem;display:block}
+.berakha-heb{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.1rem,3vw,1.5rem);color:#d4af37;line-height:1.9;direction:rtl;margin-bottom:1.2rem}
+.berakha-trans{font-size:.95rem;font-style:italic;color:rgba(232,228,220,.45);line-height:1.8}
+.berakha-div{width:40px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.4),transparent);margin:1.2rem auto}
+/* SHADAI BOX */
+.shadai-section{margin-bottom:5rem}
+.shadai-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+@media(max-width:600px){.shadai-grid{grid-template-columns:1fr}}
+.shadai-card{border:1px solid rgba(212,175,55,.1);background:rgba(10,10,18,.6);padding:1.4rem;text-align:center}
+.shadai-letter{font-family:'Noto Serif Hebrew',serif;font-size:2.2rem;color:#d4af37;text-shadow:0 0 20px rgba(212,175,55,.3);display:block;margin-bottom:.6rem}
+.shadai-stands{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.45);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.shadai-meaning{font-size:.93rem;color:rgba(232,228,220,.5);font-style:italic;line-height:1.7}
+/* NAV BOTTOM */
+.nav-bottom{display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1);flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(212,175,55,.4);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.65rem 1.3rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.04)}
+/* FOOTER */
+footer{position:relative;z-index:1;background:#040406;border-top:1px solid rgba(212,175,55,.1);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-size:.8rem;color:#303030;letter-spacing:.1em}
+</style>
+</head>
+<body><div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="rituels.html" class="nav-back">Rituels</a>
+</nav><div id="gate"><div class="gate-inner"><div class="gate-seal"><div class="seal-glow"></div><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="46" stroke="rgba(212,175,55,.25)" stroke-width="1"/><circle cx="50" cy="50" r="36" stroke="rgba(212,175,55,.14)" stroke-width=".6" stroke-dasharray="4 3"/><rect x="28" y="18" width="44" height="64" rx="3" stroke="rgba(212,175,55,.2)" stroke-width=".8" fill="none"/><rect x="34" y="24" width="32" height="52" rx="2" stroke="rgba(212,175,55,.12)" stroke-width=".5" fill="none"/></svg><div class="gate-seal-inner">שַׁדַּי</div></div><p class="gate-sup">✦ Bnei Ohr — Protection du Foyer ✦</p><h1 class="gate-title"><span>Mezouza</span> — מְזוּזָה</h1><div class="gate-div"></div><p class="gate-verse">« Tu les écriras sur les montants de ta maison<br/>et sur tes portes. »<br/><em style="font-size:.75rem;color:rgba(212,175,55,.3)">— Devarim 6:9</em></p><div class="gate-field"><input type="password" class="gate-input" id="pwInput" placeholder="Clé d'accès…" autocomplete="off"/><button class="toggle-pw" onclick="togglePw()">👁</button></div><button class="gate-btn" onclick="checkPass()">✦ Entrer ✦</button><p class="gate-err" id="gateErr">Clé incorrecte — Cherche encore.</p><p class="gate-hint">La clé t'a été transmise par le Fondateur de Bnei Ohr.</p></div>
+</div><div id="content"><section class="page-hero"><span class="hero-heb">מְזוּזָה</span><span class="hero-sup">✦ Protection du Foyer — Bouclier Vivant ✦</span><h1 class="hero-title"><span>Mezouza</span> — Pour Toute Situation</h1><span class="hero-sub">Pose · Vérification · Kavvanah · Niveaux Kabalistiques</span><div class="hero-divider"></div><p class="hero-intro">La Mezouza n'est pas une décoration — c'est une <em>présence divine fixée au seuil</em>. Chaque porte sur laquelle elle est posée devient un portail sacré, et le nom <em>Shadaï</em> gravé sur son dos — acronyme de <em>Shomer Daletot Yisrael</em> — proclame que D-ieu Lui-même garde chaque entrée et sortie.</p>
+</section><main class="main-wrap"><div class="intro-note"><div class="intro-note-label">✦ Fondement ✦</div><p class="intro-note-text">La Mezouza contient le parchemin (<em>Klaf</em>) sur lequel sont écrits à la main les deux premiers paragraphes du Shema Yisrael (Devarim 6:4–9 et 11:13–21). Elle est l'une des rares Mitzvot qui <strong>enveloppe entièrement le lieu de vie</strong> — créant un espace sanctifié où la Shekhina peut résider. Le Rambam enseigne que chaque fois qu'on touche la Mezouza, on renouvelle sa conscience de D-ieu.</p></div><div class="sec-header"><span class="sec-lbl">✦ Structure Sacrée ✦</span><h2 class="sec-title">Anatomie d'une Mezouza</h2></div><div class="anatomy-grid" style="margin-bottom:4rem"><div class="anatomy-visual"><div class="klaf-wrap"><span class="klaf-shin">שׁ</span><div class="klaf-letter">
+שְׁמַע יִשְׂרָאֵל<br/>יהוה אֱלֹהֵינוּ<br/>יהוה אֶחָד<br/><span style="font-size:.7rem;opacity:.4">···</span><br/>
+וְאָהַבְתָּ אֵת<br/>יהוה אֱלֹהֶיךָ<br/><span style="font-size:.7rem;opacity:.4">···</span></div><span class="klaf-note">Klaf — Parchemin</span></div><div style="font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.3);text-transform:uppercase;text-align:center;max-width:120px;line-height:1.8">Roulé de droite à gauche · Shin visible au dos</div></div><div class="anatomy-facts"><div class="af-item"><span class="af-num">01</span><div class="af-content"><span class="af-title">Le Klaf — Parchemin</span><div class="af-text">Écrit à la main par un <em>Sofer STaM</em> (scribe qualifié) sur parchemin kasher d'animal pur. Chaque lettre doit être parfaite — une seule lettre manquante ou endommagée invalide tout le parchemin.</div></div></div><div class="af-item"><span class="af-num">02</span><div class="af-content"><span class="af-title">Le Shin extérieur — שׁ</span><div class="af-text">La lettre Shin visible au dos du parchemin est l'initiale de <em>Shadaï</em> — acronyme de <strong>Sh</strong>omer <strong>D</strong>aletot <strong>Y</strong>israel : « Gardien des portes d'Israël ». C'est le Nom protecteur.</div></div></div><div class="af-item"><span class="af-num">03</span><div class="af-content"><span class="af-title">Kozo BeMoukHSaZ KoZo</span><div class="af-text">Au dos du parchemin, le Sofer écrit les lettres <em>כוזו במוכסז כוזו</em> — code kabbalistique qui représente le Tétragramme par la lettre suivante dans l'alphabet. C'est le sceau caché de la Mezouza.</div></div></div><div class="af-item"><span class="af-num">04</span><div class="af-content"><span class="af-title">Le Boîtier — Bayt</span><div class="af-text">Le boîtier protège le parchemin mais n'a aucune valeur spirituelle propre. Ce qui compte c'est le <em>Klaf</em> intérieur. Un beau boîtier honore la Mitsva — mais un Klaf invalide dans un beau boîtier ne protège rien.</div></div></div></div></div><div class="shadai-section"><div class="sec-header"><span class="sec-lbl">✦ Le Nom Protecteur ✦</span><h2 class="sec-title">Shadaï — שַׁדַּי — Les Trois Lettres</h2></div><div class="shadai-grid"><div class="shadai-card"><span class="shadai-letter">שׁ</span><span class="shadai-stands">Shin → Shomer</span><p class="shadai-meaning"><em>Gardien</em> — D-ieu est le gardien actif de chaque maison et de chaque âme qui y réside</p></div><div class="shadai-card"><span class="shadai-letter">דּ</span><span class="shadai-stands">Dalet → Daletot</span><p class="shadai-meaning"><em>Portes</em> — toutes les portes : physiques, spirituelles, les entrées de la vie et les sorties du danger</p></div><div class="shadai-card"><span class="shadai-letter">י</span><span class="shadai-stands">Yod → Yisrael</span><p class="shadai-meaning"><em>Israël</em> — tout le peuple, chaque foyer, chaque âme liée à l'Alliance — individuellement et collectivement</p></div></div></div><div class="acc-section"><div class="sec-header"><span class="sec-lbl">✦ Pratiques Complètes ✦</span><h2 class="sec-title">La Mezouza pour Chaque Situation</h2></div><div class="acc-item" onclick="toggleAcc(this)"><div class="acc-header"><span class="acc-icon">🏠</span><div class="acc-head-text"><span class="acc-head-lbl">Situation 1 — Entrée dans un nouveau foyer</span><span class="acc-head-title">Première pose — Consécration de la maison</span></div><span class="acc-toggle">▾</span></div><div class="acc-body"><div class="acc-content"><div class="acc-detail-grid"><div class="acc-detail"><span class="acc-detail-lbl">Délai</span><div class="acc-detail-val">En Israël : <em>immédiatement</em> · Diaspora : 30 jours (si location)</div></div><div class="acc-detail"><span class="acc-detail-lbl">Porte principale d'abord</span><div class="acc-detail-val">Commencer par l'entrée principale — puis les autres portes</div></div><div class="acc-detail"><span class="acc-detail-lbl">Hauteur</span><div class="acc-detail-val">Premier tiers <em>supérieur</em> du montant — ni trop haut ni trop bas</div></div><div class="acc-detail"><span class="acc-detail-lbl">Angle</span><div class="acc-detail-val">Inclinée vers l'intérieur — <em>haut vers l'intérieur</em></div></div></div><div class="acc-steps"><span class="acc-steps-lbl">Rituel de pose — étape par étape</span><div class="acc-step"><span class="acc-step-n">01</span><div class="acc-step-text">Réunir famille et proches si possible — la pose d'une Mezouza est un moment de joie (<em>Simha shel Mitsva</em>). Préparer le parchemin validé par un Sofer kasher.</div></div><div class="acc-step"><span class="acc-step-n">02</span><div class="acc-step-text">Tenir le Klaf roulé dans la main droite, <em>Shin visible</em>. Méditer un instant sur le Nom Shadaï et sa signification — « D-ieu garde cette porte ». Cet instant de Kavvanah est essentiel.</div></div><div class="acc-step"><span class="acc-step-n">03</span><div class="acc-step-text">Réciter la bénédiction : <em>« Baroukh Ata Adonaï Eloheinou Melekh HaOlam asher kidchanou bemitsvotav vetsivvanou likboa Mezouza. »</em> Poser <strong>immédiatement</strong> après — sans parler.</div></div><div class="acc-step"><span class="acc-step-n">04</span><div class="acc-step-text">Fixer solidement. Si plusieurs portes : réciter la bénédiction <em>une seule fois</em> pour toutes en disant « likboa Mezouzot » (pluriel). Poser toutes les Mezouzot de suite.</div></div><div class="acc-step"><span class="acc-step-n">05</span><div class="acc-step-text">Après la pose : réciter le Psaume 30 (<em>Mizmor Shir Hanukat HaBayit</em> — Psaume de l'inauguration de la maison). Dire : « Que D-ieu bénisse cette maison et tous ceux qui y entrent et sortent. »</div></div></div><p class="acc-source">✦ Tradition : dans la maison de Rabbi Judah HaNassi, les Mezouzot étaient posées avec une procession joyeuse et des chants — car consacrer une maison est aussi important que consacrer une synagogue.</p></div></div></div><div class="acc-item" onclick="toggleAcc(this)"><div class="acc-header"><span class="acc-icon">🔍</span><div class="acc-head-text"><span class="acc-head-lbl">Situation 2 — Vérification du Klaf</span><span class="acc-head-title">Quand et comment vérifier — signes d'invalidité</span></div><span class="acc-toggle">▾</span></div><div class="acc-body"><div class="acc-content"><div class="acc-detail-grid"><div class="acc-detail"><span class="acc-detail-lbl">Fréquence minimum</span><div class="acc-detail-val">Tous les <em>3,5 ans</em> — 7 ans selon certains Poskim</div></div><div class="acc-detail"><span class="acc-detail-lbl">Obligatoire si</span><div class="acc-detail-val">Maladie prolongée · Accident · Problèmes financiers répétés</div></div><div class="acc-detail"><span class="acc-detail-lbl">Qui peut vérifier</span><div class="acc-detail-val">Uniquement un <em>Sofer STaM</em> qualifié</div></div><div class="acc-detail"><span class="acc-detail-lbl">Coût</span><div class="acc-detail-val">Vérification : ~5–15€ par parchemin</div></div></div><div class="acc-steps"><span class="acc-steps-lbl">Signes qui nécessitent une vérification immédiate</span><div class="acc-step"><span class="acc-step-n">⚠</span><div class="acc-step-text"><strong>Maladie grave ou accidents répétés</strong> dans le foyer — la tradition enseigne que parfois la Mezouza invalide en est la cause spirituelle.</div></div><div class="acc-step"><span class="acc-step-n">⚠</span><div class="acc-step-text"><strong>Humidité, moisissure ou dommages visibles</strong> sur le boîtier — le Klaf intérieur peut être affecté même s'il n'est pas visible.</div></div><div class="acc-step"><span class="acc-step-n">⚠</span><div class="acc-step-text"><strong>Boîtier tombé</strong> — une Mezouza tombée doit être reposée dans les 24 heures. Si tombée la nuit : la reposer le matin.</div></div><div class="acc-step"><span class="acc-step-n">✦</span><div class="acc-step-text">Porter le Klaf chez un Sofer. Si le parchemin est invalide (lettre fendue, effacée, manquante), il doit être enterré dans un <em>Gueniza</em> avec respect — non jeté à la poubelle.</div></div></div><p class="acc-source">✦ Talmud Bavli (Ménakhot 33b) : Rabbi Yehuda dit que la récompense de la Mezouza est la longévité. Le Zohar précise que la vérifier régulièrement renouvelle la protection attachée à la maison.</p></div></div></div><div class="acc-item" onclick="toggleAcc(this)"><div class="acc-header"><span class="acc-icon">🙏</span><div class="acc-head-text"><span class="acc-head-lbl">Situation 3 — Maladie ou épreuve prolongée</span><span class="acc-head-title">Mezouza comme réponse spirituelle à la souffrance</span></div><span class="acc-toggle">▾</span></div><div class="acc-body"><div class="acc-content"><div class="acc-detail-grid"><div class="acc-detail"><span class="acc-detail-lbl">Priorité absolue</span><div class="acc-detail-val">Vérifier <em>toutes</em> les Mezouzot de la maison sans exception</div></div><div class="acc-detail"><span class="acc-detail-lbl">Aussi valable pour</span><div class="acc-detail-val">Difficultés financières · Tensions conjugales · Dépression</div></div><div class="acc-detail"><span class="acc-detail-lbl">Source</span><div class="acc-detail-val">Responsa du Rambam — cas historiques documentés</div></div><div class="acc-detail"><span class="acc-detail-lbl">Action complémentaire</span><div class="acc-detail-val">Tsedakah + Teshuvah + vérification simultanées</div></div></div><div class="acc-steps"><span class="acc-steps-lbl">Pratique — Réponse complète</span><div class="acc-step"><span class="acc-step-n">01</span><div class="acc-step-text">Faire vérifier <em>toutes</em> les Mezouzot par un Sofer — y compris celles qui semblent en bon état extérieurement. Le Rambam rapporte des cas où une seule lettre endommagée sur une Mezouza de chambre avait un impact sur la santé du résident.</div></div><div class="acc-step"><span class="acc-step-n">02</span><div class="acc-step-text">Pendant la période sans Mezouza (en vérification) : coller sur chaque porte le verset <em>« Adonaï Shomrekha »</em> (Tehilim 121:5) écrit à la main comme protection temporaire.</div></div><div class="acc-step"><span class="acc-step-n">03</span><div class="acc-step-text">À la repose : accompagner de Teshuvah sincère. La tradition enseigne que la Mezouza est un miroir de l'état spirituel du foyer — vérifier la Mezouza, c'est aussi se vérifier soi-même.</div></div></div><p class="acc-source">✦ Le Zohar : « La Mezouza est le gardien de la maison. Quand elle est saine, la maison est protégée. Quand elle est endommagée, le gardien dort et les forces adverses peuvent entrer. »</p></div></div></div><div class="acc-item" onclick="toggleAcc(this)"><div class="acc-header"><span class="acc-icon">📦</span><div class="acc-head-text"><span class="acc-head-lbl">Situation 4 — Déménagement</span><span class="acc-head-title">Que faire des Mezouzot quand on quitte une maison</span></div><span class="acc-toggle">▾</span></div><div class="acc-body"><div class="acc-content"><div class="acc-detail-grid"><div class="acc-detail"><span class="acc-detail-lbl">Règle principale</span><div class="acc-detail-val">On <em>emporte</em> les Mezouzot si le prochain résident n'est pas juif</div></div><div class="acc-detail"><span class="acc-detail-lbl">Si résident juif suit</span><div class="acc-detail-val">Laisser en place — c'est une Mitsva envers lui</div></div><div class="acc-detail"><span class="acc-detail-lbl">Si location</span><div class="acc-detail-val">Obligation de poser après 30 jours — emporter à la fin</div></div><div class="acc-detail"><span class="acc-detail-lbl">Source</span><div class="acc-detail-val">Choulhan Aroukh, Yore Dea 291</div></div></div><div class="acc-steps"><span class="acc-steps-lbl">Protocole de départ</span><div class="acc-step"><span class="acc-step-n">01</span><div class="acc-step-text">La veille du déménagement : retirer délicatement chaque Mezouza. Les envelopper avec soin dans un tissu propre. Ne jamais jeter un parchemin kasher — le porter au Sofer ou à la synagogue pour <em>Gueniza</em> si endommagé.</div></div><div class="acc-step"><span class="acc-step-n">02</span><div class="acc-step-text">Si le prochain résident est juif et qu'on lui laisse les Mezouzot : l'en informer clairement. Il devra les vérifier avant de compter sur leur protection.</div></div><div class="acc-step"><span class="acc-step-n">03</span><div class="acc-step-text">Dans le nouveau logement : poser les Mezouzot le plus tôt possible — le foyer sans Mezouza est privé de sa protection spirituelle. Même une Mezouza sur l'entrée principale suffit jusqu'à la pose complète.</div></div></div><p class="acc-source">✦ Tradition : Rabbi Yossi bar Zevida enseigne que celui qui vend une maison à un non-juif en emportant les Mezouzot « ouvre la maison aux forces adverses » — car un vide spirituel est créé.</p></div></div></div><div class="acc-item" onclick="toggleAcc(this)"><div class="acc-header"><span class="acc-icon">✨</span><div class="acc-head-text"><span class="acc-head-lbl">Situation 5 — Pratique quotidienne</span><span class="acc-head-title">Transformer chaque passage en acte spirituel</span></div><span class="acc-toggle">▾</span></div><div class="acc-body"><div class="acc-content"><div class="acc-detail-grid"><div class="acc-detail"><span class="acc-detail-lbl">Geste quotidien</span><div class="acc-detail-val">Toucher la Mezouza <em>avec intention</em> à chaque passage</div></div><div class="acc-detail"><span class="acc-detail-lbl">Quelle main</span><div class="acc-detail-val">Main droite — puis porter les doigts aux lèvres (baiser)</div></div><div class="acc-detail"><span class="acc-detail-lbl">Quand</span><div class="acc-detail-val">En entrant <em>et</em> en sortant — les deux directions comptent</div></div><div class="acc-detail"><span class="acc-detail-lbl">Pour les enfants</span><div class="acc-detail-val">Enseigner ce geste dès 3 ans — c'est leur première pratique spirituelle</div></div></div><div class="acc-steps"><span class="acc-steps-lbl">La Kavvanah des trois niveaux — selon le Ari zal</span><div class="acc-step"><span class="acc-step-n">Nefesh</span><div class="acc-step-text"><strong>Niveau physique</strong> — en touchant : visualiser la Mezouza comme un bouclier réel contre tout danger physique qui attend dehors ou ce qu'on laisse derrière en rentrant.</div></div><div class="acc-step"><span class="acc-step-n">Ruach</span><div class="acc-step-text"><strong>Niveau émotionnel</strong> — en touchant : demander que D-ieu garde les émotions du foyer pures — pas de colère qui rentre, pas de tristesse qui s'installe.</div></div><div class="acc-step"><span class="acc-step-n">Neshamah</span><div class="acc-step-text"><strong>Niveau de l'âme</strong> — en touchant : rappeler que tu es un être spirituel entrant dans un espace sanctifié. Chaque porte franchie avec conscience est une élévation de l'âme.</div></div></div><p class="acc-source">✦ Ari zal : « Chaque fois qu'un homme sort de chez lui, la Mezouza lui rappelle son Créateur. Il ne part pas seul — il part gardé. » Ce simple geste quotidien est, selon lui, une des pratiques les plus puissantes pour maintenir la conscience divine tout au long de la journée.</p></div></div></div><div class="acc-item" onclick="toggleAcc(this)"><div class="acc-header"><span class="acc-icon">🛡</span><div class="acc-head-text"><span class="acc-head-lbl">Situation 6 — Période de danger ou d'angoisse</span><span class="acc-head-title">Activer la protection de la Mezouza en temps de crise</span></div><span class="acc-toggle">▾</span></div><div class="acc-body"><div class="acc-content"><div class="acc-detail-grid"><div class="acc-detail"><span class="acc-detail-lbl">Contexte</span><div class="acc-detail-val">Menace · Peur · Période difficile · Conflits extérieurs</div></div><div class="acc-detail"><span class="acc-detail-lbl">Tehilim associé</span><div class="acc-detail-val">Tehilim 91 et 121 — à réciter devant la Mezouza</div></div><div class="acc-detail"><span class="acc-detail-lbl">Nom à prononcer</span><div class="acc-detail-val"><em>Shadaï</em> — trois fois à voix basse</div></div><div class="acc-detail"><span class="acc-detail-lbl">Geste complémentaire</span><div class="acc-detail-val">Poser la main à plat sur le boîtier pendant la prière</div></div></div><div class="acc-steps"><span class="acc-steps-lbl">Rituel de protection renforcée</span><div class="acc-step"><span class="acc-step-n">01</span><div class="acc-step-text">Se placer devant la Mezouza de l'entrée principale. Poser la paume droite à plat dessus. Fermer les yeux et prononcer trois fois à voix basse : <em>« Shadaï — Shomer Daletot Yisrael — garde cette maison et tous ceux qui y vivent. »</em></div></div><div class="acc-step"><span class="acc-step-n">02</span><div class="acc-step-text">Réciter Tehilim 121 dans son intégralité. Visualiser à chaque verset une lumière dorée qui s'étend de la Mezouza pour envelopper les murs, le toit et le sol de la maison.</div></div><div class="acc-step"><span class="acc-step-n">03</span><div class="acc-step-text">Conclure par : <em>« Yehi Ratzon milfanecha Adonaï — que le Nom gravé sur cette Mezouza soit comme un mur de feu autour de cette maison, invisible pour les hommes mais réel devant le Ciel. »</em> Amen.</div></div></div><p class="acc-source">✦ Talmud (Avoda Zara 11a) : On rapporte que même Artaban, roi des Parthes, fit poser une Mezouza sur sa porte après avoir vu sa puissance protectrice — disant : « Tu m'envoies un trésor inestimable, et moi je t'envoie de l'or. »</p></div></div></div></div><div class="sec-header"><span class="sec-lbl">✦ La Bénédiction ✦</span><h2 class="sec-title">Bénédiction de Pose — Texte Complet</h2></div><div class="berakha-box" style="margin-bottom:5rem"><span class="berakha-lbl">✦ Bénédiction de la Mezouza ✦</span><div class="berakha-heb">
+בָּרוּךְ אַתָּה יהוה אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם<br/>
+אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לִקְבֹּעַ מְזוּזָה
+</div><div class="berakha-div"></div><div class="berakha-trans">
+« Béni sois-Tu, Éternel notre D-ieu, Roi de l'Univers,<br/>
+qui nous as sanctifiés par Ses commandements<br/>
+et nous as ordonné de poser la Mezouza. »
+</div></div><div class="sec-header"><span class="sec-lbl">✦ Niveaux Kabalistiques ✦</span><h2 class="sec-title">La Mezouza dans les Quatre Mondes</h2></div><div class="levels-wrap"><table class="lev-tbl"><thead><tr><th>Monde</th><th>Nom</th><th>Niveau</th><th>Ce que la Mezouza accomplit</th></tr></thead><tbody><tr><td>אצילות</td><td class="t-name">Atsilout — Émanation</td><td>Divin pur</td><td>Le Tétragramme inscrit dans le Klaf unit la maison directement à la Source divine — Ein Sof habite dans l'espace</td></tr><tr><td>בריאה</td><td class="t-name">Beria — Création</td><td>Âme — Neshamah</td><td>La Mezouza élève l'âme des habitants — chaque passage avec conscience est une montée spirituelle</td></tr><tr><td>יצירה</td><td class="t-name">Yetsirah — Formation</td><td>Esprit — Ruach</td><td>Elle harmonise les énergies émotionnelles du foyer — réduit les conflits, attire la paix (<em>Shalom Bayit</em>)</td></tr><tr><td>עשייה</td><td class="t-name">Assiya — Action</td><td>Corps — Nefesh</td><td>Protection physique concrète — garde contre les accidents, les voleurs, les maladies et les influences adverses</td></tr></tbody></table></div><div class="nav-bottom"><a href="segoula-fr.html" class="nav-btn">← Segoula</a><a href="rituels.html" class="nav-btn">Retour aux Rituels →</a></div></main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Enseignement Ésotérique Kabalistique</p>
+</footer></div><script>
+// ── STARS
+(function(){
+const c=document.getElementById('stars');
+for(let i=0;i<120;i++){
+const s=document.createElement('div');s.className='star';
+const sz=Math.random()*2+.4;
+s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:#fff;--d:${2+Math.random()*6}s;--o:${.06+Math.random()*.45}`;
+c.appendChild(s);
+}
+})();
+// ── GATE
+const SECRETS=['rituels777','rituels 777','Rituels777','Rituels 777','RITUELS777','RITUELS 777'];
+function checkPass(){
+const val=document.getElementById('pwInput').value.trim();
+const err=document.getElementById('gateErr');
+if(SECRETS.map(s=>s.toLowerCase()).includes(val.toLowerCase())){
+const gate=document.getElementById('gate');
+gate.style.transition='opacity .8s ease';gate.style.opacity='0';
+setTimeout(()=>{gate.style.display='none';document.getElementById('content').style.display='block';document.body.style.overflowY='auto';},800);
+} else {
+err.classList.add('show');document.getElementById('pwInput').style.borderColor='rgba(200,70,70,.5)';
+setTimeout(()=>{err.classList.remove('show');document.getElementById('pwInput').style.borderColor='';},3000);
+}
+}
+document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPass();});
+function togglePw(){const i=document.getElementById('pwInput');i.type=i.type==='password'?'text':'password';}
+// ── ACCORDION
+function toggleAcc(item){
+const isOpen=item.classList.contains('open');
+document.querySelectorAll('.acc-item.open').forEach(el=>el.classList.remove('open'));
+if(!isOpen)item.classList.add('open');
+}
+</script>
+</body>
+</html>

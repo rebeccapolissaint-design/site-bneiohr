@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modeh Ani — Rituels Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#040406;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(4,4,6,.93);border-bottom:1px solid rgba(160,100,220,.12);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 18px rgba(212,175,55,.5)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(160,100,220,.5);text-decoration:none;text-transform:uppercase;transition:color .3s;border:1px solid rgba(160,100,220,.2);padding:.4rem 1rem}
+.nav-back:hover{color:#b08de8;border-color:rgba(160,100,220,.5)}
+.veil{position:fixed;inset:0;z-index:2000;background:#000;opacity:0;pointer-events:none;transition:opacity .6s}
+.veil.show{opacity:1}
+/* HERO */
+.hero{position:relative;min-height:70vh;display:flex;
+flex-wrap:wrap;align-items:flex-end;justify-content:center;padding:2rem 2rem 4rem;overflow-y: auto}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:brightness(.35);z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(4,4,6,.3) 0%,rgba(4,4,6,.7) 60%,#040406 100%);z-index:1}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:700px}
+.hero-num{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.45em;color:rgba(160,100,220,.6);text-transform:uppercase;display:inline-block;border:1px solid rgba(160,100,220,.25);padding:.3rem 1rem;margin-bottom:1.2rem}
+.hero-heb{font-family:'Noto Serif Hebrew',serif;font-size:clamp(2rem,7vw,4rem);color:rgba(212,175,55,.2);display:block;margin-bottom:.4rem;line-height:1}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,6vw,3.2rem);color:#fff;line-height:1.15;margin-bottom:.5rem}
+.hero-title span{color:#d4af37}
+.hero-timing{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;color:rgba(212,175,55,.45);text-transform:uppercase;display:block;margin-bottom:1rem}
+.hero-div{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(160,100,220,.5),transparent);margin:.8rem auto 0}
+/* CONTENT */
+.content{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:3rem 2rem 6rem}
+.block{margin-bottom:2.5rem}
+.block-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.38em;color:rgba(212,175,55,.45);text-transform:uppercase;display:flex;
+flex-wrap:wrap;align-items:center;gap:.8rem;margin-bottom:.9rem}
+.block-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(212,175,55,.15),transparent)}
+.intro-text{font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.45);line-height:1.95;margin-bottom:2rem}
+.heb-text{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:rgba(212,175,55,.85);line-height:2;direction:rtl;text-align:right;padding:1.2rem 1.5rem;background:rgba(212,175,55,.03);border-right:2px solid rgba(212,175,55,.3);display:block}
+.prono-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.52);line-height:1.9;padding:.9rem 1.3rem;border-left:2px solid rgba(160,100,220,.25);background:rgba(160,100,220,.02)}
+.trad-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:rgba(232,228,220,.65);line-height:1.9;padding:1rem 1.3rem;background:rgba(212,175,55,.025);border-left:2px solid rgba(212,175,55,.2)}
+.note-box{border:1px solid rgba(160,100,220,.15);background:rgba(160,100,220,.02);padding:1.5rem 1.8rem;margin-top:2rem}
+.note-label{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.3em;color:rgba(160,100,220,.45);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.note-text{font-size:.97rem;font-style:italic;color:rgba(255,255,255,.38);line-height:1.85}
+.nav-bottom{display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(160,100,220,.1);flex-wrap:wrap;gap:1rem}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(160,100,220,.45);text-decoration:none;text-transform:uppercase;border:1px solid rgba(160,100,220,.2);padding:.65rem 1.3rem;transition:all .3s}
+.nav-btn:hover{color:#b08de8;border-color:rgba(160,100,220,.5);background:rgba(160,100,220,.04)}
+footer{position:relative;z-index:1;background:#040406;border-top:1px solid rgba(160,100,220,.08);padding:2.5rem 2rem;text-align:center;margin-top:2rem}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.4rem}
+.footer-copy{font-size:.75rem;color:#383838;letter-spacing:.1em}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="veil" id="veil"></div>
+<nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="kabal.html" class="nav-back">← Rituels</a>
+</nav><section class="hero"><img style="object-fit:cover; object-position:center; filter:brightness(0.55) contrast(1.08);" class="hero-img" src="https://i.postimg.cc/bJtV7wVB/file-00000000f06871fd9acc23d02a2d97d6.png" alt="Modeh Ani"/><div class="hero-overlay"></div><div class="hero-inner"><span class="hero-num">Rituel 1 · Classique · Siddour</span><span class="hero-heb">מוֹדֶה אֲנִי</span><h1 class="hero-title">Modeh <span>Ani</span></h1><span class="hero-timing">☀ Matin — Se Réveiller dans la Conscience</span><div class="hero-div"></div></div>
+</section><main class="content"><p class="intro-text">
+La première prière qui ouvre le rideau de l'esprit dès le réveil, avant même de quitter le lit.
+Elle reconnaît que l'âme vient d'être restituée par Dieu après le sommeil — acte de gratitude immédiat qui ancre la conscience dans le sacré.
+</p><div class="block"><p class="block-label">Hébreu</p><span class="heb-text">מוֹדֶה אֲנִי לְפָנֶיךָ מֶלֶךְ חַי וְקַיָּם שֶׁהֶחֱזַרְתָּ בִּי נִשְׁמָתִי בְּחֶמְלָה, רַבָּה אֱמוּנָתֶךָ</span></div><div class="block"><p class="block-label">Prononciation</p><p class="prono-text">Modè ani lefanèka, Mèlèk kay vè-kayam, chè-è-kazarta bi nichmati békèmla — raba èmounatèka.</p></div><div class="block"><p class="block-label">Traduction</p><p class="trad-text">Je Te rends grâce devant Toi, Roi vivant et éternel, car Tu m'as restitué mon âme avec miséricorde. Grande est Ta fidélité.</p></div><div class="note-box"><span class="note-label">✦ Note de pratique</span><p class="note-text">Après avoir récité le <em>Modeh Ani</em> — cette prière de gratitude pour le souffle rendu — on procède immédiatement au rituel de lavage des mains (Netilat Yadayim). Ces deux pratiques forment un bloc indissociable au réveil.</p></div><div class="nav-bottom"><a href="kabal.html" class="nav-btn">← Retour aux Rituels</a><a href="rit-netilat.html" class="nav-btn">Rituel Suivant →</a></div>
+</main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Chemin des Anciens</p>
+</footer>
+<script>
+(function(){const c=document.getElementById('stars');for(let i=0;i<50;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*1.5+.3;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:#d4af37;--d:${(Math.random()*5+2).toFixed(1)}s;--o:${(Math.random()*.15+.03).toFixed(2)}`;c.appendChild(s);}})();
+document.querySelectorAll('a[href]').forEach(a=>{if(a.hostname===location.hostname&&!a.href.includes('#')){a.addEventListener('click',function(e){e.preventDefault();const d=this.href;const v=document.getElementById('veil');v.classList.add('show');setTimeout(()=>location.href=d,500);});}});
+</script>
+</body>
+</html>

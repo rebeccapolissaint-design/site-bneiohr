@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Psaumes — Cercle Intérieur — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#050508;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-min-height: 100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.glow-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(100px)}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,rgba(91,141,217,0.06),transparent);top:-150px;left:-150px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(212,175,55,0.04),transparent);bottom:-100px;right:-100px}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,8,0.93);border-bottom:1px solid rgba(212,175,55,0.12);backdrop-filter:blur(10px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,0.4)}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.45);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+/* GATE */
+#gate{position:fixed;inset:0;z-index:900;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;background:#050508;padding:2rem}
+.gate-inner{position:relative;z-index:1;text-align:center;max-width:420px;width:100%;animation:gateIn 1.2s ease forwards;opacity:0}
+@keyframes gateIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.gate-seal{width:90px;height:90px;margin:0 auto 2rem;position:relative}
+.gate-seal svg{width:100%;height:100%;animation:rotateSlow 30s linear infinite}
+@keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.gate-seal-inner{position:absolute;inset:0;display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:#5b8dd9;text-shadow:0 0 20px rgba(91,141,217,.6)}
+.seal-pulse{position:absolute;inset:0;border-radius:50%;animation:bluePulse 3s ease-out infinite}
+@keyframes bluePulse{0%{box-shadow:0 0 0 0 rgba(91,141,217,0.2)}70%{box-shadow:0 0 0 20px rgba(91,141,217,0)}100%{box-shadow:0 0 0 0 rgba(91,141,217,0)}}
+.gate-sup{font-family:'Cinzel',serif;font-size:.53rem;letter-spacing:.4em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.8rem}
+.gate-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,5vw,1.9rem);font-weight:400;color:#fff;line-height:1.2;margin-bottom:.4rem}
+.gate-title span{color:#5b8dd9}
+.gate-divider{width:40px;height:1px;background:linear-gradient(to right,transparent,#5b8dd9,transparent);margin:1.2rem auto}
+.gate-verse{font-size:.98rem;font-style:italic;font-weight:300;color:rgba(255,255,255,.38);line-height:1.85;margin-bottom:1.8rem}
+.gate-field-wrap{position:relative;margin-bottom:1rem}
+.gate-input{width:100%;background:rgba(91,141,217,.04);border:1px solid rgba(91,141,217,.25);color:#f0f0f0;padding:.9rem 3rem .9rem 1.2rem;font-family:'Cinzel',serif;font-size:.76rem;letter-spacing:.15em;outline:none;text-align:center;transition:border-color .3s,background .3s}
+.gate-input:focus{border-color:rgba(91,141,217,.6);background:rgba(91,141,217,.07)}
+.gate-input::placeholder{color:rgba(255,255,255,.22);letter-spacing:.2em}
+.toggle-pw{position:absolute;right:.9rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(91,141,217,.4);cursor:pointer;font-size:1rem;transition:color .3s;padding:0;line-height:1}
+.toggle-pw:hover{color:#5b8dd9}
+.gate-btn{width:100%;background:transparent;border:1px solid rgba(91,141,217,.45);color:#5b8dd9;padding:.9rem 2rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s;position:relative;overflow-y: auto}
+.gate-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(91,141,217,.08),transparent);transform:translateX(-100%);transition:transform .5s}
+.gate-btn:hover::before{transform:translateX(100%)}
+.gate-btn:hover{border-color:#5b8dd9;background:rgba(91,141,217,.1);color:#fff}
+.gate-error{margin-top:.8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;color:rgba(200,80,80,.8);opacity:0;transition:opacity .3s;min-height:1em}
+.gate-error.show{opacity:1}
+.gate-hint{margin-top:1.6rem;font-size:.8rem;font-style:italic;color:rgba(255,255,255,.15)}
+/* CONTENT */
+#content{display:none;padding-top:80px;position:relative;z-index:1}
+/* HERO */
+.page-hero{text-align:center;padding:4rem 2rem 3rem;position:relative;overflow-y: auto;border-bottom:1px solid rgba(91,141,217,0.1)}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(91,141,217,0.06) 0%,transparent 65%)}
+.hero-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:2.5rem;color:rgba(91,141,217,.18);display:block;margin-bottom:1.2rem}
+.hero-sup{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.4em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.8rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:400;color:#fff;margin-bottom:.8rem}
+.hero-title span{color:#5b8dd9}
+.hero-divider{width:50px;height:1px;background:linear-gradient(to right,transparent,#5b8dd9,transparent);margin:1.4rem auto}
+.hero-intro{font-size:1.05rem;font-style:italic;font-weight:300;line-height:1.9;max-width:560px;margin:0 auto;color:rgba(255,255,255,.5)}
+/* WRAP */
+.psaumes-wrap{max-width:860px;margin:0 auto;padding:3rem 1.5rem 2rem}
+/* BACK TO PREP */
+.prep-banner{
+display:flex;
+flex-wrap:wrap;align-items:center;justify-content:space-between;
+background:rgba(91,141,217,.04);border:1px solid rgba(91,141,217,.2);
+padding:1.2rem 1.8rem;margin-bottom:3rem;
+text-decoration:none;transition:all .4s;
+}
+.prep-banner:hover{background:rgba(91,141,217,.08);border-color:rgba(91,141,217,.4)}
+.prep-banner-text{}
+.prep-banner-sup{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.3rem}
+.prep-banner-title{font-family:'Cinzel',serif;font-size:.95rem;color:#5b8dd9}
+.prep-banner-desc{font-size:.88rem;font-style:italic;color:rgba(255,255,255,.3);margin-top:.2rem}
+.prep-banner-arrow{font-size:1.2rem;color:rgba(91,141,217,.4)}
+/* PSALM CARDS */
+.psalm-section{margin-bottom:3rem}
+.sect-head{margin-bottom:1.8rem;padding-bottom:1rem;position:relative}
+.sect-head::after{content:'';position:absolute;bottom:0;left:0;width:40px;height:1px;background:linear-gradient(to right,#5b8dd9,transparent)}
+.sect-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(91,141,217,.45);text-transform:uppercase;margin-bottom:.4rem}
+.sect-title{font-family:'Cinzel',serif;font-size:clamp(.95rem,2.5vw,1.25rem);color:#5b8dd9;font-weight:400}
+.psalm-card{
+border:1px solid rgba(91,141,217,.12);
+background:rgba(91,141,217,.02);
+margin-bottom:1.2rem;overflow-y: auto;
+transition:border-color .4s;
+}
+.psalm-card:hover{border-color:rgba(91,141,217,.28)}
+.psalm-card::before{content:'';display:block;height:1px;background:linear-gradient(to right,transparent,rgba(91,141,217,.3),transparent)}
+.psalm-header{
+display:flex;
+flex-wrap:wrap;align-items:center;justify-content:space-between;
+padding:1.2rem 1.5rem;cursor:pointer;
+background:transparent;transition:background .3s;gap:.8rem;
+}
+.psalm-header:hover{background:rgba(91,141,217,.05)}
+.psalm-open .psalm-header{background:rgba(91,141,217,.06)}
+.ph-left{display:flex;
+flex-wrap:wrap;align-items:center;gap:1rem}
+.psalm-num{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:rgba(91,141,217,.5);min-width:2rem;text-align:center}
+.psalm-info{}
+.psalm-name{font-family:'Cinzel',serif;font-size:.88rem;color:#fff;font-weight:400;margin-bottom:.2rem}
+.psalm-purpose{font-size:.8rem;font-style:italic;color:rgba(255,255,255,.35)}
+.psalm-arr{width:26px;height:26px;border-radius:50%;border:1px solid rgba(91,141,217,.2);display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center;font-size:.65rem;color:rgba(91,141,217,.4);transition:transform .3s,border-color .3s,color .3s;flex-shrink:0}
+.psalm-open .psalm-arr{transform:rotate(180deg);border-color:rgba(91,141,217,.5);color:#5b8dd9}
+.psalm-body{max-height:0;overflow-y: auto;transition:max-height .5s ease}
+.psalm-open .psalm-body{max-height:3000px}
+.psalm-inner{padding:1.5rem}
+.psalm-text{
+font-size:1rem;font-weight:300;line-height:2.1;
+color:rgba(255,255,255,.72);
+border-left:2px solid rgba(91,141,217,.25);
+padding:.8rem 1.2rem;
+background:rgba(91,141,217,.02);
+margin-bottom:1rem;
+}
+.psalm-note{
+font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;
+color:rgba(255,255,255,.25);text-transform:uppercase;
+border-top:1px solid rgba(255,255,255,.05);padding-top:.8rem;
+}
+/* voir plus */
+.content-collapse{max-height:30px;overflow-y: auto;position:relative;transition:max-height .5s ease}
+.content-collapse::after{content:'';position:absolute;bottom:0;left:0;right:0;height:26px;background:linear-gradient(to bottom,transparent,#050508);pointer-events:none;transition:opacity .3s}
+.content-collapse.open{max-height:8000px}
+.content-collapse.open::after{opacity:0}
+.voir-plus-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:.5rem;font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.2em;color:rgba(212,175,55,.5);background:none;border:none;cursor:pointer;text-transform:uppercase;padding:0;transition:color .3s}
+.voir-plus-btn:hover{color:#d4af37}
+.voir-plus-btn .vp-arrow{font-size:.7rem;transition:transform .3s}
+.voir-plus-btn.open .vp-arrow{transform:rotate(180deg)}
+/* BACK */
+.back-wrap{display:flex;
+flex-wrap:wrap;justify-content:center;padding:1rem 0 4rem}
+.back-link{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.25em;color:rgba(212,175,55,.35);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.12);padding:.5rem 1.2rem;transition:all .4s}
+.back-link:hover{color:#d4af37;border-color:rgba(212,175,55,.4);background:rgba(212,175,55,.05)}
+.back-link::before{content:'← '}
+/* FOOTER */
+footer{position:relative;z-index:1;background:#050508;border-top:1px solid rgba(212,175,55,.08);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:rgba(212,175,55,.35);display:block;margin-bottom:.5rem}
+.footer-copy{font-size:.75rem;color:#383838;letter-spacing:.08em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .9s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.22s}.d3{animation-delay:.34s}
+@media(max-width:768px){nav{padding:1rem 1.2rem}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="glow-orb orb1"></div>
+<div class="glow-orb orb2"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="rituels-nivo1.html" class="nav-back">Rituels Nivo 1</a>
+</nav><div id="gate"><div class="gate-inner"><div class="gate-seal"><div class="seal-pulse"></div><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="46" stroke="rgba(91,141,217,0.2)" stroke-width="1"/><circle cx="50" cy="50" r="36" stroke="rgba(91,141,217,0.1)" stroke-width=".5" stroke-dasharray="3 5"/><polygon points="50,12 85,68 15,68" stroke="rgba(91,141,217,0.25)" stroke-width=".8" fill="none"/><polygon points="50,88 15,32 85,32" stroke="rgba(91,141,217,0.2)" stroke-width=".8" fill="none"/></svg><div class="gate-seal-inner">תה</div></div><p class="gate-sup">Cercle Intérieur — Psaumes</p><h1 class="gate-title">Les <span>Psaumes</span></h1><div class="gate-divider"></div><p class="gate-verse">« Ta parole est une lampe à mes pieds,<br>une lumière sur mon sentier. »<br><em style="font-size:.85rem">— Psaume 119:105</em></p><div class="gate-field-wrap"><input type="password" id="pwInput" class="gate-input" placeholder="MOT DE PASSE" autocomplete="off"/><button class="toggle-pw" onclick="togglePw()" type="button">👁</button></div><button class="gate-btn" onclick="checkPass()">Accéder aux Psaumes</button><p class="gate-error" id="gateError">Accès refusé — mot de passe incorrect</p><p class="gate-hint">Réservé aux Veilleurs autorisés.</p></div>
+</div><div id="content"><header class="page-hero"><span class="hero-hebrew">תְּהִלִּים</span><p class="hero-sup fade-up">Tehilim — Cercle Intérieur</p><h1 class="hero-title fade-up d1">Les <span>Psaumes</span> de Protection</h1><div class="hero-divider fade-up d2"></div><p class="hero-intro fade-up d3">Psaumes sélectionnés pour la protection, la délivrance, la purification et le soutien spirituel. Toujours utiliser avec la préparation de la bougie et les prières d'ouverture.</p></header><div class="psaumes-wrap"><a href="rituels-nivo1.html#branch1" class="prep-banner"><div class="prep-banner-text"><p class="prep-banner-sup">Avant de commencer</p><p class="prep-banner-title">→ Préparation de la Bougie &amp; Prières d'Ouverture (K-13 / K-14)</p><p class="prep-banner-desc">Retourner dans Rituels Nivo 1 pour la préparation complète</p></div><span class="prep-banner-arrow">→</span></a><div style="margin-bottom:3rem"><div class="sect-head"><p class="sect-label">Avant toute récitation</p><h2 class="sect-title">Préparation — Bougie &amp; Prières d'Ouverture</h2></div><div class="psalm-card" id="k13prep" style="border-color:rgba(212,175,55,.18)"><div class="psalm-header" onclick="togglePsalm('k13prep')" style="background:rgba(212,175,55,.03)"><div class="ph-left"><span class="psalm-num" style="font-family:'Cormorant Garamond',serif">🕯</span><div class="psalm-info"><p class="psalm-name" style="color:#d4af37">K-13 — Préparation de la Bougie Sacrée</p><p class="psalm-purpose">Marquer · Nettoyer · Bénir · Allumer · Orienter aux 4 directions</p></div></div><div class="psalm-arr" style="border-color:rgba(212,175,55,.2);color:rgba(212,175,55,.4)">▾</div></div><div class="psalm-body"><div class="psalm-inner"><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.8rem">Étape 1 — Marquer et bénir la bougie</p><div class="psalm-text" id="k13t1" style="border-color:rgba(212,175,55,.2);background:rgba(212,175,55,.02)"><strong>Marquer la bougie selon l'intention :</strong><br>
+— Pour <em>attirer</em> : graver de haut en bas<br>
+— Pour <em>chasser</em> : graver de bas en haut<br><br><strong>Nettoyage :</strong> laver la bougie, passer un peu d'huile dessus, la poser sans encore l'allumer.<br><br><strong>Bénédiction :</strong> tracer une croix sur la bougie en prononçant :<br><br><em>« Je te bénis au nom de YOD, HÉ, VAV, HÉ »</em></div><button class="voir-plus-btn" onclick="toggleVP(this,'k13t1')">Voir plus <span class="vp-arrow">▾</span></button><div style="height:.8rem"></div><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.8rem;margin-top:.5rem">Étape 2 — Allumer la lumière sacrée</p><div class="psalm-text" id="k13t2" style="border-color:rgba(212,175,55,.2);background:rgba(212,175,55,.02)">
+Prendre une <strong>bougie d'allumage</strong>. Tracer une croix dessus :<br><em>« Dieu le Père, Dieu le Fils, Dieu le Saint-Esprit »</em><br><br>
+Tenant cette bougie en main, réciter :<br><br><em>« Dieu tout puissant et éternel, Lumière inextinguible, feu sacré du divin amour, daigne bénir et sanctifier le feu élémentaire afin que par lui nul dommage ne s'en suive pour tes créatures, oh Seigneur miséricordieux, par Jésus Christ notre maître et seigneur. Amen ! »</em><br><br>
+Avec cette bougie d'allumage, tracer une croix sur la mèche de la première bougie (éteinte) :<br><em>« Dieu le Père, Dieu le Fils, Dieu le Saint-Esprit »</em><br><br><strong>Éteindre</strong> la bougie d'allumage. Garder la bougie bénie en main.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'k13t2')">Voir plus <span class="vp-arrow">▾</span></button><div style="height:.8rem"></div><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.8rem;margin-top:.5rem">Étape 3 — Psaume 51 + Encens + Orientation aux 4 fasades</p><div class="psalm-text" id="k13t3" style="border-color:rgba(212,175,55,.2);background:rgba(212,175,55,.02)">
+Lire le <strong>Psaume 51</strong> — au verset <em>« Lave-moi avec l'hysope »</em>, passer un peu d'huile sur soi. Continuer jusqu'à <em>« plus blanc que la neige »</em> puis s'arrêter.<br><br>
+Si vous avez de l'encens, l'allumer maintenant. Tenir la bougie bénie dans la main droite.<br><br><strong>Orientation aux 4 fasades :</strong><br><br><strong>1re fasade — Est :</strong> faire face à l'Est, lever la bougie et dire : <strong style="color:#5b8dd9;font-size:1.05rem">YOD</strong><br><strong>2e fasade — Sud :</strong> pivoter vers le Sud (sur la droite), dire : <strong style="color:#5b8dd9;font-size:1.05rem">HÉ</strong><br><strong>3e fasade — Ouest :</strong> continuer vers l'Ouest, dire : <strong style="color:#5b8dd9;font-size:1.05rem">VAV</strong><br><strong>4e fasade — Nord :</strong> continuer vers le Nord, dire : <strong style="color:#5b8dd9;font-size:1.05rem">HÉ</strong><br><strong>Retour — Est :</strong> continuer vers l'Est, dire : <strong style="color:#d4af37;font-size:1.1rem">JEHOVAH</strong><br><br>
+Déposer la bougie. Prononcer <strong>« Shin »</strong> lentement, trois fois.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'k13t3')">Voir plus <span class="vp-arrow">▾</span></button></div></div></div><div class="psalm-card" id="k14prep" style="border-color:rgba(91,141,217,.18);margin-top:1rem"><div class="psalm-header" onclick="togglePsalm('k14prep')" style="background:rgba(91,141,217,.03)"><div class="ph-left"><span class="psalm-num" style="font-family:'Cormorant Garamond',serif">📖</span><div class="psalm-info"><p class="psalm-name" style="color:#5b8dd9">K-14 — Prières d'Ouverture et de Clôture</p><p class="psalm-purpose">Psaume 51:17 · Prière de supplication · Récitation · Prière de clôture</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.8rem">Ouverture — Avant la récitation</p><div class="psalm-text" id="k14t1">
+Faire silence. Respirer. S'installer dans la présence intérieure.<br><br>
+Réciter le verset d'ouverture :<br><em>Psaume 51:17 — « ADONAI, puisse-tu m'ouvrir les lèvres pour que ma bouche proclame tes louanges. »</em><br><br>
+Puis réciter la prière de supplication :<br><br>
+« Qu'il soit de ta volonté, ADONAI Seigneur notre Dieu, de nous prendre en pitié. Que la récitation des Psaumes que nous allons faire ait à tes yeux la même valeur que si leurs auteurs les avaient récités. Que la force des versets des Psaumes, de leurs mots, de leurs lettres, de leurs voyelles, de leurs signes musicaux, et de tes saints noms qui s'y inscrivent à partir des initiales, des finales et des anagrammes, que la paix soit sur moi, que ta miséricorde s'émeuve sur moi et pardonne moi, absous, efface mes transgressions, mes fautes et mes péchés.<br><br>
+Que la récitation des Psaumes soit accueillie devant Toi pour tailler parmi les violents et retrancher les épines et les ronces qui entourent les lys suprêmes, afin d'unir les femmes de sa jeunesse avec le Bien-aimé, en amour, en fraternité, paix et amitié !<br><br>
+Que la grande miséricorde s'épanche sur nous par une abondance de salut et de pitié, pour nous purifier de nos transgressions et de nos fautes ! Que la paix soit sur moi qui ait récité ces Psaumes devant Toi, de même veuille par ta grande miséricorde me pardonner. O notre Père, notre Roi. <strong>Amen !</strong> »
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'k14t1')">Voir plus <span class="vp-arrow">▾</span></button><div style="height:.8rem"></div><p style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.8rem;margin-top:.5rem">Clôture — Après la récitation</p><div class="psalm-text" id="k14t2">
+« Qu'il soit de ta volonté, ADONAI, notre Dieu, de laisser ta miséricorde dominer ta colère et se manifester sur moi (sur nous), adoucissant les rigueurs du jugement. Annule les mauvais et néfastes décrets qui pèsent sur moi (nous). Déchire ce verdict mauvais qui me vise et prends à mon égard des décisions favorables. Fais plier et courber tous nos ennemis et tous ceux qui nous veulent du mal. Que tombe sur eux la terreur et l'effroi, que par la grandeur de ton bras ils s'immobilisent comme la pierre.<br><br>
+Que ADONAI s'élève : ses ennemis se disperseront, ses adversaires s'enfuiront devant lui. Gratifie-moi du trésor des dons gratuits. Par la force du Cantique du Psautier, que nous avons récité devant Toi, et de leurs mystères, prends-moi en pitié et sauve-moi de tout mal, de tout effroi et de toute nuisance.<br><br>
+Détruis les projets de nos ennemis et anéantis leurs desseins ; fais échouer les entreprises de leurs mains. Nos ennemis se couvriront de honte et tu auras pitié de nous. O Dieu miséricordieux, agis selon ta miséricorde. Que la paix soit sur moi qui ai récité ces psaumes devant Toi, préserve-moi de toute peine ; alors je serai tranquille, calme et paisible pour te servir. <strong>Amen !</strong> »
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'k14t2')">Voir plus <span class="vp-arrow">▾</span></button></div></div></div></div><div class="psalm-section"><div class="sect-head"><p class="sect-label">Protection · Délivrance</p><h2 class="sect-title">Psaumes de Protection</h2></div><div class="psalm-card" id="ps91"><div class="psalm-header" onclick="togglePsalm('ps91')"><div class="ph-left"><span class="psalm-num">91</span><div class="psalm-info"><p class="psalm-name">Psaume 91 — Sous l'aile du Très-Haut</p><p class="psalm-purpose">Protection divine totale — à réciter en tout danger</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst91">
+Celui qui demeure sous l'abri du Très-Haut repose à l'ombre du Tout-Puissant.<br><br>
+Je dis à l'Éternel : Tu es mon refuge et ma forteresse, mon Dieu en qui je me confie !<br><br>
+Car c'est lui qui te délivrera du filet de l'oiseleur, de la peste et de ses ravages.<br><br>
+Il te couvrira de ses plumes, et tu trouveras un refuge sous ses ailes. Sa fidélité est un bouclier et une cuirasse.<br><br>
+Tu ne craindras ni les terreurs de la nuit, ni la flèche qui vole de jour, ni la peste qui marche dans les ténèbres, ni la contagion qui frappe en plein midi.<br><br>
+Qu'il en tombe mille à ton côté, et dix mille à ta droite, toi tu ne seras pas atteint.<br><br>
+Tu le verras seulement de tes yeux, et tu contempleras la rétribution des méchants.<br><br>
+Car tu as dit : L'Éternel est mon refuge ! Et tu as pris le Très-Haut pour ta demeure,<br><br>
+il ne te sera point fait de mal, et aucun fléau n'approchera de ta tente.<br><br>
+Car il donnera des ordres à ses anges de te garder dans toutes tes voies.<br><br>
+Ils te porteront sur leurs mains, de peur que ton pied ne heurte une pierre.<br><br>
+Tu marcheras sur le lion et sur l'aspic, tu fouleras le lionceau et le serpent.<br><br>
+Puisqu'il m'aime, je le délivrerai ; je le protègerai, puisqu'il connaît mon nom.<br><br>
+Il m'invoquera et je lui répondrai ; je serai avec lui dans la détresse, je le délivrerai et je le glorifierai.<br><br>
+Je le rassasierai de longs jours, et je lui ferai voir mon salut.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst91')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 91 · Tehilim · Protection complète · À réciter 1 à 7 fois</p></div></div></div><div class="psalm-card" id="ps23"><div class="psalm-header" onclick="togglePsalm('ps23')"><div class="ph-left"><span class="psalm-num">23</span><div class="psalm-info"><p class="psalm-name">Psaume 23 — L'Éternel est mon berger</p><p class="psalm-purpose">Paix, protection quotidienne, face aux ennemis</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst23">
+L'Éternel est mon berger : je ne manquerai de rien.<br><br>
+Il me fait reposer dans de verts pâturages, il me dirige près des eaux paisibles.<br><br>
+Il restaure mon âme, il me conduit dans les sentiers de la justice, à cause de son nom.<br><br>
+Quand je marche dans la vallée de l'ombre de la mort, je ne crains aucun mal, car tu es avec moi : ta houlette et ton bâton me rassurent.<br><br>
+Tu dresses une table devant moi, en face de mes adversaires ; tu oins d'huile ma tête, ma coupe déborde.<br><br>
+Oui, le bonheur et la grâce m'accompagneront tous les jours de ma vie, et j'habiterai dans la maison de l'Éternel pour de longs jours.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst23')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 23 · Protection et paix · À réciter matin et soir</p></div></div></div><div class="psalm-card" id="ps27"><div class="psalm-header" onclick="togglePsalm('ps27')"><div class="ph-left"><span class="psalm-num">27</span><div class="psalm-info"><p class="psalm-name">Psaume 27 — L'Éternel est ma lumière</p><p class="psalm-purpose">Confiance face aux ennemis, demande de protection</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst27">
+L'Éternel est ma lumière et mon salut : de qui aurais-je crainte ? L'Éternel est le soutien de ma vie : de qui aurais-je peur ?<br><br>
+Quand des méchants s'avancent contre moi pour dévorer ma chair, ce sont mes adversaires et mes ennemis qui chancellent et tombent.<br><br>
+Si une armée se campait contre moi, mon cœur ne craindrait point ; si une guerre s'élevait contre moi, je resterais quand même confiant.<br><br>
+Une chose demande à l'Éternel, c'est ce que je recherche : habiter toute ma vie dans la maison de l'Éternel, pour contempler la beauté de l'Éternel et m'attacher à son temple.<br><br>
+Car il me mettra en lieu sûr dans son tabernacle, au jour du malheur ; il me cachera dans la retraite de sa tente, il m'élèvera sur un rocher.<br><br>
+Ma tête s'élèvera au-dessus de mes ennemis qui m'entourent ; et j'offrirai dans son tabernacle des sacrifices avec des cantiques d'allégresse ; je chanterai, je célébrerai l'Éternel.<br><br>
+Espère en l'Éternel ! Prends courage, que ton cœur soit ferme ; espère en l'Éternel !
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst27')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 27 · Confiance et protection · À réciter face aux adversaires</p></div></div></div><div class="psalm-card" id="ps46"><div class="psalm-header" onclick="togglePsalm('ps46')"><div class="ph-left"><span class="psalm-num">46</span><div class="psalm-info"><p class="psalm-name">Psaume 46 — Dieu est notre refuge</p><p class="psalm-purpose">Force en temps de trouble, secours immédiat</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst46">
+Dieu est pour nous un refuge et un appui, un secours qui ne manque jamais dans la détresse.<br><br>
+C'est pourquoi nous ne craignons rien, quand la terre se transforme et que les montagnes chancellent au cœur des mers,<br><br>
+quand les flots de la mer mugissent et s'agitent, quand les montagnes tremblent sous leur violence.<br><br>
+L'Éternel des armées est avec nous, le Dieu de Jacob est notre refuge.<br><br>
+Venez, contemplez les œuvres de l'Éternel, les ravages qu'il a causés sur la terre.<br><br>
+Il fait cesser les guerres jusqu'aux extrémités de la terre, il brise l'arc et rompt la lance.<br><br>
+Arrêtez, et sachez que je suis Dieu ! Je suis exalté parmi les nations, je suis exalté sur la terre.<br><br>
+L'Éternel des armées est avec nous, le Dieu de Jacob est notre refuge.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst46')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 46 · Refuge et force · En temps de crise</p></div></div></div></div><div class="psalm-section"><div class="sect-head"><p class="sect-label">Purification · Repentir</p><h2 class="sect-title">Psaumes de Purification</h2></div><div class="psalm-card" id="ps51"><div class="psalm-header" onclick="togglePsalm('ps51')"><div class="ph-left"><span class="psalm-num">51</span><div class="psalm-info"><p class="psalm-name">Psaume 51 — Aie pitié de moi, ô Dieu</p><p class="psalm-purpose">Purification profonde — à lire lors de la préparation avec huile</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst51">
+Aie pitié de moi, ô Dieu, selon ta bonté ; efface mes transgressions selon ta grande miséricorde.<br><br>
+Lave-moi complètement de mon iniquité, et purifie-moi de mon péché.<br><br>
+Car je reconnais mes transgressions, et mon péché est constamment devant moi.<br><br>
+Contre toi seul j'ai péché et j'ai fait ce qui est mal à tes yeux.<br><br><em style="color:rgba(212,175,55,.7)">← Passer l'huile sur soi ici, au verset : « Lave-moi avec l'hysope »</em><br><br>
+Purifie-moi avec l'hysope, et je serai pur ; lave-moi, et je serai plus blanc que la neige.<br><br><em style="color:rgba(212,175,55,.7)">← S'arrêter ici pour l'orientation aux 4 directions</em><br><br>
+Fais-moi entendre l'allégresse et la joie, et les os que tu as brisés se réjouiront.<br><br>
+Détourne ton regard de mes péchés, efface toutes mes iniquités.<br><br>
+Crée en moi un cœur pur, ô Dieu, et renouvelle en moi un esprit bien disposé.<br><br>
+Ne me rejette pas loin de ta face, et ne me retire pas ton esprit saint.<br><br>
+Rends-moi la joie de ton salut, et qu'un esprit de bonne volonté me soutienne.<br><br>
+Seigneur, ouvre mes lèvres, et ma bouche publiera ta louange.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst51')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 51 · Purification · À utiliser avec la préparation K-13</p></div></div></div><div class="psalm-card" id="ps32"><div class="psalm-header" onclick="togglePsalm('ps32')"><div class="ph-left"><span class="psalm-num">32</span><div class="psalm-info"><p class="psalm-name">Psaume 32 — Heureux celui dont la transgression est pardonnée</p><p class="psalm-purpose">Contre l'ensorcellement — purification de l'âme</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst32">
+Heureux celui dont la transgression est pardonnée, dont le péché est remis !<br><br>
+Heureux l'homme à qui l'Éternel n'impute pas l'iniquité, et dans l'esprit duquel il n'y a point de fraude !<br><br>
+Tant que je me suis tu, mes os se consumaient, je gémissais toute la journée.<br><br>
+Car ta main s'appesantissait sur moi jour et nuit ; ma vigueur se desséchait comme par les ardeurs de l'été.<br><br>
+Je t'ai fait connaître mon péché, et je n'ai pas caché mon iniquité. J'ai dit : Je confesserai mes transgressions à l'Éternel ! Et tu as effacé la peine de mon péché.<br><br>
+Tu es un refuge pour moi, tu me gardes de la détresse, tu m'entoures de chants de délivrance.<br><br>
+Je t'instruirai et te montrerai la voie que tu dois suivre ; je te conseillerai, j'aurai les yeux sur toi.<br><br>
+Réjouissez-vous en l'Éternel et soyez dans l'allégresse, vous qui êtes justes ! Poussez des cris de joie, vous tous qui êtes droits de cœur !
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst32')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 32 · Purification et pardon · 7 jours consécutifs</p></div></div></div></div><div class="psalm-section"><div class="sect-head"><p class="sect-label">Délivrance · Victoire</p><h2 class="sect-title">Psaumes de Délivrance</h2></div><div class="psalm-card" id="ps35"><div class="psalm-header" onclick="togglePsalm('ps35')"><div class="ph-left"><span class="psalm-num">35</span><div class="psalm-info"><p class="psalm-name">Psaume 35 — Combats, Éternel, ceux qui me combattent</p><p class="psalm-purpose">Contre les ennemis déclarés — délivrance de la persécution</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst35">
+Combats, Éternel, ceux qui me combattent ; fais la guerre à ceux qui me font la guerre !<br><br>
+Saisit le bouclier et l'écu, lève-toi pour me secourir !<br><br>
+Tire la lance et ferme la voie à ceux qui me poursuivent ; dis à mon âme : Je suis ton salut !<br><br>
+Qu'ils soient couverts de honte et de confusion, ceux qui en veulent à ma vie !<br><br>
+Qu'ils reculent et soient confondus, ceux qui méditent ma perte !<br><br>
+Qu'ils soient comme la balle emportée par le vent, quand l'ange de l'Éternel les poussera !<br><br>
+Mon âme sera dans l'allégresse à cause de l'Éternel, elle se réjouira de son salut.<br><br>
+Tous mes os diront : Éternel, qui est semblable à toi ? Tu délivres le malheureux de celui qui est plus fort que lui, le malheureux et le pauvre de celui qui le dépouille.<br><br>
+Réveille-toi, lève-toi pour me défendre, pour me faire justice, mon Dieu et mon Seigneur !
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst35')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 35 · Délivrance des ennemis · En cas de persécution</p></div></div></div><div class="psalm-card" id="ps121"><div class="psalm-header" onclick="togglePsalm('ps121')"><div class="ph-left"><span class="psalm-num">121</span><div class="psalm-info"><p class="psalm-name">Psaume 121 — Je lève les yeux vers les montagnes</p><p class="psalm-purpose">Protection lors des voyages et déplacements</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst121">
+Je lève les yeux vers les montagnes... D'où me viendra le secours ?<br><br>
+Mon secours vient de l'Éternel, qui a fait les cieux et la terre.<br><br>
+Il ne permettra pas que ton pied chancelle ; celui qui te garde ne sommeillera pas.<br><br>
+Voici, il ne sommeillera pas, il ne dormira pas, celui qui garde Israël.<br><br>
+L'Éternel est celui qui te garde, l'Éternel est ton ombre à ta main droite.<br><br>
+Le soleil ne te frappera pas pendant le jour, ni la lune pendant la nuit.<br><br>
+L'Éternel te gardera de tout mal, il gardera ton âme.<br><br>
+L'Éternel gardera ton départ et ton arrivée, dès maintenant et à jamais.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst121')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 121 · Voyage et déplacement · À réciter avant de partir</p></div></div></div><div class="psalm-card" id="ps61"><div class="psalm-header" onclick="togglePsalm('ps61')"><div class="ph-left"><span class="psalm-num">61</span><div class="psalm-info"><p class="psalm-name">Psaume 61 — En vain on attaque celui que Dieu protège</p><p class="psalm-purpose">Contre les malédictions imméritées</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="pst61">
+Mon âme ne sera-t-elle pas soumise à Dieu ? Car c'est de lui que vient mon salut.<br><br>
+Oui, c'est lui qui est mon rocher et mon salut, ma haute retraite : je ne serai guère ébranlé.<br><br>
+Jusqu'à quand vous jetterez-vous sur un homme ? Vous le tuez tous, comme une muraille penchée, comme une clôture qui se renverse.<br><br>
+De leur bouche ils le bénissaient, et dans leur cœur ils le maudissaient.<br><br>
+Mais toi, mon âme, sois soumise à Dieu, car c'est de lui que vient mon espérance.<br><br>
+Oui, c'est lui qui est mon rocher et mon salut, ma haute retraite : je ne serai pas ébranlé.<br><br>
+En Dieu est mon salut et ma gloire ; le rocher de ma force, mon refuge, est en Dieu.<br><br>
+Espérez en lui en tout temps, peuples ! Épanchez vos cœurs devant lui ! Dieu est notre refuge.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'pst61')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Psaume 61 · Contre malédictions · 7 jours consécutifs</p></div></div></div></div><div class="psalm-section"><div class="sect-head"><p class="sect-label">Tikkun Klali — Rabbi Nachman de Breslev</p><h2 class="sect-title">Les 10 Psaumes de la Guérison Complète</h2></div><div style="background:rgba(91,141,217,.04);border-left:2px solid rgba(91,141,217,.3);padding:1rem 1.4rem;margin-bottom:1.5rem"><p style="font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.5rem">Origine — Rabbi Nachman de Breslev (1772–1810)</p><p style="font-size:.95rem;font-style:italic;color:rgba(255,255,255,.45);line-height:1.75">
+Le <strong style="color:rgba(255,255,255,.7)">Tikkun HaKlali</strong> (תִּיקּוּן הַכְּלָלִי) — « Remède Universel » — est un ensemble de 10 Psaumes révélés par Rabbi Nachman de Breslev comme <strong style="color:rgba(255,255,255,.7)">tikoun (réparation) pour toute faute</strong>, particulièrement les fautes liées à l'énergie vitale. Rabbi Nachman a promis que quiconque récite ces 10 Psaumes avec intention sincère sera réparé et protégé. À réciter de préférence le jour ou la nuit qui suit une faute, une épreuve difficile, ou simplement comme pratique quotidienne de purification.
+</p><p style="font-size:.85rem;font-style:italic;color:rgba(91,141,217,.5);margin-top:.5rem">
+Ordre des Psaumes : 16 · 32 · 41 · 42 · 59 · 77 · 90 · 105 · 137 · 150
+</p></div><div class="psalm-card" id="tk16"><div class="psalm-header" onclick="togglePsalm('tk16')"><div class="ph-left"><span class="psalm-num">16</span><div class="psalm-info"><p class="psalm-name">Psaume 16 — Mishtam de David</p><p class="psalm-purpose">Tikkun 1 · Confiance et protection divine</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk16t">
+Préserve-moi, ô Dieu, car je me réfugie en Toi.<br><br>
+Je dis à l'Éternel : Tu es mon Seigneur ; je n'ai pas de bonheur en dehors de Toi.<br><br>
+L'Éternel est le partage de mon héritage et de ma coupe ; tu me maintiens dans mon lot.<br><br>
+Je tiens constamment l'Éternel devant moi ; il est à ma droite, je ne serai pas ébranlé.<br><br>
+C'est pourquoi mon cœur est dans la joie et mon âme dans l'allégresse, ma chair elle-même repose en sécurité.<br><br>
+Car tu ne livreras pas mon âme au séjour des morts, tu ne permettras pas que ton fidèle voie la fosse.<br><br>
+Tu me feras connaître le chemin de la vie ; devant ta face sont d'ineffables joies, à ta droite, des délices éternelles.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk16t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 16 · 1 / 10</p></div></div></div><div class="psalm-card" id="tk32"><div class="psalm-header" onclick="togglePsalm('tk32')"><div class="ph-left"><span class="psalm-num">32</span><div class="psalm-info"><p class="psalm-name">Psaume 32 — Heureux celui dont la transgression est pardonnée</p><p class="psalm-purpose">Tikkun 2 · Pardon et purification de l'âme</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><p style="font-size:.85rem;font-style:italic;color:rgba(91,141,217,.5);margin-bottom:.8rem">↑ Texte complet disponible dans la section Purification ci-dessus.</p><p class="psalm-note">Tikkun Klali · Psaume 32 · 2 / 10</p></div></div></div><div class="psalm-card" id="tk41"><div class="psalm-header" onclick="togglePsalm('tk41')"><div class="ph-left"><span class="psalm-num">41</span><div class="psalm-info"><p class="psalm-name">Psaume 41 — Heureux celui qui pense au faible</p><p class="psalm-purpose">Tikkun 3 · Protection contre les ennemis et la maladie</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk41t">
+Heureux celui qui pense au faible ! L'Éternel le délivrera au jour du malheur.<br><br>
+L'Éternel le gardera et lui conservera la vie ; il sera heureux sur la terre, et tu ne l'abandonneras pas à la merci de ses ennemis.<br><br>
+L'Éternel le soutiendra sur son lit de douleur ; tu changeras toute sa couche dans sa maladie.<br><br>
+Pour moi, j'ai dit : Éternel, sois-moi propice ! Guéris mon âme, car j'ai péché contre toi.<br><br>
+Mes ennemis me disent du mal : « Quand mourra-t-il, et son nom périra-t-il ? »<br><br>
+Et moi, tu me soutiens dans mon intégrité, et tu me places devant ta face pour toujours.<br><br>
+Béni soit l'Éternel, le Dieu d'Israël, d'éternité en éternité ! Amen et Amen !
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk41t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 41 · 3 / 10</p></div></div></div><div class="psalm-card" id="tk42"><div class="psalm-header" onclick="togglePsalm('tk42')"><div class="ph-left"><span class="psalm-num">42</span><div class="psalm-info"><p class="psalm-name">Psaume 42 — Comme la biche soupire après les eaux</p><p class="psalm-purpose">Tikkun 4 · Soif de Dieu, guérison de la mélancolie</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk42t">
+Comme la biche soupire après les courants d'eau, ainsi mon âme soupire après toi, ô Dieu !<br><br>
+Mon âme a soif de Dieu, du Dieu vivant. Quand irai-je et paraîtrai-je devant la face de Dieu ?<br><br>
+Mes larmes sont ma nourriture jour et nuit, pendant qu'on me dit sans cesse : « Où est ton Dieu ? »<br><br>
+Pourquoi t'abats-tu, mon âme, et gémis-tu au-dedans de moi ? Espère en Dieu ! Car je le louerai encore ; il est mon salut et mon Dieu.<br><br>
+L'Éternel accorde sa grâce le jour, et la nuit son cantique est avec moi — une prière au Dieu de ma vie.<br><br>
+Pourquoi t'abats-tu, mon âme, et gémis-tu au-dedans de moi ? Espère en Dieu ! Car je le louerai encore ; il est mon salut et mon Dieu.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk42t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 42 · 4 / 10</p></div></div></div><div class="psalm-card" id="tk59"><div class="psalm-header" onclick="togglePsalm('tk59')"><div class="ph-left"><span class="psalm-num">59</span><div class="psalm-info"><p class="psalm-name">Psaume 59 — Délivre-moi de mes ennemis</p><p class="psalm-purpose">Tikkun 5 · Protection contre les attaques et calomnies</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk59t">
+Délivre-moi de mes ennemis, ô mon Dieu ! Protège-moi contre mes agresseurs !<br><br>
+Délivre-moi de ceux qui font le mal, et sauve-moi des hommes de sang !<br><br>
+Car voici, ils sont à l'affût de ma vie ; des hommes puissants s'attroupent contre moi — non pour ma transgression, non pour mon péché, ô Éternel.<br><br>
+Et toi, Éternel, Dieu des armées, Dieu d'Israël, réveille-toi pour visiter toutes les nations ! Ne sois pas sans pitié pour tous les traîtres iniques.<br><br>
+Quant à moi, je chanterai ta puissance ; le matin j'exalterai avec chants ta grâce, car tu as été pour moi un refuge, un asile au jour de ma détresse.<br><br>
+Ô ma force, je te chanterai des louanges ! Car Dieu est ma haute retraite, le Dieu qui me fait grâce.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk59t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 59 · 5 / 10</p></div></div></div><div class="psalm-card" id="tk77"><div class="psalm-header" onclick="togglePsalm('tk77')"><div class="ph-left"><span class="psalm-num">77</span><div class="psalm-info"><p class="psalm-name">Psaume 77 — Ma voix s'élève vers Dieu</p><p class="psalm-purpose">Tikkun 6 · Consolation dans la détresse profonde</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk77t">
+Ma voix s'élève vers Dieu, et je crie ; ma voix s'élève vers Dieu, et il m'entendra.<br><br>
+Au jour de ma détresse, je cherche le Seigneur ; la nuit ma main est étendue sans se lasser ; mon âme refuse d'être consolée.<br><br>
+Je me souviens de Dieu, et je gémis ; je médite, et mon esprit est abattu.<br><br>
+Est-ce que l'Éternel rejettera pour toujours, et ne sera-t-il plus favorable ?<br><br>
+Alors je me souviens des œuvres de l'Éternel, je me souviens de tes anciens prodiges.<br><br>
+Je médite toutes tes œuvres, et je réfléchis à tes hauts faits.<br><br>
+Ô Dieu, ta voie est sainte ! Quel dieu est grand comme Dieu ?
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk77t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 77 · 6 / 10</p></div></div></div><div class="psalm-card" id="tk90"><div class="psalm-header" onclick="togglePsalm('tk90')"><div class="ph-left"><span class="psalm-num">90</span><div class="psalm-info"><p class="psalm-name">Psaume 90 — Prière de Moïse</p><p class="psalm-purpose">Tikkun 7 · Repentir, humilité et grâce divine</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk90t">
+Seigneur, tu as été notre refuge de génération en génération.<br><br>
+Avant que les montagnes fussent nées, avant que tu eusses formé la terre et le monde, d'éternité en éternité tu es Dieu.<br><br>
+Tu fais retourner l'homme à la poussière, et tu dis : Retournez, fils des hommes !<br><br>
+Car mille ans sont à tes yeux comme le jour d'hier quand il est passé, et comme une veille de la nuit.<br><br>
+Enseigne-nous à bien compter nos jours, afin que nous appliquions notre cœur à la sagesse.<br><br>
+Reviens, Éternel ! Jusqu'à quand ?... Aie pitié de tes serviteurs !<br><br>
+Que la grâce de l'Éternel notre Dieu soit sur nous ! Affermis l'ouvrage de nos mains.
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk90t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 90 · Prière de Moïse · 7 / 10</p></div></div></div><div class="psalm-card" id="tk105"><div class="psalm-header" onclick="togglePsalm('tk105')"><div class="ph-left"><span class="psalm-num">105</span><div class="psalm-info"><p class="psalm-name">Psaume 105 — Célébrez l'Éternel, invoquez son Nom</p><p class="psalm-purpose">Tikkun 8 · Gratitude et mémoire des œuvres divines</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk105t">
+Célébrez l'Éternel, invoquez son nom ! Faites connaître ses œuvres parmi les peuples !<br><br>
+Chantez-lui, chantez ses louanges, parlez de toutes ses merveilles !<br><br>
+Glorifiez-vous de son saint nom ! Que le cœur de ceux qui cherchent l'Éternel se réjouisse !<br><br>
+Recherchez l'Éternel et sa force, cherchez continuellement sa face !<br><br>
+Il s'est souvenu de son alliance pour toujours, de la parole qu'il a donnée pour mille générations.<br><br>
+Il envoya un homme devant eux, Joseph fut vendu comme esclave — jusqu'au moment où sa parole s'accomplit.<br><br>
+Alléluia !
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk105t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 105 · 8 / 10</p></div></div></div><div class="psalm-card" id="tk137"><div class="psalm-header" onclick="togglePsalm('tk137')"><div class="ph-left"><span class="psalm-num">137</span><div class="psalm-info"><p class="psalm-name">Psaume 137 — Au bord des fleuves de Babylone</p><p class="psalm-purpose">Tikkun 9 · Exil intérieur, retour à l'essentiel</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk137t">
+Au bord des fleuves de Babylone, nous étions assis et nous pleurions, en nous souvenant de Sion.<br><br>
+Aux saules de ce pays nous avions suspendu nos harpes.<br><br>
+Car là, ceux qui nous emmenaient captifs nous demandaient des chants, et nos oppresseurs nous demandaient de la joie : « Chantez-nous un des cantiques de Sion ! »<br><br>
+Comment chanterions-nous les cantiques de l'Éternel sur une terre étrangère ?<br><br>
+Si je t'oublie, Jérusalem, que ma droite m'oublie !<br><br>
+Que ma langue s'attache à mon palais, si je ne me souviens de toi, si je ne fais de Jérusalem le principal sujet de ma joie !
+</div><button class="voir-plus-btn" onclick="toggleVP(this,'tk137t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 137 · 9 / 10</p></div></div></div><div class="psalm-card" id="tk150"><div class="psalm-header" onclick="togglePsalm('tk150')"><div class="ph-left"><span class="psalm-num">150</span><div class="psalm-info"><p class="psalm-name">Psaume 150 — Louez Dieu dans son sanctuaire</p><p class="psalm-purpose">Tikkun 10 · Clôture — Louange totale et élévation</p></div></div><div class="psalm-arr">▾</div></div><div class="psalm-body"><div class="psalm-inner"><div class="psalm-text" id="tk150t">
+Louez Dieu dans son sanctuaire ! Louez-le dans l'étendue de sa puissance !<br><br>
+Louez-le pour ses hauts faits ! Louez-le selon sa grandeur immense !<br><br>
+Louez-le avec le son de la trompette ! Louez-le avec le luth et la harpe !<br><br>
+Louez-le avec le tambourin et la danse ! Louez-le avec les instruments à cordes et la flûte !<br><br>
+Louez-le avec les cymbales sonores ! Louez-le avec les cymbales retentissantes !<br><br>
+Que tout ce qui respire loue l'Éternel !<br><br><strong style="color:#d4af37;font-size:1.1rem">Halléluia !</strong></div><button class="voir-plus-btn" onclick="toggleVP(this,'tk150t')">Voir plus <span class="vp-arrow">▾</span></button><p class="psalm-note">Tikkun Klali · Psaume 150 · 10 / 10 · Clôture</p></div></div></div><div style="background:rgba(91,141,217,.04);border:1px solid rgba(91,141,217,.15);padding:1.5rem 1.8rem;margin-top:1rem"><p style="font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.6rem">✦ Promesse de Rabbi Nachman</p><p style="font-size:.95rem;font-style:italic;color:rgba(255,255,255,.45);line-height:1.8">
+« Je m'engage formellement — et par mes mérites dans l'autre monde — à intercéder pour quiconque récite ces dix Psaumes avec intention sincère. Quoi qu'il ait fait, si difficile que soit son niveau, qu'il le récite le jour de la faute ou le lendemain, et je l'aiderai. »<br><strong style="color:rgba(91,141,217,.6);font-style:normal">— Rabbi Nachman de Breslev</strong></p></div></div><div class="back-wrap"><a href="rituels-nivo1.html" class="back-link">Retour aux Rituels</a></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Cercle Intérieur — Fondé par Chilot</p></footer></div><script>
+(function(){
+const c=document.getElementById('stars');
+const cols=['#5b8dd9','#d4af37','#fff'];
+for(let i=0;i<60;i++){
+const s=document.createElement('div');s.className='star';
+const sz=Math.random()*1.5+.4;
+const col=cols[Math.floor(Math.random()*cols.length)];
+s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:${col};--d:${(Math.random()*5+2).toFixed(1)}s;--o:${(Math.random()*.2+.03).toFixed(2)};`;
+c.appendChild(s);
+}
+})();
+window.addEventListener('scroll',()=>{
+document.querySelector('nav').style.background=window.scrollY>50?'rgba(5,5,8,.99)':'rgba(5,5,8,.93)';
+});
+const SECRETS=['rituels777','rituels 777','Rituels 777','Rituels777','RITUELS 777','RITUELS777'];
+function checkPass(){
+const val=document.getElementById('pwInput').value.trim();
+const err=document.getElementById('gateError');
+if(SECRETS.map(s=>s.toLowerCase()).includes(val.toLowerCase())){
+const gate=document.getElementById('gate');
+gate.style.transition='opacity .8s ease';gate.style.opacity='0';
+setTimeout(()=>{gate.style.display='none';document.getElementById('content').style.display='block';document.body.style.overflowY='auto';},800);
+} else {
+err.classList.add('show');document.getElementById('pwInput').style.borderColor='rgba(200,80,80,.5)';
+setTimeout(()=>{err.classList.remove('show');document.getElementById('pwInput').style.borderColor='';},3000);
+}
+}
+document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPass();});
+function togglePw(){const i=document.getElementById('pwInput');i.type=i.type==='password'?'text':'password';}
+function togglePsalm(id){
+const card=document.getElementById(id);
+card.classList.toggle('psalm-open');
+}
+function toggleVP(btn,targetId){
+const el=document.getElementById(targetId);
+const isOpen=el.classList.contains('open');
+el.classList.toggle('open');
+btn.classList.toggle('open');
+btn.innerHTML=isOpen?'Voir plus <span class="vp-arrow">▾</span>':'Voir moins <span class="vp-arrow">▾</span>';
+}
+</script>
+</body>
+</html>
