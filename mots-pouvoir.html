@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mots de Pouvoir Traditionnels — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#030404;color:#e8e0cc;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.star{position:absolute;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(3,4,4,.93);border-bottom:1px solid rgba(212,175,55,.12);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37}.nav-logo-txt{font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.4rem 1rem;transition:all .3s}.nav-back:hover{color:#d4af37;border-color:rgba(212,175,55,.5)}
+.veil{position:fixed;inset:0;z-index:2000;background:#000;opacity:0;pointer-events:none;transition:opacity .6s}.veil.show{opacity:1}
+/* ══ HERO ══ */
+.hero{position:relative;min-height:58vh;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:center;padding:2rem 2rem 4rem;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(120,90,20,.12),#030404 65%)}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:700px;padding-top:6rem}
+.hero-icon{font-size:3.5rem;display:block;margin-bottom:1rem;filter:drop-shadow(0 0 18px rgba(212,175,55,.4));animation:floatIcon 4s ease-in-out infinite}
+@keyframes floatIcon{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-num{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.45em;color:rgba(212,175,55,.6);text-transform:uppercase;display:inline-block;border:1px solid rgba(212,175,55,.25);padding:.3rem 1rem;margin-bottom:1.2rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.6rem,5vw,2.8rem);color:#fff;line-height:1.2;margin-bottom:.5rem}
+.hero-title span{color:#d4af37}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.3);line-height:1.8;margin-top:.8rem}
+.hero-div{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.5),transparent);margin:1rem auto 0}
+/* ══ CONTENT ══ */
+.content{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:3rem 2rem 6rem}
+.intro-text{font-size:clamp(1rem,2.5vw,1.1rem);font-style:italic;color:rgba(255,255,255,.4);line-height:1.95;margin-bottom:2.5rem;padding:.8rem 1.2rem;border-left:2px solid rgba(212,175,55,.2)}
+/* ══ SECTION TITLE ══ */
+.section-title{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin:3rem 0 1.5rem}
+.section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(212,175,55,.2),transparent)}
+/* ══ POWER CARD ══ */
+.power-card{border:1px solid rgba(212,175,55,.14);background:rgba(212,175,55,.018);padding:2rem 1.8rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.power-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.4),transparent)}
+.power-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(212,175,55,.03),transparent 70%);opacity:0;transition:opacity .4s}
+.power-card:hover::after{opacity:1}
+.power-badge{display:inline-flex;align-items:center;gap:.6rem;margin-bottom:.8rem}
+.power-num{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.32em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.power-tag{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.18em;color:rgba(212,175,55,.3);text-transform:uppercase;border:1px solid rgba(212,175,55,.15);padding:.15rem .55rem}
+.power-title{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:400;color:#f0d980;margin-bottom:.3rem}
+.power-context{font-family:'Cinzel',serif;font-size:.47rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:1rem}
+/* Instruction steps */
+.power-steps{list-style:none;margin:0 0 .8rem}
+.power-step{display:grid;grid-template-columns:auto 1fr;gap:.8rem 1rem;padding:.7rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.power-step:last-child{border-bottom:none}
+.step-marker{width:22px;height:22px;border:1px solid rgba(212,175,55,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.15rem}
+.step-marker-dot{width:6px;height:6px;background:rgba(212,175,55,.4);border-radius:50%}
+.step-text{font-size:1rem;color:rgba(232,228,220,.55);line-height:1.8}
+.step-text em{color:rgba(255,255,255,.35);font-style:italic}
+/* Mot de pouvoir highlight */
+.mot-pouvoir{display:block;font-family:'Cinzel',serif;font-size:clamp(1.15rem,3vw,1.5rem);letter-spacing:.18em;color:#d4af37;text-shadow:0 0 25px rgba(212,175,55,.35);text-align:center;padding:.9rem 1.5rem;margin:.6rem 0;background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.12);position:relative}
+.mot-pouvoir::before,.mot-pouvoir::after{content:'✦';position:absolute;top:50%;transform:translateY(-50%);font-size:.7rem;color:rgba(212,175,55,.3)}
+.mot-pouvoir::before{left:.8rem}.mot-pouvoir::after{right:.8rem}
+/* Note */
+.power-note{font-size:.88rem;font-style:italic;color:rgba(255,255,255,.28);padding:.6rem .9rem;border-left:2px solid rgba(212,175,55,.15);margin-top:.8rem;line-height:1.7}
+/* Sub-divider */
+.sub-div{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin:2rem 0}
+.sub-div-line{flex:1;height:1px;background:rgba(212,175,55,.1)}
+.sub-div-icon{color:rgba(212,175,55,.25);font-size:.9rem}
+/* Nav bottom */
+.nav-bottom{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.1)}
+.nav-btn{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.22em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.65rem 1.5rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.04)}
+footer{position:relative;z-index:1;background:#030404;border-top:1px solid rgba(212,175,55,.08);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.6rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.4rem}
+.footer-copy{font-size:.75rem;color:#383838;letter-spacing:.1em}
+@media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="veil" id="veil"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="kabal.html" class="nav-back">← Etid Kabal</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-icon">🔐</span>
+    <span class="hero-num">Sijè Espesyal · Kabal Pratik · Tradisyon</span>
+    <h1 class="hero-title">Mots de Pouvoir <span>Traditionnels</span></h1>
+    <p class="hero-sub">Formules sacrées transmises par la tradition — pour la protection, l'accès aux lieux, et la maîtrise des forces adverses.</p>
+    <div class="hero-div"></div>
+  </div>
+</section>
+
+<main class="content">
+
+  <p class="intro-text">Ces mots de pouvoir sont issus d'une longue tradition ésotérique. Ils s'utilisent avec intention et conscience — non par superstition, mais comme des clés vibratoires qui alignent l'être avec des forces protectrices supérieures.</p>
+
+  <!-- SECTION 1 -->
+  <span class="section-title">✦ I — Protection Quotidienne</span>
+
+  <div class="power-card">
+    <div class="power-badge">
+      <span class="power-num">Formule 1</span>
+      <span class="power-tag">Protection · Quotidien</span>
+    </div>
+    <h3 class="power-title">Protection pour 24 heures</h3>
+    <span class="power-context">⏳ Le matin — en enfilant le pantalon</span>
+    <ul class="power-steps">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">Tenir le pantalon face à l'<em>Est</em>, frapper l'avant-bras gauche et dire :<br>
+        <em>« Daignez Grand Architecte de l'univers, me protéger de tout accident de l'air, de la mer et de la terre. »</em></p>
+      </li>
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">En enfilant la jambe gauche, dire :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir">MANACE</span>
+    <ul class="power-steps" style="margin-top:.6rem">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">Se retourner vers l'<em>Occident</em>, enfiler le pied droit en disant :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir">ROI DAVID</span>
+    <ul class="power-steps" style="margin-top:.6rem">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">En fermant le pantalon, dire :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir">ISRAËL</span>
+  </div>
+
+  <div class="sub-div"><div class="sub-div-line"></div><span class="sub-div-icon">✦</span><div class="sub-div-line"></div></div>
+
+  <!-- SECTION 2 -->
+  <span class="section-title">✦ II — Accès & Présences Hostiles</span>
+
+  <div class="power-card">
+    <div class="power-badge">
+      <span class="power-num">Formule 2</span>
+      <span class="power-tag">Accès · Protection</span>
+    </div>
+    <h3 class="power-title">Pour entrer dans un lieu suspect</h3>
+    <span class="power-context">🚪 Avant de franchir le seuil</span>
+    <ul class="power-steps">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">Mettre le pied gauche en avant et dire :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir" style="font-size:clamp(.9rem,2.5vw,1.1rem);letter-spacing:.1em;font-style:italic">La lumière est venue dans le monde<br>et le monde ne l'a pas reçue.</span>
+  </div>
+
+  <div class="power-card">
+    <div class="power-badge">
+      <span class="power-num">Formule 3</span>
+      <span class="power-tag">Protection · Contact</span>
+    </div>
+    <h3 class="power-title">Pour donner sans danger la main à tout malfaiteur ou sorcier</h3>
+    <span class="power-context">🤝 Avant de serrer la main</span>
+    <ul class="power-steps">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">Prononcer ces mots <em>intérieurement</em> avant de lui serrer la main :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir">+ ALEQUATI + LIMBORARE</span>
+    <span class="mot-pouvoir" style="font-size:clamp(.85rem,2vw,1rem);letter-spacing:.06em;font-style:italic">La main de Dieu passe avant la mienne</span>
+    <p class="power-note">Immédiatement après, il sera déstabilisé et retirera sa main brusquement — signe que la formule a opéré.</p>
+  </div>
+
+  <div class="power-card">
+    <div class="power-badge">
+      <span class="power-num">Formule 4</span>
+      <span class="power-tag">Protection · Lieu</span>
+    </div>
+    <h3 class="power-title">Lieu dangereux ou machiavélique</h3>
+    <span class="power-context">🦁 En entrant dans un endroit hostile</span>
+    <ul class="power-steps">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">Au moment d'entrer, dire avec fermeté intérieure :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir" style="font-size:clamp(.9rem,2.5vw,1.1rem);font-style:italic;letter-spacing:.08em">Je rentre en lion, je sors en brebis.</span>
+  </div>
+
+  <div class="sub-div"><div class="sub-div-line"></div><span class="sub-div-icon">✦</span><div class="sub-div-line"></div></div>
+
+  <!-- SECTION 3 -->
+  <span class="section-title">✦ III — Protection contre les Accidents</span>
+
+  <div class="power-card">
+    <div class="power-badge">
+      <span class="power-num">Formule 5</span>
+      <span class="power-tag">Protection · Véhicule</span>
+    </div>
+    <h3 class="power-title">Contre l'accident d'un véhicule</h3>
+    <span class="power-context">🚗 En voiture — lorsqu'on pressent un danger</span>
+    <ul class="power-steps">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">Si l'on pressent un accident imminant, dire immédiatement :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir">+ OZIAS + OZIAS + OZIAS</span>
+    <p style="font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(212,175,55,.35);text-transform:uppercase;text-align:center;margin:1rem 0 .5rem">— Ou alternativement —</p>
+    <ul class="power-steps">
+      <li class="power-step">
+        <div class="step-marker"><div class="step-marker-dot"></div></div>
+        <p class="step-text">En mettant le <em>premier pied</em> dans le véhicule, dire :</p>
+      </li>
+    </ul>
+    <span class="mot-pouvoir">AGLA · AGLATIS · AGLAMUS</span>
+    <p class="power-note">Ces Noms divins forment un bouclier vibratoire autour du véhicule et de ses occupants. La deuxième formule crée une protection préventive dès la montée.</p>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="kabal.html" class="nav-btn">← Retour — Etid Kabal</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p>
+</footer>
+
+<script>
+(function(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<55;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*1.8+.3;
+    const col=Math.random()>.6?'#d4af37':Math.random()>.5?'#f0d980':'#fff';
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;background:${col};--d:${(Math.random()*6+2).toFixed(1)}s;--o:${(Math.random()*.18+.03).toFixed(2)}`;
+    c.appendChild(s);
+  }
+})();
+document.querySelectorAll('a[href]').forEach(a=>{
+  if(a.hostname===location.hostname&&!a.href.includes('#')){
+    a.addEventListener('click',function(e){
+      e.preventDefault();const d=this.href;
+      const v=document.getElementById('veil');
+      v.classList.add('show');
+      setTimeout(()=>location.href=d,500);
+    });
+  }
+});
+</script>
+</body>
+</html>
