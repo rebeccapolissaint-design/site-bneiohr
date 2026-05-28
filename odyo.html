@@ -39,7 +39,7 @@ margin-bottom: 2rem;
 position: relative;
 }
 .player-card::before, .player-card::after {
-content: '✦'; position: absolute;
+content: '✡'; position: absolute;
 font-size: 0.55rem; color: rgba(212,175,55,0.25);
 }
 .player-card::before { top: 1rem; left: 1rem; }
@@ -114,11 +114,11 @@ footer a:hover { color: #d4af37; }
 <div id="stars"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="bibliyotek.html" class="nav-back">← Bibliothèque</a>
 </nav><div class="container"><div class="page-header"><span class="page-eyebrow">Espace Spirituel</span><span class="page-hebrew">נִגּוּן</span><h1 class="page-title">Musique Sacrée & Méditation</h1><div class="page-divider"></div><p class="page-subtitle">Laisse le son te rapprocher de la Lumière</p></div><div class="player-card"><div class="now-playing"><span class="now-label">En cours de lecture</span><span class="track-name" id="trackName">Ambiance Méditation</span><span class="track-sub" id="trackSub">Appuie sur ▶ pour commencer</span></div><div class="progress-row"><span class="ptime" id="timeElapsed">0:00</span><div class="progress-bar" id="progressBar" onclick="seekAudio(event)"><div class="progress-fill" id="progressFill"></div></div><span class="ptime" id="timeDuration">0:00</span></div><div class="controls"><button class="ctrl-btn" onclick="prevTrack()" title="Anvan">⏮</button><button class="ctrl-btn play-btn" id="playBtn" onclick="togglePlay()">▶</button><button class="ctrl-btn" onclick="nextTrack()" title="Aprè">⏭</button></div><div class="vol-row"><span class="vol-icon">🔈</span><input type="range" class="vol-slider" id="volSlider" min="0" max="100" step="5" value="80" oninput="setVolume(this.value)"><span class="vol-icon">🔊</span></div><div id="ytContainer" style="display:none;"><iframe id="ytPlayer" width="1" height="1"
 src="https://www.youtube.com/embed/KfM-e7kDCkU?enablejsapi=1&rel=0&modestbranding=1"
-allow="autoplay" frameborder="0"></iframe></div></div><span class="playlist-title">✦ Liste des Pistes</span><div class="playlist" id="playlist"></div><div class="add-note">
-✦ Pou ajoute yon nouvo trak — ban nou lyen YouTube la<br>
+allow="autoplay" frameborder="0"></iframe></div></div><span class="playlist-title">✡ Liste des Pistes</span><div class="playlist" id="playlist"></div><div class="add-note">
+✡ Pou ajoute yon nouvo trak — ban nou lyen YouTube la<br>
 epi nou ap ajoute l nan lis la byento.
 </div></div><footer><a href="bibliyotek.html">← Retour à la Bibliothèque</a>
-&nbsp;&nbsp;✦&nbsp;&nbsp;
+&nbsp;&nbsp;✡&nbsp;&nbsp;
 <a href="index.html">Akèy</a>
 </footer><script>
 // Stars
