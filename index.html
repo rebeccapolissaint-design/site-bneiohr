@@ -158,7 +158,9 @@ nav{padding:1rem 1.5rem}
 <div class="video-slide"><div class="video-wrap ratio-9-16"><div class="short-clip"><iframe id="vf2" src="https://www.youtube.com/embed/v9FFmha6izk?rel=0&modestbranding=1&controls=1" title="Bnei Ohr — Videyo 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><button class="video-fs-btn" onclick="requestFS('vf2')" title="Plen ekran">⛶</button></div></div>
 <!-- Slide 3 — Short orijinal 9:16, UI kache -->
 <div class="video-slide"><div class="video-wrap ratio-9-16"><div class="short-clip"><iframe id="vf3" src="https://www.youtube.com/embed/_mt_8w3z3ew?rel=0&modestbranding=1&controls=1" title="Bnei Ohr — Short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><button class="video-fs-btn" onclick="requestFS('vf3')" title="Plen ekran">⛶</button></div></div>
-</div></div><div class="video-dots"><span class="video-dot active" onclick="goToSlide(0)"></span><span class="video-dot" onclick="goToSlide(1)"></span><span class="video-dot" onclick="goToSlide(2)"></span></div></div></section><style>
+<!-- Slide 4 — nouvo Short -->
+<div class="video-slide"><div class="video-wrap ratio-9-16"><div class="short-clip"><iframe id="vf4" src="https://www.youtube.com/embed/bJsF0Dg9c9g?rel=0&modestbranding=1&controls=1" title="Bnei Ohr — Short 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><button class="video-fs-btn" onclick="requestFS('vf4')" title="Plen ekran">⛶</button></div></div>
+</div></div><div class="video-dots"><span class="video-dot active" onclick="goToSlide(0)"></span><span class="video-dot" onclick="goToSlide(1)"></span><span class="video-dot" onclick="goToSlide(2)"></span><span class="video-dot" onclick="goToSlide(3)"></span></div></div></section><style>
 .video-section{position:relative;z-index:1;padding:4rem 2rem;background:linear-gradient(to bottom,#050505,#07050d,#050505);border-bottom:1px solid rgba(212,175,55,.08)}
 .video-inner{max-width:400px;margin:0 auto;text-align:center}
 .video-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:1.5rem}
@@ -181,7 +183,7 @@ nav{padding:1rem 1.5rem}
 (function(){
   var carousel=document.getElementById('videoCarousel');
   var dots=document.querySelectorAll('.video-dot');
-  var total=3,cur=0,startX=0,isDragging=false;
+  var total=4,cur=0,startX=0,isDragging=false;
   function goToSlide(n){cur=n;carousel.style.transform='translateX(-'+n*100+'%)';dots.forEach(function(d,i){d.classList.toggle('active',i===n)});}
   window.goToSlide=goToSlide;
   window.requestFS=function(id){
