@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kalandriye Mistik | Bnei Ohr</title>
+<title>Calendrier Ésotérique | Bnei Ohr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
 <style>
@@ -90,14 +90,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 2rem;backgroun
 
 <div class="cal-hero">
   <span class="cal-eyebrow">✡ Bnei Ohr ✡</span>
-  <h1 class="cal-title">Kalandriye Mistik</h1>
-  <p class="cal-sub">Lwa Vodou · Faz Lalin · Jou Enèji · Eleman Kabalistik</p>
+  <h1 class="cal-title">Calendrier Ésotérique</h1>
+  <p class="cal-sub">Fêtes hébraïques · Phases lunaires · Jours sacrés du Vodou</p>
   <div class="cal-divider"></div>
   <div class="cal-legend">
-    <span class="leg-item"><span class="leg-dot" style="background:#d4af37"></span>Kabal & Ebre</span>
-    <span class="leg-item"><span class="leg-dot" style="background:#7b68ee"></span>Lwa Vodou</span>
-    <span class="leg-item"><span class="leg-dot" style="background:#4a9eff"></span>Faz Lalin</span>
-    <span class="leg-item"><span class="leg-dot" style="background:#e87070"></span>Jou Enèji & Mistik</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#d4af37"></span>Fêtes hébraïques</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#7b68ee"></span>Jours Vodou</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#4a9eff"></span>Phases lunaires</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#e87070"></span>Jours kabbalistiques</span>
   </div>
 </div>
 
@@ -190,43 +190,6 @@ var FIXED_EVENTS = [
   [8,23,"Équinoxe d'Automne — Tekoufa Tishri","L'équinoxe d'automne correspond à Tekoufa Tishri — début de l'année hébraïque. La lettre Vav du Nom divin. Temps de bilan, de retour et de transformation. Les forces de jugement et de miséricorde s'équilibrent.","kabal","🍂"],
   [11,21,"Solstice d'Hiver — Tekoufa Tevet","Le solstice d'hiver — point de ténèbres maximales avant le retour de la lumière. Correspondance avec la lettre Hé finale du Nom divin et Malkhout — le Royaume qui reçoit et incube la lumière dans le noir.","kabal","❄"],
   [3,15,"Pessa'h Cheni — Deuxième Pâque","La Deuxième Pâque — une seconde chance accordée à ceux qui n'ont pu célébrer Pessa'h. Dans la Kabbale, ce jour enseigne qu'il n'est jamais trop tard pour revenir et se corriger. Chaque moment peut être un nouveau commencement.","kabal","✨"],
-
-  // ── FÈTES LWA VODOU — NOUVÈL ──────────────────────────────────
-  [0,10,"Fête de Danbala Wedo","Danbala Wedo — le Grand Serpent Blanc — est l'un des Lwa les plus anciens et les plus respectés. Il incarne la pureté absolue, la sagesse ancestrale et l'eau sacrée de la création. On lui offre des œufs blancs, du lait et des noix de coco. Sa présence amène la paix profonde et la clarté mentale. Dans la Kabbale, Danbala correspond à la Sefirah Keter — la couronne primordiale au-dessus de toute compréhension.","vodou","🐍"],
-  [1,2,"Fête de la Chandeleur — Purification des Lwa","La Chandeleur dans la tradition haïtienne est associée au travail de purification spirituelle. On allume des bougies blanches en l'honneur des Lwa de lumière. C'est le moment idéal pour nettoyer son espace sacré, renouveler ses intentions et demander protection aux esprits ancestraux. La flamme de la bougie représente l'étincelle divine — la Neshamah — qui brûle en chaque être.","vodou","🕯"],
-  [2,3,"Fête de Marasa — Les Jumeaux Sacrés","Les Marasa sont les Lwa jumeaux — symboles de la dualité sacrée, de l'abondance et de l'innocence divine. Ils sont parmi les premières divinités du panthéon vodou haïtien. On leur offre des friandises, du sirop et des jouets. Les Marasa nous enseignent que l'univers fonctionne en paires — comme les piliers Boaz et Yakin du Temple, ou les forces Chesed et Gevurah dans la Kabbale.","vodou","👫"],
-  [4,1,"Fête de la Mer — Agwe Tawoyo","Agwe Tawoyo règne sur les océans, les rivières et tout ce qui voyage sur l'eau. Il est le protecteur des marins, des pêcheurs et de tous ceux qui naviguent — physiquement et spirituellement. On lui offre une barque chargée de nourriture qu'on lance à la mer. Dans la Kabbale, Agwe correspond à la Sefirah Chesed — l'océan d'amour et de générosité divines.","vodou","⚓"],
-  [4,18,"Fête de Maman Brigitte","Maman Brigitte est la compagne de Baron Samdi et la gardienne des cimetières. Elle représente la mort mais aussi la guérison, car elle connaît les plantes médicinales sacrées. Femme de feu et de force, elle protège les femmes et les enfants. On lui offre du rhum, du piment et des fleurs violettes. Elle nous enseigne que la frontière entre la vie et la mort est une porte, pas un mur.","vodou","🌺"],
-  [6,16,"Fête de Notre-Dame du Mont Carmel — Ezili Dantò","Notre-Dame du Mont Carmel est associée à Ezili Dantò dans le syncrétisme haïtien. Cette Lwa farouche et protectrice porte les cicatrices de ses combats pour ses enfants. Elle est la mère qui ne cède jamais face à l'oppression. Pèlerinage à Saut d'Eau. On lui offre du rhum Barbancourt, du porc et des fleurs bleues. Sa force résonne avec Gevurah — la rigueur protectrice.","vodou","🔵"],
-  [9,17,"Fête de Loko Atisou","Loko Atisou est le Lwa des arbres, des forêts et de la médecine traditionnelle. Il est le gardien de la connaissance des plantes sacrées et le maître des rituels d'initiation. On l'honore en forêt, près d'un grand arbre. Loko représente la sagesse ancestrale transmise de génération en génération — comme la Kabbale transmise de maître en disciple. Correspondance avec la Sefirah Binah — la compréhension profonde.","vodou","🌳"],
-  [10,16,"Fête de Saint Gérard — Azaka Mede","Saint Gérard correspond à Azaka Mede — le Lwa des paysans, de la terre et de l'agriculture. Il représente la dignité du travail, la simplicité et l'amour de la terre. On lui offre du maïs, des légumes et du clairin. Azaka nous rappelle que la spiritualité ne se vit pas seulement dans les temples — elle vit dans les mains qui cultivent la terre, comme Malkuth — le Royaume physique — porte toute la lumière des Sefirot supérieures.","vodou","🌽"],
-  [11,4,"Fête de Sainte Barbara — Ogou Chango","Sainte Barbara correspond dans certaines traditions à Ogou Chango — le guerrier du feu et de la foudre. Il représente la justice divine qui frappe vite et sans préavis. On lui offre du rhum, des bananes et des objets rouges. Chango nous enseigne que la vérité a une force irrésistible — comme la foudre qui déchire l'obscurité.","vodou","⚡"],
-
-  // ── JOU ENÈJI ESPESYAL ──────────────────────────────────────────
-  [0,11,"Portail 1:11 — Jour d'Intention","Le 11 janvier ouvre le portail énergétique 1:11 — un moment de grande puissance pour planter des intentions. Dans la numérologie sacrée, le 1 représente l'unité divine et le commencement. Trois fois 1 crée un portail de manifestation. Méditez ce matin sur ce que vous souhaitez créer cette année. Écrivez vos intentions avec une encre bleue sur papier blanc.","kabal","✨"],
-  [1,11,"Portail 2:11 — Jour de l'Alliance","Le portail du 11 février active la fréquence de l'alliance et de la réconciliation. C'est un jour propice pour renouveler ses engagements spirituels, pardonner et être pardonné. Dans la Kabbale, le 11 correspond à Da'at — la connaissance qui unit Chokhmah et Binah. Allumez une bougie blanche et méditez sur vos relations les plus importantes.","kabal","🤝"],
-  [2,11,"Portail 3:11 — Jour de la Trinité Sacrée","Le 11 mars active la puissance de la trinité — les trois colonnes de l'Arbre de Vie, les trois mères de l'alphabet hébreu (Alef, Mem, Shin), et les trois âmes dans la tradition haïtienne. C'est un jour idéal pour les travaux de méditation profonde et de connexion ancestrale.","kabal","🔺"],
-  [10,11,"Portail 11:11 — Jour de l'Éveil Suprême","Le 11 novembre — le portail 11:11 — est le jour le plus puissant de l'année numérologiquement. Ce double portail ouvre un canal direct entre Keter et Malkuth — entre le ciel et la terre. Dans la tradition haïtienne, c'est un jour de connexion intense avec les Lwa et les ancêtres. Méditez à 11h11 — posez une intention pure et regardez le ciel.","kabal","🌟"],
-  [3,4,"Jour de Purification — Bain Spirituel","Ce jour est consacré au nettoyage énergétique profond. Préparez un bain avec des plantes sacrées : basilic, rue, verveine, eau de Floride, et quelques gouttes d'huile essentielle de lavande. Récitez le Psaume 91 dans l'eau avant de vous baigner. Ce rituel élimine les énergies négatives accumulées et renouvelle l'aura. Dans la Kabbale, l'immersion dans l'eau correspond au Mikveh — le retour à la pureté originelle.","kabal","🌿"],
-  [7,8,"Jour d'Abondance — Travay Netzach","Le 8 août est un jour d'abondance et de manifestation — le chiffre 8 représente l'infini et la prospérité cyclique. C'est le jour idéal pour activer la Sefirah Netzach — la victoire et l'éternité. Allumez une bougie verte ou dorée. Méditez sur vos désirs les plus profonds. Visualisez l'abondance qui coule vers vous comme une rivière qui ne s'arrête jamais.","kabal","💛"],
-  [9,10,"Jour des Ancêtres — Travay Zansèt","Ce jour est dédié à la communion avec les ancêtres. Dressez un autel simple avec des photos de vos défunts bien-aimés, une bougie blanche, un verre d'eau fraîche et leurs aliments préférés. Parlez-leur. Remerciez-les pour ce qu'ils vous ont transmis. Dans la tradition haïtienne comme dans la Kabbale, les ancêtres ne meurent pas — ils changent de dimension et continuent de guider leurs descendants.","vodou","👴"],
-  [5,5,"Jour de Guérison — Raphaël & Simbi","Le 5 juin est associé aux forces de guérison — l'Archange Raphaël dans la tradition kabbaliste et Simbi dans le Vodou haïtien. Simbi est le Lwa des eaux douces, de la magie et de la médecine. Ce jour, méditez près d'une source d'eau ou placez un verre d'eau au soleil pendant une heure avant de le boire. L'eau chargée de lumière solaire est un puissant remède énergétique.","vodou","💧"],
-  [8,8,"Portail 8:8 — Lion's Gate","Le 8 août, le Soleil est en Lion et Sirius — l'étoile la plus brillante du ciel — est en alignement direct avec la Terre. Ce portail cosmique s'ouvre chaque année pour une transmission de haute fréquence. Dans la Kabbale, c'est un moment de connexion à Tiferet — le Soleil de l'Arbre de Vie. Méditez à l'aube face au soleil levant.","kabal","🦁"],
-  [11,12,"Jour de Méditation Collective","Ce jour est consacré à la méditation de groupe — qu'elle soit physique ou virtuelle. Dans la Kabbale, 'Achidut' — l'unité — est la force la plus puissante. Quand dix âmes méditent ensemble (Minyan), une présence divine particulière descend. Joignez-vous à la méditation Bnei Ohr ce soir à 20h. Allumez une bougie, fermez les yeux, et sentez-vous connecté à tous les membres de la communauté.","kabal","🕯"],
-
-  // ── JOU MISTIK NATIRÈL ──────────────────────────────────────────
-  [0,17,"Jour du Rêve Sacré — Travay Rèv","Le 17 janvier est traditionnellement considéré comme un jour de rêves prophétiques dans de nombreuses traditions ésotériques. Avant de dormir, écrivez une question précise sur un papier et placez-le sous votre oreiller. Allumez une bougie bleue quelques minutes puis éteignez-la. Dans le Vodou haïtien, les Lwa communiquent souvent à travers les rêves. Agwe, maître de l'eau et du subconscient, est particulièrement actif cette nuit.","vodou","🌙"],
-  [2,7,"Semaine du Pardon — Michkan Bnei Ohr","Cette semaine est consacrée au travail du pardon — non par faiblesse, mais par force spirituelle. Dans la Kabbale, le pardon libère des chaînes invisibles qui nous retiennent au passé. Le Teshuvah — le retour — n'est pas réservé aux jours saints. Chaque moment peut être un nouveau commencement. Écrivez sur un papier le nom de quelqu'un que vous devez pardonner — y compris vous-même. Brûlez ce papier comme symbole de libération.","kabal","📜"],
-  [5,24,"Veillée de Silence — Nuit Mystique","La nuit du 24 juin est traditionnellement une nuit de puissance mystique dans de nombreuses cultures. C'est la Saint-Jean-Baptiste — associée à Ogou Badagri dans le Vodou haïtien. Mais c'est aussi une nuit de silence intérieur profond. Restez éveillé de minuit à 3h du matin dans un silence total. Observez vos pensées sans les suivre. C'est dans ce silence que les Lwa et les Sefirot parlent le plus clairement.","vodou","🌌"],
-  [9,28,"Nuit des Psaumes","Cette nuit est consacrée à la récitation des Psaumes (Tehilim). Dans la Kabbale, les Psaumes de David sont des clés mystiques qui ouvrent des portes entre les mondes. Récitez le Psaume 91 pour la protection, le Psaume 23 pour la paix, le Psaume 121 pour la garde divine. Dans la tradition haïtienne, les Psaumes sont utilisés dans les rituels de prière intense depuis des siècles.","kabal","📖"],
-  [7,3,"Jour de Connexion Ancestrale","Ce jour, les voiles entre le monde des vivants et celui des ancêtres sont plus minces. Dressez un petit autel — une photo, une bougie, un verre d'eau fraîche. Parlez à ceux qui vous ont précédé. Demandez-leur conseil, guidance, protection. Dans le Vodou haïtien, les morts ne quittent jamais vraiment — ils changent simplement de côté de la rivière sacrée.","vodou","🕯"],
-  [10,1,"Toussaint — Fête de tous les Zansèt","Le 1er novembre est la grande fête des ancêtres dans toute la tradition haïtienne. On visite les cimetières, on nettoie et décore les tombes, on partage de la nourriture. Baron Samdi et les Guédé sont à leur point de puissance maximale. C'est aussi un moment de gratitude pour ceux qui nous ont ouvert le chemin. Sans les ancêtres, nous n'aurions pas de racines.","vodou","🌹"],
-  [3,22,"Jour de la Terre — Malkuth Haïti","Le 22 avril — Jour de la Terre — résonne profondément avec la Sefirah Malkuth dans la Kabbale. Malkuth est le Royaume physique — la terre, la matière, le corps. Pour Bnei Ohr, Malkuth c'est Haïti — notre terre sacrée. Aujourd'hui, honorez la terre en plantant quelque chose, en nettoyant votre environnement, ou simplement en marchant pieds nus sur le sol et en ressentant votre connexion avec la terre d'Haïti.","kabal","🌍"],
-
-  // ── EVÈNMAN BNEI OHR ESPESYAL ──────────────────────────────────
-  [0,20,"Rentrée Spirituelle — Bnei Ohr","Début du nouveau cycle d'études Bnei Ohr. C'est le moment d'initier ou renouveler votre engagement sur le chemin de la lumière. Inscrivez-vous aux cours, rejoignez les groupes de méditation, et commencez votre journal spirituel. Rappel : le chemin commence toujours par un premier pas sincère — Alef, la première lettre, est aussi le premier souffle.","kabal","✡"],
-  [5,1,"Fête du Travail Sacré — Kavod HaMelakha","Le 1er mai est la fête du travail — mais pour Bnei Ohr, c'est aussi la fête du travail sacré. Chaque profession est une forme de Tikkun Olam — réparation du monde. Le menuisier, l'enseignant, le médecin, l'agriculteur — chacun accomplit une mission divine en travaillant avec honnêteté et cœur. Azaka Mede, Lwa des paysans, est particulièrement honoré ce jour.","vodou","🌾"],
-  [8,1,"Rentrée Académique Bnei Ohr","Début de la nouvelle année académique Bnei Ohr. Nouveaux cours, nouvelles initiations, nouvelle lumière. Si vous n'avez pas encore commencé votre chemin d'étude — c'est le moment. La porte est ouverte. Papa Legba se tient au carrefour et attend que vous demandiez le passage.","kabal","📚"],
 ];
 
 // Couleurs par type
@@ -237,10 +200,10 @@ var TYPE_COLORS = {
   kabal:  '#e87070'
 };
 var TYPE_LABELS = {
-  hebrew: 'Kabal',
+  hebrew: 'Hébreu',
   vodou:  'Vodou',
-  moon:   'Lalin',
-  kabal:  'Mistik'
+  moon:   'Lune',
+  kabal:  'Kabbale'
 };
 
 // État
@@ -406,60 +369,6 @@ document.getElementById('nextMonth').addEventListener('click', function(){
 // Init — select today
 renderCalendar();
 selectDay(today.getFullYear(), today.getMonth(), today.getDate());
-</script>
-
-<!-- RÉFLEXION DU JOUR -->
-<style>
-.reflexion-jour-widget{position:fixed;bottom:0;left:0;right:0;z-index:800;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.18);padding:.5rem 1.2rem;display:flex;align-items:center;gap:.8rem;min-height:2.8rem;overflow:hidden}
-.reflexion-jour-tab{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;color:#d4af37;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,.6);flex-shrink:0;line-height:1}
-.rj-divider{width:1px;height:1rem;background:rgba(212,175,55,.25);flex-shrink:0}
-.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:#b8a880;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
-.rj-source{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.15em;color:rgba(212,175,55,.35);white-space:nowrap;flex-shrink:0;text-transform:uppercase}
-.reflexion-jour-panel{display:flex;align-items:center;gap:.8rem;flex:1;min-width:0}
-</style>
-<div class="reflexion-jour-widget">
-  <div class="reflexion-jour-tab">✡ Réflexion du Jour</div>
-  <div class="reflexion-jour-panel">
-    <span class="rj-hebrew" id="rjHebrew"></span>
-    <div class="rj-divider"></div>
-    <p class="rj-quote" id="rjQuote"></p>
-    <span class="rj-source" id="rjSource"></span>
-  </div>
-</div>
-<script>
-(function(){
-  var med=[
-    ["\u05D0\u05B5\u05D9\u05DF \u05E2\u05D5\u05B9\u05D3 \u05DE\u05B4\u05DC\u05B0\u05D1\u05D3\u05D5\u05B9","Il n'y a rien d'autre que Lui. Derrière chaque apparence, chaque douleur, chaque joie — une seule Lumière qui se cherche elle-même.","Devarim 4:35 | Kabbale"],
-    ["\u05DB\u05B6\u05EA\u05B6\u05E8","La Couronne n'est pas au-dessus de toi — elle est en toi, attendant d'être reconnue dans le silence le plus profond.","Keter | Etz Chaïm"],
-    ["\u05D7\u05B6\u05E1\u05B6\u05D3","La générosité véritable ne calcule pas. Elle est comme la pluie — elle tombe sur le juste et sur l'injuste, sans demander de mérite.","Chesed | Sefirot"],
-    ["\u05DC\u05B5\u05D1","Le coeur est le temple que tu portes partout. Prends soin de ce qui y entre, car c'est là que Dieu choisit de résider.","Kabbale Bnei Ohr"],
-    ["\u05D2\u05B0\u05D1\u05D5\u05BC\u05E8\u05B8\u05D4","La force véritable n'est pas celle qui détruit — c'est celle qui sait se contenir, tracer une limite juste et protéger ce qui est sacré.","Gevurah | Sefirot"],
-    ["\u05D0\u05D5\u05B9\u05E8","La Lumière ne cherche pas à chasser l'obscurité. Elle se contente d'être — et l'obscurité se dissout d'elle-même.","Ohr | Zohar"],
-    ["\u05EA\u05B4\u05E7\u05BC\u05D5\u05BC\u05DF","Chaque acte de bonté, même le plus petit, répare un fragment du monde. Tu n'es pas seul dans cette oeuvre.","Tikkun Olam | Kabbale"],
-    ["\u05E0\u05B0\u05E9\u05B8\u05DE\u05B8\u05D4","Ton âme a choisi ce moment, cette vie, ce corps — pour accomplir quelque chose que seule elle peut réaliser.","Neshamah | Kabbale"],
-    ["\u05E9\u05B7\u05D1\u05BC\u05B8\u05EA","Le repos n'est pas une pause dans la création — c'est le couronnement. Ce qui ne sait pas s'arrêter ne sait pas vraiment créer.","Shabbat | Torah"],
-    ["\u05EA\u05B4\u05E4\u05B0\u05D0\u05B6\u05E8\u05B6\u05EA","La beauté n'est pas une décoration du monde — elle est la signature du divin sur toute chose qui est à sa juste place.","Tiferet | Sefirot"],
-    ["\u05D0\u05B1\u05DE\u05D5\u05BC\u05E0\u05B8\u05D4","La foi n'est pas la certitude. C'est le courage de marcher dans l'obscurité en faisant confiance à la lumière que l'on ne voit pas encore.","Emunah | Kabbale"],
-    ["\u05D9\u05B0\u05E1\u05D5\u05B9\u05D3","Ce que tu plantes dans l'invisible — tes intentions, tes prières, tes rêves — germe silencieusement avant de se manifester.","Yesod | Etz Chaïm"],
-    ["\u05D3\u05B7\u05E2\u05B7\u05EA","La vraie connaissance n'est pas dans les livres — elle est dans l'union de ce que tu sais et de ce que tu vis.","Da'at | Kabbale"],
-    ["\u05DC\u05B5\u05D2\u05B0\u05D1\u05BC\u05B8","Chaque carrefour de ta vie est une invitation — non une menace. Legba ouvre les chemins à ceux qui savent demander avec humilité.","Legba | Vodou Haïtien"],
-    ["\u05DE\u05B7\u05DC\u05B0\u05DB\u05D5\u05BC\u05EA","Le royaume de Dieu n'est pas loin. Il est dans la façon dont tu manges, dont tu parles, dont tu regardes ceux que tu croises.","Malkhut | Sefirot"],
-    ["\u05D0\u05B6\u05E8\u05B0\u05D6\u05D5\u05BC\u05DC\u05B4\u05D9","Erzulie nous rappelle que l'amour est la force la plus subversive qui soit. Là où elle passe, les murs tombent.","Erzulie | Vodou Haïtien"],
-    ["\u05D1\u05B4\u05D9\u05E0\u05B8\u05D4","La compréhension ne vient pas d'un coup. Elle mûrit dans le silence, comme un fruit — et quand elle arrive, elle change tout.","Binah | Sefirot"],
-    ["\u05D0\u05D5\u05B9\u05D2\u05D5\u05BC","Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre. Distingue le combat qui libère de celui qui enchaîne.","Ogou | Vodou Haïtien"],
-    ["\u05E0\u05B6\u05E6\u05B7\u05D7","La victoire véritable n'est pas sur les autres — c'est sur la peur en toi qui te disait que tu n'en étais pas capable.","Netzach | Sefirot"],
-    ["\u05D1\u05B8\u05E8\u05D5\u05B9\u05DF","Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage. Ce qui ne peut traverser ce seuil n'était pas essentiel.","Baron Samdi | Vodou Haïtien"],
-    ["\u05E9\u05B8\u05DC\u05D5\u05B9\u05DD","La paix n'est pas l'absence de conflit — c'est la présence d'une harmonie plus profonde que tout conflit.","Shalom | Kabbale"],
-    ["\u05D0\u05B5\u05D9\u05DF \u05E1\u05D5\u05B9\u05E3","Ein Sof — Sans Fin. Tu viens de l'infini et tu retournes à l'infini. Ce que tu vis entre les deux est le cadeau que l'infini se fait à lui-même.","Ein Sof | Kabbale"],
-    ["\u05D0\u05B7\u05D4\u05B2\u05D1\u05B8\u05D4","Aimer, c'est voir l'âme derrière le visage. Quand tu regardes quelqu'un avec les yeux du coeur, tu vois ce que Dieu voit.","Ahavah | Kabbale Bnei Ohr"]
-  ];
-  var t=new Date();
-  var i=(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%med.length;
-  document.getElementById('rjHebrew').textContent=med[i][0];
-  document.getElementById('rjQuote').textContent=med[i][1];
-  document.getElementById('rjSource').textContent=med[i][2];
-})();
 </script>
 
 </body>
