@@ -77,6 +77,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 2rem;backgroun
 .upcoming-name{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:#b0a080}
 .upcoming-badge{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.15em;padding:.2rem .4rem;border-radius:2px;text-transform:uppercase;margin-left:auto;flex-shrink:0}
 </style>
+
+<style id="rj-mobile-real-fix">
+.rj-quote{
+white-space:normal!important;
+overflow:visible!important;
+text-overflow:unset!important;
+display:block!important;
+line-height:1.4!important;
+max-width:100%!important;
+}
+.reflexion-jour-widget{
+height:auto!important;
+min-height:60px!important;
+}
+</style>
 </head>
 <body>
 
@@ -414,7 +429,7 @@ selectDay(today.getFullYear(), today.getMonth(), today.getDate());
 .reflexion-jour-tab{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;color:#d4af37;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
 .rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,.6);flex-shrink:0;line-height:1}
 .rj-divider{width:1px;height:1rem;background:rgba(212,175,55,.25);flex-shrink:0}
-.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:#b8a880;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:#b8a880;font-style:italic;white-space:normal!important;overflow:visible!important;text-overflow:unset!important;word-break:break-word;flex:1;min-width:0}
 .rj-source{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.15em;color:rgba(212,175,55,.35);white-space:nowrap;flex-shrink:0;text-transform:uppercase}
 .reflexion-jour-panel{display:flex;align-items:center;gap:.8rem;flex:1;min-width:0}
 </style>

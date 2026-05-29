@@ -166,7 +166,7 @@ body.light-mode .footer-links a:hover{color:var(--gold)!important}
 body.light-mode .footer-copy,body.light-mode .footer-mentions{color:var(--text-sub)!important}
 body.light-mode .reflexion-jour-widget{background:linear-gradient(90deg,#ede8de,#e8e0d0,#ede8de)!important;border-top-color:var(--border)!important}
 body.light-mode .reflexion-jour-tab{color:var(--gold)!important}
-body.light-mode .rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#b0a080;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+body.light-mode .rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#b0a080;font-style:italic;white-space:normal!important;overflow:visible!important;text-overflow:unset!important;word-break:break-word;flex:1;min-width:0}
 body.light-mode .srch-box{background:linear-gradient(135deg,#f0ebe0,#ede5d5)!important;border-color:var(--border-strong)!important}
 body.light-mode .srch-input{color:var(--text-main)!important}
 body.light-mode .srch-item:hover{background:rgba(138,106,32,.08)!important}
@@ -200,6 +200,21 @@ body.light-mode .theme-toggle:hover{border-color:#8a6a20;color:#8a6a20}
 })();
 </script>
 <script src="/search-index.js"></script>
+
+<style id="rj-mobile-real-fix">
+.rj-quote{
+white-space:normal!important;
+overflow:visible!important;
+text-overflow:unset!important;
+display:block!important;
+line-height:1.4!important;
+max-width:100%!important;
+}
+.reflexion-jour-widget{
+height:auto!important;
+min-height:60px!important;
+}
+</style>
 </head>
 <body>
 <div id="stars"></div>
@@ -389,7 +404,7 @@ if(!isOpen){hdr.classList.add('open');hdr.nextElementSibling.classList.add('open
 .rj-eyebrow{display:none}
 .rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:.95rem;color:rgba(212,175,55,.5);flex-shrink:0;line-height:1}
 .rj-divider{width:1px;height:1rem;background:rgba(212,175,55,.2);flex-shrink:0}
-.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#a09070;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#a09070;font-style:italic;white-space:normal!important;overflow:visible!important;text-overflow:unset!important;word-break:break-word;flex:1;min-width:0}
 .rj-source{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.15em;color:rgba(212,175,55,.35);white-space:nowrap;flex-shrink:0;text-transform:uppercase}
 .reflexion-jour-panel{display:flex;align-items:center;gap:.8rem;flex:1;min-width:0}
 .reflexion-jour-inner{display:flex;align-items:center;gap:.8rem;flex:1;min-width:0}
