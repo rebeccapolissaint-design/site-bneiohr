@@ -259,4 +259,71 @@ window.addEventListener('scroll',()=>{document.querySelector('nav').style.backgr
 })();
 </script>
 
+
+<style>
+.reflexion-jour-widget{position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:800;display:flex;align-items:center}
+.reflexion-jour-tab{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;background:rgba(5,5,5,.9);border:1px solid rgba(212,175,55,.12);border-right:none;padding:.8rem .4rem;cursor:pointer;transition:all .3s}
+.reflexion-jour-tab:hover{color:#d4af37;border-color:rgba(212,175,55,.3)}
+.reflexion-jour-panel{max-width:0;overflow:hidden;transition:max-width .4s ease;background:linear-gradient(135deg,#07040d,#050505);border:1px solid rgba(212,175,55,.15);border-left:none}
+.reflexion-jour-widget.rj-open .reflexion-jour-panel{max-width:280px}
+.reflexion-jour-inner{width:250px;padding:1.5rem 1.2rem}
+.rj-eyebrow{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.6rem;line-height:1}
+.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#b0a080;line-height:1.7;font-style:italic;margin-bottom:.8rem}
+.rj-source{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-transform:uppercase}
+.rj-divider{width:30px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.3),transparent);margin:.8rem 0}
+</style>
+<div class="reflexion-jour-widget" id="rjWidget">
+  <div class="reflexion-jour-tab" onclick="document.getElementById('rjWidget').classList.toggle('rj-open')">Réflexion du Jour</div>
+  <div class="reflexion-jour-panel">
+    <div class="reflexion-jour-inner">
+      <span class="rj-eyebrow">&#10027; Méditation &#10027;</span>
+      <span class="rj-hebrew" id="rjHebrew"></span>
+      <div class="rj-divider"></div>
+      <p class="rj-quote" id="rjQuote"></p>
+      <span class="rj-source" id="rjSource"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var med=[
+    ["\u05D0\u05B5\u05D9\u05DF \u05E2\u05D5\u05B9\u05D3 \u05DE\u05B4\u05DC\u05B0\u05D1\u05D3\u05D5\u05B9","Il n'y a rien d'autre que Lui. Derrière chaque apparence, chaque douleur, chaque joie — une seule Lumière qui se cherche elle-même.","Devarim 4:35 | Kabbale"],
+    ["\u05DB\u05B6\u05EA\u05B6\u05E8","La Couronne n'est pas au-dessus de toi — elle est en toi, attendant d'être reconnue dans le silence le plus profond.","Keter | Etz Chaïm"],
+    ["\u05D7\u05B6\u05E1\u05B6\u05D3","La générosité véritable ne calcule pas. Elle est comme la pluie — elle tombe sur le juste et sur l'injuste, sans demander de mérite.","Chesed | Sefirot"],
+    ["\u05DC\u05B5\u05D1","Le coeur est le temple que tu portes partout. Prends soin de ce qui y entre, car c'est là que Dieu choisit de résider.","Kabbale Bnei Ohr"],
+    ["\u05D2\u05B0\u05D1\u05D5\u05BC\u05E8\u05B8\u05D4","La force véritable n'est pas celle qui détruit — c'est celle qui sait se contenir, tracer une limite juste et protéger ce qui est sacré.","Gevurah | Sefirot"],
+    ["\u05D0\u05D5\u05B9\u05E8","La Lumière ne cherche pas à chasser l'obscurité. Elle se contente d'être — et l'obscurité se dissout d'elle-même.","Ohr | Zohar"],
+    ["\u05EA\u05B4\u05E7\u05BC\u05D5\u05BC\u05DF","Chaque acte de bonté, même le plus petit, répare un fragment du monde. Tu n'es pas seul dans cette oeuvre.","Tikkun Olam | Kabbale"],
+    ["\u05E0\u05B0\u05E9\u05B8\u05DE\u05B8\u05D4","Ton âme a choisi ce moment, cette vie, ce corps — pour accomplir quelque chose que seule elle peut réaliser.","Neshamah | Kabbale"],
+    ["\u05E9\u05B7\u05D1\u05BC\u05B8\u05EA","Le repos n'est pas une pause dans la création — c'est le couronnement. Ce qui ne sait pas s'arrêter ne sait pas vraiment créer.","Shabbat | Torah"],
+    ["\u05EA\u05B4\u05E4\u05B0\u05D0\u05B6\u05E8\u05B6\u05EA","La beauté n'est pas une décoration du monde — elle est la signature du divin sur toute chose qui est à sa juste place.","Tiferet | Sefirot"],
+    ["\u05D0\u05B1\u05DE\u05D5\u05BC\u05E0\u05B8\u05D4","La foi n'est pas la certitude. C'est le courage de marcher dans l'obscurité en faisant confiance à la lumière que l'on ne voit pas encore.","Emunah | Kabbale"],
+    ["\u05D9\u05B0\u05E1\u05D5\u05B9\u05D3","Ce que tu plantes dans l'invisible — tes intentions, tes prières, tes rêves — germe silencieusement avant de se manifester.","Yesod | Etz Chaïm"],
+    ["\u05D3\u05B7\u05E2\u05B7\u05EA","La vraie connaissance n'est pas dans les livres — elle est dans l'union de ce que tu sais et de ce que tu vis.","Da'at | Kabbale"],
+    ["\u05DC\u05B5\u05D2\u05B0\u05D1\u05BC\u05B8","Chaque carrefour de ta vie est une invitation — non une menace. Legba ouvre les chemins à ceux qui savent demander avec humilité.","Legba | Vodou Haïtien"],
+    ["\u05DE\u05B7\u05DC\u05B0\u05DB\u05D5\u05BC\u05EA","Le royaume de Dieu n'est pas loin. Il est dans la façon dont tu manges, dont tu parles, dont tu regardes ceux que tu croises.","Malkhut | Sefirot"],
+    ["\u05E2\u05B5\u05E5 \u05D7\u05B7\u05D9\u05B4\u05BC\u05D9\u05DD","L'Arbre de Vie n'est pas un schéma à mémoriser — c'est une carte de ton être intérieur. Chaque Sefirah vit en toi.","Etz Chaïm | Kabbale"],
+    ["\u05D0\u05B6\u05E8\u05B0\u05D6\u05D5\u05BC\u05DC\u05B4\u05D9","Erzulie nous rappelle que l'amour est la force la plus subversive qui soit. Là où elle passe, les murs tombent.","Erzulie | Vodou Haïtien"],
+    ["\u05D6\u05B9\u05D4\u05B7\u05E8","Le Zohar nous enseigne que chaque lettre est un monde entier. Imagine ce que contient chaque battement de ton coeur.","Zohar | Kabbale"],
+    ["\u05D1\u05B4\u05D9\u05E0\u05B8\u05D4","La compréhension ne vient pas d'un coup. Elle mûrit dans le silence, comme un fruit — et quand elle arrive, elle change tout.","Binah | Sefirot"],
+    ["\u05D7\u05B8\u05DB\u05B0\u05DE\u05B8\u05D4","L'éclair de sagesse ne dure qu'un instant — mais cet instant suffit à transformer une vie entière. Reste attentif aux éclairs.","Chokhmah | Sefirot"],
+    ["\u05D0\u05D5\u05B9\u05D2\u05D5\u05BC","Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre. Distingue le combat qui libère de celui qui enchaîne.","Ogou | Vodou Haïtien"],
+    ["\u05E0\u05B6\u05E6\u05B7\u05D7","La victoire véritable n'est pas sur les autres — c'est sur la peur en toi qui te disait que tu n'en étais pas capable.","Netzach | Sefirot"],
+    ["\u05D4\u05D5\u05B9\u05D3","La splendeur se trouve dans les détails. Celui qui ne sait pas voir la beauté dans le petit ne verra pas la grandeur du grand.","Hod | Sefirot"],
+    ["\u05D1\u05B8\u05E8\u05D5\u05BC\u05DA\u05B0","Bénir, c'est voir le divin dans ce qui est. Chaque bénédiction prononcée avec sincérité est une fenêtre ouverte sur l'infini.","Berakhah | Kabbale"],
+    ["\u05D0\u05B7\u05D9\u05B4\u05D9\u05D6\u05B8\u05DF","Ayizan garde l'entrée du sacré. Purifier son coeur avant de demander, c'est préparer le terrain pour que la réponse puisse germer.","Ayizan | Vodou Haïtien"],
+    ["\u05EA\u05B0\u05E9\u05D5\u05BC\u05D1\u05B8\u05D4","Le retour à soi-même est le plus grand voyage. Non par culpabilité — mais par désir sincère d'être enfin entier.","Teshuvah | Kabbale"],
+    ["\u05D1\u05B8\u05E8\u05D5\u05B9\u05DF","Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage. Ce qui ne peut traverser ce seuil n'était pas essentiel.","Baron Samdi | Vodou Haïtien"],
+    ["\u05E9\u05B8\u05DC\u05D5\u05B9\u05DD","La paix n'est pas l'absence de conflit — c'est la présence d'une harmonie plus profonde que tout conflit.","Shalom | Kabbale"],
+    ["\u05D0\u05B5\u05D9\u05DF \u05E1\u05D5\u05B9\u05E3","Ein Sof — Sans Fin. Tu viens de l'infini et tu retournes à l'infini. Ce que tu vis entre les deux est le cadeau que l'infini se fait à lui-même.","Ein Sof | Kabbale"],
+    ["\u05D0\u05B7\u05D4\u05B2\u05D1\u05B8\u05D4","Aimer, c'est voir l'âme derrière le visage. Quand tu regardes quelqu'un avec les yeux du coeur, tu vois ce que Dieu voit.","Ahavah | Kabbale Bnei Ohr"]
+  ];
+  var t=new Date();
+  var i=(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%med.length;
+  document.getElementById('rjHebrew').textContent=med[i][0];
+  document.getElementById('rjQuote').textContent=med[i][1];
+  document.getElementById('rjSource').textContent=med[i][2];
+})();
+</script>
 </html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz — Quelle Sefirah es-tu ? | Bnei Ohr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#050505;color:#e0d5b8;font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 2rem;background:rgba(5,5,5,.95);border-bottom:1px solid rgba(212,175,55,.08);display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:#d4af37}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.25em;color:#909090;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:#606060;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+
+/* HERO */
+.quiz-hero{padding:7rem 2rem 3rem;text-align:center;background:linear-gradient(to bottom,#07040d,#050505)}
+.quiz-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:1rem}
+.quiz-title{font-family:'Cinzel',serif;font-size:clamp(1.6rem,5vw,2.8rem);color:#d4af37;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem}
+.quiz-subtitle{font-size:1.05rem;color:#707070;font-style:italic;max-width:480px;margin:0 auto 2rem}
+.quiz-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto}
+
+/* PROGRESS */
+.quiz-progress-wrap{max-width:560px;margin:2.5rem auto 0;padding:0 2rem}
+.quiz-progress-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.6rem;display:flex;justify-content:space-between}
+.quiz-progress-bar{width:100%;height:2px;background:rgba(212,175,55,.1);border-radius:1px;overflow:hidden}
+.quiz-progress-fill{height:100%;background:linear-gradient(to right,rgba(212,175,55,.4),#d4af37);border-radius:1px;transition:width .5s ease}
+
+/* QUESTION */
+.quiz-main{max-width:620px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.question-card{background:linear-gradient(135deg,rgba(212,175,55,.04),rgba(212,175,55,.01));border:1px solid rgba(212,175,55,.12);border-radius:4px;padding:2rem 1.5rem;margin-bottom:1.5rem;animation:fadeQ .4s ease}
+@keyframes fadeQ{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.question-num{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.question-text{font-size:1.2rem;color:#e8dfc8;line-height:1.7;font-style:italic}
+
+/* OPTIONS */
+.options-grid{display:flex;flex-direction:column;gap:.7rem;margin-top:1.5rem}
+.option-btn{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.15);color:#c0b090;font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.85rem 1.2rem;text-align:left;cursor:pointer;border-radius:3px;transition:all .25s;line-height:1.5}
+.option-btn:hover{background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.4);color:#e8dfc8}
+.option-btn.selected{background:rgba(212,175,55,.12);border-color:#d4af37;color:#d4af37}
+
+/* NAV BTNS */
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
+.q-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:.7rem 1.5rem;cursor:pointer;border-radius:2px;transition:all .25s}
+.q-btn-prev{background:transparent;border:1px solid rgba(212,175,55,.2);color:rgba(212,175,55,.5)}
+.q-btn-prev:hover{border-color:rgba(212,175,55,.5);color:#d4af37}
+.q-btn-next{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);color:#d4af37}
+.q-btn-next:hover{background:rgba(212,175,55,.15);border-color:#d4af37}
+.q-btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* RESULT */
+.result-card{background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(212,175,55,.02));border:1px solid rgba(212,175,55,.25);border-radius:4px;padding:2.5rem 2rem;text-align:center;animation:fadeQ .5s ease;display:none}
+.result-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:3rem;color:rgba(212,175,55,.5);display:block;margin-bottom:.5rem}
+.result-name{font-family:'Cinzel',serif;font-size:clamp(1.4rem,4vw,2rem);color:#d4af37;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.3rem}
+.result-french{font-family:'Cormorant Garamond',serif;font-size:1rem;color:rgba(212,175,55,.5);letter-spacing:.15em;font-style:italic;margin-bottom:1.2rem}
+.result-divider{width:50px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:.8rem auto 1.2rem}
+.result-desc{font-size:1.05rem;color:#b0a080;line-height:1.8;max-width:480px;margin:0 auto 1.5rem}
+.result-qualities{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2rem}
+.result-tag{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.6);border:1px solid rgba(212,175,55,.2);padding:.3rem .7rem;border-radius:2px;text-transform:uppercase}
+.result-lwa{font-size:.95rem;color:#808080;font-style:italic;margin-bottom:2rem}
+.result-lwa span{color:#d4af37}
+.btn-retry{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:.8rem 2rem;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);color:#d4af37;cursor:pointer;border-radius:2px;transition:all .25s}
+.btn-retry:hover{background:rgba(212,175,55,.15);border-color:#d4af37}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
+    <span class="nav-logo-text">Bnei Ohr</span>
+  </a>
+  <a href="index.html" class="nav-back">← Accueil</a>
+</nav>
+
+<div class="quiz-hero">
+  <span class="quiz-eyebrow">✡ Exploration Intérieure ✡</span>
+  <h1 class="quiz-title">Quelle Sefirah es-tu ?</h1>
+  <p class="quiz-subtitle">Réponds sincèrement à ces questions pour découvrir quelle Sefirah de l'Arbre de Vie résonne le plus avec ton être profond.</p>
+  <div class="quiz-divider"></div>
+  <div class="quiz-progress-wrap">
+    <div class="quiz-progress-label">
+      <span>Progression</span>
+      <span id="progressText">0 / 10</span>
+    </div>
+    <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="quiz-main">
+  <div id="quizContainer"></div>
+  <div class="result-card" id="resultCard"></div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    text: "Quand tu es face à une décision difficile, qu'est-ce qui guide ton choix en premier ?",
+    options: [
+      {text: "Une vision globale, une intuition profonde que je ne peux expliquer", sefirot: ["Keter","Chokhmah"]},
+      {text: "Une analyse logique et une compréhension claire des enjeux", sefirot: ["Binah","Hod"]},
+      {text: "Mon sens de la justice et de ce qui est juste", sefirot: ["Gevurah","Tiferet"]},
+      {text: "Mon amour pour les personnes concernées et leur bien-être", sefirot: ["Chesed","Netzach"]},
+      {text: "Mon instinct et le sentiment que le moment est propice", sefirot: ["Yesod","Malkhut"]}
+    ]
+  },
+  {
+    text: "Comment les autres te percevraient-ils le mieux ?",
+    options: [
+      {text: "Comme quelqu'un de mystérieux, difficile à cerner mais profond", sefirot: ["Keter","Binah"]},
+      {text: "Comme un être brillant, plein d'idées et d'inspiration", sefirot: ["Chokhmah","Netzach"]},
+      {text: "Comme quelqu'un de juste, équilibré, qui inspire confiance", sefirot: ["Tiferet","Gevurah"]},
+      {text: "Comme une personne généreuse, chaleureuse, toujours prête à aider", sefirot: ["Chesed","Yesod"]},
+      {text: "Comme quelqu'un d'ancré, concret, fiable dans le monde réel", sefirot: ["Malkhut","Hod"]}
+    ]
+  },
+  {
+    text: "Quel est ton rapport au silence et à la solitude ?",
+    options: [
+      {text: "J'en ai profondément besoin — c'est là que je me retrouve vraiment", sefirot: ["Keter","Binah"]},
+      {text: "Je l'apprécis mais j'ai aussi besoin d'échange pour créer", sefirot: ["Chokhmah","Tiferet"]},
+      {text: "Je l'utilise pour réfléchir et organiser mes pensées", sefirot: ["Hod","Gevurah"]},
+      {text: "Je préfère la présence des autres, le silence me pèse", sefirot: ["Chesed","Netzach"]},
+      {text: "J'alterne naturellement entre les deux selon les cycles", sefirot: ["Yesod","Malkhut"]}
+    ]
+  },
+  {
+    text: "Face à une injustice, quelle est ta réaction instinctive ?",
+    options: [
+      {text: "Je ressens une douleur profonde mais cherche d'abord à comprendre les causes", sefirot: ["Binah","Keter"]},
+      {text: "Je m'enflamme et veux corriger la situation immédiatement", sefirot: ["Gevurah","Netzach"]},
+      {text: "Je cherche à réconcilier, à trouver un équilibre entre les parties", sefirot: ["Tiferet","Chesed"]},
+      {text: "J'analyse comment cette injustice peut être réparée durablement", sefirot: ["Hod","Yesod"]},
+      {text: "J'agis concrètement là où je peux faire une différence réelle", sefirot: ["Malkhut","Chesed"]}
+    ]
+  },
+  {
+    text: "Quelle image résonne le plus avec toi ?",
+    options: [
+      {text: "La couronne au sommet d'une montagne enveloppée de brume", sefirot: ["Keter"]},
+      {text: "Un éclair d'inspiration traversant le ciel au lever du jour", sefirot: ["Chokhmah"]},
+      {text: "Une bibliothèque ancienne, pleine de sagesse et de mystère", sefirot: ["Binah"]},
+      {text: "Un roi généreux dont la bonté rayonne sur son peuple", sefirot: ["Chesed"]},
+      {text: "Un guerrier juste qui trace une frontière pour protéger", sefirot: ["Gevurah"]},
+      {text: "Le soleil au cœur de l'Arbre, équilibrant tout autour de lui", sefirot: ["Tiferet"]},
+      {text: "Un musicien inspiré qui crée à partir de l'émotion pure", sefirot: ["Netzach"]},
+      {text: "Un scribe méticuleux qui préserve la sagesse pour les générations futures", sefirot: ["Hod"]},
+      {text: "La lune reflétant la lumière, gardienne du passage entre mondes", sefirot: ["Yesod"]},
+      {text: "La terre qui reçoit tout, nourrit tout et donne forme à tout", sefirot: ["Malkhut"]}
+    ]
+  },
+  {
+    text: "Quel est ton plus grand défi intérieur ?",
+    options: [
+      {text: "Descendre dans la réalité concrète — rester ancré dans le quotidien", sefirot: ["Keter","Chokhmah"]},
+      {text: "Accepter ce que je ne peux pas comprendre ou contrôler", sefirot: ["Binah","Gevurah"]},
+      {text: "Trouver l'équilibre entre donner aux autres et me préserver", sefirot: ["Chesed","Tiferet"]},
+      {text: "Canaliser mes émotions et mon enthousiasme avec discipline", sefirot: ["Netzach","Yesod"]},
+      {text: "Passer de la théorie à l'action dans le monde matériel", sefirot: ["Hod","Malkhut"]}
+    ]
+  },
+  {
+    text: "Comment vis-tu ton rapport au sacré et à la spiritualité ?",
+    options: [
+      {text: "C'est une présence silencieuse que je perçois au-delà de toute forme", sefirot: ["Keter","Binah"]},
+      {text: "Des éclairs de révélation qui changent tout — soudains et lumineux", sefirot: ["Chokhmah","Netzach"]},
+      {text: "Une quête de sens et d'harmonie dans toute chose", sefirot: ["Tiferet","Hod"]},
+      {text: "L'amour universel comme chemin — donner, servir, bénir", sefirot: ["Chesed","Yesod"]},
+      {text: "Agir juste dans le monde concret — c'est là que le sacré se manifeste", sefirot: ["Malkhut","Gevurah"]}
+    ]
+  },
+  {
+    text: "Quel type de relation t'épanouit le plus ?",
+    options: [
+      {text: "Une relation rare et profonde, presque silencieuse, au-delà des mots", sefirot: ["Keter","Binah"]},
+      {text: "Une relation stimulante où on échange des idées et on grandit ensemble", sefirot: ["Chokhmah","Hod"]},
+      {text: "Une relation équilibrée, juste, où chacun peut être soi-même", sefirot: ["Tiferet","Gevurah"]},
+      {text: "Une relation riche en émotions, en beauté, en tendresse", sefirot: ["Netzach","Chesed"]},
+      {text: "Une relation ancrée dans la confiance et la fidélité concrète", sefirot: ["Yesod","Malkhut"]}
+    ]
+  },
+  {
+    text: "Quelle activité te ressource le plus profondément ?",
+    options: [
+      {text: "La méditation profonde ou la contemplation silencieuse", sefirot: ["Keter","Binah"]},
+      {text: "Explorer de nouvelles idées, lire, découvrir", sefirot: ["Chokhmah","Hod"]},
+      {text: "Aider concrètement quelqu'un ou résoudre un problème réel", sefirot: ["Chesed","Malkhut"]},
+      {text: "Créer — écrire, peindre, danser, chanter", sefirot: ["Netzach","Tiferet"]},
+      {text: "Faire de l'exercice, me reconnecter à mon corps et à la nature", sefirot: ["Yesod","Gevurah"]}
+    ]
+  },
+  {
+    text: "Si tu devais transmettre une seule chose, ce serait...",
+    options: [
+      {text: "Qu'au-delà de toute chose, il y a une Lumière infinie et bienveillante", sefirot: ["Keter","Tiferet"]},
+      {text: "Que l'intelligence et la vision peuvent transformer le monde", sefirot: ["Chokhmah","Binah"]},
+      {text: "Que la générosité et l'amour sont la voie vers la vraie liberté", sefirot: ["Chesed","Netzach"]},
+      {text: "Que la discipline et la rigueur sont des formes d'amour de soi", sefirot: ["Gevurah","Hod"]},
+      {text: "Que c'est dans le quotidien concret que se trouve la vraie sagesse", sefirot: ["Yesod","Malkhut"]}
+    ]
+  }
+];
+
+const SEFIROT = {
+  Keter: {
+    hebrew: "כֶּתֶר",
+    french: "La Couronne",
+    desc: "Tu incarnes Keter — la couronne, le point d'origine au-delà de toute forme. Tu vis en contact avec les dimensions les plus subtiles de l'existence. Mystérieux, silencieux, tu perçois ce que les autres n'arrivent pas encore à voir. Ta présence elle-même est un enseignement.",
+    qualities: ["Présence silencieuse","Vision transcendante","Profondeur mystique","Source intérieure"],
+    lwa: "Tu résones avec <span>Marasa</span> — le principe du mystère originel, l'indivisible dans le multiple."
+  },
+  Chokhmah: {
+    hebrew: "חָכְמָה",
+    french: "La Sagesse",
+    desc: "Tu incarnes Chokhmah — l'éclair de sagesse, l'intuition pure qui précède toute pensée formée. Ton esprit va vite, loin, en profondeur. Tu perçois les connexions cachées entre les choses. Tu es un visionnaire, porteur d'inspirations qui éclairent les autres.",
+    qualities: ["Intuition fulgurante","Vision globale","Inspiration créatrice","Intelligence pure"],
+    lwa: "Tu résones avec <span>Papa Legba</span> — le gardien des carrefours, celui qui ouvre les chemins de la connaissance."
+  },
+  Binah: {
+    hebrew: "בִּינָה",
+    french: "La Compréhension",
+    desc: "Tu incarnes Binah — la grande compréhension, le sein de la création. Tu as la capacité rare de donner forme et structure à ce qui est encore informe. Profond, intuitif et analytique à la fois, tu construis avec patience et discernement ce qui dure.",
+    qualities: ["Discernement profond","Patience structurante","Intelligence matrice","Sagesse des cycles"],
+    lwa: "Tu résones avec <span>Gran Bwa</span> — la forêt primordiale, source de toute connaissance ancienne."
+  },
+  Chesed: {
+    hebrew: "חֶסֶד",
+    french: "La Grâce",
+    desc: "Tu incarnes Chesed — la grâce divine, l'amour qui se déverse sans condition. Ta générosité est naturelle, ton accueil est chaleureux, et ta bienveillance transforme les espaces que tu traverses. Tu donnes sans compter, et c'est ta plus grande force.",
+    qualities: ["Générosité naturelle","Amour inconditionnel","Accueil chaleureux","Abondance du cœur"],
+    lwa: "Tu résones avec <span>Erzulie Freda</span> — la déesse de l'amour, de la beauté et de la grâce abondante."
+  },
+  Gevurah: {
+    hebrew: "גְּבוּרָה",
+    french: "La Force",
+    desc: "Tu incarnes Gevurah — la force, la discipline et le discernement qui trace les limites nécessaires. Tu n'as pas peur de prendre des décisions difficiles pour protéger ce qui est juste. Ta rigueur est une forme d'amour exigeant qui élève les autres.",
+    qualities: ["Discernement juste","Courage intérieur","Discipline libératrice","Protection par la limite"],
+    lwa: "Tu résones avec <span>Ogou Feray</span> — le guerrier de la justice, gardien de la dignité et de la vérité."
+  },
+  Tiferet: {
+    hebrew: "תִּפְאֶרֶת",
+    french: "La Beauté",
+    desc: "Tu incarnes Tiferet — la beauté et l'harmonie au cœur de l'Arbre de Vie. Tu as le don rare d'équilibrer les contraires, de trouver le centre juste entre force et douceur. Ta présence inspire confiance et ta vie aspire à être une œuvre d'art cohérente.",
+    qualities: ["Équilibre naturel","Harmonie intérieure","Beauté authentique","Clarté du cœur"],
+    lwa: "Tu résones avec <span>Agoué</span> — le maître des profondeurs, symbole de l'équilibre entre les mondes."
+  },
+  Netzach: {
+    hebrew: "נֶצַח",
+    french: "La Victoire",
+    desc: "Tu incarnes Netzach — la victoire par l'émotion, la beauté et la créativité. Tu vis avec intensité, tu ressens profondément et tu expresses ce que les autres gardent en silence. Artiste dans l'âme, tu transformes ta sensibilité en force et en inspiration pour tous.",
+    qualities: ["Sensibilité créatrice","Passion vivante","Expression authentique","Force émotionnelle"],
+    lwa: "Tu résones avec <span>Erzulie Dantor</span> — la force de l'amour maternel, la passion qui protège et crée."
+  },
+  Hod: {
+    hebrew: "הוֹד",
+    french: "La Splendeur",
+    desc: "Tu incarnes Hod — la splendeur de l'intellect qui communique, organise et transmet. Tu as le talent de formuler clairement les idées complexes et de les rendre accessibles. Ton esprit méthodique et ton honnêteté intellectuelle sont tes plus grands dons.",
+    qualities: ["Clarté intellectuelle","Communication précise","Rigueur analytique","Transmission fidèle"],
+    lwa: "Tu résones avec <span>Marasa Jumeaux</span> — les jumeaux divins, symbole de la dualité et de la communication entre les mondes."
+  },
+  Yesod: {
+    hebrew: "יְסוֹד",
+    french: "Le Fondement",
+    desc: "Tu incarnes Yesod — le fondement, le passage entre le monde invisible et le visible. Tu as une sensibilité particulière aux énergies, aux cycles et aux synchronicités. Ton monde intérieur est riche et profond, et tu as la capacité de faire le pont entre les dimensions.",
+    qualities: ["Sensibilité subtile","Conscience des cycles","Pont entre mondes","Intuition incarnée"],
+    lwa: "Tu résones avec <span>Baron Samdi</span> — le gardien du passage, maître des cycles de vie, de mort et de renaissance."
+  },
+  Malkhut: {
+    hebrew: "מַלְכוּת",
+    french: "Le Royaume",
+    desc: "Tu incarnes Malkhut — le royaume, la manifestation concrète de toute la lumière de l'Arbre. Tu as les pieds sur terre, tu agis, tu bâtis, tu donnes forme. Ta sagesse se révèle dans le quotidien. Tu es celui ou celle par qui la vision devient réalité.",
+    qualities: ["Ancrage dans le réel","Force de manifestation","Sagesse concrète","Présence incarnée"],
+    lwa: "Tu résones avec <span>Ayizan</span> — la grande prêtresse, gardienne de la terre sacrée et de la manifestation du divin dans le monde."
+  }
+};
+
+let answers = new Array(QUESTIONS.length).fill(null);
+let current = 0;
+
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  const pct = Math.round((answers.filter(a=>a!==null).length / QUESTIONS.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = answers.filter(a=>a!==null).length + ' / ' + QUESTIONS.length;
+
+  document.getElementById('resultCard').style.display = 'none';
+  const container = document.getElementById('quizContainer');
+  container.style.display = 'block';
+
+  let optionsHTML = q.options.map((opt, i) =>
+    `<button class="option-btn${answers[current]===i?' selected':''}" onclick="selectOption(${i})">${opt.text}</button>`
+  ).join('');
+
+  container.innerHTML = `
+    <div class="question-card">
+      <span class="question-num">Question ${current+1} sur ${QUESTIONS.length}</span>
+      <p class="question-text">${q.text}</p>
+      <div class="options-grid">${optionsHTML}</div>
+    </div>
+    <div class="quiz-nav">
+      <button class="q-btn q-btn-prev" onclick="prevQ()" ${current===0?'disabled':''}>← Précédent</button>
+      <button class="q-btn q-btn-next" id="nextBtn" onclick="nextQ()" ${answers[current]===null?'disabled':''}>
+        ${current===QUESTIONS.length-1 ? 'Voir mon résultat ✡' : 'Suivant →'}
+      </button>
+    </div>
+  `;
+}
+
+function selectOption(i) {
+  answers[current] = i;
+  renderQuestion();
+}
+
+function prevQ() {
+  if(current > 0) { current--; renderQuestion(); }
+}
+
+function nextQ() {
+  if(answers[current] === null) return;
+  if(current < QUESTIONS.length - 1) {
+    current++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const scores = {};
+  Object.keys(SEFIROT).forEach(s => scores[s] = 0);
+
+  QUESTIONS.forEach((q, qi) => {
+    const ai = answers[qi];
+    if(ai !== null && q.options[ai]) {
+      q.options[ai].sefirot.forEach(s => {
+        scores[s] = (scores[s] || 0) + 1;
+      });
+    }
+  });
+
+  const top = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+  const s = SEFIROT[top];
+
+  document.getElementById('quizContainer').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressText').textContent = '10 / 10';
+
+  const rc = document.getElementById('resultCard');
+  rc.style.display = 'block';
+  rc.innerHTML = `
+    <span class="quiz-eyebrow">✡ Ton Résultat ✡</span>
+    <span class="result-hebrew">${s.hebrew}</span>
+    <div class="result-name">${top}</div>
+    <div class="result-french">${s.french}</div>
+    <div class="result-divider"></div>
+    <p class="result-desc">${s.desc}</p>
+    <div class="result-qualities">${s.qualities.map(q=>`<span class="result-tag">${q}</span>`).join('')}</div>
+    <p class="result-lwa">${s.lwa}</p>
+    <button class="btn-retry" onclick="retryQuiz()">Recommencer le quiz</button>
+  `;
+  rc.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function retryQuiz() {
+  answers = new Array(QUESTIONS.length).fill(null);
+  current = 0;
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('progressText').textContent = '0 / 10';
+  renderQuestion();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+renderQuestion();
+</script>
+
+<script src="/gid-ohr-config.js"></script>
+<div id="gid-ohr-widget" style="display:none!important;position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999"></div>
+
+<style>
+.reflexion-jour-widget{position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:800;display:flex;align-items:center}
+.reflexion-jour-tab{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;background:rgba(5,5,5,.9);border:1px solid rgba(212,175,55,.12);border-right:none;padding:.8rem .4rem;cursor:pointer;transition:all .3s}
+.reflexion-jour-tab:hover{color:#d4af37;border-color:rgba(212,175,55,.3)}
+.reflexion-jour-panel{max-width:0;overflow:hidden;transition:max-width .4s ease;background:linear-gradient(135deg,#07040d,#050505);border:1px solid rgba(212,175,55,.15);border-left:none}
+.reflexion-jour-widget.rj-open .reflexion-jour-panel{max-width:280px}
+.reflexion-jour-inner{width:250px;padding:1.5rem 1.2rem}
+.rj-eyebrow{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.6rem;line-height:1}
+.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#b0a080;line-height:1.7;font-style:italic;margin-bottom:.8rem}
+.rj-source{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-transform:uppercase}
+.rj-divider{width:30px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.3),transparent);margin:.8rem 0}
+</style>
+<div class="reflexion-jour-widget" id="rjWidget">
+  <div class="reflexion-jour-tab" onclick="document.getElementById('rjWidget').classList.toggle('rj-open')">Réflexion du Jour</div>
+  <div class="reflexion-jour-panel">
+    <div class="reflexion-jour-inner">
+      <span class="rj-eyebrow">✡ Méditation ✡</span>
+      <span class="rj-hebrew" id="rjHebrew"></span>
+      <div class="rj-divider"></div>
+      <p class="rj-quote" id="rjQuote"></p>
+      <span class="rj-source" id="rjSource"></span>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var meditations=[
+    {h:"אֵין עוֹד מִלְּבַדּוֹ",q:"Il n'y a rien d'autre que Lui. Derrière chaque apparence, chaque douleur, chaque joie — une seule Lumière qui se cherche elle-même.",s:"Devarim 4:35 | Kabbale"},
+    {h:"כֶּתֶר",q:"La Couronne n'est pas au-dessus de toi — elle est en toi, attendant d'être reconnue dans le silence le plus profond.",s:"Keter | Etz Chaïm"},
+    {h:"חֶסֶד",q:"La générosité véritable ne calcule pas. Elle est comme la pluie — elle tombe sur le juste et sur l'injuste, sans demander de mérite.",s:"Chesed | Sefirot"},
+    {h:"לֵב",q:"Le cœur est le temple que tu portes partout. Prends soin de ce qui y entre, car c'est là que Dieu choisit de résider.",s:"Kabbale Bnei Ohr"},
+    {h:"גְּבוּרָה",q:"La force véritable n'est pas celle qui détruit — c'est celle qui sait se contenir, tracer une limite juste et protéger ce qui est sacré.",s:"Gevurah | Sefirot"},
+    {h:"אוֹר",q:"La Lumière ne cherche pas à chasser l'obscurité. Elle se contente d'être — et l'obscurité se dissout d'elle-même.",s:"Ohr | Zohar"},
+    {h:"תִּקּוּן",q:"Chaque acte de bonté, même le plus petit, répare un fragment du monde. Tu n'es pas seul dans cette œuvre — toute l'humanité tisse ensemble.",s:"Tikkun Olam | Kabbale"},
+    {h:"נְשָׁמָה",q:"Ton âme a choisi ce moment, cette vie, ce corps — non par hasard, mais pour accomplir quelque chose que seule elle peut réaliser.",s:"Neshamah | Kabbale"},
+    {h:"שַׁבָּת",q:"Le repos n'est pas une pause dans la création — c'est le couronnement. Ce qui ne sait pas s'arrêter ne sait pas vraiment créer.",s:"Shabbat | Torah"},
+    {h:"תִּפְאֶרֶת",q:"La beauté n'est pas une décoration du monde — elle est la signature du divin sur toute chose qui est à sa juste place.",s:"Tiferet | Sefirot"},
+    {h:"אֱמוּנָה",q:"La foi n'est pas la certitude. C'est le courage de marcher dans l'obscurité en faisant confiance à la lumière que l'on ne voit pas encore.",s:"Emunah | Kabbale"},
+    {h:"יְסוֹד",q:"Ce que tu plantes dans l'invisible — tes intentions, tes prières, tes rêves — germe silencieusement avant de se manifester dans le visible.",s:"Yesod | Etz Chaïm"},
+    {h:"דַּעַת",q:"La vraie connaissance n'est pas dans les livres — elle est dans l'union de ce que tu sais et de ce que tu vis. C'est là que naît la sagesse.",s:"Da'at | Kabbale"},
+    {h:"לֵגְבָּא",q:"Chaque carrefour de ta vie est une invitation — non une menace. Legba ouvre les chemins à ceux qui savent demander avec humilité.",s:"Legba | Vodou Haïtien"},
+    {h:"מַלְכוּת",q:"Le royaume de Dieu n'est pas loin. Il est dans la façon dont tu manges, dont tu parles, dont tu regardes ceux que tu croises.",s:"Malkhut | Sefirot"},
+    {h:"עֵץ חַיִּים",q:"L'Arbre de Vie n'est pas un schéma à mémoriser — c'est une carte de ton être intérieur. Chaque Sefirah vit en toi, attendant d'être éveillée.",s:"Etz Chaïm | Kabbale"},
+    {h:"אֶרְזוּלִי",q:"Erzulie nous rappelle que l'amour est la force la plus subversive qui soit. Là où elle passe, les murs tombent et les cœurs s'ouvrent.",s:"Erzulie | Vodou Haïtien"},
+    {h:"זֹהַר",q:"Le Zohar nous enseigne que chaque lettre de la Torah est un monde entier. Imagine alors ce que contient chaque battement de ton cœur.",s:"Zohar | Kabbale"},
+    {h:"בִּינָה",q:"La compréhension ne vient pas d'un coup. Elle mûrit dans le silence, comme un fruit — et quand elle arrive, elle change tout.",s:"Binah | Sefirot"},
+    {h:"חָכְמָה",q:"L'éclair de sagesse ne dure qu'un instant — mais cet instant suffit à transformer une vie entière. Reste attentif aux éclairs.",s:"Chokhmah | Sefirot"},
+    {h:"אוֹגוּ",q:"Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre. Distingue le combat qui libère de celui qui enchaîne.",s:"Ogou | Vodou Haïtien"},
+    {h:"נֶצַח",q:"La victoire véritable n'est pas sur les autres — c'est sur la peur en toi qui te disait que tu n'en étais pas capable.",s:"Netzach | Sefirot"},
+    {h:"הוֹד",q:"La splendeur se trouve dans les détails. Celui qui ne sait pas voir la beauté dans le petit ne verra pas la grandeur du grand.",s:"Hod | Sefirot"},
+    {h:"בָּרוּךְ",q:"Bénir, c'est voir le divin dans ce qui est. Chaque bénédiction prononcée avec sincérité est une fenêtre ouverte sur l'infini.",s:"Berakhah | Kabbale"},
+    {h:"אַיִּיזָן",q:"Ayizan garde l'entrée du sacré. Purifier son cœur avant de demander, c'est préparer le terrain pour que la réponse puisse germer.",s:"Ayizan | Vodou Haïtien"},
+    {h:"תְּשׁוּבָה",q:"Le retour à soi-même est le plus grand voyage. Non par culpabilité — mais par désir sincère d'être enfin entier.",s:"Teshuvah | Kabbale"},
+    {h:"בָּרוֹן",q:"Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage. Ce qui ne peut pas traverser ce seuil n'était pas essentiel.",s:"Baron Samdi | Vodou Haïtien"},
+    {h:"שָׁלוֹם",q:"La paix n'est pas l'absence de conflit — c'est la présence d'une harmonie plus profonde que tout conflit. C'est Tiferet au cœur de l'Arbre.",s:"Shalom | Kabbale"},
+    {h:"אֵין סוֹף",q:"Ein Sof — Sans Fin. Tu viens de l'infini et tu retournes à l'infini. Ce que tu vis entre les deux est le cadeau que l'infini se fait à lui-même.",s:"Ein Sof | Kabbale"},
+    {h:"אַהֲבָה",q:"Aimer, c'est voir l'âme derrière le visage. Quand tu regardes quelqu'un avec les yeux du cœur, tu vois ce que Dieu voit.",s:"Ahavah | Kabbale Bnei Ohr"}
+  ];
+  var today=new Date();
+  var idx=(today.getFullYear()*10000+((today.getMonth()+1)*100)+today.getDate())%meditations.length;
+  var m=meditations[idx];
+  document.getElementById('rjHebrew').textContent=m.h;
+  document.getElementById('rjQuote').textContent=m.q;
+  document.getElementById('rjSource').textContent=m.s;
+})();
+<\/script>
+</body>
+</html>
