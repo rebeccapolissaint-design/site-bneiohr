@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendrier Ésotérique | Bnei Ohr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+Hebrew&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#050505;color:#e0d5b8;font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 2rem;background:rgba(5,5,5,.95);border-bottom:1px solid rgba(212,175,55,.08);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:#d4af37}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.25em;color:#909090;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:#606060;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+
+/* HERO */
+.cal-hero{padding:7rem 2rem 2.5rem;text-align:center;background:linear-gradient(to bottom,#07040d,#050505)}
+.cal-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:1rem}
+.cal-title{font-family:'Cinzel',serif;font-size:clamp(1.6rem,5vw,2.8rem);color:#d4af37;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.cal-sub{font-size:1rem;color:#606060;font-style:italic}
+.cal-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.2rem auto}
+
+/* LEGEND */
+.cal-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;padding:.5rem 1.5rem 1.5rem;max-width:700px;margin:0 auto}
+.leg-item{display:flex;align-items:center;gap:.35rem;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(212,175,55,.5)}
+.leg-dot{width:.55rem;height:.55rem;border-radius:50%;flex-shrink:0}
+
+/* MONTH NAV */
+.month-nav{display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:.5rem 2rem 1.5rem}
+.month-btn{background:transparent;border:1px solid rgba(212,175,55,.2);color:rgba(212,175,55,.5);font-size:1.1rem;width:2.2rem;height:2.2rem;cursor:pointer;border-radius:2px;transition:all .25s;display:flex;align-items:center;justify-content:center}
+.month-btn:hover{border-color:#d4af37;color:#d4af37}
+.month-label{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase;min-width:200px;text-align:center}
+
+/* CALENDAR GRID */
+.cal-wrap{max-width:760px;margin:0 auto;padding:0 1rem 2rem}
+.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px}
+.cal-weekday{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-transform:uppercase;text-align:center;padding:.4rem 0}
+.cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-day{min-height:3.5rem;background:rgba(212,175,55,.02);border:1px solid rgba(212,175,55,.06);padding:.35rem .3rem;cursor:pointer;transition:all .2s;position:relative;display:flex;flex-direction:column;gap:2px}
+.cal-day:hover{background:rgba(212,175,55,.06);border-color:rgba(212,175,55,.2)}
+.cal-day.today{border-color:rgba(212,175,55,.4);background:rgba(212,175,55,.05)}
+.cal-day.today .day-num{color:#d4af37;font-weight:600}
+.cal-day.other-month{opacity:.25}
+.cal-day.has-event{border-color:rgba(212,175,55,.15)}
+.cal-day.selected{border-color:#d4af37;background:rgba(212,175,55,.08)}
+.day-num{font-family:'Cinzel',serif;font-size:.65rem;color:rgba(212,175,55,.5);line-height:1}
+.day-moon{font-size:.7rem;line-height:1;text-align:right;position:absolute;top:.3rem;right:.3rem}
+.day-dots{display:flex;flex-wrap:wrap;gap:2px;margin-top:auto}
+.day-dot{width:.35rem;height:.35rem;border-radius:50%;flex-shrink:0}
+
+/* EVENT PANEL */
+.event-panel{max-width:760px;margin:.5rem auto 0;padding:0 1rem 3rem}
+.event-date-title{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.25em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:1rem;text-align:center}
+.event-list{display:flex;flex-direction:column;gap:.6rem}
+.event-card{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.1);border-left:3px solid;padding:.8rem 1rem;border-radius:0 2px 2px 0;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.event-card-top{display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem}
+.event-icon{font-size:1rem;line-height:1;flex-shrink:0}
+.event-name{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:#d4af37;text-transform:uppercase}
+.event-type{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-left:auto;flex-shrink:0}
+.event-desc{font-size:.9rem;color:#908070;line-height:1.6;font-style:italic}
+.no-event{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:rgba(212,175,55,.25);text-align:center;padding:2rem;font-style:italic}
+
+/* UPCOMING */
+.upcoming-section{max-width:760px;margin:0 auto;padding:0 1rem 4rem}
+.upcoming-title{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;text-align:center;margin-bottom:1rem}
+.upcoming-list{display:flex;flex-direction:column;gap:.5rem}
+.upcoming-item{display:flex;align-items:center;gap:.8rem;padding:.6rem .8rem;background:rgba(212,175,55,.02);border:1px solid rgba(212,175,55,.07);border-radius:2px}
+.upcoming-date{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.1em;color:rgba(212,175,55,.4);min-width:3.5rem;flex-shrink:0}
+.upcoming-icon{font-size:.9rem;flex-shrink:0}
+.upcoming-name{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:#b0a080}
+.upcoming-badge{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.15em;padding:.2rem .4rem;border-radius:2px;text-transform:uppercase;margin-left:auto;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
+    <span class="nav-logo-text">Bnei Ohr</span>
+  </a>
+  <a href="index.html" class="nav-back">← Accueil</a>
+</nav>
+
+<div class="cal-hero">
+  <span class="cal-eyebrow">✡ Bnei Ohr ✡</span>
+  <h1 class="cal-title">Calendrier Ésotérique</h1>
+  <p class="cal-sub">Fêtes hébraïques · Phases lunaires · Jours sacrés du Vodou</p>
+  <div class="cal-divider"></div>
+  <div class="cal-legend">
+    <span class="leg-item"><span class="leg-dot" style="background:#d4af37"></span>Fêtes hébraïques</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#7b68ee"></span>Jours Vodou</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#4a9eff"></span>Phases lunaires</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#e87070"></span>Jours kabbalistiques</span>
+  </div>
+</div>
+
+<div class="month-nav">
+  <button class="month-btn" id="prevMonth">&#8592;</button>
+  <div class="month-label" id="monthLabel"></div>
+  <button class="month-btn" id="nextMonth">&#8594;</button>
+</div>
+
+<div class="cal-wrap">
+  <div class="cal-weekdays">
+    <div class="cal-weekday">Dim</div>
+    <div class="cal-weekday">Lun</div>
+    <div class="cal-weekday">Mar</div>
+    <div class="cal-weekday">Mer</div>
+    <div class="cal-weekday">Jeu</div>
+    <div class="cal-weekday">Ven</div>
+    <div class="cal-weekday">Sam</div>
+  </div>
+  <div class="cal-days" id="calDays"></div>
+</div>
+
+<div class="event-panel" id="eventPanel">
+  <div class="no-event">Sélectionnez un jour pour voir les événements</div>
+</div>
+
+<div class="upcoming-section">
+  <div class="upcoming-title">✡ Prochains Événements ✡</div>
+  <div class="upcoming-list" id="upcomingList"></div>
+</div>
+
+<script>
+// ─── MOON PHASE ──────────────────────────────────────────────────────
+function getMoonPhase(date) {
+  var known = new Date(2000, 0, 6); // nouvelle lune connue
+  var diff = (date - known) / (1000*60*60*24);
+  var cycle = 29.53058867;
+  var phase = ((diff % cycle) + cycle) % cycle;
+  if(phase < 1.85) return {e:'🌑',n:'Nouvelle Lune',t:'moon'};
+  if(phase < 7.38) return {e:'🌒',n:'Premier Croissant',t:'moon'};
+  if(phase < 9.22) return {e:'🌓',n:'Premier Quartier',t:'moon'};
+  if(phase < 14.76) return {e:'🌔',n:'Lune Gibbeuse Croissante',t:'moon'};
+  if(phase < 16.61) return {e:'🌕',n:'Pleine Lune',t:'moon'};
+  if(phase < 22.15) return {e:'🌖',n:'Lune Gibbeuse Décroissante',t:'moon'};
+  if(phase < 23.99) return {e:'🌗',n:'Dernier Quartier',t:'moon'};
+  if(phase < 29.53) return {e:'🌘',n:'Dernier Croissant',t:'moon'};
+  return {e:'🌑',n:'Nouvelle Lune',t:'moon'};
+}
+function isMoonEvent(date) {
+  var known = new Date(2000, 0, 6);
+  var diff = (date - known) / (1000*60*60*24);
+  var cycle = 29.53058867;
+  var phase = ((diff % cycle) + cycle) % cycle;
+  return (phase < 1.85 || (phase >= 7.0 && phase < 9.5) || 
+          (phase >= 14.5 && phase < 16.8) || (phase >= 22.0 && phase < 24.2));
+}
+
+// ─── ÉVÉNEMENTS FIXES (mois 0-indexé) ───────────────────────────────
+// Format: [mois, jour, nom, description, type, icone]
+var FIXED_EVENTS = [
+  // ── FÊTES HÉBRAÏQUES (dates approx. pour 2025-2026) ─────────────
+  [8,22,"Roch Hachana — Nouvel An Hébreu","Roch Hachana (ראש השנה) marque le début de l'année hébraïque. C'est le jour du Jugement divin, où chaque âme est inscrite dans le Livre de Vie. On sonne le Chofar pour éveiller les consciences endormies.","hebrew","🎺"],
+  [8,31,"Yom Kippour — Jour du Grand Pardon","Le jour le plus sacré de l'année hébraïque. Jeûne de 25 heures, prière profonde et retour à l'essentiel. Dans la Kabbale, c'est le moment où la Sefirah Binah — la grande mère — ouvre ses portes au repentir sincère.","hebrew","⭐"],
+  [9,5,"Souccot — Fête des Tabernacles","Fête des récoltes célébrée pendant 7 jours dans une cabane de branchages (Souccah). Symbolise la protection divine et la présence de la Chekhina. Les 7 jours correspondent aux 7 Sefirot inférieures.","hebrew","🌿"],
+  [9,12,"Chemini Atzéret & Simhat Torah","Fête de la joie de la Torah. On complète la lecture annuelle et on recommence depuis Béréchit. Danse avec les rouleaux de la Torah — célébration de la Lumière divine dans les lettres sacrées.","hebrew","📜"],
+  [11,25,"Hanoukka — Fête des Lumières (Début)","Hanoukka commence ce soir. Pendant 8 nuits, on allume la Hanoukia pour commémorer le miracle de l'huile dans le Temple. Dans la Kabbale, chaque flamme représente une étincelle divine qui refuse de s'éteindre.","hebrew","🕎"],
+  [0,13,"Tou Bichvat — Nouvel An des Arbres","Roch Hachana LaIlanot — le nouvel an des arbres. Dans la Kabbale, l'Arbre de Vie (Etz Chaïm) est en fête. On mange des fruits de la Terre d'Israël et on médite sur les racines invisibles de toute existence.","hebrew","🌳"],
+  [2,13,"Pourim — Fête du Sort","Pourim célèbre le miracle de la délivrance du peuple juif en Perse. On lit la Méguila d'Esther, on se déguise et on célèbre. Dans la Kabbale, Pourim est plus élevé que Yom Kippour — KiPourim, 'comme Pourim'.","hebrew","🎭"],
+  [3,12,"Pâque — Pessa'h (Seder)","La nuit du Seder — le repas rituel qui raconte l'Exode d'Égypte. Dans la Kabbale, la sortie d'Égypte (Mitsraïm) symbolise la libération de toutes les contraintes de l'ego. La Haggadah est un voyage initiatique.","hebrew","🍷"],
+  [3,18,"Lag BaOmer","Le 33ème jour du Omer — jour de la joie et de la lumière. Anniversaire du décès de Rabbi Shimon Bar Yochaï, auteur du Zohar. On allume des feux en son honneur et on célèbre la révélation de la mystique kabbalistique.","hebrew","🔥"],
+  [4,31,"Chavouot — Don de la Torah","Chavouot commémore le Don de la Torah au Mont Sinaï. On passe la nuit à étudier (Tikkoun Leil Chavouot). Dans la Kabbale, c'est le mariage mystique entre la Communauté d'Israël (Malkhout) et le Saint Béni soit-Il (Tiferet).","hebrew","⚡"],
+
+  // ── JOURS VODOU & HAÏTIENS ──────────────────────────────────────
+  [0,1,"Jour de l'An — Fête Nationale Haïtienne","Le 1er janvier célèbre à la fois l'indépendance d'Haïti (1804) et le Jour de l'An. Dans la tradition vodou, on honore Papa Legba en ce jour de commencement — celui qui ouvre tous les chemins et toutes les portes.","vodou","🗝"],
+  [0,6,"Fête des Rois — Fêt Wa","L'Épiphanie coïncide avec une célébration importante dans le calendrier liturgique haïtien. Les Rois Mages correspondent dans certaines traditions au passage des Lwa protecteurs. Nuit de prière et d'offrandes.","vodou","👑"],
+  [1,14,"Fête d'Erzulie Freda","Erzulie Freda, Lwa de l'amour, de la beauté et du luxe, est particulièrement honorée le jour de la Saint-Valentin. On lui offre des parfums, des fleurs roses et dorées, du champagne. Elle représente la Sefirah Netzach.","vodou","💛"],
+  [3,23,"Fête de Saint Georges — Ogou Feray","Saint Georges correspond à Ogou Feray dans le syncrétisme haïtien. Guerrier de la justice, il combat les forces d'oppression. On lui offre du rhum, des cigares et des couleurs rouge et vert. Il résonne avec la Sefirah Gevurah.","vodou","⚔"],
+  [5,13,"Fête de Saint Antoine — Papa Legba","Saint Antoine de Padoue est associé à Papa Legba — gardien des carrefours, maître du langage et des communications. Il ouvre les portes entre le monde des vivants et celui des Lwa. Correspondance kabbalistique: Keter.","vodou","🔑"],
+  [5,24,"Fête de Jean Baptiste — Ogou Badagri","Saint Jean Baptiste est associé à Ogou Badagri dans la tradition haïtienne. Pèlerinage au Saut d'Eau — la plus grande cérémonie vodou d'Haïti. Des milliers de pèlerins se baignent sous la cascade sacrée.","vodou","💧"],
+  [6,25,"Fête de Saint Jacques — Ogou Feray","Deuxième fête majeure d'Ogou — Saint Jacques le Majeur. Célébrations à Plaine du Nord. Ogou est invoqué pour la force, la protection et la justice. Son vévé évoque l'épée et le fer sacré.","vodou","🗡"],
+  [7,15,"Fête de la Vierge Marie — Erzulie Dantor","L'Assomption de la Vierge correspond à la grande fête d'Erzulie Dantor — Lwa de l'amour maternel, farouche et protectrice. Pèlerinage à Saut d'Eau et célébrations dans tout Haïti. Elle porte les cicatrices des combats pour ses enfants.","vodou","🌹"],
+  [8,29,"Fête de Saint Michel — Ogou Balindjo","Saint Michel Archange correspond à plusieurs manifestations d'Ogou dans la tradition haïtienne. Guerrier céleste qui combat les forces obscures — parallèle à Gevurah dans la Kabbale, la force qui établit les limites sacrées.","vodou","🛡"],
+  [9,2,"Fête des Guédé — Baron Samdi & Maman Brigitte","Le 2 novembre — Jour des Morts dans le calendrier catholique — est la grande fête des Guédé. Baron Samdi et Maman Brigitte règnent. On visite les cimetières, on offre du rhum pimenté et on célèbre le cycle vie-mort-renaissance.","vodou","💀"],
+  [10,25,"Noël — Nwèl","Noël est célébré avec ferveur en Haïti. Dans la tradition syncrétique, c'est une nuit de rassemblement familial, de prière et de joie. Les Lwa de la lumière sont invoqués pour bénir les maisons et les enfants.","vodou","⭐"],
+
+  // ── JOURS KABBALISTIQUES SPÉCIAUX ──────────────────────────────
+  [0,1,"Roch Hodech — Début du mois de Tevet","Roch Hodech marque le début d'un nouveau mois lunaire hébreu. Dans la Kabbale, c'est un temps de renouveau et de connexion à Malkhout. On récite le Hallel et on médite sur les cycles de la lune et leurs correspondances avec les Sefirot.","kabal","🌙"],
+  [2,20,"Équinoxe de Printemps — Tekoufa Nissan","L'équinoxe de printemps correspond à Tekoufa Nissan dans le calendrier hébreu. Les 4 Tekoufa (saisons) sont associées aux 4 lettres du Nom divin YHVH. Le printemps résonne avec Yod — l'étincelle de création.","kabal","🌱"],
+  [5,21,"Solstice d'Été — Tekoufa Tamouz","Le solstice d'été — Tekoufa Tamouz — correspond à la lettre Hé dans le Tétragramme. Période de lumière maximale. Dans la Kabbale, le solstice est associé à la Sefirah Tiferet — le Soleil de l'Arbre de Vie.","kabal","☀"],
+  [8,23,"Équinoxe d'Automne — Tekoufa Tishri","L'équinoxe d'automne correspond à Tekoufa Tishri — début de l'année hébraïque. La lettre Vav du Nom divin. Temps de bilan, de retour et de transformation. Les forces de jugement et de miséricorde s'équilibrent.","kabal","🍂"],
+  [11,21,"Solstice d'Hiver — Tekoufa Tevet","Le solstice d'hiver — point de ténèbres maximales avant le retour de la lumière. Correspondance avec la lettre Hé finale du Nom divin et Malkhout — le Royaume qui reçoit et incube la lumière dans le noir.","kabal","❄"],
+  [3,15,"Pessa'h Cheni — Deuxième Pâque","La Deuxième Pâque — une seconde chance accordée à ceux qui n'ont pu célébrer Pessa'h. Dans la Kabbale, ce jour enseigne qu'il n'est jamais trop tard pour revenir et se corriger. Chaque moment peut être un nouveau commencement.","kabal","✨"],
+];
+
+// Couleurs par type
+var TYPE_COLORS = {
+  hebrew: '#d4af37',
+  vodou:  '#7b68ee',
+  moon:   '#4a9eff',
+  kabal:  '#e87070'
+};
+var TYPE_LABELS = {
+  hebrew: 'Hébreu',
+  vodou:  'Vodou',
+  moon:   'Lune',
+  kabal:  'Kabbale'
+};
+
+// État
+var curYear = new Date().getFullYear();
+var curMonth = new Date().getMonth();
+var selectedDay = null;
+var today = new Date();
+
+var MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+
+function getEventsForDate(y, m, d) {
+  var events = [];
+  // Fixed events
+  FIXED_EVENTS.forEach(function(ev) {
+    if(ev[0] === m && ev[1] === d) {
+      events.push({name:ev[2], desc:ev[3], type:ev[4], icon:ev[5]});
+    }
+  });
+  // Moon phases
+  var date = new Date(y, m, d);
+  if(isMoonEvent(date)) {
+    var mp = getMoonPhase(date);
+    if(mp.e !== '🌒' && mp.e !== '🌔' && mp.e !== '🌖' && mp.e !== '🌘') {
+      events.push({
+        name: mp.n,
+        desc: getMoonDesc(mp.n),
+        type: 'moon',
+        icon: mp.e
+      });
+    }
+  }
+  return events;
+}
+
+function getMoonDesc(name) {
+  var descs = {
+    'Nouvelle Lune': "La Nouvelle Lune (Roch Hodech) est un temps de renouveau dans la tradition kabbalistique. Malkhout reçoit une nouvelle charge de lumière d'Ein Sof. Idéal pour fixer de nouvelles intentions, débuter des projets spirituels et méditer sur les commencements.",
+    'Pleine Lune': "La Pleine Lune correspond à Tiferet illuminant Malkhout dans toute sa splendeur. C'est le moment de la clarté maximale — les intentions plantées à la nouvelle lune arrivent à maturité. Dans le Vodou haïtien, les cérémonies nocturnes sous la pleine lune ont une puissance particulière.",
+    'Premier Quartier': "Le Premier Quartier marque l'expansion et la croissance. Dans la Kabbale, c'est la phase de Chesed — la générosité et l'élan créateur. Bon moment pour cultiver ce que l'on a semé à la nouvelle lune.",
+    'Dernier Quartier': "Le Dernier Quartier invite au bilan et au lâcher-prise. Correspondance avec Gevurah — la force qui taille et qui purifie. Temps de clôture, de gratitude et de préparation au prochain cycle."
+  };
+  return descs[name] || "Phase lunaire importante dans les traditions kabbalistiques et vodou.";
+}
+
+function renderCalendar() {
+  document.getElementById('monthLabel').textContent = MONTHS_FR[curMonth] + ' ' + curYear;
+  var firstDay = new Date(curYear, curMonth, 1).getDay();
+  var daysInMonth = new Date(curYear, curMonth+1, 0).getDate();
+  var daysInPrev = new Date(curYear, curMonth, 0).getDate();
+
+  var html = '';
+  var totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
+
+  for(var i = 0; i < totalCells; i++) {
+    var dayNum, month, year, isOther = false;
+    if(i < firstDay) {
+      dayNum = daysInPrev - firstDay + i + 1;
+      month = curMonth - 1; year = curYear;
+      if(month < 0){month = 11; year--;}
+      isOther = true;
+    } else if(i >= firstDay + daysInMonth) {
+      dayNum = i - firstDay - daysInMonth + 1;
+      month = curMonth + 1; year = curYear;
+      if(month > 11){month = 0; year++;}
+      isOther = true;
+    } else {
+      dayNum = i - firstDay + 1;
+      month = curMonth; year = curYear;
+    }
+
+    var isToday = (dayNum === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+    var isSelected = (selectedDay && dayNum === selectedDay.d && month === selectedDay.m && year === selectedDay.y);
+    var events = getEventsForDate(year, month, dayNum);
+    var moon = getMoonPhase(new Date(year, month, dayNum));
+    var hasEvent = events.length > 0;
+
+    var cls = 'cal-day';
+    if(isOther) cls += ' other-month';
+    if(isToday) cls += ' today';
+    if(isSelected) cls += ' selected';
+    if(hasEvent) cls += ' has-event';
+
+    var dots = events.map(function(ev){
+      return '<span class="day-dot" style="background:'+TYPE_COLORS[ev.type]+'"></span>';
+    }).join('');
+
+    html += '<div class="'+cls+'" onclick="selectDay('+year+','+month+','+dayNum+')">';
+    html += '<span class="day-num">'+dayNum+'</span>';
+    html += '<span class="day-moon">'+moon.e+'</span>';
+    if(dots) html += '<div class="day-dots">'+dots+'</div>';
+    html += '</div>';
+  }
+
+  document.getElementById('calDays').innerHTML = html;
+  renderUpcoming();
+}
+
+function selectDay(y, m, d) {
+  selectedDay = {y:y, m:m, d:d};
+  renderCalendar();
+  var events = getEventsForDate(y, m, d);
+  var panel = document.getElementById('eventPanel');
+  var dateStr = d + ' ' + MONTHS_FR[m] + ' ' + y;
+
+  if(events.length === 0) {
+    panel.innerHTML = '<div class="no-event">Aucun événement le ' + dateStr + '</div>';
+    return;
+  }
+
+  var html = '<div class="event-date-title">' + dateStr + '</div><div class="event-list">';
+  events.forEach(function(ev) {
+    html += '<div class="event-card" style="border-left-color:'+TYPE_COLORS[ev.type]+'">';
+    html += '<div class="event-card-top">';
+    html += '<span class="event-icon">'+ev.icon+'</span>';
+    html += '<span class="event-name">'+ev.name+'</span>';
+    html += '<span class="event-type" style="color:'+TYPE_COLORS[ev.type]+'">'+TYPE_LABELS[ev.type]+'</span>';
+    html += '</div>';
+    html += '<p class="event-desc">'+ev.desc+'</p>';
+    html += '</div>';
+  });
+  html += '</div>';
+  panel.innerHTML = html;
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function renderUpcoming() {
+  var upcoming = [];
+  var now = new Date();
+  for(var offset = 0; offset < 60; offset++) {
+    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    var evs = getEventsForDate(d.getFullYear(), d.getMonth(), d.getDate());
+    evs.forEach(function(ev) {
+      if(upcoming.length < 6) {
+        upcoming.push({date: d, ev: ev});
+      }
+    });
+    if(upcoming.length >= 6) break;
+  }
+
+  var html = '';
+  upcoming.forEach(function(item) {
+    var d = item.date;
+    var dateStr = d.getDate() + ' ' + MONTHS_FR[d.getMonth()];
+    html += '<div class="upcoming-item" onclick="selectDay('+d.getFullYear()+','+d.getMonth()+','+d.getDate()+')" style="cursor:pointer">';
+    html += '<span class="upcoming-date">'+dateStr+'</span>';
+    html += '<span class="upcoming-icon">'+item.ev.icon+'</span>';
+    html += '<span class="upcoming-name">'+item.ev.name+'</span>';
+    html += '<span class="upcoming-badge" style="background:'+TYPE_COLORS[item.ev.type]+'22;color:'+TYPE_COLORS[item.ev.type]+';border:1px solid '+TYPE_COLORS[item.ev.type]+'44">'+TYPE_LABELS[item.ev.type]+'</span>';
+    html += '</div>';
+  });
+  document.getElementById('upcomingList').innerHTML = html || '<div class="no-event">Aucun événement dans les 60 prochains jours</div>';
+}
+
+document.getElementById('prevMonth').addEventListener('click', function(){
+  curMonth--; if(curMonth<0){curMonth=11;curYear--;} selectedDay=null; renderCalendar();
+  document.getElementById('eventPanel').innerHTML='<div class="no-event">Sélectionnez un jour pour voir les événements</div>';
+});
+document.getElementById('nextMonth').addEventListener('click', function(){
+  curMonth++; if(curMonth>11){curMonth=0;curYear++;} selectedDay=null; renderCalendar();
+  document.getElementById('eventPanel').innerHTML='<div class="no-event">Sélectionnez un jour pour voir les événements</div>';
+});
+
+// Init — select today
+renderCalendar();
+selectDay(today.getFullYear(), today.getMonth(), today.getDate());
+</script>
+
+</body>
+</html>

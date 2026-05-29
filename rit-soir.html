@@ -59,6 +59,80 @@ footer{position:relative;z-index:1;background:#020406;border-top:1px solid rgba(
 .footer-copy{font-size:.75rem;color:#383838;letter-spacing:.1em}
 @media(max-width:600px){nav{padding:1rem 1.2rem}.nav-logo-txt{display:none}}
 </style>
+
+<style id="theme-style">
+/* MODE CLAIR — variables */
+body.light-mode{
+  --bg-main:#f5f0e8;
+  --bg-section:#ede8de;
+  --bg-nav:rgba(245,240,232,.97);
+  --text-main:#2a1f0a;
+  --text-muted:#6b5a3a;
+  --text-sub:#9a8060;
+  --gold:#8a6a20;
+  --gold-dim:rgba(138,106,32,.4);
+  --gold-faint:rgba(138,106,32,.08);
+  --border:rgba(138,106,32,.2);
+  --border-strong:rgba(138,106,32,.4);
+  --card-bg:rgba(138,106,32,.05);
+  --shadow:rgba(100,70,20,.12);
+}
+body.light-mode{background:var(--bg-main)!important;color:var(--text-main)!important}
+body.light-mode nav{background:var(--bg-nav)!important;border-bottom-color:var(--border)!important}
+body.light-mode .nav-logo-text,body.light-mode .nav-links a{color:var(--text-muted)!important}
+body.light-mode .nav-logo-hebrew{color:var(--gold)!important}
+body.light-mode .nav-links a:hover,body.light-mode .nav-links a.active{color:var(--gold)!important}
+body.light-mode section,body.light-mode .hero,body.light-mode .misyon-banner,
+body.light-mode .degre-section,body.light-mode .neuf-section,
+body.light-mode .pawol-section,body.light-mode .verse-section,
+body.light-mode .contact-section,body.light-mode .don-section,
+body.light-mode .video-section,body.light-mode .degre-card,
+body.light-mode .neuf-card{background:var(--bg-section)!important;border-color:var(--border)!important}
+body.light-mode .section-eyebrow,body.light-mode .pawol-eyebrow{color:var(--gold-dim)!important}
+body.light-mode .section-main-title,body.light-mode h1,body.light-mode h2,
+body.light-mode .pawol-main-title,body.light-mode .don-title{color:var(--gold)!important}
+body.light-mode p,body.light-mode .degre-desc,body.light-mode .pawol-quote{color:var(--text-muted)!important}
+body.light-mode .stat-number,body.light-mode .don-number{color:var(--gold)!important}
+body.light-mode .stat-label{color:var(--text-sub)!important}
+body.light-mode footer{background:var(--bg-section)!important;border-top-color:var(--border)!important}
+body.light-mode .footer-links a{color:var(--text-sub)!important}
+body.light-mode .footer-links a:hover{color:var(--gold)!important}
+body.light-mode .footer-copy,body.light-mode .footer-mentions{color:var(--text-sub)!important}
+body.light-mode .reflexion-jour-widget{background:linear-gradient(90deg,#ede8de,#e8e0d0,#ede8de)!important;border-top-color:var(--border)!important}
+body.light-mode .reflexion-jour-tab{color:var(--gold)!important}
+body.light-mode .rj-quote{color:var(--text-muted)!important}
+body.light-mode .srch-box{background:linear-gradient(135deg,#f0ebe0,#ede5d5)!important;border-color:var(--border-strong)!important}
+body.light-mode .srch-input{color:var(--text-main)!important}
+body.light-mode .srch-item:hover{background:rgba(138,106,32,.08)!important}
+body.light-mode .srch-item-title{color:var(--gold)!important}
+body.light-mode .srch-item-desc{color:var(--text-sub)!important}
+body.light-mode .srch-overlay{background:rgba(200,185,155,.7)!important}
+/* Transition douce */
+body,body *{transition:background .35s ease,color .3s ease,border-color .3s ease!important}
+
+/* Toggle button */
+.theme-toggle{background:transparent;border:1px solid rgba(212,175,55,.3);border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:.25rem .5rem;transition:all .3s;color:rgba(212,175,55,.6);font-size:.7rem;line-height:1;flex-shrink:0}
+.theme-toggle:hover{border-color:#d4af37;color:#d4af37}
+.theme-toggle-icon{font-size:.85rem;transition:transform .3s}
+body.light-mode .theme-toggle{border-color:rgba(138,106,32,.4);color:rgba(138,106,32,.7)}
+body.light-mode .theme-toggle:hover{border-color:#8a6a20;color:#8a6a20}
+</style>
+<script>
+(function(){
+  // Apply saved theme immediately
+  if(localStorage.getItem('bnei-theme')==='light'){
+    document.body.classList.add('light-mode');
+  }
+  window.toggleTheme=function(){
+    var isLight=document.body.classList.toggle('light-mode');
+    localStorage.setItem('bnei-theme', isLight?'light':'dark');
+    var btn=document.getElementById('themeToggle');
+    if(btn){
+      btn.querySelector('.theme-toggle-icon').textContent=isLight?'☀':'☾';
+    }
+  };
+})();
+</script>
 </head>
 <body>
 <div id="stars"></div>
@@ -212,28 +286,23 @@ document.querySelectorAll('a[href]').forEach(a=>{if(a.hostname===location.hostna
 
 
 <style>
-.reflexion-jour-widget{position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:800;display:flex;align-items:center}
-.reflexion-jour-tab{writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;background:rgba(5,5,5,.9);border:1px solid rgba(212,175,55,.12);border-right:none;padding:.8rem .4rem;cursor:pointer;transition:all .3s}
-.reflexion-jour-tab:hover{color:#d4af37;border-color:rgba(212,175,55,.3)}
-.reflexion-jour-panel{max-width:0;overflow:hidden;transition:max-width .4s ease;background:linear-gradient(135deg,#07040d,#050505);border:1px solid rgba(212,175,55,.15);border-left:none}
-.reflexion-jour-widget.rj-open .reflexion-jour-panel{max-width:280px}
-.reflexion-jour-inner{width:250px;padding:1.5rem 1.2rem}
-.rj-eyebrow{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.8rem}
-.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.6rem;line-height:1}
-.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#b0a080;line-height:1.7;font-style:italic;margin-bottom:.8rem}
-.rj-source{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-transform:uppercase}
-.rj-divider{width:30px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.3),transparent);margin:.8rem 0}
+.reflexion-jour-widget{position:fixed;bottom:0;left:0;right:0;z-index:800;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.18);padding:.6rem 1.5rem;display:flex;align-items:center;gap:1rem;min-height:3rem}
+.reflexion-jour-tab{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:#d4af37;text-transform:uppercase;white-space:nowrap;flex-shrink:0;opacity:.7}
+.reflexion-jour-panel{display:flex;align-items:center;gap:.8rem;flex:1;overflow:hidden;min-width:0}
+.rj-eyebrow{display:none}
+.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,.5);flex-shrink:0;line-height:1}
+.rj-divider{width:1px;height:1.2rem;background:rgba(212,175,55,.2);flex-shrink:0}
+.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#a09070;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.rj-source{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.15em;color:rgba(212,175,55,.3);text-transform:uppercase;white-space:nowrap;flex-shrink:0;display:none}
+@media(max-width:480px){.rj-source{display:none}}
 </style>
 <div class="reflexion-jour-widget" id="rjWidget">
-  <div class="reflexion-jour-tab" onclick="document.getElementById('rjWidget').classList.toggle('rj-open')">Réflexion du Jour</div>
+  <div class="reflexion-jour-tab">✡ Réflexion du Jour</div>
   <div class="reflexion-jour-panel">
-    <div class="reflexion-jour-inner">
-      <span class="rj-eyebrow">&#10027; Méditation &#10027;</span>
-      <span class="rj-hebrew" id="rjHebrew"></span>
-      <div class="rj-divider"></div>
-      <p class="rj-quote" id="rjQuote"></p>
-      <span class="rj-source" id="rjSource"></span>
-    </div>
+    <span class="rj-hebrew" id="rjHebrew"></span>
+    <div class="rj-divider"></div>
+    <p class="rj-quote" id="rjQuote"></p>
+    <span class="rj-source" id="rjSource"></span>
   </div>
 </div>
 <script>
@@ -275,6 +344,75 @@ document.querySelectorAll('a[href]').forEach(a=>{if(a.hostname===location.hostna
   document.getElementById('rjHebrew').textContent=med[i][0];
   document.getElementById('rjQuote').textContent=med[i][1];
   document.getElementById('rjSource').textContent=med[i][2];
+})();
+</script>
+<script src="/search-index.js"></script>
+<style>
+.srch-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:5rem}
+.srch-overlay.srch-open{display:flex}
+.srch-box{background:linear-gradient(135deg,#0a0800,#07050d);border:1px solid rgba(212,175,55,.25);border-radius:4px;width:min(580px,92vw);max-height:70vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.8)}
+.srch-top{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;border-bottom:1px solid rgba(212,175,55,.1)}
+.srch-loupe{color:rgba(212,175,55,.5);font-size:1rem;flex-shrink:0}
+.srch-input{flex:1;background:transparent;border:none;color:#e0d5b8;font-family:'Cormorant Garamond',serif;font-size:1.05rem;outline:none}
+.srch-input::placeholder{color:rgba(212,175,55,.2)}
+.srch-close{background:transparent;border:none;color:rgba(212,175,55,.4);font-size:1.1rem;cursor:pointer;padding:.2rem .4rem;transition:color .2s}
+.srch-close:hover{color:#d4af37}
+.srch-results{overflow-y:auto;padding:.5rem 0;flex:1}
+.srch-results::-webkit-scrollbar{width:3px}.srch-results::-webkit-scrollbar-thumb{background:rgba(212,175,55,.2)}
+.srch-empty{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:rgba(212,175,55,.3);text-align:center;padding:2rem;font-style:italic}
+.srch-item{display:block;padding:.8rem 1.2rem;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.06);transition:background .2s}
+.srch-item:hover{background:rgba(212,175,55,.06)}
+.srch-item-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.12em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.3rem}
+.srch-item-desc{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#806a40;line-height:1.5;display:block}
+.srch-hint{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-align:center;padding:.6rem;text-transform:uppercase}
+/* Nav loupe button */
+.nav-srch-btn{background:transparent;border:none;color:rgba(212,175,55,.5);font-size:1rem;cursor:pointer;padding:.2rem .5rem;transition:color .2s;line-height:1}
+.nav-srch-btn:hover{color:#d4af37}
+</style>
+<div class="srch-overlay" id="srchOverlay">
+  <div class="srch-box">
+    <div class="srch-top">
+      <span class="srch-loupe">🔍</span>
+      <input class="srch-input" id="srchInput" placeholder="Rechercher — sefirah, lwa, prière..." autocomplete="off">
+      <button class="srch-close" onclick="closeSrch()">✕</button>
+    </div>
+    <div class="srch-results" id="srchResults">
+      <p class="srch-empty">Tapez un mot pour commencer la recherche…</p>
+    </div>
+    <div class="srch-hint">Appuyez sur Échap pour fermer</div>
+  </div>
+</div>
+<script>
+(function(){
+  var overlay=document.getElementById('srchOverlay');
+  var input=document.getElementById('srchInput');
+  var results=document.getElementById('srchResults');
+
+  window.openSrch=function(){
+    overlay.classList.add('srch-open');
+    setTimeout(function(){input.focus();},100);
+  };
+  window.closeSrch=function(){
+    overlay.classList.remove('srch-open');
+    input.value='';
+    results.innerHTML='<p class="srch-empty">Tapez un mot pour commencer la recherche…</p>';
+  };
+
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeSrch();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSrch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSrch();}});
+
+  input.addEventListener('input',function(){
+    var q=this.value.trim().toLowerCase();
+    if(q.length<2){results.innerHTML='<p class="srch-empty">Tapez un mot pour commencer la recherche…</p>';return;}
+    if(typeof SEARCH_INDEX==='undefined'){results.innerHTML='<p class="srch-empty">Index non disponible.</p>';return;}
+    var hits=SEARCH_INDEX.filter(function(p){
+      return p.t.toLowerCase().includes(q)||p.d.toLowerCase().includes(q)||p.k.toLowerCase().includes(q);
+    });
+    if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
+    results.innerHTML=hits.map(function(p){
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+    }).join('');
+  });
 })();
 </script>
 </html>
