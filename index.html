@@ -85,14 +85,14 @@ flex-wrap:wrap;flex-wrap:wrap;justify-content:center;gap:1rem;max-width:800px;ma
 .neuf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1000px;margin:0 auto}
 .neuf-card{position:relative;overflow-y: auto;border:1px solid rgba(212,175,55,.15);text-decoration:none;display:block;transition:all .4s;background:#080800}
 .neuf-card:hover{border-color:rgba(212,175,55,.5);transform:translateY(-3px);box-shadow:0 10px 30px rgba(212,175,55,.08)}
-@media(max-width:700px){.neuf-grid{grid-template-columns:repeat(2,1fr);gap:.7rem}}
+@media(max-width:700px){.neuf-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}.neuf-card-placeholder{aspect-ratio:1/1}}
 .neuf-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9) 0%,transparent 60%)}
 .neuf-card-body{position:absolute;bottom:0;left:0;right:0;padding:.7rem .8rem}
 .neuf-card-tag{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.25rem}
 .neuf-card-title{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.1em;color:#fff;text-transform:uppercase;line-height:1.3}
 .neuf-card-arrow{display:inline-block;margin-top:.3rem;font-size:.65rem;color:rgba(212,175,55,.6);transition:all .3s}
 .neuf-card:hover .neuf-card-arrow{color:#d4af37;transform:translateX(4px)}
-.neuf-card-placeholder{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#0d0a00,#1a1200);display:flex;
+.neuf-card-placeholder{width:100%;aspect-ratio:3/2;background:linear-gradient(135deg,#0d0a00,#1a1200);display:flex;
 flex-wrap:wrap;align-items:center;justify-content:center}
 .neuf-card-placeholder span{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.25)}
 /* PAWOL */
@@ -186,7 +186,7 @@ body.light-mode footer{background:var(--bg-section)!important;border-top-color:v
 body.light-mode .footer-links a{color:var(--text-sub)!important}
 body.light-mode .footer-links a:hover{color:var(--gold)!important}
 body.light-mode .footer-copy,body.light-mode .footer-mentions{color:var(--text-sub)!important}
-body.light-mode .reflexion-jour-widget{background:linear-gradient(90deg,#ede8de,#e8e0d0,#ede8de)!important;border-top-color:var(--border)!important}
+body.light-mode .reflexion-jour-widget{background:linear-gradient(90deg,#f0ebe0,#ede5d5,#f0ebe0)!important;border-top-color:rgba(138,106,32,.2)!important}
 body.light-mode .reflexion-jour-tab{color:var(--gold)!important}
 body.light-mode .rj-quote{color:var(--text-muted)!important}
 body.light-mode .srch-box{background:linear-gradient(135deg,#f0ebe0,#ede5d5)!important;border-color:var(--border-strong)!important}
@@ -223,7 +223,7 @@ body.light-mode .theme-toggle:hover{border-color:#8a6a20;color:#8a6a20}
 </script>
 </head>
 <body>
-<div id="stars"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><ul class="nav-links"><li><a href="index.html" class="active">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="trois-rayons.html">Les Rayons</a></li><li><a href="#contact">Contact</a></li><li><a href="calendrier.html">Calendrier</a></li></ul><button class="nav-srch-btn" onclick="openSrch()" aria-label="Rechercher">🔍</button><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Changer le thème"><span class="theme-toggle-icon">☾</span></button>
+<div id="stars"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><ul class="nav-links"><li><a href="index.html" class="active">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="trois-rayons.html">Les Rayons</a></li><li><a href="#contact">Contact</a></li><li><a href="calendrier.html">Calendrier</a></li></ul><button class="nav-srch-btn" onclick="openSrch()" aria-label="Rechercher">🔍</button>
 </nav><section class="hero"><div class="hero-bg"><div class="hero-content"><p class="hero-label">✡ École Ésotérique Haïtienne ✡</p><h1 class="hero-title">Bnei Ohr<br><span>Enfants de la Lumière</span></h1></div></div><div class="hero-caption"><p class="hero-caption-verse">« Une école ésotérique haïtienne — synthétisant Kabbale, Vodou et sagesse universelle — pour un cheminement initiatique enraciné dans l'âme d'Haïti. »</p><a href="presentation.html" class="hero-caption-btn">Découvrir l'École</a></div><div class="scroll-indicator"><span>Défiler vers le bas</span><div class="scroll-dot"></div></div>
 </section><div class="stats-bar"><div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Niveaux d'Exploration</span></div><div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Traditions Intégrées</span></div><div class="stat-item"><span class="stat-number">22</span><span class="stat-label">Modules d'Étude</span></div><div class="stat-item"><span class="stat-number">∞</span><span class="stat-label">Lumière d'Ein Sof</span></div>
 </div><section class="video-section"><div class="video-inner"><span class="video-eyebrow">✡ Bnei Ohr — Mesaj Vizyèl ✡</span><div class="video-carousel-wrapper"><div class="video-carousel" id="videoCarousel">
