@@ -189,6 +189,7 @@ card.classList.remove('open');
 }
 </script>
 <!-- ✡ GID OHR — Asistan IA Bnei Ohr ✡ -->
+<script src="/gid-ohr-config.js"></script>
 <div id="gid-ohr-widget">
   <button id="gid-ohr-toggle" aria-label="Ouvri Gid Ohr">
     <span class="gid-icon-closed">✡</span>
@@ -215,7 +216,7 @@ card.classList.remove('open');
   </div>
 </div>
 <style>
-#gid-ohr-widget{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;font-family:'Cormorant Garamond',serif}
+#gid-ohr-widget{display:none!important;position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;font-family:'Cormorant Garamond',serif}
 #gid-ohr-toggle{width:3.2rem;height:3.2rem;border-radius:50%;background:linear-gradient(135deg,#1a1200,#0a0800);border:1px solid rgba(212,175,55,.5);color:#d4af37;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 0 20px rgba(212,175,55,.15);transition:all .3s}
 #gid-ohr-toggle:hover{border-color:#d4af37;box-shadow:0 0 30px rgba(212,175,55,.3);transform:scale(1.05)}
 .gid-pulse{position:absolute;width:100%;height:100%;border-radius:50%;border:1px solid rgba(212,175,55,.3);animation:gidPulse 2.5s ease-out infinite;pointer-events:none}
@@ -309,7 +310,7 @@ card.classList.remove('open');
     try{
       var res=await fetch('https://api.anthropic.com/v1/messages',{
         method:'POST',
-        headers:{'Content-Type':'application/json'},
+        headers:{'Content-Type':'application/json','x-api-key':window.GID_OHR_API_KEY||'','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
         body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM,messages:history})
       });
       var data=await res.json();
