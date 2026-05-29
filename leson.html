@@ -128,7 +128,7 @@ body.light-mode .footer-links a:hover{color:var(--gold)!important}
 body.light-mode .footer-copy,body.light-mode .footer-mentions{color:var(--text-sub)!important}
 body.light-mode .reflexion-jour-widget{background:linear-gradient(90deg,#ede8de,#e8e0d0,#ede8de)!important;border-top-color:var(--border)!important}
 body.light-mode .reflexion-jour-tab{color:var(--gold)!important}
-body.light-mode .rj-quote{color:var(--text-muted)!important}
+body.light-mode .rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#b0a080;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
 body.light-mode .srch-box{background:linear-gradient(135deg,#f0ebe0,#ede5d5)!important;border-color:var(--border-strong)!important}
 body.light-mode .srch-input{color:var(--text-main)!important}
 body.light-mode .srch-item:hover{background:rgba(138,106,32,.08)!important}
@@ -161,6 +161,7 @@ body.light-mode .theme-toggle:hover{border-color:#8a6a20;color:#8a6a20}
   };
 })();
 </script>
+<script src="/search-index.js"></script>
 </head>
 <body>
 <div id="readingProgress"></div>
@@ -324,15 +325,15 @@ document.getElementById('readingProgress').style.width = (window.scrollY / docH 
 
 
 <style>
-.reflexion-jour-widget{position:fixed;bottom:0;left:0;right:0;z-index:800;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.18);padding:.6rem 1.5rem;display:flex;align-items:center;gap:1rem;min-height:3rem}
-.reflexion-jour-tab{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:#d4af37;text-transform:uppercase;white-space:nowrap;flex-shrink:0;opacity:.7}
-.reflexion-jour-panel{display:flex;align-items:center;gap:.8rem;flex:1;overflow:hidden;min-width:0}
+.reflexion-jour-widget{position:fixed;bottom:0;left:0;right:0;z-index:800;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.18);padding:.5rem 1rem;display:flex;align-items:center;gap:.6rem;min-height:2.8rem;overflow:hidden}
+.reflexion-jour-tab{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.25em;color:#d4af37;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
 .rj-eyebrow{display:none}
-.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,.5);flex-shrink:0;line-height:1}
-.rj-divider{width:1px;height:1.2rem;background:rgba(212,175,55,.2);flex-shrink:0}
-.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#a09070;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
-.rj-source{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.15em;color:rgba(212,175,55,.3);text-transform:uppercase;white-space:nowrap;flex-shrink:0;display:none}
-@media(max-width:480px){.rj-source{display:none}}
+.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:.95rem;color:rgba(212,175,55,.5);flex-shrink:0;line-height:1}
+.rj-divider{width:1px;height:1rem;background:rgba(212,175,55,.2);flex-shrink:0}
+.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#a09070;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.rj-source{display:none}
+.reflexion-jour-panel{display:none}
+.reflexion-jour-inner{display:none}
 </style>
 <div class="reflexion-jour-widget" id="rjWidget">
   <div class="reflexion-jour-tab">✡ Réflexion du Jour</div>
@@ -384,7 +385,6 @@ document.getElementById('readingProgress').style.width = (window.scrollY / docH 
   document.getElementById('rjSource').textContent=med[i][2];
 })();
 </script>
-<script src="/search-index.js"></script>
 <style>
 .srch-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:5rem}
 .srch-overlay.srch-open{display:flex}
