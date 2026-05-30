@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Lwa — Panthéon Vodou Haïtien | Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,5,0.92);border-bottom:1px solid rgba(212,175,55,0.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,0.4)}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-links{display:flex;flex-wrap:wrap;gap:1.8rem;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:#a0a0a0;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:#d4af37}
+/* PAGE HEADER */
+.page-header{padding:8rem 2rem 4rem;text-align:center;position:relative;z-index:1;border-bottom:1px solid rgba(212,175,55,.1)}
+.page-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(155,127,212,.07) 0%,transparent 65%);pointer-events:none}
+.page-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,.6);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.page-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,2.8rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;margin-bottom:.8rem}
+.page-subtitle{font-style:italic;font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.5);max-width:560px;margin:0 auto 2rem;line-height:1.9}
+.page-divider{width:80px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto}
+/* INTRO */
+.intro-section{max-width:720px;margin:0 auto;padding:3.5rem 2rem;text-align:center;position:relative;z-index:1}
+.intro-section p{font-size:1.05rem;line-height:1.95;color:rgba(232,228,220,.75);margin-bottom:1rem}
+/* GRID */
+.lwa-grid{max-width:960px;margin:0 auto;padding:2rem 2rem 8rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;position:relative;z-index:1}
+.lwa-card{border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);padding:2rem 1.5rem;text-decoration:none;color:inherit;display:block;position:relative;overflow:hidden;transition:all .4s}
+.lwa-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--c),transparent);opacity:.5;transition:opacity .4s}
+.lwa-card:hover{background:rgba(255,255,255,.04);transform:translateY(-4px);box-shadow:0 12px 35px rgba(0,0,0,.4)}
+.lwa-card:hover::before{opacity:1}
+.lwa-card-veve{font-size:2.5rem;display:block;margin-bottom:1rem;filter:drop-shadow(0 0 10px var(--c))}
+.lwa-card-name{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:var(--c);text-transform:uppercase;margin-bottom:.3rem}
+.lwa-card-role{font-style:italic;font-size:.88rem;color:rgba(255,255,255,.45);margin-bottom:.8rem}
+.lwa-card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.8rem}
+.lwa-card-tag{font-size:.55rem;font-family:'Cinzel',serif;letter-spacing:.1em;text-transform:uppercase;padding:.15rem .5rem;border:1px solid var(--c);color:var(--c);opacity:.6}
+.lwa-card-desc{font-size:.9rem;line-height:1.75;color:rgba(232,228,220,.6)}
+.lwa-card-link{display:inline-block;margin-top:1rem;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:var(--c);text-transform:uppercase;opacity:.7}
+/* RJ */
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.22);overflow:hidden}
+.rj-label{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,.18)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 28s linear infinite}
+@keyframes rj-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+.rj-sep{color:rgba(212,175,55,.2);font-size:.7rem}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
+    <span class="nav-logo-text">Bnei Ohr</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="vodou.html">Héritage</a></li>
+    <li><a href="lwa.html" class="active">Les Lwa</a></li>
+    <li><a href="calendrier.html">Calendrier</a></li>
+    <li><a href="bibliyotek.html">Bibliothèque</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <span class="page-eyebrow">Vodou Haïtien — Panthéon Sacré</span>
+  <h1 class="page-title">Les Lwa</h1>
+  <p class="page-subtitle">Les grands esprits du Vodou haïtien — gardiens, guides et intercesseurs entre le monde visible et invisible.</p>
+  <div class="page-divider"></div>
+</div>
+
+<div class="intro-section">
+  <p>Dans la tradition vodou haïtienne, les Lwa ne sont pas des dieux au sens occidental du terme — ils sont des forces spirituelles, des intelligences divines qui servent d'intermédiaires entre les humains et le Grand Mystère. Chaque Lwa gouverne un domaine particulier de l'existence et peut être invoqué pour guider, protéger, guérir ou enseigner.</p>
+  <p>Chez Bnei Ohr, nous honorons les Lwa comme des manifestations de la même Lumière Divine que la Kabbale appelle Ein Sof. Chaque Lwa correspond à une Sefirah, une lettre hébraïque, une force cosmique qui traverse toutes les traditions spirituelles.</p>
+</div>
+
+<div class="lwa-grid">
+
+  <a href="lwa-papa-legba.html" class="lwa-card" style="--c:#d4af37">
+    <span class="lwa-card-veve">🔑</span>
+    <div class="lwa-card-name">Papa Legba</div>
+    <div class="lwa-card-role">Maître des Carrefours</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Carrefour</span>
+      <span class="lwa-card-tag">Communication</span>
+      <span class="lwa-card-tag">Commencement</span>
+    </div>
+    <div class="lwa-card-desc">Le premier invoqué dans tout rituel. Sans lui, aucune communication avec les esprits n'est possible. Il ouvre les portes entre les mondes.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-ezili-freda.html" class="lwa-card" style="--c:#e87fa0">
+    <span class="lwa-card-veve">💗</span>
+    <div class="lwa-card-name">Ezili Freda</div>
+    <div class="lwa-card-role">Reine de l'Amour et de la Beauté</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Amour</span>
+      <span class="lwa-card-tag">Beauté</span>
+      <span class="lwa-card-tag">Abondance</span>
+    </div>
+    <div class="lwa-card-desc">La plus aimée des Lwa féminins. Elle incarne l'amour romantique, la grâce divine et l'abondance. Ses larmes sont plus précieuses que les perles.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-ezili-danto.html" class="lwa-card" style="--c:#4a7fcb">
+    <span class="lwa-card-veve">🗡</span>
+    <div class="lwa-card-name">Ezili Dantò</div>
+    <div class="lwa-card-role">Guerrière et Mère Protectrice</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Protection</span>
+      <span class="lwa-card-tag">Maternité</span>
+      <span class="lwa-card-tag">Justice</span>
+    </div>
+    <div class="lwa-card-desc">La mère féroce qui ne cède jamais. Elle porte les cicatrices de ses batailles comme des couronnes. Protectrice des femmes et des opprimés.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-ogou.html" class="lwa-card" style="--c:#e05555">
+    <span class="lwa-card-veve">⚔️</span>
+    <div class="lwa-card-name">Ogou</div>
+    <div class="lwa-card-role">Général des Armées Célestes</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Guerre Sacrée</span>
+      <span class="lwa-card-tag">Feu</span>
+      <span class="lwa-card-tag">Justice</span>
+    </div>
+    <div class="lwa-card-desc">Le grand guerrier divin. Il combat non par colère, mais par principe. Son sabre tranche le mensonge comme la lumière tranche les ténèbres.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-danbala.html" class="lwa-card" style="--c:#7ecba1">
+    <span class="lwa-card-veve">🐍</span>
+    <div class="lwa-card-name">Danbala Wedo</div>
+    <div class="lwa-card-role">Grand Serpent Blanc de la Sagesse</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Sagesse</span>
+      <span class="lwa-card-tag">Pureté</span>
+      <span class="lwa-card-tag">Création</span>
+    </div>
+    <div class="lwa-card-desc">Le plus ancien des Lwa. Il ne parle pas — il siffle. Sa présence amène une paix profonde et la sagesse primordiale qui existait avant le langage.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-baron-samdi.html" class="lwa-card" style="--c:#9b7fd4">
+    <span class="lwa-card-veve">💀</span>
+    <div class="lwa-card-name">Baron Samdi</div>
+    <div class="lwa-card-role">Maître de la Mort et des Cimetières</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Mort</span>
+      <span class="lwa-card-tag">Renaissance</span>
+      <span class="lwa-card-tag">Médecine</span>
+    </div>
+    <div class="lwa-card-desc">Il rit en face de la mort et lui enlève sa peur. Gardien du passage ultime, guérisseur des cas désespérés, révélateur de vérités cachées.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-agwe.html" class="lwa-card" style="--c:#4a9eff">
+    <span class="lwa-card-veve">⚓</span>
+    <div class="lwa-card-name">Agwe Tawoyo</div>
+    <div class="lwa-card-role">Roi de la Mer et des Profondeurs</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Océan</span>
+      <span class="lwa-card-tag">Voyage</span>
+      <span class="lwa-card-tag">Rêves</span>
+    </div>
+    <div class="lwa-card-desc">Gouverneur des océans et des eaux profondes. Il protège les voyageurs et gouverne le subconscient — car les eaux profondes symbolisent les profondeurs de l'âme.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-gede.html" class="lwa-card" style="--c:#a87fd4">
+    <span class="lwa-card-veve">🪦</span>
+    <div class="lwa-card-name">Les Gédé</div>
+    <div class="lwa-card-role">Famille des Ancêtres et des Morts</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Ancêtres</span>
+      <span class="lwa-card-tag">Mémoire</span>
+      <span class="lwa-card-tag">Vérité</span>
+    </div>
+    <div class="lwa-card-desc">Les gardiens de la mémoire ancestrale. Ils ne font pas de distinction entre riches et pauvres — dans la mort, tous sont égaux. Ils disent la vérité sans filtre.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+  <a href="lwa-loko-ayizan.html" class="lwa-card" style="--c:#a3c96e">
+    <span class="lwa-card-veve">🌿</span>
+    <div class="lwa-card-name">Loko & Ayizan</div>
+    <div class="lwa-card-role">Père et Mère de l'Initiation</div>
+    <div class="lwa-card-tags">
+      <span class="lwa-card-tag">Initiation</span>
+      <span class="lwa-card-tag">Plantes</span>
+      <span class="lwa-card-tag">Guérison</span>
+    </div>
+    <div class="lwa-card-desc">Les premiers Houngan et Mambo. Gardiens des secrets de la nature et de la prêtrise. Ils transmettent la sagesse qui dépasse les mots.</div>
+    <span class="lwa-card-link">Découvrir →</span>
+  </a>
+
+</div>
+
+<div class="rj-bar">
+  <div class="rj-label">✡ Réflexion du Jour</div>
+  <div class="rj-track">
+    <div class="rj-inner" id="rjInner"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var s=document.getElementById('stars');
+  for(var i=0;i<60;i++){
+    var el=document.createElement('div');
+    el.className='star';
+    var size=Math.random()*1.5+.5;
+    el.style.cssText='width:'+size+'px;height:'+size+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;--d:'+(Math.random()*4+2)+'s;--o:'+(Math.random()*.4+.1)+';';
+    s.appendChild(el);
+  }
+})();
+(function(){
+  var quotes=[
+    "Il n'y a rien d'autre que Lui. Derrière chaque apparence — une seule Lumière.",
+    "Chaque carrefour de ta vie est une invitation. Legba ouvre les chemins à ceux qui demandent avec humilité.",
+    "Erzulie nous rappelle que l'amour est la force la plus subversive qui soit.",
+    "Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre.",
+    "Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage.",
+    "La vraie connaissance est dans l'union de ce que tu sais et de ce que tu vis.",
+    "Ton âme a choisi ce moment, cette vie — pour accomplir quelque chose que seule elle peut réaliser."
+  ];
+  var t=new Date();
+  var q=quotes[(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%quotes.length];
+  var sep='<span class="rj-sep" style="margin:0 2rem">✦</span>';
+  var el=document.getElementById('rjInner');
+  if(el){el.innerHTML='<span class="rj-text">'+q+'</span>'+sep+'<span class="rj-text">'+q+'</span>'+sep;}
+})();
+</script>
+</body>
+</html>

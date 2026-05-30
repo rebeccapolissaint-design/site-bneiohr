@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ezili Dantò — Mère Protectrice | Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,5,0.92);border-bottom:1px solid rgba(212,175,55,0.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,0.4)}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-links{display:flex;flex-wrap:wrap;gap:1.8rem;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:#a0a0a0;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:#d4af37}
+/* HERO LWA */
+.lwa-hero{padding:7rem 2rem 4rem;text-align:center;position:relative;z-index:1;border-bottom:1px solid rgba(212,175,55,.1)}
+.lwa-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(74,127,203,.08) 0%,transparent 65%);pointer-events:none}
+.lwa-veve{font-size:5rem;display:block;margin-bottom:1.5rem;filter:drop-shadow(0 0 20px rgba(74,127,203,.4));animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{filter:drop-shadow(0 0 15px rgba(74,127,203,.4))}50%{filter:drop-shadow(0 0 35px rgba(74,127,203,.7))}}
+.lwa-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:#4a7fcb;text-transform:uppercase;opacity:.7;margin-bottom:.6rem}
+.lwa-name{font-family:'Cinzel',serif;font-size:clamp(2rem,6vw,3.2rem);letter-spacing:.2em;color:#4a7fcb;text-transform:uppercase;text-shadow:0 0 30px rgba(74,127,203,.4);margin-bottom:.4rem}
+.lwa-subtitle{font-style:italic;font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,.55);margin-bottom:2rem}
+.lwa-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:2rem}
+.lwa-tag{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;padding:.35rem .8rem;border:1px solid rgba(74,127,203,.3);color:#4a7fcb;background:rgba(255,255,255,.03)}
+.lwa-divider{width:80px;height:1px;background:linear-gradient(to right,transparent,#4a7fcb,transparent);margin:0 auto}
+/* BODY */
+.lwa-body{max-width:820px;margin:0 auto;padding:4rem 2rem 6rem;position:relative;z-index:1}
+.lwa-section{margin-bottom:3.5rem}
+.lwa-section-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.4em;color:#4a7fcb;text-transform:uppercase;opacity:.8;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid rgba(212,175,55,.1)}
+.lwa-section p{font-size:1.05rem;line-height:1.95;color:rgba(232,228,220,.8);margin-bottom:1rem}
+.lwa-section p:last-child{margin-bottom:0}
+/* ATTRIBUTS GRID */
+.attr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1rem}
+.attr-card{background:rgba(255,255,255,.025);border:1px solid rgba(212,175,55,.12);padding:1.2rem 1.4rem}
+.attr-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;color:#4a7fcb;text-transform:uppercase;opacity:.6;margin-bottom:.4rem;display:block}
+.attr-value{font-size:1rem;color:rgba(232,228,220,.85);line-height:1.5}
+/* OFFRANDES */
+.offrand-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.offrand-item{font-size:.9rem;color:rgba(232,228,220,.75);background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.1);padding:.3rem .7rem}
+/* PRIERE */
+.priere-box{background:linear-gradient(135deg,rgba(212,175,55,.04),rgba(212,175,55,.01));border:1px solid rgba(212,175,55,.2);border-left:3px solid #4a7fcb;padding:2rem;margin-top:1rem;position:relative}
+.priere-box::before{content:'"';position:absolute;top:.5rem;left:1rem;font-size:4rem;color:#4a7fcb;opacity:.15;font-family:Georgia,serif;line-height:1}
+.priere-text{font-style:italic;font-size:1.05rem;line-height:2.1;color:rgba(232,228,220,.85)}
+/* KABAL LINK */
+.kabal-box{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.15);padding:1.5rem 1.8rem;margin-top:1rem}
+.kabal-box p{font-size:1rem;line-height:1.9;color:rgba(232,228,220,.75)}
+.kabal-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:#4a7fcb;display:block;text-align:center;margin-bottom:.6rem;opacity:.7}
+/* NAV LWA */
+.lwa-nav{display:flex;justify-content:space-between;align-items:center;padding:2rem;border-top:1px solid rgba(212,175,55,.1);margin-top:2rem}
+.lwa-nav a{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.lwa-nav a:hover{color:#d4af37}
+.lwa-nav-center{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase}
+/* RJ BAR */
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.22);overflow:hidden}
+.rj-label{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,.18)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 28s linear infinite}
+@keyframes rj-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+.rj-sep{color:rgba(212,175,55,.2);font-size:.7rem;flex-shrink:0}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
+    <span class="nav-logo-text">Bnei Ohr</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="vodou.html" class="active">Héritage</a></li>
+    <li><a href="calendrier.html">Calendrier</a></li>
+    <li><a href="bibliyotek.html">Bibliothèque</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="lwa-hero">
+  <span class="lwa-veve">🗡</span>
+  <div class="lwa-eyebrow">Lwa du Vodou Haïtien</div>
+  <h1 class="lwa-name">Ezili Dantò</h1>
+  <p class="lwa-subtitle">Guerrière Sacrée · Protectrice des Femmes et des Enfants</p>
+  <div class="lwa-tags">
+    <span class="lwa-tag">Protection</span><span class="lwa-tag">Maternité</span><span class="lwa-tag">Courage</span><span class="lwa-tag">Justice</span><span class="lwa-tag">Guerre Sacrée</span><span class="lwa-tag">Indépendance</span>
+  </div>
+  <div class="lwa-divider"></div>
+</div>
+
+<!-- BODY -->
+<div class="lwa-body">
+
+  <!-- ATTRIBUTS -->
+  <div class="lwa-section">
+    <div class="lwa-section-title">⚜ Attributs Sacrés</div>
+    <div class="attr-grid">
+      <div class="attr-card"><span class="attr-label">Jour sacré</span><div class="attr-value">Mardi</div></div><div class="attr-card"><span class="attr-label">Couleurs</span><div class="attr-value">Bleu · Or · Rouge</div></div><div class="attr-card"><span class="attr-label">Nation</span><div class="attr-value">Petro</div></div><div class="attr-card"><span class="attr-label">Syncrétisme</span><div class="attr-value">Notre-Dame du Mont Carmel</div></div>
+    </div>
+  </div>
+
+  <!-- HISTOIRE -->
+  <div class="lwa-section">
+    <div class="lwa-section-title">📜 Histoire & Origine</div>
+    <p>Ezili Dantò est la contrepartie guerrière et sombre d'Ezili Freda. Là où Freda est délicate et romantique, Dantò est féroce, déterminée et implacable dans sa protection. Elle porte les cicatrices de ses batailles — deux entailles sur la joue droite — comme des marques d'honneur.</p>
+<p>Dans la tradition haïtienne, c'est Ezili Dantò qui a accompagné les esclaves dans leur lutte pour la liberté. La cérémonie du Bois Caïman en 1791 — qui marqua le début de la Révolution haïtienne — est associée à sa présence. Elle incarne l'esprit de résistance et de dignité du peuple haïtien.</p>
+<p>Elle est muette — elle ne parle pas, elle grogne. Cette caractéristique symbolise la douleur trop profonde pour être exprimée en mots, ainsi que la force silencieuse de ceux qui ont souffert sans jamais se briser.</p>
+  </div>
+
+  <!-- POUVOIRS -->
+  <div class="lwa-section">
+    <div class="lwa-section-title">🔥 Pouvoirs & Domaines</div>
+    <p>Ezili Dantò est la protectrice absolue des femmes victimes de violence, des mères seules et des enfants abandonnés. Elle intervient avec une rapidité et une férocité redoutables quand ses serviteurs sont injustement attaqués ou opprimés.</p>
+<p>Elle donne le courage de se battre pour la justice, la force de résister face à l'adversité et la détermination de ne jamais abandonner ses responsabilités. C'est aussi une Lwa de guérison — elle connaît les plantes médicinales et les remèdes ancestraux.</p>
+  </div>
+
+  <!-- OFFRANDES -->
+  <div class="lwa-section">
+    <div class="lwa-section-title">🕯 Offrandes & Rituels</div>
+    <p>Ezili Dantò préfère les offrandes fortes et directes, sans fioriture :</p>
+    <div class="offrand-list"><span class="offrand-item">Rhum Barbancourt</span><span class="offrand-item">Porc grillé</span><span class="offrand-item">Maïs</span><span class="offrand-item">Couteau rituel</span><span class="offrand-item">Bougies bleues</span><span class="offrand-item">Fleurs bleues</span><span class="offrand-item">Poupée noire</span><span class="offrand-item">Graines de poivre</span></div>
+  </div>
+
+  <!-- PRIERE -->
+  <div class="lwa-section">
+    <div class="lwa-section-title">🙏 Prière d'Invocation</div>
+    <div class="priere-box">
+      <div class="priere-text">Ezili Dantò, Mère de fer, Femme de feu,<br>
+Toi qui portes les cicatrices de tes combats comme des couronnes,<br>
+Toi qui n'as jamais abandonné tes enfants,<br>
+Couvre-moi de ta protection sans faille.<br>
+Que ton bouclier soit devant moi,<br>
+Que ton épée soit à ma droite.<br>
+Contre tous ceux qui me veulent du mal,<br>
+Sois ma mère, sois mon armée, sois ma forteresse.<br>
+<em>Dantò — je t'appelle. Protège-moi.</em></div>
+    </div>
+  </div>
+
+  <!-- KABAL -->
+  <div class="lwa-section">
+    <div class="lwa-section-title">✡ Correspondance Kabbalistique</div>
+    <div class="kabal-box">
+      <span class="kabal-hebrew">גְּבוּרָה</span>
+      <p>Ezili Dantò correspond à la Sefirah Gevurah — la Force, la Rigueur Divine — dans la Kabbale. Gevurah est la puissance du jugement juste, la capacité de dire non, de protéger les limites sacrées et de combattre l'injustice. C'est la face sombre mais nécessaire de l'amour — l'amour qui protège par la force quand la douceur ne suffit plus.</p>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="lwa-nav">
+    <a href="lwa-ezili-freda.html">← Ezili Freda</a>
+    <span class="lwa-nav-center">Les Lwa</span>
+    <a href="lwa-ogou.html">Ogou →</a>
+  </div>
+
+</div>
+
+<!-- RJ BAR -->
+<div class="rj-bar">
+  <div class="rj-label">✡ Réflexion du Jour</div>
+  <div class="rj-track">
+    <div class="rj-inner" id="rjInner"></div>
+  </div>
+</div>
+
+<script>
+// Stars
+(function(){
+  var s=document.getElementById('stars');
+  for(var i=0;i<60;i++){
+    var el=document.createElement('div');
+    el.className='star';
+    var size=Math.random()*1.5+.5;
+    el.style.cssText='width:'+size+'px;height:'+size+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;--d:'+(Math.random()*4+2)+'s;--o:'+(Math.random()*.4+.1)';';
+    s.appendChild(el);
+  }
+})();
+// RJ
+(function(){
+  var quotes=[
+    "Il n'y a rien d'autre que Lui. Derrière chaque apparence — une seule Lumière.",
+    "La Couronne n'est pas au-dessus de toi — elle est en toi, dans le silence le plus profond.",
+    "Chaque carrefour de ta vie est une invitation. Legba ouvre les chemins à ceux qui demandent avec humilité.",
+    "La générosité véritable ne calcule pas. Elle est comme la pluie — elle tombe sans demander de mérite.",
+    "Erzulie nous rappelle que l'amour est la force la plus subversive qui soit.",
+    "Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre.",
+    "Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage.",
+    "La vraie connaissance n'est pas dans les livres — elle est dans l'union de ce que tu sais et de ce que tu vis.",
+    "Ton âme a choisi ce moment, cette vie, ce corps — pour accomplir quelque chose que seule elle peut réaliser.",
+    "La paix n'est pas l'absence de conflit — c'est la présence d'une harmonie plus profonde."
+  ];
+  var t=new Date();
+  var q=quotes[(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%quotes.length];
+  var sep='<span class="rj-sep" style="margin:0 2rem">✦</span>';
+  var el=document.getElementById('rjInner');
+  if(el){el.innerHTML='<span class="rj-text">'+q+'</span>'+sep+'<span class="rj-text">'+q+'</span>'+sep;}
+})();
+</script>
+</body>
+</html>
