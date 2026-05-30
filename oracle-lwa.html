@@ -4,508 +4,492 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oracle des Lwa | Bnei Ohr</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
-#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
-@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,5,0.92);border-bottom:1px solid rgba(212,175,55,0.15);backdrop-filter:blur(8px)}
-.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
-.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37}
-.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
-.nav-back{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase}
-.nav-back:hover{color:#d4af37}
+  :root {
+    --gold: #d4af37;
+    --gold-dim: rgba(212,175,55,0.4);
+    --gold-glow: rgba(212,175,55,0.12);
+    --purple: #9b7fd4;
+    --purple-dim: rgba(155,127,212,0.35);
+    --purple-glow: rgba(155,127,212,0.1);
+    --dark: #04030a;
+    --text: #e8e0d0;
+    --text-dim: rgba(232,224,208,0.45);
+  }
 
-/* ══ ÉCRAN CODE ══════════════════════════════ */
-#screen-code{position:fixed;inset:0;z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 40%,#0d0820 0%,#050505 70%);padding:2rem}
-.code-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(155,127,212,.08) 0%,transparent 70%);pointer-events:none}
-.code-symbol{font-size:3.5rem;margin-bottom:1.5rem;filter:drop-shadow(0 0 20px rgba(155,127,212,.5));animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.code-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,4vw,1.6rem);letter-spacing:.25em;color:#d4af37;text-transform:uppercase;text-align:center;margin-bottom:.5rem}
-.code-subtitle{font-style:italic;font-size:1rem;color:rgba(255,255,255,.4);text-align:center;margin-bottom:2.5rem;letter-spacing:.05em}
-.code-input-wrap{position:relative;margin-bottom:1rem}
-.code-input{background:rgba(255,255,255,.04);border:1px solid rgba(155,127,212,.3);border-radius:2px;color:#e8e0d0;font-family:'Cinzel',serif;font-size:1.2rem;letter-spacing:.4em;text-align:center;padding:.9rem 1.5rem;width:240px;outline:none;transition:border-color .3s}
-.code-input:focus{border-color:rgba(155,127,212,.7);box-shadow:0 0 20px rgba(155,127,212,.1)}
-.code-btn{display:block;width:240px;margin-top:.8rem;padding:.85rem;background:linear-gradient(135deg,rgba(155,127,212,.15),rgba(155,127,212,.08));border:1px solid rgba(155,127,212,.4);color:#c4b0e8;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:all .3s}
-.code-btn:hover{background:linear-gradient(135deg,rgba(155,127,212,.25),rgba(155,127,212,.12));border-color:rgba(155,127,212,.7)}
-.code-error{color:#e05555;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.2em;text-align:center;margin-top:.8rem;height:1.2rem;text-transform:uppercase;opacity:0;transition:opacity .3s}
-.code-error.show{opacity:1}
-.code-hint{margin-top:2rem;font-style:italic;font-size:.85rem;color:rgba(255,255,255,.2);text-align:center;max-width:300px;line-height:1.8}
-.code-shake{animation:shake .4s ease}
-@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--dark);
+    font-family: 'Cormorant Garamond', serif;
+    overflow: hidden;
+  }
 
-/* ══ ORACLE PRINCIPAL ════════════════════════ */
-#screen-oracle{display:none;min-height:100vh;padding-bottom:4rem}
+  /* ── CANVAS ÉTOILÉ ── */
+  #canvas {
+    position: fixed; inset: 0; z-index: 0;
+  }
 
-/* HERO */
-.oracle-hero{padding:7rem 2rem 3rem;text-align:center;position:relative;z-index:1;border-bottom:1px solid rgba(212,175,55,.08)}
-.oracle-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(155,127,212,.08) 0%,transparent 65%);pointer-events:none}
-.oracle-eyebrow{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.45em;color:rgba(212,175,55,.6);text-transform:uppercase;display:block;margin-bottom:.7rem}
-.oracle-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;text-shadow:0 0 30px rgba(212,175,55,.3);margin-bottom:.6rem}
-.oracle-subtitle{font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.45);max-width:520px;margin:0 auto 2rem;line-height:1.9}
-.oracle-divider{width:80px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto}
+  /* ── CERCLES MYSTIQUES ── */
+  .rings {
+    position: fixed; inset: 0; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .ring {
+    position: absolute; border-radius: 50%; border: 1px solid;
+    animation: ring-spin linear infinite;
+  }
+  .ring:nth-child(1) {
+    width: 520px; height: 520px;
+    border-color: rgba(212,175,55,0.06);
+    animation-duration: 60s;
+  }
+  .ring:nth-child(2) {
+    width: 380px; height: 380px;
+    border-color: rgba(155,127,212,0.08);
+    animation-duration: 45s; animation-direction: reverse;
+  }
+  .ring:nth-child(3) {
+    width: 260px; height: 260px;
+    border-color: rgba(212,175,55,0.05);
+    animation-duration: 30s;
+  }
+  @keyframes ring-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
 
-/* QUESTION ZONE */
-.oracle-body{max-width:720px;margin:0 auto;padding:3rem 1.5rem;position:relative;z-index:1}
-.q-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;color:rgba(212,175,55,.6);text-transform:uppercase;display:block;text-align:center;margin-bottom:1.2rem}
-.q-textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.2);border-radius:2px;color:#e8e0d0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;line-height:1.8;padding:1.2rem 1.5rem;resize:vertical;min-height:110px;outline:none;transition:border-color .3s}
-.q-textarea:focus{border-color:rgba(212,175,55,.45)}
-.q-textarea::placeholder{color:rgba(255,255,255,.2);font-style:italic}
+  /* Marqueurs sur les anneaux */
+  .ring::before, .ring::after {
+    content: '✦';
+    position: absolute; top: -6px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px; color: var(--gold-dim);
+  }
+  .ring::after { top: auto; bottom: -6px; }
 
-/* LWA SELECTOR */
-.lwa-selector{margin:1.8rem 0}
-.sel-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;text-align:center;margin-bottom:1rem}
-.lwa-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem}
-.lwa-chip{border:1px solid rgba(255,255,255,.1);background:transparent;color:rgba(232,228,220,.5);font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;padding:.45rem .9rem;cursor:pointer;transition:all .3s;position:relative}
-.lwa-chip span.chip-veve{margin-right:.4rem}
-.lwa-chip.selected{color:var(--c);border-color:var(--c);background:rgba(255,255,255,.04);box-shadow:0 0 12px rgba(0,0,0,.3)}
-.lwa-chip.auto{border-style:dashed;color:rgba(212,175,55,.5);border-color:rgba(212,175,55,.25)}
-.lwa-chip.auto.selected{color:#d4af37;border-color:#d4af37;border-style:solid}
+  /* ── LUEUR CENTRALE ── */
+  .glow-center {
+    position: fixed; inset: 0; z-index: 1;
+    background: radial-gradient(
+      ellipse 40% 40% at 50% 50%,
+      rgba(155,127,212,0.07) 0%,
+      rgba(212,175,55,0.04) 40%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
 
-/* INVOKE BUTTON */
-.invoke-btn{display:flex;align-items:center;justify-content:center;gap:.8rem;width:100%;padding:1.1rem;background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(155,127,212,.08));border:1px solid rgba(212,175,55,.35);color:#d4af37;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;margin-top:1.5rem;transition:all .4s;position:relative;overflow:hidden}
-.invoke-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,175,55,.08),transparent);opacity:0;transition:opacity .4s}
-.invoke-btn:hover::before{opacity:1}
-.invoke-btn:hover{border-color:rgba(212,175,55,.6);box-shadow:0 0 25px rgba(212,175,55,.08)}
-.invoke-btn:disabled{opacity:.4;cursor:not-allowed}
-.invoke-icon{font-size:1.2rem;animation:none}
-.invoke-btn:not(:disabled):hover .invoke-icon{animation:spin 2s linear infinite}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  /* ── CONTENEUR PRINCIPAL ── */
+  .screen {
+    position: relative; z-index: 10;
+    width: 100%; height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 2rem;
+  }
 
-/* LOADING */
-.oracle-loading{text-align:center;padding:3rem 2rem;display:none}
-.loading-symbol{font-size:2.5rem;animation:pulse-glow 1.5s ease-in-out infinite}
-@keyframes pulse-glow{0%,100%{filter:drop-shadow(0 0 8px rgba(212,175,55,.3))}50%{filter:drop-shadow(0 0 25px rgba(212,175,55,.7))}}
-.loading-text{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.4em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-top:1rem;animation:fade-pulse 1.5s ease-in-out infinite}
-@keyframes fade-pulse{0%,100%{opacity:.3}50%{opacity:.8}}
+  /* ── SYMBOLE CENTRAL ── */
+  .oracle-symbol {
+    font-size: 3.2rem;
+    margin-bottom: 1.6rem;
+    display: block;
+    animation: symbol-pulse 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 16px rgba(155,127,212,0.5));
+    cursor: default;
+    user-select: none;
+  }
+  @keyframes symbol-pulse {
+    0%, 100% { filter: drop-shadow(0 0 14px rgba(155,127,212,0.4)); transform: scale(1); }
+    50%       { filter: drop-shadow(0 0 28px rgba(155,127,212,0.75)); transform: scale(1.04); }
+  }
 
-/* RESPONSE */
-.oracle-response{display:none;margin-top:2rem;animation:fade-in .8s ease}
-@keyframes fade-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.resp-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.1)}
-.resp-lwa-veve{font-size:2.2rem;filter:drop-shadow(0 0 12px var(--rc,rgba(212,175,55,.4)))}
-.resp-lwa-name{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.15em;color:var(--rc,#d4af37);text-transform:uppercase}
-.resp-lwa-role{font-style:italic;font-size:.85rem;color:rgba(255,255,255,.4)}
-.resp-body{background:rgba(255,255,255,.02);border:1px solid rgba(212,175,55,.1);border-left:3px solid var(--rc,#d4af37);padding:1.8rem;position:relative}
-.resp-body::before{content:'"';position:absolute;top:.5rem;left:1rem;font-size:3.5rem;color:var(--rc,#d4af37);opacity:.12;font-family:Georgia,serif;line-height:1}
-.resp-text{font-size:1.05rem;line-height:2;color:rgba(232,228,220,.85)}
-.resp-text p{margin-bottom:1rem}
-.resp-text p:last-child{margin-bottom:0}
-.resp-footer{margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
-.resp-kabal{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:rgba(212,175,55,.4)}
-.resp-again{background:transparent;border:1px solid rgba(212,175,55,.2);color:rgba(212,175,55,.5);font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;padding:.5rem 1.2rem;cursor:pointer;transition:all .3s}
-.resp-again:hover{border-color:rgba(212,175,55,.5);color:#d4af37}
+  /* ── TITRES ── */
+  .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.55em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+    animation: fade-down 1s ease both;
+  }
 
-/* HISTORIQUE */
-.history-section{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05)}
-.history-title{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
-.history-item{padding:.8rem 1rem;border:1px solid rgba(255,255,255,.06);margin-bottom:.5rem;cursor:pointer;transition:border-color .3s}
-.history-item:hover{border-color:rgba(212,175,55,.2)}
-.history-q{font-style:italic;font-size:.9rem;color:rgba(255,255,255,.4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.history-lwa{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.15em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-top:.2rem}
+  .main-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(212,175,55,0.25);
+    margin-bottom: 0.5rem;
+    animation: fade-down 1s 0.1s ease both;
+  }
 
-/* RJ BAR */
-.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.22);overflow:hidden}
-.rj-label{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,.18)}
-.rj-track{flex:1;overflow:hidden;position:relative}
-.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
-.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
-.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
-.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 28s linear infinite}
-@keyframes rj-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
-.rj-sep{color:rgba(212,175,55,.2);font-size:.7rem}
+  .hebrew-title {
+    font-family: 'Noto Serif Hebrew', serif;
+    font-size: 1.1rem;
+    color: rgba(212,175,55,0.35);
+    display: block;
+    text-align: center;
+    margin-bottom: 2.2rem;
+    letter-spacing: 0.1em;
+    animation: fade-down 1s 0.2s ease both;
+  }
 
-@media(max-width:600px){
-  nav{padding:.8rem 1.2rem}
-  .oracle-body{padding:2rem 1rem}
-}
+  /* ── LIGNE DÉCORATIVE ── */
+  .deco-line {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 2.2rem;
+    animation: fade-down 1s 0.3s ease both;
+  }
+  .deco-line::before, .deco-line::after {
+    content: '';
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,175,55,0.3));
+  }
+  .deco-line::after {
+    background: linear-gradient(to left, transparent, rgba(212,175,55,0.3));
+  }
+  .deco-line span {
+    font-size: 0.65rem;
+    color: var(--gold-dim);
+  }
+
+  /* ── ZONE DE SAISIE ── */
+  .input-zone {
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+    animation: fade-up 1s 0.4s ease both;
+    width: 100%; max-width: 280px;
+  }
+
+  .input-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.44rem;
+    letter-spacing: 0.35em;
+    color: rgba(212,175,55,0.35);
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+
+  .code-field {
+    width: 100%;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(155,127,212,0.25);
+    border-radius: 1px;
+    color: var(--text);
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.45em;
+    text-align: center;
+    padding: 0.85rem 1.2rem;
+    outline: none;
+    transition: border-color 0.35s, box-shadow 0.35s;
+    caret-color: var(--gold);
+  }
+  .code-field::placeholder {
+    color: rgba(255,255,255,0.12);
+    letter-spacing: 0.3em;
+    font-size: 0.9rem;
+  }
+  .code-field:focus {
+    border-color: rgba(155,127,212,0.55);
+    box-shadow: 0 0 22px rgba(155,127,212,0.1), inset 0 0 10px rgba(155,127,212,0.03);
+  }
+
+  /* ── BOUTON ── */
+  .enter-btn {
+    width: 100%;
+    margin-top: 0.4rem;
+    padding: 0.9rem 1.5rem;
+    background: linear-gradient(135deg,
+      rgba(155,127,212,0.12) 0%,
+      rgba(212,175,55,0.07) 100%
+    );
+    border: 1px solid rgba(155,127,212,0.35);
+    color: #c4b0e8;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .enter-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(155,127,212,0.18), rgba(212,175,55,0.08));
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .enter-btn:hover::before { opacity: 1; }
+  .enter-btn:hover {
+    border-color: rgba(155,127,212,0.6);
+    color: #d4c4f0;
+    box-shadow: 0 0 20px rgba(155,127,212,0.12);
+  }
+  .enter-btn:active { transform: scale(0.99); }
+
+  /* ── MESSAGE D'ERREUR ── */
+  .error-msg {
+    font-family: 'Cinzel', serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.2em;
+    color: #e05555;
+    text-transform: uppercase;
+    text-align: center;
+    height: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin-top: 0.2rem;
+  }
+  .error-msg.visible { opacity: 1; }
+
+  /* ── SHAKE ── */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60%  { transform: translateX(-7px); }
+    40%, 80%  { transform: translateX(7px); }
+  }
+  .shake { animation: shake 0.4s ease; }
+
+  /* ── NOTE ── */
+  .access-note {
+    margin-top: 2rem;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.18);
+    text-align: center;
+    max-width: 300px;
+    line-height: 1.9;
+    animation: fade-up 1s 0.6s ease both;
+  }
+
+  /* ── SUCCÈS: flash doré ── */
+  .success-flash {
+    position: fixed; inset: 0; z-index: 100;
+    background: radial-gradient(ellipse at 50% 50%,
+      rgba(212,175,55,0.25) 0%, transparent 70%);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .success-flash.active { opacity: 1; }
+
+  /* ── ANIMATIONS GLOBALES ── */
+  @keyframes fade-down {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── NAV MINIMALISTE ── */
+  .mini-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 2rem;
+    border-bottom: 1px solid rgba(212,175,55,0.07);
+  }
+  .mini-nav-logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    text-decoration: none;
+  }
+  .mini-nav-hebrew {
+    font-family: 'Noto Serif Hebrew', serif;
+    font-size: 1.1rem; color: var(--gold);
+  }
+  .mini-nav-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    color: var(--gold); text-transform: uppercase;
+  }
+  .mini-nav-back {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem; letter-spacing: 0.18em;
+    color: rgba(212,175,55,0.4); text-decoration: none;
+    text-transform: uppercase; transition: color 0.3s;
+  }
+  .mini-nav-back:hover { color: var(--gold); }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .ring:nth-child(1) { width: 340px; height: 340px; }
+    .ring:nth-child(2) { width: 250px; height: 250px; }
+    .ring:nth-child(3) { width: 170px; height: 170px; }
+  }
 </style>
 </head>
 <body>
-<div id="stars"></div>
 
-<nav>
-  <a href="index.html" class="nav-logo">
-    <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
-    <span class="nav-logo-text">Bnei Ohr</span>
+<!-- Canvas étoilé -->
+<canvas id="canvas"></canvas>
+
+<!-- Anneaux mystiques -->
+<div class="rings">
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+</div>
+
+<!-- Lueur -->
+<div class="glow-center"></div>
+
+<!-- Flash succès -->
+<div class="success-flash" id="successFlash"></div>
+
+<!-- Nav -->
+<nav class="mini-nav">
+  <a href="index.html" class="mini-nav-logo">
+    <span class="mini-nav-hebrew">בְּנֵי אוֹר</span>
+    <span class="mini-nav-name">Bnei Ohr</span>
   </a>
-  <a href="lwa.html" class="nav-back">← Les Lwa</a>
+  <a href="lwa.html" class="mini-nav-back">← Les Lwa</a>
 </nav>
 
-<!-- ══════════════════════════════════════
-     ÉCRAN CODE D'ACCÈS
-══════════════════════════════════════ -->
-<div id="screen-code">
-  <div class="code-glow"></div>
-  <div class="code-symbol">🔮</div>
-  <div class="code-title">Oracle des Lwa</div>
-  <div class="code-subtitle">Réservé aux initiés Bnei Ohr</div>
+<!-- Écran principal -->
+<div class="screen">
 
-  <div class="code-input-wrap">
+  <span class="oracle-symbol">🔮</span>
+
+  <div class="eyebrow">Portail Sacré</div>
+  <h1 class="main-title">Oracle des Lwa</h1>
+  <span class="hebrew-title">אוֹרָקֶל הַלְּוָואוֹת</span>
+
+  <div class="deco-line"><span>✦</span></div>
+
+  <div class="input-zone">
+    <span class="input-label">Code d'initié</span>
     <input
-      class="code-input"
-      id="codeInput"
       type="password"
-      maxlength="12"
-      placeholder="· · · · ·"
+      class="code-field"
+      id="codeInput"
+      placeholder="· · · · · ·"
+      maxlength="16"
       autocomplete="off"
       spellcheck="false"
     />
+    <button class="enter-btn" id="enterBtn" onclick="checkCode()">
+      Entrer dans l'Oracle
+    </button>
+    <div class="error-msg" id="errorMsg">Code incorrect — Essayez encore</div>
   </div>
-  <button class="code-btn" id="codeBtn" onclick="verifyCode()">Entrer dans l'Oracle</button>
-  <div class="code-error" id="codeError">Code incorrect — Essayez encore</div>
 
-  <div class="code-hint">
+  <p class="access-note">
     Ce portail est réservé aux membres initiés de Bnei Ohr.<br>
     Votre code vous a été transmis lors de votre initiation.
-  </div>
+  </p>
+
 </div>
 
-<!-- ══════════════════════════════════════
-     ORACLE PRINCIPAL
-══════════════════════════════════════ -->
-<div id="screen-oracle">
-
-  <div class="oracle-hero">
-    <span class="oracle-eyebrow">✡ Portail Sacré — Initiés Bnei Ohr</span>
-    <h1 class="oracle-title">Oracle des Lwa</h1>
-    <p class="oracle-subtitle">Posez votre question avec un cœur sincère. Les Lwa répondent à ceux qui cherchent la vérité.</p>
-    <div class="oracle-divider"></div>
-  </div>
-
-  <div class="oracle-body">
-
-    <span class="q-label">Votre question sacrée</span>
-    <textarea
-      class="q-textarea"
-      id="questionInput"
-      placeholder="Posez votre question... Que cherchez-vous à comprendre aujourd'hui ? Quelle guidance demandez-vous aux esprits ?"
-      rows="4"
-    ></textarea>
-
-    <!-- CHOIX DU LWA -->
-    <div class="lwa-selector">
-      <span class="sel-label">Choisir un Lwa — ou laisser les esprits choisir</span>
-      <div class="lwa-chips">
-        <button class="lwa-chip auto selected" style="--c:#d4af37" data-lwa="auto" onclick="selectLwa(this)">
-          <span class="chip-veve">✨</span>Laisser choisir
-        </button>
-        <button class="lwa-chip" style="--c:#d4af37" data-lwa="Papa Legba" onclick="selectLwa(this)">
-          <span class="chip-veve">🔑</span>Legba
-        </button>
-        <button class="lwa-chip" style="--c:#e87fa0" data-lwa="Ezili Freda" onclick="selectLwa(this)">
-          <span class="chip-veve">💗</span>Ezili Freda
-        </button>
-        <button class="lwa-chip" style="--c:#4a7fcb" data-lwa="Ezili Dantò" onclick="selectLwa(this)">
-          <span class="chip-veve">🗡</span>Ezili Dantò
-        </button>
-        <button class="lwa-chip" style="--c:#e05555" data-lwa="Ogou" onclick="selectLwa(this)">
-          <span class="chip-veve">⚔️</span>Ogou
-        </button>
-        <button class="lwa-chip" style="--c:#7ecba1" data-lwa="Danbala Wedo" onclick="selectLwa(this)">
-          <span class="chip-veve">🐍</span>Danbala
-        </button>
-        <button class="lwa-chip" style="--c:#9b7fd4" data-lwa="Baron Samdi" onclick="selectLwa(this)">
-          <span class="chip-veve">💀</span>Baron Samdi
-        </button>
-        <button class="lwa-chip" style="--c:#4a9eff" data-lwa="Agwe Tawoyo" onclick="selectLwa(this)">
-          <span class="chip-veve">⚓</span>Agwe
-        </button>
-        <button class="lwa-chip" style="--c:#a87fd4" data-lwa="Les Gédé" onclick="selectLwa(this)">
-          <span class="chip-veve">🪦</span>Gédé
-        </button>
-        <button class="lwa-chip" style="--c:#a3c96e" data-lwa="Loko et Ayizan" onclick="selectLwa(this)">
-          <span class="chip-veve">🌿</span>Loko & Ayizan
-        </button>
-      </div>
-    </div>
-
-    <button class="invoke-btn" id="invokeBtn" onclick="invokeOracle()">
-      <span class="invoke-icon">🔯</span>
-      Invoquer les Lwa
-    </button>
-
-    <!-- LOADING -->
-    <div class="oracle-loading" id="oracleLoading">
-      <div class="loading-symbol">🌀</div>
-      <div class="loading-text">Les esprits consultent…</div>
-    </div>
-
-    <!-- RESPONSE -->
-    <div class="oracle-response" id="oracleResponse">
-      <div class="resp-header">
-        <span class="resp-lwa-veve" id="respVeve"></span>
-        <div>
-          <div class="resp-lwa-name" id="respName"></div>
-          <div class="resp-lwa-role" id="respRole"></div>
-        </div>
-      </div>
-      <div class="resp-body">
-        <div class="resp-text" id="respText"></div>
-      </div>
-      <div class="resp-footer">
-        <span class="resp-kabal" id="respKabal"></span>
-        <button class="resp-again" onclick="resetOracle()">Poser une autre question</button>
-      </div>
-    </div>
-
-    <!-- HISTORIQUE -->
-    <div class="history-section" id="historySection" style="display:none">
-      <div class="history-title">✦ Consultations précédentes</div>
-      <div id="historyList"></div>
-    </div>
-
-  </div>
-</div>
-
-<!-- RJ BAR -->
-<div class="rj-bar">
-  <div class="rj-label">✡ Réflexion du Jour</div>
-  <div class="rj-track">
-    <div class="rj-inner" id="rjInner"></div>
-  </div>
-</div>
-
-<script src="/gid-ohr-config.js"></script>
 <script>
-// ══ STARS ══
-(function(){
-  var s=document.getElementById('stars');
-  for(var i=0;i<80;i++){
-    var el=document.createElement('div');
-    el.className='star';
-    var size=Math.random()*1.8+.4;
-    el.style.cssText='width:'+size+'px;height:'+size+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*.5+.1)+';';
-    s.appendChild(el);
-  }
-})();
+// ══ ÉTOILES ══
+(function () {
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  var stars = [];
 
-// ══ RJ ══
-(function(){
-  var quotes=["Chaque carrefour de ta vie est une invitation. Legba ouvre les chemins à ceux qui demandent avec humilité.","La mort n'est pas la fin — c'est le passage. Baron Samdi te guide vers l'autre côté avec un sourire.","Erzulie nous rappelle que l'amour est la force la plus subversive qui soit.","La sagesse de Danbala existait avant les mots — écoute le silence.","Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre."];
-  var t=new Date();
-  var q=quotes[(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%quotes.length];
-  var sep='<span class="rj-sep" style="margin:0 2rem">✦</span>';
-  var el=document.getElementById('rjInner');
-  if(el){el.innerHTML='<span class="rj-text">'+q+'</span>'+sep+'<span class="rj-text">'+q+'</span>'+sep;}
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function initStars() {
+    stars = [];
+    for (var i = 0; i < 140; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2,
+        o: Math.random() * 0.5 + 0.05,
+        speed: Math.random() * 0.4 + 0.1,
+        phase: Math.random() * Math.PI * 2,
+        color: Math.random() > 0.85 ? '#c4b0e8' : '#d4af37'
+      });
+    }
+  }
+
+  var frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frame += 0.008;
+    stars.forEach(function (s) {
+      var opacity = s.o * (0.5 + 0.5 * Math.sin(frame * s.speed + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = s.color.replace(')', ',' + opacity + ')').replace('rgb', 'rgba').replace('#d4af37', 'rgba(212,175,55,' + opacity + ')').replace('#c4b0e8', 'rgba(196,176,232,' + opacity + ')');
+      // simple fallback
+      ctx.globalAlpha = opacity;
+      ctx.fillStyle = s.color;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', function () { resize(); initStars(); });
+  resize(); initStars(); draw();
 })();
 
 // ══ CODES D'ACCÈS ══
-// Pour changer les codes : modifiez le tableau CODES ci-dessous
-// Format : 'CODE' — mettre en majuscules recommandé
-var CODES = [
+// Modifiez ce tableau pour changer les codes
+var VALID_CODES = [
   'BNEI2024',
   'LWA777',
   'OHRINITIEE',
   'LEGBAKEY',
-  'CHESED18',
+  'CHESED18'
 ];
 
-// Session key pour ne pas re-demander le code à chaque page
 var SESSION_KEY = 'bneiohr_oracle_access';
 
-function verifyCode(){
-  var input = document.getElementById('codeInput').value.trim().toUpperCase();
-  var valid = CODES.indexOf(input) !== -1;
+// Enter key
+document.getElementById('codeInput').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') checkCode();
+});
 
-  if(valid){
+// Vérification
+function checkCode() {
+  var val = document.getElementById('codeInput').value.trim().toUpperCase();
+  var ok = VALID_CODES.indexOf(val) !== -1;
+
+  if (ok) {
+    // Flash doré
+    var flash = document.getElementById('successFlash');
+    flash.classList.add('active');
+
+    // Session
     sessionStorage.setItem(SESSION_KEY, '1');
-    document.getElementById('screen-code').style.display='none';
-    document.getElementById('screen-oracle').style.display='block';
-    loadHistory();
+
+    // Redirection après animation
+    setTimeout(function () {
+      window.location.href = 'oracle-lwa-inner.html';
+    }, 600);
   } else {
-    var wrap = document.getElementById('codeInput').parentElement;
-    wrap.classList.remove('code-shake');
-    void wrap.offsetWidth; // reflow
-    wrap.classList.add('code-shake');
-    var err = document.getElementById('codeError');
-    err.classList.add('show');
-    document.getElementById('codeInput').value='';
-    document.getElementById('codeInput').focus();
-    setTimeout(function(){ err.classList.remove('show'); }, 3000);
+    // Shake + message
+    var field = document.getElementById('codeInput');
+    field.classList.remove('shake');
+    void field.offsetWidth;
+    field.classList.add('shake');
+    field.value = '';
+
+    var err = document.getElementById('errorMsg');
+    err.classList.add('visible');
+    setTimeout(function () { err.classList.remove('visible'); }, 3000);
+    field.focus();
   }
 }
 
-// Allow Enter key
-document.getElementById('codeInput').addEventListener('keydown',function(e){
-  if(e.key==='Enter') verifyCode();
-});
-
-// Check session on load
-window.addEventListener('DOMContentLoaded',function(){
-  if(sessionStorage.getItem(SESSION_KEY)==='1'){
-    document.getElementById('screen-code').style.display='none';
-    document.getElementById('screen-oracle').style.display='block';
-    loadHistory();
-  }
-});
-
-// ══ LWA DATA ══
-var LWA_DATA = {
-  'Papa Legba':    {veve:'🔑', role:'Maître des Carrefours',  color:'#d4af37', kabal:'פֶּתַח'},
-  'Ezili Freda':   {veve:'💗', role:'Reine de l\'Amour',      color:'#e87fa0', kabal:'נֶצַח'},
-  'Ezili Dantò':   {veve:'🗡', role:'Mère Guerrière',         color:'#4a7fcb', kabal:'גְּבוּרָה'},
-  'Ogou':          {veve:'⚔️', role:'Général Céleste',        color:'#e05555', kabal:'מַרְס'},
-  'Danbala Wedo':  {veve:'🐍', role:'Serpent de Sagesse',     color:'#7ecba1', kabal:'כֶּתֶר'},
-  'Baron Samdi':   {veve:'💀', role:'Maître de la Mort',      color:'#9b7fd4', kabal:'בִּינָה'},
-  'Agwe Tawoyo':   {veve:'⚓', role:'Roi de la Mer',          color:'#4a9eff', kabal:'חֶסֶד'},
-  'Les Gédé':      {veve:'🪦', role:'Famille des Ancêtres',   color:'#a87fd4', kabal:'עוֹלָם'},
-  'Loko et Ayizan':{veve:'🌿', role:'Gardiens de l\'Initiation',color:'#a3c96e',kabal:'חׇכְמָה'},
-};
-
-var LWA_LIST = Object.keys(LWA_DATA);
-var selectedLwaName = 'auto';
-var history = [];
-
-function selectLwa(btn){
-  document.querySelectorAll('.lwa-chip').forEach(function(c){ c.classList.remove('selected'); });
-  btn.classList.add('selected');
-  selectedLwaName = btn.getAttribute('data-lwa');
-}
-
-// ══ ORACLE INVOKE ══
-function invokeOracle(){
-  var question = document.getElementById('questionInput').value.trim();
-  if(!question){ alert('Veuillez poser une question avant d\'invoquer les Lwa.'); return; }
-
-  var lwaName = selectedLwaName;
-  if(lwaName === 'auto'){
-    lwaName = LWA_LIST[Math.floor(Math.random() * LWA_LIST.length)];
-  }
-  var lwa = LWA_DATA[lwaName];
-
-  // UI: show loading
-  document.getElementById('invokeBtn').disabled = true;
-  document.getElementById('oracleResponse').style.display = 'none';
-  document.getElementById('oracleLoading').style.display = 'block';
-
-  // Set response color
-  document.documentElement.style.setProperty('--rc', lwa.color);
-  document.querySelector('.resp-lwa-veve').style.setProperty('--rc', lwa.color);
-  document.querySelector('.resp-body').style.borderLeftColor = lwa.color;
-
-  // Build prompt
-  var systemPrompt = `Tu es ${lwaName} (${lwa.role}), un Lwa du Vodou haïtien. Tu réponds en français, avec une voix mystique, profonde et bienveillante — comme un esprit ancestral sage qui guide ses enfants. 
-
-Ta réponse doit :
-- Être en 3-4 paragraphes riches et poétiques
-- Commencer par une interpellation directe de celui qui consulte
-- Utiliser des métaphores liées à ta nature (${lwaName === 'Agwe Tawoyo' ? "la mer, les vagues, la profondeur" : lwaName === 'Ogou' ? "le feu, le fer, le combat" : lwaName === 'Danbala Wedo' ? "le serpent, l'eau, la pureté" : lwaName === 'Baron Samdi' ? "la mort, le passage, la vérité nue" : lwaName === 'Ezili Freda' ? "l'amour, la beauté, les larmes sacrées" : lwaName === 'Ezili Dantò' ? "la protection, la cicatrice, la force maternelle" : lwaName === 'Papa Legba' ? "le carrefour, la porte, le chemin" : lwaName === 'Les Gédé' ? "les ancêtres, la mémoire, l'humour de la mort" : "la nature, les plantes, l'initiation"})
-- Se terminer par une phrase courte et percutante qui restera dans l'esprit
-- Ne jamais briser le personnage
-- Parler à la première personne comme si tu ES ce Lwa`;
-
-  // Call API
-  var apiKey = (window.GID_OHR_API_KEY && window.GID_OHR_API_KEY !== 'METE_KLE_API_OU_LA')
-    ? window.GID_OHR_API_KEY : null;
-
-  if(!apiKey){
-    // Fallback: pre-written responses
-    simulateResponse(lwaName, lwa, question);
-    return;
-  }
-
-  fetch('https://api.anthropic.com/v1/messages', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:600,
-      system: systemPrompt,
-      messages:[{role:'user', content: question}]
-    })
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(data){
-    var text = data.content && data.content[0] ? data.content[0].text : '';
-    showResponse(lwaName, lwa, question, text);
-  })
-  .catch(function(){
-    simulateResponse(lwaName, lwa, question);
-  });
-}
-
-// Fallback responses when no API key
-function simulateResponse(lwaName, lwa, question){
-  var responses = {
-    'Papa Legba': "Enfant du carrefour, tu m'as appelé et me voilà. Je me tiens là où tous les chemins se croisent — et je vois le tien clairement.\n\nLa porte que tu cherches existe bel et bien. Mais avant qu'elle s'ouvre, une question : es-tu prêt à marcher sans regarder en arrière ? Car chaque vrai commencement exige que tu laisses quelque chose derrière toi — une peur, une habitude, une vieille version de toi-même.\n\nJe suis vieux et je boite, mais je connais chaque chemin depuis l'aube du monde. Ce que tu portes comme un fardeau aujourd'hui — c'est en réalité la clé. Tu ne le vois pas encore, mais tu le verras.\n\nLe carrefour attend. Choisis.",
-    'Ezili Freda': "Mon enfant, comme tu as soif d'amour... Je te vois, et mes larmes sont pour toi autant que pour moi.\n\nL'amour que tu cherches ne viendra pas de l'extérieur si tu ne l'as pas d'abord trouvé dans les profondeurs de toi-même. Je pleure non par faiblesse, mais parce que je sais combien l'amour parfait est rare — et combien il vaut la peine d'attendre.\n\nOuvre tes mains. L'abondance ne peut pas entrer dans des poings serrés par la peur. La beauté que tu cherches est déjà là — dans la façon dont tu regardes le ciel ce soir, dans la douceur de ta voix quand tu aimes vraiment.\n\nSois belle — non pour les autres, mais pour l'offrande que cela représente devant le divin.",
-    'Ogou': "Ha ! Tu m'appelles, et j'arrive — sabre levé, prêt au combat. Mais d'abord, regardons ensemble : quel est le vrai ennemi ici ?\n\nParce que le plus grand combat n'est jamais contre un autre — c'est contre la partie de toi qui doute, qui cède, qui accepte moins que ce que tu mérites. C'est contre cette voix qui dit 'je ne peux pas' quand tu peux.\n\nJe t'ai vu. J'ai vu ce que tu portes. Et je te dis : tu as plus de fer en toi que tu ne le crois. Le feu ne détruit pas — il transforme. Ce qui te brûle aujourd'hui te forge pour demain.\n\nLève-toi. Le guerrier que tu es n'attend que ta permission.",
-    'Danbala Wedo': "...sssss... [le serpent siffle doucement]\n\nJe suis ancien. Avant les mots, avant le temps — j'étais là, enroulé autour du monde pour le tenir ensemble. Et maintenant je me déroule légèrement pour te parler.\n\nCe que tu cherches à comprendre ne peut pas être contenu dans les mots que tu utilises. La réponse est plus profonde — elle est dans l'eau que tu bois, dans la pluie qui tombe, dans le silence qui précède chaque vrai commencement.\n\nPurifie-toi. Pas par la force — par l'immobilité. Comme l'eau claire qui ne bouge pas et qui pourtant reflète tout le ciel.\n\nLa paix que tu cherches n'est pas à trouver — elle est à laisser revenir.",
-    'Baron Samdi': "Ha ha ha ! Tu viens me consulter, moi ! Eh bien, assieds-toi — je vais te dire la vérité, même si elle pique plus que mon rhum au piment !\n\nVois-tu, je côtoie la mort tous les jours, et voilà ce que j'ai appris : les gens passent leur vie à fuir ce qui les libérerait et à courir après ce qui les emprisonne. Toi aussi, mon ami.\n\nCe que tu crois perdu... laisse-le partir. Ce qui est mort doit mourir — pour que quelque chose de nouveau puisse naître. Moi je suis là à la frontière, et je te dis : l'autre côté n'est pas triste. C'est juste... différent.\n\nVis. Pleinement. Maintenant. Car moi je sais ce que c'est que de voir les vivants gaspiller leur vie — et c'est la seule chose qui me rend vraiment triste.",
-    'Agwe Tawoyo': "Navigateur de l'âme, je t'entends depuis les profondeurs où peu osent plonger.\n\nLa mer n'est jamais la même deux fois — et toi non plus. Ce que tu étais hier est déjà une vague qui s'est brisée sur le rivage. Ce qui compte, c'est la direction dans laquelle tu nages aujourd'hui.\n\nLes tempêtes que tu traverses ne sont pas des punitions — ce sont des courants qui te portent vers des eaux que tu n'aurais jamais atteintes en naviguant par temps calme. Les profondeurs que tu craignes cachent les trésors les plus précieux.\n\nFais confiance à ta barque. Elle est plus solide que tu ne le crois.",
-    'Les Gédé': "Nous sommes là — tous les ancêtres, toutes les générations qui t'ont précédé. Et nous avons quelque chose à te dire.\n\nTu n'es pas seul. Tu ne l'as jamais été. Dans tes veines coule le sang de ceux qui ont survécu à l'impossible, qui ont traversé des tempêtes qui auraient dû les briser. Et ils ne se sont pas brisés — c'est pour ça que tu es là.\n\nNous te regardons. Nous sommes fiers de ce que tu es devenu, même si tu ne le vois pas encore toi-même. La question que tu poses — elle a déjà été posée avant toi, et la réponse est toujours la même : continue.\n\nLa chaîne des ancêtres ne se brise pas. Tu en es le maillon vivant.",
-    'Loko et Ayizan': "Nous t'accueillons dans l'espace de l'initiation — cet espace entre ce que tu étais et ce que tu es en train de devenir.\n\nToute croissance ressemble d'abord à une perte. La graine doit cesser d'être une graine pour devenir un arbre. L'initié doit traverser l'obscurité pour mériter la lumière. Ce que tu vis en ce moment — c'est une initiation, même si personne ne te l'a dit ainsi.\n\nLes plantes sacrées ne guérissent pas par magie — elles guérissent parce qu'elles portent la mémoire de la terre depuis des millénaires. Toi aussi, tu portes une mémoire ancestrale. Écoute-la.\n\nSois patient avec ta propre transformation. L'arbre le plus fort a mis des années à grandir."
-  };
-
-  var text = responses[lwaName] || responses['Papa Legba'];
-  showResponse(lwaName, lwa, question, text);
-}
-
-function showResponse(lwaName, lwa, question, text){
-  document.getElementById('oracleLoading').style.display='none';
-  document.getElementById('invokeBtn').disabled=false;
-
-  document.getElementById('respVeve').textContent = lwa.veve;
-  document.getElementById('respName').textContent = lwaName;
-  document.getElementById('respName').style.color = lwa.color;
-  document.getElementById('respRole').textContent = lwa.role;
-  document.getElementById('respKabal').textContent = lwa.kabal;
-  document.querySelector('.resp-body').style.borderLeftColor = lwa.color;
-  document.querySelector('.resp-lwa-veve').style.filter = 'drop-shadow(0 0 12px '+lwa.color+')';
-
-  // Format text: paragraphs
-  var paragraphs = text.split(/\n\n|\n/).filter(function(p){ return p.trim(); });
-  document.getElementById('respText').innerHTML = paragraphs.map(function(p){
-    return '<p>'+p.trim()+'</p>';
-  }).join('');
-
-  document.getElementById('oracleResponse').style.display='block';
-  document.getElementById('oracleResponse').scrollIntoView({behavior:'smooth', block:'start'});
-
-  // Save to history
-  saveHistory(question, lwaName, lwa, text);
-}
-
-function resetOracle(){
-  document.getElementById('oracleResponse').style.display='none';
-  document.getElementById('questionInput').value='';
-  document.getElementById('questionInput').focus();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-// ══ HISTORY ══
-function saveHistory(question, lwaName, lwa, response){
-  history.unshift({q: question, lwa: lwaName, veve: lwa.veve, r: response, t: new Date().toLocaleDateString('fr-FR')});
-  if(history.length > 5) history = history.slice(0,5);
-  renderHistory();
-}
-
-function loadHistory(){
-  renderHistory();
-}
-
-function renderHistory(){
-  if(history.length === 0){ document.getElementById('historySection').style.display='none'; return; }
-  document.getElementById('historySection').style.display='block';
-  document.getElementById('historyList').innerHTML = history.map(function(h,i){
-    return '<div class="history-item" onclick="showHistoryItem('+i+')">'
-      +'<div class="history-q">'+h.veve+' '+h.q.substring(0,80)+(h.q.length>80?'…':'')+'</div>'
-      +'<div class="history-lwa">'+h.lwa+' — '+h.t+'</div>'
-      +'</div>';
-  }).join('');
-}
-
-function showHistoryItem(i){
-  var h = history[i];
-  var lwa = LWA_DATA[h.lwa];
-  showResponse(h.lwa, lwa, h.q, h.r);
+// Si déjà authentifié dans la session
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+  window.location.href = 'oracle-lwa-inner.html';
 }
 </script>
 </body>
