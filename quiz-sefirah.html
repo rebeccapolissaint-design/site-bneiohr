@@ -473,137 +473,66 @@ renderQuestion();
 <div id="gid-ohr-widget" style="display:none!important;position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999"></div>
 
 <style>
-.reflexion-jour-widget{position:fixed;bottom:0;left:0;right:0;z-index:800;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.18);padding:.5rem 1rem;display:flex;align-items:center;gap:.6rem;min-height:2.8rem;overflow:hidden}
-.reflexion-jour-tab{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.25em;color:#d4af37;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.rj-eyebrow{display:none}
-.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:.95rem;color:rgba(212,175,55,.5);flex-shrink:0;line-height:1}
-.rj-divider{width:1px;height:1rem;background:rgba(212,175,55,.2);flex-shrink:0}
-.rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#a09070;font-style:italic;white-space:normal!important;overflow:visible!important;text-overflow:unset!important;word-break:break-word;flex:1;min-width:0}
-.rj-source{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.15em;color:rgba(212,175,55,.35);white-space:nowrap;flex-shrink:0;text-transform:uppercase}
-.reflexion-jour-panel{display:flex;align-items:center;gap:.8rem;flex:1;min-width:0}
-.reflexion-jour-inner{display:flex;align-items:center;gap:.8rem;flex:1;min-width:0}
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.22);overflow:hidden}
+.rj-label{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,.18)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 28s linear infinite}
+.rj-inner:hover{animation-play-state:paused}
+@keyframes rj-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:.9rem;color:rgba(212,175,55,.5);flex-shrink:0}
+.rj-sep{color:rgba(212,175,55,.2);font-size:.7rem;flex-shrink:0}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+.rj-src{font-family:'Cinzel',serif;font-size:.36rem;letter-spacing:.12em;color:rgba(212,175,55,.3);white-space:nowrap;text-transform:uppercase;margin-left:.6rem}
+.reflexion-jour-widget,.reflexion-jour-panel,.reflexion-jour-inner,.rj-quote,.rj-source,.rj-divider,.rj-eyebrow{display:none!important}
 </style>
-<div class="reflexion-jour-widget" id="rjWidget">
-  <div class="reflexion-jour-tab" onclick="document.getElementById('rjWidget').classList.toggle('rj-open')">Réflexion du Jour</div>
-  <div class="reflexion-jour-panel">
-    <div class="reflexion-jour-inner">
-      <span class="rj-eyebrow">✡ Méditation ✡</span>
-      <span class="rj-hebrew" id="rjHebrew"></span>
-      <div class="rj-divider"></div>
-      <p class="rj-quote" id="rjQuote"></p>
-      <span class="rj-source" id="rjSource"></span>
-    </div>
+<div class="rj-bar">
+  <div class="rj-label">✡ Réflexion du Jour</div>
+  <div class="rj-track">
+    <div class="rj-inner" id="rjInner"></div>
   </div>
 </div>
 <script>
 (function(){
-  var meditations=[
-    {h:"אֵין עוֹד מִלְּבַדּוֹ",q:"Il n'y a rien d'autre que Lui. Derrière chaque apparence, chaque douleur, chaque joie — une seule Lumière qui se cherche elle-même.",s:"Devarim 4:35 | Kabbale"},
-    {h:"כֶּתֶר",q:"La Couronne n'est pas au-dessus de toi — elle est en toi, attendant d'être reconnue dans le silence le plus profond.",s:"Keter | Etz Chaïm"},
-    {h:"חֶסֶד",q:"La générosité véritable ne calcule pas. Elle est comme la pluie — elle tombe sur le juste et sur l'injuste, sans demander de mérite.",s:"Chesed | Sefirot"},
-    {h:"לֵב",q:"Le cœur est le temple que tu portes partout. Prends soin de ce qui y entre, car c'est là que Dieu choisit de résider.",s:"Kabbale Bnei Ohr"},
-    {h:"גְּבוּרָה",q:"La force véritable n'est pas celle qui détruit — c'est celle qui sait se contenir, tracer une limite juste et protéger ce qui est sacré.",s:"Gevurah | Sefirot"},
-    {h:"אוֹר",q:"La Lumière ne cherche pas à chasser l'obscurité. Elle se contente d'être — et l'obscurité se dissout d'elle-même.",s:"Ohr | Zohar"},
-    {h:"תִּקּוּן",q:"Chaque acte de bonté, même le plus petit, répare un fragment du monde. Tu n'es pas seul dans cette œuvre — toute l'humanité tisse ensemble.",s:"Tikkun Olam | Kabbale"},
-    {h:"נְשָׁמָה",q:"Ton âme a choisi ce moment, cette vie, ce corps — non par hasard, mais pour accomplir quelque chose que seule elle peut réaliser.",s:"Neshamah | Kabbale"},
-    {h:"שַׁבָּת",q:"Le repos n'est pas une pause dans la création — c'est le couronnement. Ce qui ne sait pas s'arrêter ne sait pas vraiment créer.",s:"Shabbat | Torah"},
-    {h:"תִּפְאֶרֶת",q:"La beauté n'est pas une décoration du monde — elle est la signature du divin sur toute chose qui est à sa juste place.",s:"Tiferet | Sefirot"},
-    {h:"אֱמוּנָה",q:"La foi n'est pas la certitude. C'est le courage de marcher dans l'obscurité en faisant confiance à la lumière que l'on ne voit pas encore.",s:"Emunah | Kabbale"},
-    {h:"יְסוֹד",q:"Ce que tu plantes dans l'invisible — tes intentions, tes prières, tes rêves — germe silencieusement avant de se manifester dans le visible.",s:"Yesod | Etz Chaïm"},
-    {h:"דַּעַת",q:"La vraie connaissance n'est pas dans les livres — elle est dans l'union de ce que tu sais et de ce que tu vis. C'est là que naît la sagesse.",s:"Da'at | Kabbale"},
-    {h:"לֵגְבָּא",q:"Chaque carrefour de ta vie est une invitation — non une menace. Legba ouvre les chemins à ceux qui savent demander avec humilité.",s:"Legba | Vodou Haïtien"},
-    {h:"מַלְכוּת",q:"Le royaume de Dieu n'est pas loin. Il est dans la façon dont tu manges, dont tu parles, dont tu regardes ceux que tu croises.",s:"Malkhut | Sefirot"},
-    {h:"עֵץ חַיִּים",q:"L'Arbre de Vie n'est pas un schéma à mémoriser — c'est une carte de ton être intérieur. Chaque Sefirah vit en toi, attendant d'être éveillée.",s:"Etz Chaïm | Kabbale"},
-    {h:"אֶרְזוּלִי",q:"Erzulie nous rappelle que l'amour est la force la plus subversive qui soit. Là où elle passe, les murs tombent et les cœurs s'ouvrent.",s:"Erzulie | Vodou Haïtien"},
-    {h:"זֹהַר",q:"Le Zohar nous enseigne que chaque lettre de la Torah est un monde entier. Imagine alors ce que contient chaque battement de ton cœur.",s:"Zohar | Kabbale"},
-    {h:"בִּינָה",q:"La compréhension ne vient pas d'un coup. Elle mûrit dans le silence, comme un fruit — et quand elle arrive, elle change tout.",s:"Binah | Sefirot"},
-    {h:"חָכְמָה",q:"L'éclair de sagesse ne dure qu'un instant — mais cet instant suffit à transformer une vie entière. Reste attentif aux éclairs.",s:"Chokhmah | Sefirot"},
-    {h:"אוֹגוּ",q:"Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre. Distingue le combat qui libère de celui qui enchaîne.",s:"Ogou | Vodou Haïtien"},
-    {h:"נֶצַח",q:"La victoire véritable n'est pas sur les autres — c'est sur la peur en toi qui te disait que tu n'en étais pas capable.",s:"Netzach | Sefirot"},
-    {h:"הוֹד",q:"La splendeur se trouve dans les détails. Celui qui ne sait pas voir la beauté dans le petit ne verra pas la grandeur du grand.",s:"Hod | Sefirot"},
-    {h:"בָּרוּךְ",q:"Bénir, c'est voir le divin dans ce qui est. Chaque bénédiction prononcée avec sincérité est une fenêtre ouverte sur l'infini.",s:"Berakhah | Kabbale"},
-    {h:"אַיִּיזָן",q:"Ayizan garde l'entrée du sacré. Purifier son cœur avant de demander, c'est préparer le terrain pour que la réponse puisse germer.",s:"Ayizan | Vodou Haïtien"},
-    {h:"תְּשׁוּבָה",q:"Le retour à soi-même est le plus grand voyage. Non par culpabilité — mais par désir sincère d'être enfin entier.",s:"Teshuvah | Kabbale"},
-    {h:"בָּרוֹן",q:"Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage. Ce qui ne peut pas traverser ce seuil n'était pas essentiel.",s:"Baron Samdi | Vodou Haïtien"},
-    {h:"שָׁלוֹם",q:"La paix n'est pas l'absence de conflit — c'est la présence d'une harmonie plus profonde que tout conflit. C'est Tiferet au cœur de l'Arbre.",s:"Shalom | Kabbale"},
-    {h:"אֵין סוֹף",q:"Ein Sof — Sans Fin. Tu viens de l'infini et tu retournes à l'infini. Ce que tu vis entre les deux est le cadeau que l'infini se fait à lui-même.",s:"Ein Sof | Kabbale"},
-    {h:"אַהֲבָה",q:"Aimer, c'est voir l'âme derrière le visage. Quand tu regardes quelqu'un avec les yeux du cœur, tu vois ce que Dieu voit.",s:"Ahavah | Kabbale Bnei Ohr"}
+  var med=[
+    ["אֵין עוֹד מִלְבדוֹ","Il n'y a rien d'autre que Lui. Derrière chaque apparence, chaque douleur, chaque joie — une seule Lumière qui se cherche elle-même.","Devarim 4:35 | Kabbale"],
+    ["כֶתֶר","La Couronne n'est pas au-dessus de toi — elle est en toi, attendant d'être reconnue dans le silence le plus profond.","Keter | Etz Chaïm"],
+    ["חֶסֶד","La générosité véritable ne calcule pas. Elle est comme la pluie — elle tombe sur le juste et sur l'injuste, sans demander de mérite.","Chesed | Sefirot"],
+    ["לֵב","Le coeur est le temple que tu portes partout. Prends soin de ce qui y entre, car c'est là que Dieu choisit de résider.","Kabbale Bnei Ohr"],
+    ["גְבוּרָה","La force véritable n'est pas celle qui détruit — c'est celle qui sait se contenir, tracer une limite juste et protéger ce qui est sacré.","Gevurah | Sefirot"],
+    ["אוֹר","La Lumière ne cherche pas à chasser l'obscurité. Elle se contente d'être — et l'obscurité se dissout d'elle-même.","Ohr | Zohar"],
+    ["תִקּוּן","Chaque acte de bonté, même le plus petit, répare un fragment du monde. Tu n'es pas seul dans cette oeuvre.","Tikkun Olam | Kabbale"],
+    ["נְשָמָה","Ton âme a choisi ce moment, cette vie, ce corps — pour accomplir quelque chose que seule elle peut réaliser.","Neshamah | Kabbale"],
+    ["שַבָּת","Le repos n'est pas une pause dans la création — c'est le couronnement. Ce qui ne sait pas s'arrêter ne sait pas vraiment créer.","Shabbat | Torah"],
+    ["תִפְאֶרֶת","La beauté n'est pas une décoration du monde — elle est la signature du divin sur toute chose qui est à sa juste place.","Tiferet | Sefirot"],
+    ["אֱמוּנָה","La foi n'est pas la certitude. C'est le courage de marcher dans l'obscurité en faisant confiance à la lumière que l'on ne voit pas encore.","Emunah | Kabbale"],
+    ["יְסוֹד","Ce que tu plantes dans l'invisible — tes intentions, tes prières, tes rêves — germe silencieusement avant de se manifester.","Yesod | Etz Chaïm"],
+    ["דַעַת","La vraie connaissance n'est pas dans les livres — elle est dans l'union de ce que tu sais et de ce que tu vis.","Da'at | Kabbale"],
+    ["לֵגְבָּ","Chaque carrefour de ta vie est une invitation — non une menace. Legba ouvre les chemins à ceux qui savent demander avec humilité.","Legba | Vodou Haïtien"],
+    ["מַלְכוּת","Le royaume de Dieu n'est pas loin. Il est dans la façon dont tu manges, dont tu parles, dont tu regardes ceux que tu croises.","Malkhut | Sefirot"],
+    ["אֶרְזוּלִי","Erzulie nous rappelle que l'amour est la force la plus subversive qui soit. Là où elle passe, les murs tombent.","Erzulie | Vodou Haïtien"],
+    ["בִינָה","La compréhension ne vient pas d'un coup. Elle mûrit dans le silence, comme un fruit — et quand elle arrive, elle change tout.","Binah | Sefirot"],
+    ["אוֹגוּ","Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre. Distingue le combat qui libère de celui qui enchaîne.","Ogou | Vodou Haïtien"],
+    ["נֶצַח","La victoire véritable n'est pas sur les autres — c'est sur la peur en toi qui te disait que tu n'en étais pas capable.","Netzach | Sefirot"],
+    ["בָרוֹן","Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage. Ce qui ne peut traverser ce seuil n'était pas essentiel.","Baron Samdi | Vodou Haïtien"],
+    ["שָלוֹם","La paix n'est pas l'absence de conflit — c'est la présence d'une harmonie plus profonde que tout conflit.","Shalom | Kabbale"],
+    ["אֵין סוֹף","Ein Sof — Sans Fin. Tu viens de l'infini et tu retournes à l'infini. Ce que tu vis entre les deux est le cadeau que l'infini se fait à lui-même.","Ein Sof | Kabbale"],
+    ["אַהֲבָה","Aimer, c'est voir l'âme derrière le visage. Quand tu regardes quelqu'un avec les yeux du coeur, tu vois ce que Dieu voit.","Ahavah | Kabbale Bnei Ohr"]
   ];
-  var today=new Date();
-  var idx=(today.getFullYear()*10000+((today.getMonth()+1)*100)+today.getDate())%meditations.length;
-  var m=meditations[idx];
-  document.getElementById('rjHebrew').textContent=m.h;
-  document.getElementById('rjQuote').textContent=m.q;
-  document.getElementById('rjSource').textContent=m.s;
-})();
-<\/script>
-</body>
-<style>
-.srch-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);backdrop-filter:blur(4px);align-items:flex-start;justify-content:center;padding-top:5rem}
-.srch-overlay.srch-open{display:flex}
-.srch-box{background:linear-gradient(135deg,#0a0800,#07050d);border:1px solid rgba(212,175,55,.25);border-radius:4px;width:min(580px,92vw);max-height:70vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.8)}
-.srch-top{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;border-bottom:1px solid rgba(212,175,55,.1)}
-.srch-loupe{color:rgba(212,175,55,.5);font-size:1rem;flex-shrink:0}
-.srch-input{flex:1;background:transparent;border:none;color:#e0d5b8;font-family:'Cormorant Garamond',serif;font-size:1.05rem;outline:none}
-.srch-input::placeholder{color:rgba(212,175,55,.2)}
-.srch-close{background:transparent;border:none;color:rgba(212,175,55,.4);font-size:1.1rem;cursor:pointer;padding:.2rem .4rem;transition:color .2s}
-.srch-close:hover{color:#d4af37}
-.srch-results{overflow-y:auto;padding:.5rem 0;flex:1}
-.srch-results::-webkit-scrollbar{width:3px}.srch-results::-webkit-scrollbar-thumb{background:rgba(212,175,55,.2)}
-.srch-empty{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:rgba(212,175,55,.3);text-align:center;padding:2rem;font-style:italic}
-.srch-item{display:block;padding:.8rem 1.2rem;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.06);transition:background .2s}
-.srch-item:hover{background:rgba(212,175,55,.06)}
-.srch-item-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.12em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.3rem}
-.srch-item-desc{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#806a40;line-height:1.5;display:block}
-.srch-hint{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-align:center;padding:.6rem;text-transform:uppercase}
-/* Nav loupe button */
-.nav-srch-btn{background:transparent;border:none;color:rgba(212,175,55,.5);font-size:1rem;cursor:pointer;padding:.2rem .5rem;transition:color .2s;line-height:1}
-.nav-srch-btn:hover{color:#d4af37}
-</style>
-<div class="srch-overlay" id="srchOverlay">
-  <div class="srch-box">
-    <div class="srch-top">
-      <span class="srch-loupe">🔍</span>
-      <input class="srch-input" id="srchInput" placeholder="Rechercher — sefirah, lwa, prière..." autocomplete="off">
-      <button class="srch-close" onclick="closeSrch()">✕</button>
-    </div>
-    <div class="srch-results" id="srchResults">
-      <p class="srch-empty">Tapez un mot pour commencer la recherche…</p>
-    </div>
-    <div class="srch-hint">Appuyez sur Échap pour fermer</div>
-  </div>
-</div>
-<script>
-(function(){
-  var overlay=document.getElementById('srchOverlay');
-  var input=document.getElementById('srchInput');
-  var results=document.getElementById('srchResults');
-
-  window.openSrch=function(){
-    overlay.classList.add('srch-open');
-    setTimeout(function(){input.focus();},100);
-  };
-  window.closeSrch=function(){
-    overlay.classList.remove('srch-open');
-    input.value='';
-    results.innerHTML='<p class="srch-empty">Tapez un mot pour commencer la recherche…</p>';
-  };
-
-  overlay.addEventListener('click',function(e){if(e.target===overlay)closeSrch();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSrch();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSrch();}});
-
-  input.addEventListener('input',function(){
-    var q=this.value.trim().toLowerCase();
-    if(q.length<2){results.innerHTML='<p class="srch-empty">Tapez un mot pour commencer la recherche…</p>';return;}
-    if(typeof SEARCH_INDEX==='undefined'){results.innerHTML='<p class="srch-empty">Index non disponible.</p>';return;}
-    var hits=SEARCH_INDEX.filter(function(p){
-      return p.t.toLowerCase().includes(q)||p.d.toLowerCase().includes(q)||p.k.toLowerCase().includes(q);
-    });
-    if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
-    results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
-    }).join('');
-  });
+  var t=new Date();
+  var i=(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%med.length;
+  var q=med[i];
+  function item(){
+    return '<span class="rj-hebrew">'+q[0]+'</span>'
+      +'<span class="rj-sep">·</span>'
+      +'<span class="rj-text">'+q[1]+'</span>'
+      +'<span class="rj-src">'+q[2]+'</span>'
+      +'<span class="rj-sep" style="margin:0 2rem">✦</span>';
+  }
+  var el=document.getElementById('rjInner');
+  if(el){el.innerHTML=item()+item();}
 })();
 </script>
 </html>
