@@ -1,6 +1,3 @@
-// ✡ Bnei Ohr — Konfigirasyon
-// 1. Ale sou https://aistudio.google.com/apikey
-// 2. Konekte ak kont Google ou
-// 3. Kreye yon kle gratis epi kopye l anba a
-
-window.GEMINI_API_KEY = 'METE_KLE_GEMINI_OU_LA';
+window.GID_OHR_API_KEY = 'AQ.Ab8RN6JvOf4lElzU3fRDZ7-WlK1gvp73xbJnbGYJVkEg91E8ig';
+window.GEMINI_API_KEY = 'AQ.Ab8RN6JvOf4lElzU3fRDZ7-WlK1gvp73xbJnbGYJVkEg91E8ig';
+window.BNEI_OHR_ORACLE_PASSWORD = 'Chilandy';
