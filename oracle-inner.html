@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<title>Oracle des Lwa | Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#04030a;color:#e8e0d0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:tw var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes tw{0%{opacity:0}100%{opacity:var(--o)}}
+.glow-bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(155,127,212,0.06) 0%,transparent 60%);pointer-events:none}
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.9rem 2rem;background:rgba(4,3,10,0.9);border-bottom:1px solid rgba(212,175,55,0.1);backdrop-filter:blur(10px)}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:#d4af37}
+.nav-txt{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;color:rgba(212,175,55,0.5);text-decoration:none;text-transform:uppercase}
+.nav-badge{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.15em;color:rgba(155,127,212,0.6);border:1px solid rgba(155,127,212,0.2);padding:.2rem .6rem}
+.hero{padding:6rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-ey{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.5em;color:rgba(155,127,212,0.55);text-transform:uppercase;display:block;margin-bottom:.7rem}
+.hero-h1{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;text-shadow:0 0 30px rgba(212,175,55,0.2);margin-bottom:.4rem}
+.hero-hb{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,0.3);display:block;margin-bottom:.6rem}
+.hero-sub{font-style:italic;font-size:1rem;color:rgba(232,224,208,0.4);max-width:480px;margin:0 auto 1.5rem;line-height:1.9}
+.hero-rule{width:70px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto}
+.wrap{max-width:700px;margin:0 auto;padding:3rem 1.5rem 7rem;position:relative;z-index:1}
+.lbl{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(212,175,55,0.5);text-transform:uppercase;display:block;text-align:center;margin-bottom:1rem}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;margin-bottom:2rem}
+.chip{border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(232,224,208,0.45);font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;padding:.42rem .85rem;cursor:pointer;transition:all .3s}
+.chip.on{color:var(--cc);border-color:var(--cc);background:rgba(255,255,255,0.035)}
+.chip.auto-chip{border-style:dashed;color:rgba(212,175,55,0.5);border-color:rgba(212,175,55,0.2)}
+.chip.auto-chip.on{border-style:solid;color:#d4af37;border-color:#d4af37}
+.divr{width:100%;display:flex;align-items:center;gap:1rem;margin:2rem 0}
+.divr::before,.divr::after{content:'';flex:1;height:1px;background:rgba(212,175,55,0.1)}
+.divr span{font-size:.65rem;color:rgba(212,175,55,0.25)}
+.qarea{width:100%;background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.18);color:#e8e0d0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;line-height:1.85;padding:1.1rem 1.4rem;resize:vertical;min-height:100px;outline:none;transition:border-color .3s;caret-color:#d4af37}
+.qarea:focus{border-color:rgba(212,175,55,0.4)}
+.qarea::placeholder{color:rgba(255,255,255,0.18);font-style:italic}
+.ibtn{width:100%;margin-top:1.2rem;padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:.7rem;background:linear-gradient(135deg,rgba(155,127,212,0.1),rgba(212,175,55,0.07));border:1px solid rgba(155,127,212,0.3);color:#c4b0e8;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s}
+.ibtn:hover{border-color:rgba(155,127,212,0.55);box-shadow:0 0 24px rgba(155,127,212,0.1)}
+.ibtn:disabled{opacity:.35;cursor:not-allowed}
+.ibtn-ico{font-size:1.1rem;transition:transform .5s}
+.ibtn:not(:disabled):hover .ibtn-ico{transform:rotate(180deg)}
+.loading{display:none;text-align:center;padding:3rem 1rem}
+.load-sym{font-size:2.2rem;display:block;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-txt{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,0.45);text-transform:uppercase;margin-top:.9rem;animation:fp 1.5s ease-in-out infinite}
+@keyframes fp{0%,100%{opacity:.25}50%{opacity:.8}}
+.resp{display:none;margin-top:2rem;animation:ri .7s ease both}
+@keyframes ri{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.resp-top{display:flex;align-items:center;gap:1rem;padding-bottom:1rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(212,175,55,0.1)}
+.resp-veve{font-size:2rem}
+.resp-name{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase}
+.resp-role{font-style:italic;font-size:.85rem;color:rgba(232,224,208,0.4);margin-top:.2rem}
+.resp-card{background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.1);border-left:3px solid #d4af37;padding:1.8rem 1.8rem 1.8rem 2rem;position:relative}
+.resp-card::before{content:'"';position:absolute;top:.4rem;left:.8rem;font-size:3.5rem;color:#d4af37;opacity:.1;font-family:Georgia,serif;line-height:1;pointer-events:none}
+.resp-txt p{font-size:1.06rem;line-height:2;color:rgba(232,224,208,0.85);margin-bottom:1rem}
+.resp-txt p:last-child{margin-bottom:0}
+.resp-foot{margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+.resp-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:rgba(212,175,55,0.35)}
+.resp-new{background:transparent;border:1px solid rgba(212,175,55,0.18);color:rgba(212,175,55,0.5);font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem 1.1rem;cursor:pointer;transition:all .3s}
+.resp-new:hover{border-color:rgba(212,175,55,0.45);color:#d4af37}
+.hist{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);display:none}
+.hist-ttl{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.35em;color:rgba(212,175,55,0.25);text-transform:uppercase;margin-bottom:1rem}
+.hist-item{padding:.75rem 1rem;border:1px solid rgba(255,255,255,0.05);margin-bottom:.45rem;cursor:pointer;transition:border-color .3s}
+.hist-item:hover{border-color:rgba(212,175,55,0.2)}
+.hist-q{font-style:italic;font-size:.9rem;color:rgba(255,255,255,0.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-meta{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.12em;color:rgba(212,175,55,0.3);text-transform:uppercase;margin-top:.2rem}
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,0.2);overflow:hidden}
+.rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,0.15)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rjs 28s linear infinite}
+@keyframes rjs{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="glow-bg"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-heb">&#x05D1;&#x05BC;&#x05E0;&#x05B5;&#x05D9; &#x05D0;&#x05D5;&#x05B9;&#x05E8;</span>
+    <span class="nav-txt">Bnei Ohr</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-badge">&#x2736; Initié</span>
+    <a href="lwa.html" class="nav-link">&#8592; Les Lwa</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-ey">&#x2721; Portail Sacré — Initiés Bnei Ohr</span>
+  <h1 class="hero-h1">Oracle des Lwa</h1>
+  <span class="hero-hb">&#x05D0;&#x05D5;&#x05B9;&#x05E8;&#x05B8;&#x05E7;&#x05B6;&#x05DC;</span>
+  <p class="hero-sub">Posez votre question avec un coeur sincère.<br>Les Lwa répondent à ceux qui cherchent la vérité.</p>
+  <div class="hero-rule"></div>
+</div>
+
+<div class="wrap">
+  <span class="lbl">Choisir un Lwa — ou laisser les esprits décider</span>
+  <div class="chips" id="chips">
+    <button class="chip auto-chip on" style="--cc:#d4af37" data-lwa="auto">&#10024; Laisser choisir</button>
+    <button class="chip" style="--cc:#d4af37" data-lwa="Papa Legba">&#128273; Papa Legba</button>
+    <button class="chip" style="--cc:#e87fa0" data-lwa="Ezili Freda">&#128151; Ezili Freda</button>
+    <button class="chip" style="--cc:#4a7fcb" data-lwa="Ezili Dantò">&#128503; Ezili Dantò</button>
+    <button class="chip" style="--cc:#e05555" data-lwa="Ogou">&#9876;&#65039; Ogou</button>
+    <button class="chip" style="--cc:#7ecba1" data-lwa="Danbala Wedo">&#128013; Danbala</button>
+    <button class="chip" style="--cc:#9b7fd4" data-lwa="Baron Samdi">&#128128; Baron Samdi</button>
+    <button class="chip" style="--cc:#4a9eff" data-lwa="Agwe Tawoyo">&#9875; Agwe</button>
+    <button class="chip" style="--cc:#a87fd4" data-lwa="Les Gédé">&#129398; Les Gédé</button>
+    <button class="chip" style="--cc:#a3c96e" data-lwa="Loko et Ayizan">&#127807; Loko &amp; Ayizan</button>
+  </div>
+
+  <div class="divr"><span>&#10022;</span></div>
+
+  <span class="lbl">Votre question sacrée</span>
+  <textarea id="qInput" class="qarea" rows="4" placeholder="Posez votre question... Que cherchez-vous à comprendre aujourd'hui ?"></textarea>
+
+  <button class="ibtn" id="ibtn" onclick="invoke()">
+    <span class="ibtn-ico">&#128303;</span>
+    Invoquer les Lwa
+  </button>
+
+  <div class="loading" id="loading">
+    <span class="load-sym">&#127744;</span>
+    <div class="load-txt">Les esprits consultent&#8230;</div>
+  </div>
+
+  <div class="resp" id="resp">
+    <div class="resp-top">
+      <span class="resp-veve" id="rVeve"></span>
+      <div>
+        <div class="resp-name" id="rName"></div>
+        <div class="resp-role" id="rRole"></div>
+      </div>
+    </div>
+    <div class="resp-card" id="rCard">
+      <div class="resp-txt" id="rTxt"></div>
+    </div>
+    <div class="resp-foot">
+      <span class="resp-heb" id="rHeb"></span>
+      <button class="resp-new" onclick="reset()">Poser une autre question</button>
+    </div>
+  </div>
+
+  <div class="hist" id="hist">
+    <div class="hist-ttl">&#10022; Consultations précédentes</div>
+    <div id="histList"></div>
+  </div>
+</div>
+
+<div class="rj-bar">
+  <div class="rj-lbl">&#x2721; Réflexion du Jour</div>
+  <div class="rj-track">
+    <div class="rj-inner" id="rjInner"></div>
+  </div>
+</div>
+
+<script>
+// ══ CLÉ API — Remplacez la valeur ci-dessous par votre clé OpenRouter ══
+window.OPENROUTER_API_KEY = 'METE_KLE_OPENROUTER_OU_LA';
+</script>
+<script>
+(function() {
+  if (sessionStorage.getItem('bneiohr_oracle_access') !== '1') {
+    window.location.replace('oracle-lwa.html');
+  }
+})();
+
+(function() {
+  var s = document.getElementById('stars');
+  for (var i = 0; i < 90; i++) {
+    var el = document.createElement('div');
+    el.className = 'star';
+    var sz = Math.random() * 1.4 + 0.3;
+    el.style.cssText = 'width:' + sz + 'px;height:' + sz + 'px;top:' + (Math.random()*100) + '%;left:' + (Math.random()*100) + '%;--d:' + (Math.random()*5+2) + 's;--o:' + (Math.random()*0.45+0.08) + ';';
+    s.appendChild(el);
+  }
+})();
+
+(function() {
+  var quotes = [
+    'Chaque carrefour est une invitation. Legba ouvre les chemins à ceux qui demandent avec humilité.',
+    'Erzulie rappelle que l\'amour est la force la plus subversive qui soit.',
+    'Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre.',
+    'La mort n\'est pas la fin — c\'est le passage. Baron Samdi te guide avec un sourire.',
+    'La sagesse de Danbala existait avant les mots — écoute le silence.'
+  ];
+  var t = new Date();
+  var txt = quotes[(t.getFullYear()*10000 + (t.getMonth()+1)*100 + t.getDate()) % quotes.length];
+  var sep = '<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';
+  var el = document.getElementById('rjInner');
+  if (el) el.innerHTML = '<span class="rj-text">' + txt + '</span>' + sep + '<span class="rj-text">' + txt + '</span>' + sep;
+})();
+
+var LWA = {
+  'Papa Legba':     {v:'🔑', r:'Maître des Carrefours',      c:'#d4af37', h:'פֶּתַח',   m:'le carrefour, la porte, le chemin, les langues, les commencements'},
+  'Ezili Freda':    {v:'💗', r:'Reine de l\'Amour',          c:'#e87fa0', h:'נֶצַח',    m:'l\'amour, la beauté, les larmes sacrées, la grâce, le désir'},
+  'Ezili Dantò':    {v:'🗡', r:'Mère Guerrière',             c:'#4a7fcb', h:'גְּבוּרָה', m:'la protection, les cicatrices, la force maternelle, le combat juste'},
+  'Ogou':           {v:'⚔️', r:'Général Céleste',            c:'#e05555', h:'מַרְס',    m:'le feu, le fer, la forge, la justice, le courage'},
+  'Danbala Wedo':   {v:'🐍', r:'Serpent de la Sagesse',      c:'#7ecba1', h:'כֶּתֶר',   m:'le serpent, l\'eau pure, la pluie, le silence, la sagesse primordiale'},
+  'Baron Samdi':    {v:'💀', r:'Maître de la Mort',          c:'#9b7fd4', h:'בִּינָה',  m:'la mort, le passage, la vérité nue, le cimetière, le rire sacré'},
+  'Agwe Tawoyo':    {v:'⚓', r:'Roi de la Mer',              c:'#4a9eff', h:'חֶסֶד',   m:'la mer, les vagues, la profondeur, le voyage, le subconscient'},
+  'Les Gédé':       {v:'🪦', r:'Famille des Ancêtres',       c:'#a87fd4', h:'עוֹלָם',  m:'les ancêtres, la mémoire, la vérité sans filtre, le passage'},
+  'Loko et Ayizan': {v:'🌿', r:'Gardiens de l\'Initiation',  c:'#a3c96e', h:'חׇכְמָה',  m:'les plantes, la forêt, l\'initiation, la guérison par la nature'}
+};
+var LWA_KEYS = Object.keys(LWA);
+var picked = 'auto';
+var history = [];
+
+document.getElementById('chips').addEventListener('click', function(e) {
+  var btn = e.target.closest('.chip');
+  if (!btn) return;
+  document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('on'); });
+  btn.classList.add('on');
+  picked = btn.getAttribute('data-lwa');
+});
+
+function invoke() {
+  var q = document.getElementById('qInput').value.trim();
+  if (!q || q.length < 3) {
+    document.getElementById('qInput').style.borderColor = 'rgba(224,85,85,0.5)';
+    setTimeout(function() { document.getElementById('qInput').style.borderColor = ''; }, 2000);
+    document.getElementById('qInput').focus();
+    return;
+  }
+
+  var lwaName = picked === 'auto' ? LWA_KEYS[Math.floor(Math.random() * LWA_KEYS.length)] : picked;
+  var lwa = LWA[lwaName];
+
+  document.getElementById('ibtn').disabled = true;
+  document.getElementById('resp').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('loading').scrollIntoView({behavior: 'smooth', block: 'center'});
+
+  var key = window.OPENROUTER_API_KEY || '';
+  if (!key || key === 'METE_KLE_OPENROUTER_OU_LA') {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('ibtn').disabled = false;
+    alert('Clé OpenRouter non trouvée.\n\nVérifiez que gid-ohr-config.js contient :\nwindow.OPENROUTER_API_KEY = \'sk-or-...\';');
+    return;
+  }
+  console.log('Clé utilisée:', key.substring(0, 12) + '...');
+
+  var systemMsg = [
+    'Tu es ' + lwaName + ', ' + lwa.r + ', un Lwa du Vodou haïtien.',
+    'Tu réponds UNIQUEMENT en français, avec une voix mystique et bienveillante.',
+    'Tu dois répondre DIRECTEMENT et SPÉCIFIQUEMENT à la question posée.',
+    'Commence par interpeller directement ("Mon enfant...", "Toi qui cherches...", etc.)',
+    'Utilise des métaphores liées à ta nature : ' + lwa.m,
+    'Écris 3 paragraphes poétiques ancrés dans la question.',
+    'Termine par une phrase courte et percutante.',
+    'Parle toujours à la première personne — tu ES ce Lwa.',
+    'Si la question est vague (une lettre, un mot sans sens), demande une vraie question avec douceur.'
+  ].join('\n');
+
+  var body = JSON.stringify({
+    model: 'meta-llama/llama-3.1-8b-instruct:free',
+    messages: [
+      {role: 'system', content: systemMsg},
+      {role: 'user', content: q}
+    ],
+    max_tokens: 600,
+    temperature: 0.9
+  });
+
+  fetch('https://openrouter.ai/api/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + key,
+      'HTTP-Referer': window.location.origin,
+      'X-Title': 'Oracle des Lwa — Bnei Ohr'
+    },
+    body: body
+  })
+    .then(function(r) {
+      return r.json().then(function(data) {
+        return {status: r.status, data: data};
+      });
+    })
+    .then(function(res) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('ibtn').disabled = false;
+      if (res.data.error) {
+        alert('Erreur OpenRouter [' + res.status + '] : ' + JSON.stringify(res.data.error));
+        return;
+      }
+      var txt = '';
+      try { txt = res.data.choices[0].message.content; } catch(e) {}
+      if (!txt) { alert('Réponse vide. Réessayez.'); return; }
+      showResp(lwaName, lwa, q, txt);
+    })
+    .catch(function(err) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('ibtn').disabled = false;
+      alert('Erreur réseau : ' + err.message);
+    });
+}
+
+function showResp(name, lwa, q, txt) {
+  document.getElementById('rVeve').textContent = lwa.v;
+  document.getElementById('rName').textContent = name;
+  document.getElementById('rName').style.color = lwa.c;
+  document.getElementById('rRole').textContent = lwa.r;
+  document.getElementById('rHeb').textContent = lwa.h;
+  document.getElementById('rCard').style.borderLeftColor = lwa.c;
+  document.getElementById('rVeve').style.filter = 'drop-shadow(0 0 12px ' + lwa.c + ')';
+
+  var paras = txt.split(/\n+/).filter(function(p) { return p.trim().length > 0; });
+  document.getElementById('rTxt').innerHTML = paras.map(function(p) {
+    return '<p>' + p.trim() + '</p>';
+  }).join('');
+
+  document.getElementById('resp').style.display = 'block';
+  setTimeout(function() {
+    document.getElementById('resp').scrollIntoView({behavior: 'smooth', block: 'start'});
+  }, 100);
+
+  history.unshift({q: q, name: name, lwa: lwa, txt: txt, date: new Date().toLocaleDateString('fr-FR')});
+  if (history.length > 5) history.pop();
+  renderHist();
+}
+
+function reset() {
+  document.getElementById('resp').style.display = 'none';
+  document.getElementById('qInput').value = '';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  document.getElementById('qInput').focus();
+}
+
+function renderHist() {
+  if (history.length === 0) { document.getElementById('hist').style.display = 'none'; return; }
+  document.getElementById('hist').style.display = 'block';
+  document.getElementById('histList').innerHTML = history.map(function(h, i) {
+    return '<div class="hist-item" onclick="replayHist(' + i + ')">'
+      + '<div class="hist-q">' + h.lwa.v + ' ' + h.q.substring(0, 75) + (h.q.length > 75 ? '...' : '') + '</div>'
+      + '<div class="hist-meta">' + h.name + ' — ' + h.date + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function replayHist(i) {
+  var h = history[i];
+  showResp(h.name, h.lwa, h.q, h.txt);
+}
+</script>
+</body>
+</html>
