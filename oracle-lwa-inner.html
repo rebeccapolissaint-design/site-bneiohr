@@ -165,16 +165,16 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
   </div>
 </div>
 
-<script src="gid-ohr-config.js"></script>
+<script>
+// ══ CLÉ API — Remplacez la valeur ci-dessous par votre clé OpenRouter ══
+window.OPENROUTER_API_KEY = 'METE_KLE_OPENROUTER_OU_LA';
+</script>
 <script>
 (function() {
   if (sessionStorage.getItem('bneiohr_oracle_access') !== '1') {
     window.location.replace('oracle-lwa.html');
   }
 })();
-
-// Kle OpenRouter fiks nèt la
-window.OPENROUTER_API_KEY = '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';
 
 (function() {
   var s = document.getElementById('stars');
@@ -243,7 +243,14 @@ function invoke() {
   document.getElementById('loading').scrollIntoView({behavior: 'smooth', block: 'center'});
 
   var key = window.OPENROUTER_API_KEY || '';
-  
+  if (!key || key === 'METE_KLE_OPENROUTER_OU_LA') {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('ibtn').disabled = false;
+    alert('Clé OpenRouter non trouvée.\n\nVérifiez que gid-ohr-config.js contient :\nwindow.OPENROUTER_API_KEY = \'sk-or-...\';');
+    return;
+  }
+  console.log('Clé utilisée:', key.substring(0, 12) + '...');
+
   var systemMsg = [
     'Tu es ' + lwaName + ', ' + lwa.r + ', un Lwa du Vodou haïtien.',
     'Tu réponds UNIQUEMENT en français, avec une voix mystique et bienveillante.',
@@ -276,20 +283,27 @@ function invoke() {
     },
     body: body
   })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
+    .then(function(r) {
+      return r.json().then(function(data) {
+        return {status: r.status, data: data};
+      });
+    })
+    .then(function(res) {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('ibtn').disabled = false;
-      if (data.error) { alert('Erreur OpenRouter : ' + data.error.message); return; }
+      if (res.data.error) {
+        alert('Erreur OpenRouter [' + res.status + '] : ' + JSON.stringify(res.data.error));
+        return;
+      }
       var txt = '';
-      try { txt = data.choices[0].message.content; } catch(e) {}
-      if (!txt) { alert('Les esprits n\'ont pas répondu. Réessayez.'); return; }
+      try { txt = res.data.choices[0].message.content; } catch(e) {}
+      if (!txt) { alert('Réponse vide. Réessayez.'); return; }
       showResp(lwaName, lwa, q, txt);
     })
-    .catch(function() {
+    .catch(function(err) {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('ibtn').disabled = false;
-      alert('Erreur de connexion. Vérifiez votre clé OpenRouter.');
+      alert('Erreur réseau : ' + err.message);
     });
 }
 
