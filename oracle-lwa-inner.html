@@ -56,91 +56,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .resp-top{display:flex;align-items:center;gap:1rem;padding-bottom:1rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(212,175,55,0.1)}
 .resp-veve{font-size:2rem}
 .resp-name{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase}
-.resp-role{font-style:italic;font-size:.85rem;color:rgba(232,224,208,0.4);margin-top:.2rem}
-.resp-card{background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.1);border-left:3px solid #d4af37;padding:1.8rem 1.8rem 1.8rem 2rem;position:relative}
-.resp-card::before{content:'"';position:absolute;top:.4rem;left:.8rem;font-size:3.5rem;color:#d4af37;opacity:.1;font-family:Georgia,serif;line-height:1;pointer-events:none}
-.resp-txt p{font-size:1.06rem;line-height:2;color:rgba(232,224,208,0.85);margin-bottom:1rem}
-.resp-txt p:last-child{margin-bottom:0}
-.resp-foot{margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
-.resp-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:rgba(212,175,55,0.35)}
-.resp-new{background:transparent;border:1px solid rgba(212,175,55,0.18);color:rgba(212,175,55,0.5);font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem 1.1rem;cursor:pointer;transition:all .3s}
-.resp-new:hover{border-color:rgba(212,175,55,0.45);color:#d4af37}
-.hist{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);display:none}
-.hist-ttl{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.35em;color:rgba(212,175,55,0.25);text-transform:uppercase;margin-bottom:1rem}
-.hist-item{padding:.75rem 1rem;border:1px solid rgba(255,255,255,0.05);margin-bottom:.45rem;cursor:pointer;transition:border-color .3s}
-.hist-item:hover{border-color:rgba(212,175,55,0.2)}
-.hist-q{font-style:italic;font-size:.9rem;color:rgba(255,255,255,0.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hist-meta{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.12em;color:rgba(212,175,55,0.3);text-transform:uppercase;margin-top:.2rem}
-.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,0.2);overflow:hidden}
-.rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,0.15)}
-.rj-track{flex:1;overflow:hidden;position:relative}
-.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
-.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
-.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
-.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rjs 28s linear infinite}
-@keyframes rjs{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
-</style>
-</head>
-<body>
-<div id="stars"></div>
-<div class="glow-bg"></div>
-
-<nav>
-  <a href="index.html" class="nav-logo">
-    <span class="nav-heb">&#x05D1;&#x05BC;&#x05E0;&#x05B5;&#x05D9; &#x05D0;&#x05D5;&#x05B9;&#x05E8;</span>
-    <span class="nav-txt">Bnei Ohr</span>
-  </a>
-  <div class="nav-right">
-    <span class="nav-badge">&#x2736; Initié</span>
-    <a href="lwa.html" class="nav-link">&#8592; Les Lwa</a>
-  </div>
-</nav>
-
-<div class="hero">
-  <span class="hero-ey">&#x2721; Portail Sacré — Initiés Bnei Ohr</span>
-  <h1 class="hero-h1">Oracle des Lwa</h1>
-  <span class="hero-hb">&#x05D0;&#x05D5;&#x05B9;&#x05E8;&#x05B8;&#x05E7;&#x05B6;&#x05DC;</span>
-  <p class="hero-sub">Posez votre question avec un coeur sincère.<br>Les Lwa répondent à ceux qui cherchent la vérité.</p>
-  <div class="hero-rule"></div>
-</div>
-
-<div class="wrap">
-  <span class="lbl">Choisir un Lwa — ou laisser les esprits décider</span>
-  <div class="chips" id="chips">
-    <button class="chip auto-chip on" style="--cc:#d4af37" data-lwa="auto">&#10024; Laisser choisir</button>
-    <button class="chip" style="--cc:#d4af37" data-lwa="Papa Legba">&#128273; Papa Legba</button>
-    <button class="chip" style="--cc:#e87fa0" data-lwa="Ezili Freda">&#128151; Ezili Freda</button>
-    <button class="chip" style="--cc:#4a7fcb" data-lwa="Ezili Dantò">&#128503; Ezili Dantò</button>
-    <button class="chip" style="--cc:#e05555" data-lwa="Ogou">&#9876;&#65039; Ogou</button>
-    <button class="chip" style="--cc:#7ecba1" data-lwa="Danbala Wedo">&#128013; Danbala</button>
-    <button class="chip" style="--cc:#9b7fd4" data-lwa="Baron Samdi">&#128128; Baron Samdi</button>
-    <button class="chip" style="--cc:#4a9eff" data-lwa="Agwe Tawoyo">&#9875; Agwe</button>
-    <button class="chip" style="--cc:#a87fd4" data-lwa="Les Gédé">&#129398; Les Gédé</button>
-    <button class="chip" style="--cc:#a3c96e" data-lwa="Loko et Ayizan">&#127807; Loko &amp; Ayizan</button>
-  </div>
-
-  <div class="divr"><span>&#10022;</span></div>
-
-  <span class="lbl">Votre question sacrée</span>
-  <textarea id="qInput" class="qarea" rows="4" placeholder="Posez votre question... Que cherchez-vous à comprendre aujourd'hui ?"></textarea>
-
-  <button class="ibtn" id="ibtn" onclick="invoke()">
-    <span class="ibtn-ico">&#128303;</span>
-    Invoquer les Lwa
-  </button>
-
-  <div class="loading" id="loading">
-    <span class="load-sym">&#127744;</span>
-    <div class="load-txt">Les esprits consultent&#8230;</div>
-  </div>
-
-  <div class="resp" id="resp">
-    <div class="resp-top">
-      <span class="resp-veve" id="rVeve"></span>
-      <div>
-        <div class="resp-name" id="rName"></div>
-        <div class="resp-role" id="rRole"></div>
+.resp-role" id="rRole"></div>
       </div>
     </div>
     <div class="resp-card" id="rCard">
@@ -173,17 +89,8 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
   }
 })();
 
-// DEBUG — vérifie si la clé est chargée
-window.addEventListener('load', function() {
+// Kle OpenRouter fiks nèt la
 window.OPENROUTER_API_KEY = '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';
-var k = window.OPENROUTER_API_KEY;
-if (!k) {
-
-    console.warn('ORACLE DEBUG: Clé OpenRouter non chargée. window.OPENROUTER_API_KEY =', k);
-  } else {
-    console.log('ORACLE DEBUG: Clé chargée OK — commence par:', k.substring(0, 8) + '...');
-  }
-});
 
 (function() {
   var s = document.getElementById('stars');
@@ -212,7 +119,7 @@ if (!k) {
 })();
 
 var LWA = {
-  'Papa Legba':     {v:'🔑', r:'Maître des Carrefours',      c:'#d4af37', h:'פֶּתַח',   m:'le carrefour, la porte, le chemin, les langues, les commencements'},
+  'Papa Legba':     {v:'🔑', r:'Maître des Carrefours',      c:'#d4af37', h:'פֶּתัח',   m:'le carrefour, la porte, le chemin, les langues, les commencements'},
   'Ezili Freda':    {v:'💗', r:'Reine de l\'Amour',          c:'#e87fa0', h:'נֶצַח',    m:'l\'amour, la beauté, les larmes sacrées, la grâce, le désir'},
   'Ezili Dantò':    {v:'🗡', r:'Mère Guerrière',             c:'#4a7fcb', h:'גְּבוּרָה', m:'la protection, les cicatrices, la force maternelle, le combat juste'},
   'Ogou':           {v:'⚔️', r:'Général Céleste',            c:'#e05555', h:'מַרְס',    m:'le feu, le fer, la forge, la justice, le courage'},
@@ -252,14 +159,7 @@ function invoke() {
   document.getElementById('loading').scrollIntoView({behavior: 'smooth', block: 'center'});
 
   var key = window.OPENROUTER_API_KEY || '';
-  if (!key || key === 'METE_KLE_OPENROUTER_OU_LA') {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('ibtn').disabled = false;
-    alert('Clé OpenRouter non trouvée.\n\nVérifiez que gid-ohr-config.js contient :\nwindow.OPENROUTER_API_KEY = \'sk-or-...\';');
-    return;
-  }
-  console.log('Clé utilisée:', key.substring(0, 12) + '...');
-
+  
   var systemMsg = [
     'Tu es ' + lwaName + ', ' + lwa.r + ', un Lwa du Vodou haïtien.',
     'Tu réponds UNIQUEMENT en français, avec une voix mystique et bienveillante.',
