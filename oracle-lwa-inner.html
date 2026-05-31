@@ -175,8 +175,10 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 
 // DEBUG — vérifie si la clé est chargée
 window.addEventListener('load', function() {
-  var k = window.OPENROUTER_API_KEY || '';
-  if (!k || k === 'METE_KLE_OPENROUTER_OU_LA') {
+window.OPENROUTER_API_KEY = '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';
+var k = window.OPENROUTER_API_KEY;
+if (!k) {
+
     console.warn('ORACLE DEBUG: Clé OpenRouter non chargée. window.OPENROUTER_API_KEY =', k);
   } else {
     console.log('ORACLE DEBUG: Clé chargée OK — commence par:', k.substring(0, 8) + '...');
