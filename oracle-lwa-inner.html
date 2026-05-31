@@ -165,13 +165,23 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
   </div>
 </div>
 
-<script src="/gid-ohr-config.js"></script>
+<script src="gid-ohr-config.js"></script>
 <script>
 (function() {
   if (sessionStorage.getItem('bneiohr_oracle_access') !== '1') {
     window.location.replace('oracle-lwa.html');
   }
 })();
+
+// DEBUG — vérifie si la clé est chargée
+window.addEventListener('load', function() {
+  var k = window.OPENROUTER_API_KEY || '';
+  if (!k || k === 'METE_KLE_OPENROUTER_OU_LA') {
+    console.warn('ORACLE DEBUG: Clé OpenRouter non chargée. window.OPENROUTER_API_KEY =', k);
+  } else {
+    console.log('ORACLE DEBUG: Clé chargée OK — commence par:', k.substring(0, 8) + '...');
+  }
+});
 
 (function() {
   var s = document.getElementById('stars');
@@ -240,12 +250,13 @@ function invoke() {
   document.getElementById('loading').scrollIntoView({behavior: 'smooth', block: 'center'});
 
   var key = window.OPENROUTER_API_KEY || '';
-  if (!key) {
+  if (!key || key === 'METE_KLE_OPENROUTER_OU_LA') {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('ibtn').disabled = false;
-    alert('Clé OpenRouter manquante dans gid-ohr-config.js');
+    alert('Clé OpenRouter non trouvée.\n\nVérifiez que gid-ohr-config.js contient :\nwindow.OPENROUTER_API_KEY = \'sk-or-...\';');
     return;
   }
+  console.log('Clé utilisée:', key.substring(0, 12) + '...');
 
   var systemMsg = [
     'Tu es ' + lwaName + ', ' + lwa.r + ', un Lwa du Vodou haïtien.',
