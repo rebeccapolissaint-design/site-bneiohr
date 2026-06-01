@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
 <title>Oracle des Lwa | Bnei Ohr</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -23,6 +21,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .nav-link{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;color:rgba(212,175,55,0.5);text-decoration:none;text-transform:uppercase}
 .nav-badge{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.15em;color:rgba(155,127,212,0.6);border:1px solid rgba(155,127,212,0.2);padding:.2rem .6rem}
 .hero{padding:6rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 0%,rgba(155,127,212,0.07) 0%,transparent 70%);pointer-events:none}
 .hero-ey{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.5em;color:rgba(155,127,212,0.55);text-transform:uppercase;display:block;margin-bottom:.7rem}
 .hero-h1{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;text-shadow:0 0 30px rgba(212,175,55,0.2);margin-bottom:.4rem}
 .hero-hb{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,0.3);display:block;margin-bottom:.6rem}
@@ -43,9 +42,6 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .qarea::placeholder{color:rgba(255,255,255,0.18);font-style:italic}
 .ibtn{width:100%;margin-top:1.2rem;padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:.7rem;background:linear-gradient(135deg,rgba(155,127,212,0.1),rgba(212,175,55,0.07));border:1px solid rgba(155,127,212,0.3);color:#c4b0e8;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s}
 .ibtn:hover{border-color:rgba(155,127,212,0.55);box-shadow:0 0 24px rgba(155,127,212,0.1)}
-.ibtn:disabled{opacity:.35;cursor:not-allowed}
-.ibtn-ico{font-size:1.1rem;transition:transform .5s}
-.ibtn:not(:disabled):hover .ibtn-ico{transform:rotate(180deg)}
 .loading{display:none;text-align:center;padding:3rem 1rem}
 .load-sym{font-size:2.2rem;display:block;animation:spin 2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -58,7 +54,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .resp-name{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase}
 .resp-role{font-style:italic;font-size:.85rem;color:rgba(232,224,208,0.4);margin-top:.2rem}
 .resp-card{background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.1);border-left:3px solid #d4af37;padding:1.8rem 1.8rem 1.8rem 2rem;position:relative}
-.resp-card::before{content:'"';position:absolute;top:.4rem;left:.8rem;font-size:3.5rem;color:#d4af37;opacity:.1;font-family:Georgia,serif;line-height:1;pointer-events:none}
+.resp-card::before{content:'\201C';position:absolute;top:.4rem;left:.8rem;font-size:3.5rem;color:#d4af37;opacity:.1;font-family:Georgia,serif;line-height:1;pointer-events:none}
 .resp-txt p{font-size:1.06rem;line-height:2;color:rgba(232,224,208,0.85);margin-bottom:1rem}
 .resp-txt p:last-child{margin-bottom:0}
 .resp-foot{margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
@@ -85,7 +81,6 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 <body>
 <div id="stars"></div>
 <div class="glow-bg"></div>
-
 <nav>
   <a href="index.html" class="nav-logo">
     <span class="nav-heb">&#x05D1;&#x05BC;&#x05E0;&#x05B5;&#x05D9; &#x05D0;&#x05D5;&#x05B9;&#x05E8;</span>
@@ -96,7 +91,6 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     <a href="lwa.html" class="nav-link">&#8592; Les Lwa</a>
   </div>
 </nav>
-
 <div class="hero">
   <span class="hero-ey">&#x2721; Portail Sacré — Initiés Bnei Ohr</span>
   <h1 class="hero-h1">Oracle des Lwa</h1>
@@ -104,37 +98,31 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
   <p class="hero-sub">Posez votre question avec un coeur sincère.<br>Les Lwa répondent à ceux qui cherchent la vérité.</p>
   <div class="hero-rule"></div>
 </div>
-
 <div class="wrap">
   <span class="lbl">Choisir un Lwa — ou laisser les esprits décider</span>
   <div class="chips" id="chips">
     <button class="chip auto-chip on" style="--cc:#d4af37" data-lwa="auto">&#10024; Laisser choisir</button>
-    <button class="chip" style="--cc:#d4af37" data-lwa="Papa Legba">&#128273; Papa Legba</button>
-    <button class="chip" style="--cc:#e87fa0" data-lwa="Ezili Freda">&#128151; Ezili Freda</button>
-    <button class="chip" style="--cc:#4a7fcb" data-lwa="Ezili Dantò">&#128503; Ezili Dantò</button>
-    <button class="chip" style="--cc:#e05555" data-lwa="Ogou">&#9876;&#65039; Ogou</button>
-    <button class="chip" style="--cc:#7ecba1" data-lwa="Danbala Wedo">&#128013; Danbala</button>
-    <button class="chip" style="--cc:#9b7fd4" data-lwa="Baron Samdi">&#128128; Baron Samdi</button>
-    <button class="chip" style="--cc:#4a9eff" data-lwa="Agwe Tawoyo">&#9875; Agwe</button>
-    <button class="chip" style="--cc:#a87fd4" data-lwa="Les Gédé">&#129398; Les Gédé</button>
-    <button class="chip" style="--cc:#a3c96e" data-lwa="Loko et Ayizan">&#127807; Loko &amp; Ayizan</button>
+    <button class="chip" style="--cc:#d4af37" data-lwa="legba">&#128273; Papa Legba</button>
+    <button class="chip" style="--cc:#e87fa0" data-lwa="freda">&#128151; Ezili Freda</button>
+    <button class="chip" style="--cc:#4a7fcb" data-lwa="danto">&#9876;&#65039; Ezili Dantò</button>
+    <button class="chip" style="--cc:#e05555" data-lwa="ogou">&#9876;&#65039; Ogou</button>
+    <button class="chip" style="--cc:#7ecba1" data-lwa="danbala">&#128013; Danbala</button>
+    <button class="chip" style="--cc:#9b7fd4" data-lwa="baron">&#128128; Baron Samdi</button>
+    <button class="chip" style="--cc:#4a9eff" data-lwa="agwe">&#9875; Agwe</button>
+    <button class="chip" style="--cc:#a87fd4" data-lwa="gede">&#129398; Les Gédé</button>
+    <button class="chip" style="--cc:#a3c96e" data-lwa="loko">&#127807; Loko &amp; Ayizan</button>
   </div>
-
   <div class="divr"><span>&#10022;</span></div>
-
   <span class="lbl">Votre question sacrée</span>
   <textarea id="qInput" class="qarea" rows="4" placeholder="Posez votre question... Que cherchez-vous à comprendre aujourd'hui ?"></textarea>
-
   <button class="ibtn" id="ibtn" onclick="invoke()">
-    <span class="ibtn-ico">&#128303;</span>
+    <span id="ibtn-ico" style="font-size:1.1rem">&#128303;</span>
     Invoquer les Lwa
   </button>
-
   <div class="loading" id="loading">
     <span class="load-sym">&#127744;</span>
     <div class="load-txt">Les esprits consultent&#8230;</div>
   </div>
-
   <div class="resp" id="resp">
     <div class="resp-top">
       <span class="resp-veve" id="rVeve"></span>
@@ -151,71 +139,130 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
       <button class="resp-new" onclick="reset()">Poser une autre question</button>
     </div>
   </div>
-
   <div class="hist" id="hist">
     <div class="hist-ttl">&#10022; Consultations précédentes</div>
     <div id="histList"></div>
   </div>
 </div>
-
 <div class="rj-bar">
   <div class="rj-lbl">&#x2721; Réflexion du Jour</div>
-  <div class="rj-track">
-    <div class="rj-inner" id="rjInner"></div>
-  </div>
+  <div class="rj-track"><div class="rj-inner" id="rjInner"></div></div>
 </div>
-
 <script>
-// ══ CLÉ API — Remplacez la valeur ci-dessous par votre clé OpenRouter ══
-window.OPENROUTER_API_KEY = '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';
+(function(){if(sessionStorage.getItem('bneiohr_oracle_access')!=='1'){window.location.replace('oracle-lwa.html');}})();
+(function(){var s=document.getElementById('stars');for(var i=0;i<90;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.4+0.3;el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.45+0.08)+';';s.appendChild(el);}})();
+(function(){var q=['Chaque carrefour est une invitation. Legba ouvre les chemins à ceux qui demandent avec humilité.','Erzulie rappelle que l\'amour est la force la plus subversive qui soit.','Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre.','La mort n\'est pas la fin — c\'est le passage. Baron Samdi te guide avec un sourire.','La sagesse de Danbala existait avant les mots — écoute le silence.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
 
-</script>
-<script>
-(function() {
-  if (sessionStorage.getItem('bneiohr_oracle_access') !== '1') {
-    window.location.replace('oracle-lwa.html');
-  }
-})();
-
-(function() {
-  var s = document.getElementById('stars');
-  for (var i = 0; i < 90; i++) {
-    var el = document.createElement('div');
-    el.className = 'star';
-    var sz = Math.random() * 1.4 + 0.3;
-    el.style.cssText = 'width:' + sz + 'px;height:' + sz + 'px;top:' + (Math.random()*100) + '%;left:' + (Math.random()*100) + '%;--d:' + (Math.random()*5+2) + 's;--o:' + (Math.random()*0.45+0.08) + ';';
-    s.appendChild(el);
-  }
-})();
-
-(function() {
-  var quotes = [
-    'Chaque carrefour est une invitation. Legba ouvre les chemins à ceux qui demandent avec humilité.',
-    'Erzulie rappelle que l\'amour est la force la plus subversive qui soit.',
-    'Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre.',
-    'La mort n\'est pas la fin — c\'est le passage. Baron Samdi te guide avec un sourire.',
-    'La sagesse de Danbala existait avant les mots — écoute le silence.'
-  ];
-  var t = new Date();
-  var txt = quotes[(t.getFullYear()*10000 + (t.getMonth()+1)*100 + t.getDate()) % quotes.length];
-  var sep = '<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';
-  var el = document.getElementById('rjInner');
-  if (el) el.innerHTML = '<span class="rj-text">' + txt + '</span>' + sep + '<span class="rj-text">' + txt + '</span>' + sep;
-})();
-
+// ══ DONNÉES LWA ══
 var LWA = {
-  'Papa Legba':     {v:'🔑', r:'Maître des Carrefours',      c:'#d4af37', h:'פֶּתַח',   m:'le carrefour, la porte, le chemin, les langues, les commencements'},
-  'Ezili Freda':    {v:'💗', r:'Reine de l\'Amour',          c:'#e87fa0', h:'נֶצַח',    m:'l\'amour, la beauté, les larmes sacrées, la grâce, le désir'},
-  'Ezili Dantò':    {v:'🗡', r:'Mère Guerrière',             c:'#4a7fcb', h:'גְּבוּרָה', m:'la protection, les cicatrices, la force maternelle, le combat juste'},
-  'Ogou':           {v:'⚔️', r:'Général Céleste',            c:'#e05555', h:'מַרְס',    m:'le feu, le fer, la forge, la justice, le courage'},
-  'Danbala Wedo':   {v:'🐍', r:'Serpent de la Sagesse',      c:'#7ecba1', h:'כֶּתֶר',   m:'le serpent, l\'eau pure, la pluie, le silence, la sagesse primordiale'},
-  'Baron Samdi':    {v:'💀', r:'Maître de la Mort',          c:'#9b7fd4', h:'בִּינָה',  m:'la mort, le passage, la vérité nue, le cimetière, le rire sacré'},
-  'Agwe Tawoyo':    {v:'⚓', r:'Roi de la Mer',              c:'#4a9eff', h:'חֶסֶד',   m:'la mer, les vagues, la profondeur, le voyage, le subconscient'},
-  'Les Gédé':       {v:'🪦', r:'Famille des Ancêtres',       c:'#a87fd4', h:'עוֹלָם',  m:'les ancêtres, la mémoire, la vérité sans filtre, le passage'},
-  'Loko et Ayizan': {v:'🌿', r:'Gardiens de l\'Initiation',  c:'#a3c96e', h:'חׇכְמָה',  m:'les plantes, la forêt, l\'initiation, la guérison par la nature'}
+  legba:  {n:'Papa Legba',     v:'🔑', r:'Maître des Carrefours',      c:'#d4af37', h:'פֶּתַח'},
+  freda:  {n:'Ezili Freda',    v:'💗', r:'Reine de l\'Amour',          c:'#e87fa0', h:'נֶצַח'},
+  danto:  {n:'Ezili Dantò',    v:'🗡', r:'Mère Guerrière',             c:'#4a7fcb', h:'גְּבוּרָה'},
+  ogou:   {n:'Ogou',           v:'⚔️', r:'Général Céleste',            c:'#e05555', h:'מַרְס'},
+  danbala:{n:'Danbala Wedo',   v:'🐍', r:'Serpent de la Sagesse',      c:'#7ecba1', h:'כֶּתֶר'},
+  baron:  {n:'Baron Samdi',    v:'💀', r:'Maître de la Mort',          c:'#9b7fd4', h:'בִּינָה'},
+  agwe:   {n:'Agwe Tawoyo',    v:'⚓', r:'Roi de la Mer',              c:'#4a9eff', h:'חֶסֶד'},
+  gede:   {n:'Les Gédé',       v:'🪦', r:'Famille des Ancêtres',       c:'#a87fd4', h:'עוֹלָם'},
+  loko:   {n:'Loko & Ayizan',  v:'🌿', r:'Gardiens de l\'Initiation',  c:'#a3c96e', h:'חׇכְמָה'}
 };
 var LWA_KEYS = Object.keys(LWA);
+
+// ══ RÉPONSES PAR THÈME ══
+// Chaque Lwa a ses propres réponses organisées par thème
+var RESPONSES = {
+  legba: {
+    chemin:   ["Mon enfant, tu te tiens au carrefour et tu demandes quelle route prendre. Mais regarde bien — toutes ces routes existent parce que tu as déjà fait des choix courageux. Le chemin qui t'attend n'est pas celui que tu vois, c'est celui que tu crées en marchant.\n\nJe suis le vieux qui boite, mais je connais chaque chemin depuis l'aube du monde. Et je te dis ceci : la porte que tu cherches est déjà ouverte. C'est ta peur qui te fait croire qu'elle est fermée. Avance, et je marcherai devant toi.\n\nChaque carrefour est une bénédiction déguisée en obstacle.", "Toi qui cherches ton chemin, sache que je me tiens là où tous les possibles se croisent. Depuis que le monde est monde, j'ai vu des milliers d'âmes hésiter là où tu hésites maintenant.\n\nCe que tu appelles une impasse est en réalité le début d'un nouveau sentier. Parfois, la bonne direction n'est pas en avant ni en arrière — elle est en dedans. Creuse. Ce que tu cherches dehors, tu le trouveras d'abord en toi.\n\nLa clé que tu cherches, tu la portes depuis toujours."],
+    amour:    ["Mon enfant, tu m'interroges sur le cœur — cette porte la plus difficile à ouvrir. Je suis Legba, le maître des passages, et je te dis que l'amour est le seul carrefour où l'on ne peut pas revenir en arrière une fois qu'on l'a traversé.\n\nCe que tu ressens est réel. Ne laisse pas la peur de te perdre t'empêcher de te trouver dans les yeux de l'autre. L'amour véritable n'emprisonne pas — il ouvre des portes que tu ne savais même pas qu'elles existaient.\n\nOse frapper à la porte. Même si tu trembles en le faisant."],
+    travail:  ["Je vois ton labeur, enfant. Tu travailles dur et tu te demandes si cela mène quelque part. Je te réponds : tout effort sincère ouvre une porte, même si tu ne la vois pas encore.\n\nMais sache ceci — le travail qui ne nourrit pas ton âme est un chemin qui tourne en rond. Demande-toi non pas 'est-ce que je travaille assez ?' mais 'est-ce que ce travail me rapproche de qui je suis vraiment ?'\n\nLa bonne porte grince toujours avant de s'ouvrir.", "Tu portes le poids de tes responsabilités comme une pierre. Je t'entends. Mais regarde comment tu marches — même courbé, tu avances. C'est ce qui compte.\n\nLe succès que tu cherches n'est pas une destination, c'est une direction. Continue dans cette direction avec constance et honnêteté, et les portes s'ouvriront d'elles-mêmes.\n\nPatience et persévérance sont les deux jambes du voyageur."],
+    sante:    ["Mon enfant, le corps parle quand l'âme a quelque chose à dire. Ce que tu vis physiquement est souvent le reflet de ce que tu portes spirituellement. Prends soin de l'un pour guérir l'autre.\n\nJe t'ouvre la porte vers les guérisseurs — ceux de la médecine et ceux de l'esprit. N'aie pas honte de demander de l'aide. La force n'est pas de tout porter seul.\n\nLa guérison commence par accepter qu'on a besoin d'aide."],
+    famille:  ["La famille — voilà le carrefour le plus chargé qui soit. Chaque lien familial est une route que deux âmes ont décidé de parcourir ensemble, avec toutes leurs blessures et leur beauté.\n\nCe que tu vis dans ta famille n'est pas une punition. C'est une école. Les personnes qui nous blessent le plus sont souvent nos plus grands maîtres, même si nous ne le comprenons qu'après.\n\nMaintiens le lien, mais trace tes limites. Une porte peut être ouverte et protégée en même temps."],
+    default:  ["Mon enfant, tu m'as appelé et me voilà. Je me tiens là où tous les chemins se croisent — et je vois le tien clairement.\n\nLa réponse à ce que tu portes se trouve dans le silence que tu évites. Prends le temps de t'arrêter, de respirer, de regarder honnêtement ta situation. La vérité n'est jamais aussi loin qu'on le croit.\n\nJe garde la porte ouverte. À toi de choisir de passer.", "Toi qui m'appelles, sache que je t'entends toujours — même quand tu ne prononces pas de mots. Le cœur a sa propre langue, et c'est celle que les Lwa comprennent le mieux.\n\nCe que tu traverses en ce moment est une initiation, même si personne ne te l'a dit ainsi. Chaque épreuve est une porte qui te mène vers une version plus vraie de toi-même.\n\nFais confiance au chemin, même quand tu ne vois pas où il mène."]
+  },
+
+  freda: {
+    amour:    ["Mon beau, mon enfant chéri — tu m'interroges sur l'amour, et mon cœur s'ouvre pour toi comme une fleur après la pluie. Je suis Ezili Freda, et je connais chaque nuance de ce sentiment qui peut élever ou briser une âme.\n\nL'amour que tu cherches ou que tu vis est réel et précieux. Mais l'amour véritable commence toujours par soi-même. Si tu ne sais pas te chérir, comment apprendras-tu à laisser quelqu'un d'autre le faire ?\n\nTu mérites un amour qui ne te demande pas de te diminuer pour entrer.", "Mes larmes coulent pour toi, et sache que mes larmes sont sacrées. Je pleure non par faiblesse, mais parce que je ressens tout avec une profondeur que peu comprennent.\n\nCe que tu vis dans l'amour — la joie, la douleur, l'espoir, la peur — tout cela est sacré. Ne laisse personne te dire que tu ressens trop. Tu ressens juste.\n\nL'amour parfait existe — mais il commence dans ton propre cœur."],
+    beaute:   ["Enfant de lumière, tu doutes de ta beauté ? Laisse-moi te dire ce que je vois : une âme qui rayonne d'une lumière unique, irremplaçable, précieuse.\n\nLa beauté véritable n'est pas dans le miroir — elle est dans la façon dont tu ris, dont tu prends soin des autres, dont tu résistes quand tout te pousse à abandonner. C'est cette beauté-là qui m'appartient.\n\nRegarde-toi avec mes yeux, et tu verras quelqu'un d'extraordinaire.", "Je me parfume et je me pare non par vanité, mais parce que la beauté est une offrande au divin. Et toi aussi, tu es une offrande — unique, précieuse, irremplaçable.\n\nPrends soin de toi. Pas pour plaire aux autres — pour honorer l'âme magnifique que tu es. Ce n'est pas de l'égoïsme, c'est une forme de prière.\n\nSois belle ou beau pour toi d'abord."],
+    abondance:["Mes mains portent l'abondance, et je t'en offre une part. Mais sache ceci : l'abondance ne vient pas à ceux qui l'attendent les bras croisés — elle vient à ceux qui ont ouvert leur cœur à la recevoir.\n\nY a-t-il quelque chose en toi qui résiste à la prospérité ? Une croyance héritée que tu ne mérites pas le bien ? C'est là que commence le vrai travail.\n\nOuvre tes mains. L'abondance ne peut pas entrer dans des poings serrés par la peur."],
+    default:  ["Mon enfant, je te vois et tu es beau, même dans ta souffrance. Surtout dans ta souffrance. Car c'est là que l'âme révèle sa vraie profondeur.\n\nCe que tu portes aujourd'hui — garde-le avec grâce. Pas parce que tu dois souffrir, mais parce que cette épreuve te sculpte en quelque chose de plus beau encore.\n\nJe pleure avec toi, et mes larmes sont des bénédictions.", "Toi qui cherches ma guidance — sache que je te vois dans toute ta complexité. Tu es plusieurs choses à la fois : fort et fragile, sûr et perdu, aimant et blessé. Tout cela est humain.\n\nLa vie que tu désires n'est pas hors de portée. Elle demande simplement que tu croies d'abord en ta propre valeur.\n\nTu vaux infiniment plus que tu ne le crois."]
+  },
+
+  danto: {
+    protection: ["Mwen tande ou — je t'entends, enfant. Tu cherches protection, et tu as bien fait de m'appeler. Je suis Ezili Dantò, celle qui ne cède jamais, celle dont les cicatrices sont des médailles de guerre.\n\nCeux qui te veulent du mal ne savent pas à qui ils s'attaquent. Car ils s'attaquent à quelqu'un que je protège, et ma protection est un mur que rien ne peut franchir.\n\nLève la tête. La peur est leur arme — ne leur donne pas cette victoire.", "Je porte les marques de mes combats sur mon visage, et je les porte avec fierté. Car chaque cicatrice est la preuve que j'ai résisté, que j'ai survécu, que j'ai gagné.\n\nToi aussi, tu survivras à ce que tu traverses. Pas seulement tu survivras — tu en sortiras plus fort, plus sage, plus toi-même.\n\nLes forces obscures reculent devant ceux qui refusent de plier."],
+    injustice:  ["Tu me parles d'injustice, et mon sang de guerrière s'enflamme. Je hais l'injustice d'une haine profonde et juste. Car l'injustice n'est pas seulement une blessure personnelle — c'est une offense au divin.\n\nMais écoute-moi bien : la vengeance est une chose, la justice en est une autre. Ne te laisse pas avaler par la colère au point de perdre ta propre lumière. Combats avec intelligence, avec stratégie, avec vérité.\n\nLa vérité est la seule arme que personne ne peut te retirer.", "Je grogne parce que les mots ne suffisent pas pour exprimer ce que je ressens quand un enfant est traité injustement. Mais je te dis : ne baisse pas la tête.\n\nL'oppresseur compte sur ta résignation. Ta résistance — même silencieuse, même patiente — est un acte révolutionnaire. Haïti a été libéré par des gens qui ont refusé d'accepter l'injustice comme une fatalité.\n\nSois digne de tes ancêtres. Résiste."],
+    enfants:    ["Mère ou père, ton amour pour tes enfants est la chose la plus sacrée qui soit. Je le reconnais car c'est le même amour qui me fait combattre sans relâche pour les miens.\n\nProtège-les, mais ne les étouffe pas. Aime-les, mais apprends-leur à se tenir debout. Le plus grand cadeau que tu peux leur faire est de leur montrer comment faire face à la vie avec courage et dignité.\n\nLes enfants que tu élèves avec amour élèveront le monde."],
+    default:    ["Je suis silencieuse, mais mon silence n'est pas une absence — c'est une présence totale. Je t'observe, je te connais, je suis avec toi.\n\nCe que tu traverses est difficile. Je ne vais pas te mentir et te dire que c'est facile. Mais je te dis que tu en as la force — une force que tu ne connais pas encore complètement.\n\nLes mères ne quittent jamais leurs enfants. Je suis là.", "Tu m'as appelée, et je suis venue. Pas avec des mots doux — je ne suis pas celle qui fait ça. Je suis venue avec ma présence, mon bouclier, ma force.\n\nQuelque chose dans ta vie a besoin d'être protégé. Identifie-le clairement et garde-le avec tout ce que tu as. Certaines choses valent la peine qu'on se batte pour elles.\n\nSois le gardien de ce qui compte."]
+  },
+
+  ogou: {
+    courage:    ["Ha ! Tu m'appelles, moi — le guerrier ! Et je réponds. Regarde-toi : tu doutes, tu hésites, tu cherches permission pour faire ce que tu sais déjà devoir faire.\n\nLe courage n'est pas l'absence de peur. C'est décider d'agir malgré la peur. J'ai vu des armées trembler, et j'ai vu des individus seuls tenir debout. Ce qui fait la différence, ce n'est pas la taille — c'est la décision.\n\nDécide. Maintenant. Et avance.", "Je porte mon sabre dans la bouche — pas pour menacer, mais pour montrer que la parole peut être une arme aussi puissante que le fer. La vérité dite avec courage tranche plus vite que n'importe quelle lame.\n\nDis ce que tu dois dire. Fais ce que tu dois faire. Supporte les conséquences avec dignité. C'est ça, le courage — pas l'invincibilité, mais l'honnêteté totale.\n\nParle. Le silence des lâches a causé plus de dégâts que toutes les guerres."],
+    conflit:    ["Tu me parles d'un conflit. Je suis le dieu de la guerre, alors je connais les conflits. Et voici ce que j'ai appris : la plupart des batailles se perdent avant même de commencer, parce qu'on choisit le mauvais terrain ou les mauvaises armes.\n\nQuel est ton vrai objectif dans ce conflit ? La victoire ? La justice ? La paix ? La vengeance ? Sois honnête. Car la stratégie dépend de la réponse.\n\nNe gaspille pas ton énergie sur des batailles qui ne te rapprochent pas de ce qui compte vraiment."],
+    travail:    ["Je suis le forgeron aussi bien que le guerrier. Et je te dis que le fer le plus solide est celui qui a été le plus frappé, le plus chauffé, le plus travaillé.\n\nTon travail, ta carrière, tes ambitions — ce n'est pas juste une question d'argent ou de statut. C'est une question d'honneur. Fais-tu ton travail avec intégrité ? Est-ce que tu peux regarder ce que tu produis et en être fier ?\n\nLe vrai succès, c'est pouvoir se regarder dans le miroir le soir.", "Je vois ta frustration face aux obstacles professionnels. Et je te dis : ces obstacles ne sont pas là pour te briser — ils sont là pour te révéler.\n\nChaque problème que tu résous t'entraîne pour le problème suivant. Chaque porte fermée te force à trouver une route que tu n'aurais jamais prise autrement. C'est ainsi que les guerriers deviennent des généraux.\n\nForge-toi dans les difficultés."],
+    default:    ["Ogou é ! Tu m'as appelé et je suis là — avec mon feu, mon fer, ma vérité. Je ne mâche pas mes mots, alors voilà la vérité : tu es plus fort que tu ne le crois.\n\nCe que tu vis en ce moment est un entraînement, pas une punition. Les épreuves les plus dures forment les âmes les plus fortes. Et ton âme est en train de se forger pour quelque chose de grand.\n\nTiens bon. Le fer tient quand la chaleur est la plus intense.", "La lâcheté est la seule chose qui me met vraiment en colère. Et je ne te parle pas de toi — je te parle des forces qui veulent que tu restes petit, que tu ne te battes pas, que tu acceptes moins que ce que tu mérites.\n\nRévolte-toi contre cette acceptation silencieuse. Pas avec violence — avec conscience, avec action, avec refus de te diminuer.\n\nSois à la hauteur de qui tu es vraiment."]
+  },
+
+  danbala: {
+    paix:       ["...sssss... [le serpent sacré siffle doucement autour de toi]\n\nJe suis ancien. Avant les mots, avant le temps, avant la douleur — j'étais là. Et je te dis que la paix que tu cherches n'est pas quelque chose à trouver. Elle est quelque chose à retrouver.\n\nElle est en toi, enfouie sous les couches de bruit, de peur, d'obligations. Trouve le silence. Pas pendant cinq minutes — pendant assez longtemps pour que les couches se dissolvent.\n\nDans le silence le plus profond, tu m'entendras siffler.", "Tu portes une agitation intérieure que tu ne sais pas nommer. Je la sens — elle ressemble à de l'eau trouble qui cherche à se clarifier.\n\nL'eau se clarifie d'elle-même quand on cesse de l'agiter. Cesse de te battre contre toi-même. Cesse de chercher des réponses avec l'intellect seul. Laisse-toi simplement être.\n\nLa paix vient à ceux qui cessent de la pourchasser."],
+    purete:     ["Je suis le Grand Serpent Blanc — la pureté incarnée. Et je te dis que la pureté n'est pas l'absence de péché ou d'erreur. C'est l'intention sincère de s'améliorer, de grandir, de s'élever.\n\nTu as fait des erreurs. Tout le monde en fait. Ce qui compte, ce n'est pas de ne jamais tomber — c'est la façon dont tu te relèves et ce que tu apprends en te relevant.\n\nPurifie tes intentions, et tes actions suivront naturellement."],
+    sagesse:    ["Je ne parle pas en mots — je parle en symboles, en images, en sensations. La sagesse que tu cherches ne viendra pas d'un livre ou d'un discours. Elle viendra d'une expérience vécue profondément.\n\nArrête de consommer l'information et commence à digérer l'expérience. La différence entre la connaissance et la sagesse, c'est le temps passé à vivre avec ce qu'on sait.\n\nVis tes questions. Les réponses viendront d'elles-mêmes.", "Je suis là depuis le commencement, et j'ai vu toutes les questions que l'humanité se pose. Elles se résument toujours à une seule : 'Qui suis-je vraiment ?'\n\nTout le reste — l'amour, l'argent, le succès, la santé — sont des déclinaisons de cette question fondamentale. Connais-toi d'abord, et les autres réponses se placeront naturellement.\n\nLa connaissance de soi est le début de toute sagesse."],
+    default:    ["...sssss... Je t'entends, même dans ton silence. Même dans ta confusion. Car ma nature est de comprendre ce qui est avant les mots.\n\nCe que tu traverses actuellement fait partie d'un cycle plus grand que ta vie individuelle. Tu es lié à tes ancêtres, à ta descendance, à toute la chaîne de l'humanité. Ce que tu fais maintenant a des répercussions au-delà de ce que tu peux imaginer.\n\nSois conscient. Sois intentionnel. Sois pur dans ta motivation.", "Je descends rarement pour parler, mais tu as su m'appeler avec sincérité. Voici ce que je t'apporte : une rivière de paix blanche.\n\nImagine-la qui coule à travers toi — de la tête aux pieds, elle emporte tout ce qui n'est pas toi. Les peurs héritées. Les traumatismes anciens. Les doutes des autres qui sont devenus les tiens.\n\nCe qui reste après le passage de cette rivière — c'est qui tu es vraiment."]
+  },
+
+  baron: {
+    deuil:      ["Ha ha ha ! Tu viens me voir pour parler de mort ? Bien. Parce que tout le monde évite ce sujet, et moi je ne comprends pas pourquoi. La mort est la vérité la plus honnête qui soit.\n\nCelui ou celle que tu as perdu n'a pas disparu — il a changé de forme. Il est maintenant de l'autre côté de la porte que je garde. Et je te dis qu'ils sont bien. Qu'ils t'aiment encore. Que leur amour ne s'est pas terminé avec leur corps.\n\nPleure si tu dois pleurer. Mais sache que la séparation est temporaire.", "Je suis le maître de la frontière entre les vivants et les morts, et je te dis ceci en toute honnêteté : le deuil est un acte d'amour. Tu souffres parce que tu aimais. Cette souffrance est sacrée.\n\nMais ne reste pas trop longtemps dans le pays des morts quand tu es encore vivant. Honore ceux qui sont partis en vivant pleinement, pas en t'éteignant avec eux.\n\nLes morts veulent que les vivants vivent."],
+    verite:     ["Je suis le seul Lwa qui dit toujours la vérité — parce que les morts n'ont rien à perdre ni à protéger. Et la vérité que je vois ici, je vais te la dire sans filtre.\n\nTu sais déjà ce que tu dois faire. Tu le sais depuis longtemps. Tu cherches simplement une permission, une confirmation, quelqu'un qui te dise que c'est normal de penser ce que tu penses.\n\nEh bien voilà ta permission : tu as raison. Agis en conséquence.", "La vérité est parfois dure à entendre. Mais préfères-tu un mensonge doux qui te maintient dans l'illusion, ou une vérité rude qui te libère ?\n\nJe choisis toujours la vérité — c'est pour ça que les vivants me craignent un peu. Non pas parce que je suis méchant, mais parce que je refuse de participer aux fictions confortables.\n\nRegarde ta situation en face, sans maquillage. C'est de là que vient la vraie solution."],
+    transition: ["Quelque chose dans ta vie est en train de mourir, et tu le sens. Une relation, une identité, une façon de vivre. Et cette mort te fait peur.\n\nMais moi, je suis le maître des passages, et je te dis que toute mort est suivie d'une renaissance. Ce qui se termine fait de la place pour ce qui commence. Ce n'est pas une consolation vide — c'est la loi fondamentale de l'univers.\n\nLaisse mourir ce qui doit mourir. Fais confiance à ce qui va naître."],
+    default:    ["Ha ! Tu viens consulter le Baron ! Bien, bien. Je t'aime déjà pour ton courage.\n\nVoici ce que je vois : tu portes quelque chose de lourd que tu refuses de lâcher. Une vieille douleur, une vieille histoire, une vieille version de toi-même. Et cette chose morte que tu portes pèse plus lourd que n'importe quel vivant.\n\nLâche-la. Enterre-la avec respect. Et vis enfin.", "Je plaisante, je ris, je chante — parce que j'ai compris quelque chose que la plupart des vivants n'ont pas encore saisi : la vie est courte et précieuse et unique.\n\nChaque moment que tu passes dans la peur, la culpabilité, ou le regret, est un moment de vie gaspillé. Et la vie gaspillée, ça, c'est la vraie tragédie — pas la mort.\n\nRis. Profite. Aime. C'est tout ce que je te demande."]
+  },
+
+  agwe: {
+    voyage:     ["Navigateur, je te salue depuis les profondeurs où peu osent regarder. Tu veux partir, changer, explorer — et ton désir est juste. L'immobilité est contre nature pour une âme comme la tienne.\n\nMais avant de larguer les amarres, assure-toi de savoir vers quoi tu vas, pas seulement de quoi tu fuis. Les voyages motivés par la fuite ne guérissent pas — ils déplacent.\n\nPars avec intention. La mer sera avec toi.", "Mes eaux couvrent les trois quarts de ce monde, et je te dis que le voyage — qu'il soit physique ou intérieur — est la plus belle forme de prière. Car voyager, c'est accepter l'inconnu, et accepter l'inconnu, c'est faire confiance.\n\nCe changement que tu envisages — fais-le. Le moment parfait n'existe pas. Il n'y a que le moment présent et le courage d'agir.\n\nLargue les amarres. La mer te porte."],
+    reve:       ["Les eaux profondes et les rêves sont la même chose — des espaces où la vérité se montre sans les filtres du jour. Et tes rêves te parlent, j'en suis certain.\n\nCe que tu vois dans tes rêves n'est pas un hasard. C'est ton âme qui te communique ce que ta conscience diurne refuse d'entendre. Apprends à écouter ce langage.\n\nTiens un journal de tes rêves. Les réponses à tes questions y sont déjà.", "Je suis le maître du subconscient, des eaux profondes de l'âme. Et je te dis que ce que tu ressens intuitivement — sans pouvoir l'expliquer rationnellement — mérite d'être écouté.\n\nTon intuition est une forme de sagesse ancienne, héritée de millions d'années d'expérience humaine. Ne la balaie pas d'un revers de main au nom de la raison.\n\nFais confiance à ce que tu sais sans savoir comment tu le sais."],
+    default:    ["Je t'entends depuis mes profondeurs bleues. Tu as quelque chose à traverser, et tu sens que tu n'as pas tout à fait les ressources pour le faire seul.\n\nMais regarde : l'eau ne porte pas les bateaux qui restent au port. Elle porte ceux qui s'y aventurent. Sors du port. Lance-toi. Les ressources que tu cherches se révèlent en chemin.\n\nFais confiance à ta barque. Elle est plus solide que tu ne le crois.", "Les tempêtes de ta vie ne sont pas là pour te noyer — elles sont là pour t'apprendre à naviguer dans des eaux difficiles. Et une fois que tu sais naviguer dans la tempête, les eaux calmes te semblent presque trop faciles.\n\nReste dans ta barque. Tiens la barre. La tempête finira toujours.\n\nL'étoile polaire brille même à travers les nuages."]
+  },
+
+  gede: {
+    ancetres:   ["Nous sommes là — tous les ancêtres, toutes les générations qui t'ont précédé. Tu n'es jamais seul quand tu sais que nous sommes derrière toi.\n\nDans tes veines coule le sang de survivants — des gens qui ont traversé des épreuves qui auraient dû les briser, et qui ont tenu. Cette force est en toi aussi. Tu l'as héritée.\n\nHonore-les en vivant courageusement.", "Tu penses parfois que tu pars de rien. Mais regarde derrière toi — des générations entières t'ont porté jusqu'ici. Chaque ancêtre qui a souffert, qui a aimé, qui a résisté — tous ont contribué à ce que tu sois là aujourd'hui.\n\nTu n'es pas un commencement. Tu es une continuation. Et tu as la responsabilité de transmettre quelque chose de beau à ceux qui viendront après toi.\n\nQue veux-tu qu'on retienne de toi dans cent ans ?"],
+    memoire:    ["Les morts n'oublient pas, et nous ne voulons pas être oubliés. Non pas par vanité, mais parce que la mémoire est ce qui nous maintient vivants d'une certaine façon.\n\nCelui ou celle que tu cherches à honorer — ta façon de te souvenir d'eux, de parler d'eux, de perpétuer ce qu'ils étaient, c'est la plus belle des prières.\n\nLa mémoire est une forme d'immortalité."],
+    default:    ["Nous sommes la famille des morts, et nous t'observons avec amour. Oui — avec amour. Car même de l'autre côté, l'amour pour ceux qu'on a laissés ne s'éteint pas.\n\nCe que tu traverses, tes ancêtres l'ont traversé sous une autre forme. Tu n'es pas le premier. Et leur expérience vit en toi — dans tes instincts, dans ta résilience, dans cette façon que tu as de tenir malgré tout.\n\nTu n'es jamais aussi seul que tu le crois.", "La mort nous a appris une chose que les vivants ont du mal à comprendre : le temps passe vite. Terriblement vite.\n\nNe reporte pas les choses importantes. Dis à ceux que tu aimes que tu les aimes. Répare ce qui peut encore être réparé. Pardonne ce qui peut être pardonné — surtout à toi-même.\n\nVis comme si chaque jour était à la fois le premier et le dernier."]
+  },
+
+  loko: {
+    guerison:   ["Je suis le maître des plantes et des forêts, et je te dis que la guérison que tu cherches existe — souvent là où tu ne la cherches pas.\n\nLa nature a une réponse à chaque déséquilibre. Pas toujours dans une plante ou un remède, parfois dans le simple fait de marcher pieds nus sur la terre, de t'asseoir sous un grand arbre, de respirer l'air frais et d'écouter ce que ton corps te dit vraiment.\n\nTon corps est sage. Apprends à l'écouter.", "Je connais les plantes sacrées, et elles me parlent d'un patient qui a besoin de douceur. Tu te bats contre toi-même, et cette bataille intérieure épuise les ressources qui pourraient être utilisées pour guérir.\n\nFais la paix avec ton corps. Il n'est pas ton ennemi — il est ton partenaire. Ce qu'il vit, il le vit pour toi.\n\nLa guérison commence par la réconciliation avec soi-même."],
+    initiation: ["Tu es à un seuil. Je le sens dans ta question — quelque chose dans ta vie est en train de changer fondamentalement, et tu ne sais pas encore si tu dois accueillir ce changement ou y résister.\n\nC'est une initiation. La vie t'appelle à devenir quelque chose de plus grand, de plus vrai, de plus toi-même. Et toute initiation ressemble d'abord à une destruction — parce que ce qui était doit mourir pour que ce qui sera puisse naître.\n\nAccueille le changement. Tu es prêt, même si tu ne le ressens pas encore.", "Je suis le gardien des secrets de la nature, et voici le plus grand : tout grandit de l'intérieur vers l'extérieur. La transformation que tu attends dans ta vie extérieure doit d'abord se passer en toi.\n\nQuel aspect de toi-même résiste encore à cette transformation ? C'est là que se trouve la clé.\n\nL'initiation est complète quand tu n'as plus peur de ce que tu deviens."],
+    nature:     ["Les arbres me parlent, et ils me parlent de toi. Ils disent que tu as besoin de ralentir, de retrouver le rythme naturel des choses.\n\nNous vivons dans un monde qui celebrate la vitesse, la productivité, l'accumulation. Mais la sagesse réelle a le rythme des saisons — lente, profonde, cyclique.\n\nRetourne à la nature quand tu peux. Elle t'attend."],
+    default:    ["Je viens de la forêt, là où les secrets anciens vivent dans les racines et les feuilles. Et je t'apporte un secret aujourd'hui : tout ce qui pousse lentement pousse profond.\n\nNe te décourage pas si ta croissance te semble lente. Les arbres les plus grands ont mis des décennies à atteindre leur hauteur. La profondeur de leurs racines est proportionnelle à la grandeur de leur tronc.\n\nTes racines s'étendent. La hauteur viendra.", "Ayizan et moi, nous sommes les gardiens de la pureté rituelle. Et ce que je vois dans ta vie, c'est un besoin de purification — pas au sens moral, mais au sens énergétique.\n\nQuelque chose alourdit ton espace, ton corps, ton énergie. Nettoie. Physiquement d'abord — ton espace de vie, ton corps. Et puis spirituellement — tes pensées habituelles, tes attachements qui ne te nourrissent plus.\n\nLa légèreté qui suit la purification est une des meilleures sensations qui soient."]
+  }
+};
+
+// ══ MOTS CLÉS PAR THÈME ══
+var THEMES = {
+  chemin:    ['chemin','direction','choisir','choix','décision','partir','rester','route','avenir','futur','orientation','voie','bifurcation','carrefour','hésit'],
+  amour:     ['amour','aimer','coeur','relation','couple','mariage','séparation','rupture','sentiment','romantique','partenaire','compagnon','seul','solitude','attire'],
+  travail:   ['travail','emploi','argent','carrière','business','entreprise','projet','réussir','succès','profession','argent','revenus','poste','mission','but'],
+  sante:     ['santé','maladie','guérir','douleur','fatigue','corps','médecin','souffre','souffrance','bien-être','énergie','force','faiblesse'],
+  famille:   ['famille','parents','enfants','frère','soeur','mère','père','ancêtres','maison','foyer','relation familiale','conflit familial'],
+  protection:['protection','danger','ennemi','menace','peur','attaque','nuisance','mauvais oeil','sorcellerie','malédiction','protéger','défendre'],
+  injustice: ['injustice','trahison','mensonge','tromperie','justice','droit','mal traité','manipulé','victime','abus','oppression'],
+  courage:   ['courage','peur','oser','risque','affronter','décider','aller de l\'avant','force','détermination','volonté','combat'],
+  conflit:   ['conflit','dispute','guerre','bagarre','désaccord','tension','problème avec','ennemi','adversaire'],
+  paix:      ['paix','calme','sérénité','tranquillité','repos','stress','anxiété','inquiétude','agitation','nervosité'],
+  purete:    ['pur','pureté','faute','erreur','pardon','culpabilité','honte','regret','se racheter','réparer'],
+  sagesse:   ['sagesse','comprendre','connaître','apprendre','étudier','savoir','vérité','sens','signification','pourquoi'],
+  deuil:     ['mort','décès','perdu','perte','deuil','disparu','absent','manquer','partir pour toujours'],
+  verite:    ['vérité','honnêteté','sincérité','mentir','mensonge','réalité','illusion','comprendre','clarté'],
+  transition:['changement','transition','transformation','nouveau départ','fin','recommencer','tournant','phase'],
+  voyage:    ['voyage','partir','quitter','déménager','explorer','aventure','ailleurs','étranger','déplacement'],
+  reve:      ['rêve','dormir','vision','nuit','subconscient','intuition','pressentir','signe','message','symbole'],
+  ancetres:  ['ancêtres','ancêtre','racines','origine','famille','héritage','passé','tradition','histoire familiale'],
+  memoire:   ['mémoire','souvenir','oublier','rappeler','passé','nostalgie','honorer'],
+  guerison:  ['guérir','guérison','maladie','blessure','souffrance','rétablir','santé','corps','douleur','remède'],
+  initiation:['initiation','transformation','éveil','changer','grandir','évoluer','transcender','élever','croissance'],
+  nature:    ['nature','arbre','forêt','plante','terre','sol','saison','cycle','naturel','végétal']
+};
+
+// ══ LOGIQUE DE SÉLECTION ══
 var picked = 'auto';
+var sessionResponses = {};
 var history = [];
 
 document.getElementById('chips').addEventListener('click', function(e) {
@@ -226,6 +273,61 @@ document.getElementById('chips').addEventListener('click', function(e) {
   picked = btn.getAttribute('data-lwa');
 });
 
+function detectTheme(question) {
+  var q = question.toLowerCase();
+  var scores = {};
+  for (var theme in THEMES) {
+    var score = 0;
+    var keywords = THEMES[theme];
+    for (var i = 0; i < keywords.length; i++) {
+      if (q.indexOf(keywords[i]) !== -1) score++;
+    }
+    if (score > 0) scores[theme] = score;
+  }
+  if (Object.keys(scores).length === 0) return 'default';
+  return Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
+}
+
+function chooseLwaForTheme(theme) {
+  var map = {
+    chemin: 'legba', amour: 'freda', travail: ['legba','ogou'],
+    sante: ['danbala','loko'], famille: ['danto','gede'],
+    protection: 'danto', injustice: ['ogou','danto'],
+    courage: 'ogou', conflit: 'ogou',
+    paix: 'danbala', purete: ['danbala','loko'],
+    sagesse: ['danbala','loko'], deuil: ['baron','gede'],
+    verite: 'baron', transition: ['baron','legba'],
+    voyage: 'agwe', reve: 'agwe',
+    ancetres: 'gede', memoire: 'gede',
+    guerison: 'loko', initiation: 'loko', nature: 'loko'
+  };
+  var candidates = map[theme];
+  if (!candidates) return LWA_KEYS[Math.floor(Math.random() * LWA_KEYS.length)];
+  if (typeof candidates === 'string') return candidates;
+  return candidates[Math.floor(Math.random() * candidates.length)];
+}
+
+function pickResponse(lwaKey, theme) {
+  var lwaResponses = RESPONSES[lwaKey];
+  var pool = lwaResponses[theme] || lwaResponses['default'];
+  if (!pool) pool = lwaResponses['default'];
+
+  var sessionKey = lwaKey + '_' + theme;
+  if (!sessionResponses[sessionKey]) sessionResponses[sessionKey] = [];
+  var used = sessionResponses[sessionKey];
+  var available = [];
+  for (var i = 0; i < pool.length; i++) {
+    if (used.indexOf(i) === -1) available.push(i);
+  }
+  if (available.length === 0) {
+    sessionResponses[sessionKey] = [];
+    available = pool.map(function(_, i) { return i; });
+  }
+  var idx = available[Math.floor(Math.random() * available.length)];
+  sessionResponses[sessionKey].push(idx);
+  return pool[idx];
+}
+
 function invoke() {
   var q = document.getElementById('qInput').value.trim();
   if (!q || q.length < 3) {
@@ -235,92 +337,41 @@ function invoke() {
     return;
   }
 
-  var lwaName = picked === 'auto' ? LWA_KEYS[Math.floor(Math.random() * LWA_KEYS.length)] : picked;
-  var lwa = LWA[lwaName];
+  var lwaKey;
+  var theme = detectTheme(q);
 
+  if (picked === 'auto') {
+    lwaKey = chooseLwaForTheme(theme);
+  } else {
+    lwaKey = picked;
+  }
+
+  var lwa = LWA[lwaKey];
   document.getElementById('ibtn').disabled = true;
   document.getElementById('resp').style.display = 'none';
   document.getElementById('loading').style.display = 'block';
   document.getElementById('loading').scrollIntoView({behavior: 'smooth', block: 'center'});
 
-  var key = window.OPENROUTER_API_KEY || '';
-  if (!key || key === 'METE_KLE_OPENROUTER_OU_LA') {
+  // Simulate thinking time (1.5-2.5s)
+  var delay = 1500 + Math.random() * 1000;
+  setTimeout(function() {
+    var text = pickResponse(lwaKey, theme);
     document.getElementById('loading').style.display = 'none';
     document.getElementById('ibtn').disabled = false;
-    alert('Clé OpenRouter non trouvée.\n\nVérifiez que gid-ohr-config.js contient :\nwindow.OPENROUTER_API_KEY = \'sk-or-...\';');
-    return;
-  }
-  console.log('Clé utilisée:', key.substring(0, 12) + '...');
-
-  var systemMsg = [
-    'Tu es ' + lwaName + ', ' + lwa.r + ', un Lwa du Vodou haïtien.',
-    'Tu réponds UNIQUEMENT en français, avec une voix mystique et bienveillante.',
-    'Tu dois répondre DIRECTEMENT et SPÉCIFIQUEMENT à la question posée.',
-    'Commence par interpeller directement ("Mon enfant...", "Toi qui cherches...", etc.)',
-    'Utilise des métaphores liées à ta nature : ' + lwa.m,
-    'Écris 3 paragraphes poétiques ancrés dans la question.',
-    'Termine par une phrase courte et percutante.',
-    'Parle toujours à la première personne — tu ES ce Lwa.',
-    'Si la question est vague (une lettre, un mot sans sens), demande une vraie question avec douceur.'
-  ].join('\n');
-
-  var body = JSON.stringify({
-    model:'meta-llama/llama-3.3-70b-instruct:free',
-
-    messages: [
-      {role: 'system', content: systemMsg},
-      {role: 'user', content: q}
-    ],
-    max_tokens: 600,
-    temperature: 0.9
-  });
-
-  fetch('https://openrouter.ai/api/v1/chat/completions', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + key,
-    'HTTP-Referer': window.location.origin,
-    'X-Title': 'Oracle des Lwa Bnei Ohr'
-  },
-  body: body
-})
-
-
-    .then(function(r) {
-      return r.json().then(function(data) {
-        return {status: r.status, data: data};
-      });
-    })
-    .then(function(res) {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('ibtn').disabled = false;
-      if (res.data.error) {
-        alert('Erreur OpenRouter [' + res.status + '] : ' + JSON.stringify(res.data.error));
-        return;
-      }
-      var txt = '';
-      try { txt = res.data.choices[0].message.content; } catch(e) {}
-      if (!txt) { alert('Réponse vide. Réessayez.'); return; }
-      showResp(lwaName, lwa, q, txt);
-    })
-    .catch(function(err) {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('ibtn').disabled = false;
-      alert('Erreur réseau : ' + err.message);
-    });
+    showResp(lwaKey, lwa, q, text);
+  }, delay);
 }
 
-function showResp(name, lwa, q, txt) {
+function showResp(key, lwa, q, txt) {
   document.getElementById('rVeve').textContent = lwa.v;
-  document.getElementById('rName').textContent = name;
+  document.getElementById('rName').textContent = lwa.n;
   document.getElementById('rName').style.color = lwa.c;
   document.getElementById('rRole').textContent = lwa.r;
   document.getElementById('rHeb').textContent = lwa.h;
   document.getElementById('rCard').style.borderLeftColor = lwa.c;
   document.getElementById('rVeve').style.filter = 'drop-shadow(0 0 12px ' + lwa.c + ')';
 
-  var paras = txt.split(/\n+/).filter(function(p) { return p.trim().length > 0; });
+  var paras = txt.split(/\n\n+|\n/).filter(function(p) { return p.trim().length > 0; });
   document.getElementById('rTxt').innerHTML = paras.map(function(p) {
     return '<p>' + p.trim() + '</p>';
   }).join('');
@@ -330,7 +381,7 @@ function showResp(name, lwa, q, txt) {
     document.getElementById('resp').scrollIntoView({behavior: 'smooth', block: 'start'});
   }, 100);
 
-  history.unshift({q: q, name: name, lwa: lwa, txt: txt, date: new Date().toLocaleDateString('fr-FR')});
+  history.unshift({q: q, key: key, lwa: lwa, txt: txt, date: new Date().toLocaleDateString('fr-FR')});
   if (history.length > 5) history.pop();
   renderHist();
 }
@@ -348,14 +399,14 @@ function renderHist() {
   document.getElementById('histList').innerHTML = history.map(function(h, i) {
     return '<div class="hist-item" onclick="replayHist(' + i + ')">'
       + '<div class="hist-q">' + h.lwa.v + ' ' + h.q.substring(0, 75) + (h.q.length > 75 ? '...' : '') + '</div>'
-      + '<div class="hist-meta">' + h.name + ' — ' + h.date + '</div>'
+      + '<div class="hist-meta">' + h.lwa.n + ' — ' + h.date + '</div>'
       + '</div>';
   }).join('');
 }
 
 function replayHist(i) {
   var h = history[i];
-  showResp(h.name, h.lwa, h.q, h.txt);
+  showResp(h.key, h.lwa, h.q, h.txt);
 }
 </script>
 </body>
