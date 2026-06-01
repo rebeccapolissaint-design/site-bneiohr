@@ -1,1 +1,6 @@
-window.OPENROUTER_API_KEY = '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';
+// ✡ Bnei Ohr — Konfigirasyon
+// 1. Ale sou https://aistudio.google.com/apikey
+// 2. Konekte ak kont Google ou
+// 3. Kreye yon kle gratis epi kopye l anba a
+
+window.GEMINI_API_KEY = 'METE_KLE_GEMINI_OU_LA';

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayida Wedo — Arc-en-ciel Céleste | Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,5,0.92);border-bottom:1px solid rgba(212,175,55,0.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,0.4)}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-links{display:flex;flex-wrap:wrap;gap:1.8rem;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:#a0a0a0;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:#d4af37}
+.lwa-hero{padding:7rem 2rem 4rem;text-align:center;position:relative;z-index:1;border-bottom:1px solid rgba(212,175,55,.1)}
+.lwa-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(200,160,255,.08) 0%,transparent 65%);pointer-events:none}
+.lwa-veve{font-size:5rem;display:block;margin-bottom:1.5rem;filter:drop-shadow(0 0 20px rgba(200,160,255,.4));animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{filter:drop-shadow(0 0 15px rgba(200,160,255,.4))}50%{filter:drop-shadow(0 0 35px rgba(200,160,255,.7))}}
+.lwa-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:#c8a0ff;text-transform:uppercase;opacity:.7;margin-bottom:.6rem}
+.lwa-name{font-family:'Cinzel',serif;font-size:clamp(2rem,6vw,3.2rem);letter-spacing:.2em;color:#c8a0ff;text-transform:uppercase;text-shadow:0 0 30px rgba(200,160,255,.4);margin-bottom:.4rem}
+.lwa-subtitle{font-style:italic;font-size:clamp(1rem,2.5vw,1.3rem);color:rgba(255,255,255,.55);margin-bottom:2rem}
+.lwa-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:2rem}
+.lwa-tag{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;padding:.35rem .8rem;border:1px solid rgba(200,160,255,.3);color:#c8a0ff;background:rgba(255,255,255,.03)}
+.lwa-divider{width:80px;height:1px;background:linear-gradient(to right,transparent,#c8a0ff,transparent);margin:0 auto}
+.lwa-body{max-width:820px;margin:0 auto;padding:4rem 2rem 6rem;position:relative;z-index:1}
+.lwa-section{margin-bottom:3.5rem}
+.lwa-section-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.4em;color:#c8a0ff;text-transform:uppercase;opacity:.8;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid rgba(212,175,55,.1)}
+.lwa-section p{font-size:1.05rem;line-height:1.95;color:rgba(232,228,220,.8);margin-bottom:1rem}
+.lwa-section p:last-child{margin-bottom:0}
+.attr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1rem}
+.attr-card{background:rgba(255,255,255,.025);border:1px solid rgba(212,175,55,.12);padding:1.2rem 1.4rem}
+.attr-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;color:#c8a0ff;text-transform:uppercase;opacity:.6;margin-bottom:.4rem;display:block}
+.attr-value{font-size:1rem;color:rgba(232,228,220,.85);line-height:1.5}
+.offrand-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.offrand-item{font-size:.9rem;color:rgba(232,228,220,.75);background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.1);padding:.3rem .7rem}
+.priere-box{background:linear-gradient(135deg,rgba(212,175,55,.04),rgba(212,175,55,.01));border:1px solid rgba(212,175,55,.2);border-left:3px solid #c8a0ff;padding:2rem;margin-top:1rem;position:relative}
+.priere-box::before{content:'"';position:absolute;top:.5rem;left:1rem;font-size:4rem;color:#c8a0ff;opacity:.15;font-family:Georgia,serif;line-height:1}
+.priere-text{font-style:italic;font-size:1.05rem;line-height:2.1;color:rgba(232,228,220,.85)}
+.kabal-box{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.15);padding:1.5rem 1.8rem;margin-top:1rem}
+.kabal-box p{font-size:1rem;line-height:1.9;color:rgba(232,228,220,.75)}
+.kabal-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:#c8a0ff;display:block;text-align:center;margin-bottom:.6rem;opacity:.7}
+.lwa-nav{display:flex;justify-content:space-between;align-items:center;padding:2rem;border-top:1px solid rgba(212,175,55,.1);margin-top:2rem}
+.lwa-nav a{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.lwa-nav a:hover{color:#d4af37}
+.lwa-nav-center{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase}
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.22);overflow:hidden}
+.rj-label{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,.18)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 28s linear infinite}
+@keyframes rj-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+.rj-sep{color:rgba(212,175,55,.2);font-size:.7rem;flex-shrink:0}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
+    <span class="nav-logo-text">Bnei Ohr</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="vodou.html" class="active">Héritage</a></li>
+    <li><a href="calendrier.html">Calendrier</a></li>
+    <li><a href="bibliyotek.html">Bibliothèque</a></li>
+  </ul>
+</nav>
+
+<div class="lwa-hero">
+  <span class="lwa-veve">🌈</span>
+  <div class="lwa-eyebrow">Lwa du Vodou Haïtien</div>
+  <h1 class="lwa-name">Ayida Wedo</h1>
+  <p class="lwa-subtitle">Serpent Arc-en-ciel · Épouse de Danbala · Pilier du Ciel et de la Terre</p>
+  <div class="lwa-tags">
+    <span class="lwa-tag">Arc-en-ciel</span><span class="lwa-tag">Création</span><span class="lwa-tag">Équilibre</span><span class="lwa-tag">Fertilité</span><span class="lwa-tag">Ciel</span><span class="lwa-tag">Lumière</span>
+  </div>
+  <div class="lwa-divider"></div>
+</div>
+
+<div class="lwa-body">
+
+  <div class="lwa-section">
+    <div class="lwa-section-title">⚜ Attributs Sacrés</div>
+    <div class="attr-grid">
+      <div class="attr-card"><span class="attr-label">Jour sacré</span><div class="attr-value">Lundi</div></div>
+      <div class="attr-card"><span class="attr-label">Couleurs</span><div class="attr-value">Blanc · Arc-en-ciel · Argent</div></div>
+      <div class="attr-card"><span class="attr-label">Nation</span><div class="attr-value">Rada</div></div>
+      <div class="attr-card"><span class="attr-label">Syncrétisme</span><div class="attr-value">Notre-Dame de l'Immaculée Conception</div></div>
+    </div>
+  </div>
+
+  <div class="lwa-section">
+    <div class="lwa-section-title">📜 Histoire & Origine</div>
+    <p>Ayida Wedo est le serpent arc-en-ciel, épouse éternelle de Danbala Wedo. Ensemble, ils forment l'un des couples les plus sacrés du Vodou haïtien — deux serpents enlacés qui soutiennent la voûte céleste et maintiennent l'équilibre cosmique. Là où Danbala est le serpent blanc de la terre et de la sagesse ancienne, Ayida est le serpent lumineux du ciel, coloré de toutes les fréquences de la lumière.</p>
+    <p>Elle est présente dès la création du monde — son corps arc-en-ciel forme le pont entre le ciel et la terre, entre le visible et l'invisible. Son apparition après la pluie est un signe de sa présence bienveillante, rappelant aux humains que même après les tempêtes, la beauté et l'ordre reviennent.</p>
+    <p>Dans la cosmologie vodou, Ayida et Danbala représentent la polarité primordiale — masculin et féminin, ciel et terre, lune et soleil — maintenue en harmonie depuis le commencement des temps. Leur union est le modèle de toute union sacrée.</p>
+  </div>
+
+  <div class="lwa-section">
+    <div class="lwa-section-title">🔥 Pouvoirs & Domaines</div>
+    <p>Ayida Wedo gouverne la fertilité, la création et l'équilibre cosmique. Elle bénit les unions — mariages, associations, partenariats — et apporte l'harmonie là où règne la discorde. Elle est invoquée pour la fertilité physique et spirituelle, pour les nouvelles entreprises et pour restaurer l'équilibre brisé.</p>
+    <p>Sa lumière arc-en-ciel révèle que la réalité est multidimensionnelle — ce qui paraît blanc contient en réalité toutes les couleurs. Elle enseigne la vision intégrale : voir non pas en noir et blanc, mais dans toute la richesse du spectre de la vie.</p>
+  </div>
+
+  <div class="lwa-section">
+    <div class="lwa-section-title">🕯 Offrandes & Rituels</div>
+    <p>Les offrandes à Ayida Wedo sont blanches et pures, comme celles de Danbala :</p>
+    <div class="offrand-list">
+      <span class="offrand-item">Œufs blancs</span><span class="offrand-item">Riz blanc</span><span class="offrand-item">Lait</span><span class="offrand-item">Noix de coco</span><span class="offrand-item">Bougies blanches</span><span class="offrand-item">Farine de maïs blanche</span><span class="offrand-item">Sirop de canne</span><span class="offrand-item">Fleurs blanches</span>
+    </div>
+  </div>
+
+  <div class="lwa-section">
+    <div class="lwa-section-title">🙏 Prière d'Invocation</div>
+    <div class="priere-box">
+      <div class="priere-text">Ayida Wedo, Serpent de Lumière,<br>
+Toi dont le corps peint le ciel après la tempête,<br>
+Toi qui tiens ensemble ce que le monde voudrait séparer,<br>
+Apporte ton arc-en-ciel dans ma vie.<br>
+Que l'équilibre revienne là où règne le chaos,<br>
+Que la beauté succède à la douleur,<br>
+Que mon union avec ce qui est sacré<br>
+Soit aussi durable que ton alliance avec Danbala.<br>
+<em>Ayida — Wedo — Manman Arc-en-ciel — je t'honore.</em></div>
+    </div>
+  </div>
+
+  <div class="lwa-section">
+    <div class="lwa-section-title">✡ Correspondance Kabbalistique</div>
+    <div class="kabal-box">
+      <span class="kabal-hebrew">תִּפְאֶרֶת</span>
+      <p>Ayida Wedo correspond à la Sefirah Tiferet — la Beauté et l'Harmonie — au centre de l'Arbre de Vie. Tiferet est le point d'équilibre parfait entre toutes les forces opposées : entre la rigueur de Guevourah et la grâce de Chesed, entre la hauteur de Keter et la profondeur de Malkhout. Tout comme Ayida unit dans son corps arc-en-ciel toutes les couleurs de la lumière, Tiferet réconcilie toutes les polarités en une beauté intégrée. Ses deux lettres hébr les plus associées sont Vav (ו) — le pilier d'union — et Aleph (א) — l'équilibre primordial.</p>
+    </div>
+  </div>
+
+  <div class="lwa-nav">
+    <a href="lwa-kouzen-zaka.html">← Kouzen Zaka</a>
+    <span class="lwa-nav-center">Les Lwa</span>
+    <a href="lwa.html">Panthéon →</a>
+  </div>
+
+</div>
+
+<div class="rj-bar">
+  <div class="rj-label">✡ Réflexion du Jour</div>
+  <div class="rj-track">
+    <div class="rj-inner" id="rjInner"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var s=document.getElementById('stars');
+  for(var i=0;i<60;i++){
+    var el=document.createElement('div');
+    el.className='star';
+    var size=Math.random()*1.5+.5;
+    el.style.cssText='width:'+size+'px;height:'+size+'px;top:'+Math.random()*100+'%;left:'+Math.random()*100+'%;--d:'+(Math.random()*4+2)+'s;--o:'+(Math.random()*.4+.1)+';';
+    s.appendChild(el);
+  }
+})();
+(function(){
+  var quotes=[
+    "Il n'y a rien d'autre que Lui. Derrière chaque apparence — une seule Lumière.",
+    "Ayida nous enseigne que la lumière blanche contient toutes les couleurs — l'unité n'efface pas la diversité.",
+    "Après chaque tempête, l'arc-en-ciel rappelle que la beauté n'a jamais disparu.",
+    "L'équilibre n'est pas l'absence de tension — c'est la danse harmonieuse entre les forces opposées.",
+    "Ton âme a choisi ce moment, cette vie — pour accomplir quelque chose que seule elle peut réaliser."
+  ];
+  var t=new Date();
+  var q=quotes[(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%quotes.length];
+  var sep='<span class="rj-sep" style="margin:0 2rem">✦</span>';
+  var el=document.getElementById('rjInner');
+  if(el){el.innerHTML='<span class="rj-text">'+q+'</span>'+sep+'<span class="rj-text">'+q+'</span>'+sep;}
+})();
+</script>
+</body>
+</html>
