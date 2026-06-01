@@ -275,15 +275,16 @@ function invoke() {
   });
 
   fetch('https://openrouter.ai/api/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + key,
-      'HTTP-Referer': window.location.origin,
-      'X-Title': 'Oracle des Lwa — Bnei Ohr'
-    },
-    body: body
-  })
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + key,
+    'HTTP-Referer': window.location.origin,
+    'X-Title': 'Oracle des Lwa Bnei Ohr'
+  },
+  body: body
+})
+
     .then(function(r) {
       return r.json().then(function(data) {
         return {status: r.status, data: data};
