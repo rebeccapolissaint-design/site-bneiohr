@@ -305,7 +305,6 @@ function renderQuestions(lwaKey) {
   var ibtn = document.getElementById('ibtn');
 
   hint.textContent = 'Choisissez la question qui vous concerne';
-  pickedQIdx = null;
   ibtn.disabled = true;
 
   grid.innerHTML = questions.map(function(item, i) {
@@ -334,9 +333,7 @@ function invoke() {
 
   setTimeout(function() {
     document.getElementById('loading').style.display = 'none';
-    if (pickedQIdx !== null) {
-      document.getElementById('ibtn').disabled = false;
-    }
+    document.getElementById('ibtn').disabled = false;
     showResp(pickedLwa, lwa, item.q, item.r);
   }, 1500 + Math.random() * 800);
 }
