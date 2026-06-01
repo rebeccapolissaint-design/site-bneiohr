@@ -78,6 +78,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.8rem 2rem;backgroun
 .upcoming-badge{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.15em;padding:.2rem .4rem;border-radius:2px;text-transform:uppercase;margin-left:auto;flex-shrink:0}
 </style>
 
+/* ── TRAVAY MWA A ─────────────────────────────────────────── */
+.mwa-section{max-width:760px;margin:0 auto;padding:0 1rem 2rem}
+.mwa-header{text-align:center;margin-bottom:1.5rem}
+.mwa-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.mwa-title{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.18em;color:#d4af37;text-transform:uppercase}
+.mwa-sub{font-size:.9rem;color:rgba(212,175,55,.4);font-style:italic;display:block;margin-top:.3rem}
+.mwa-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem}
+@media(max-width:480px){.mwa-grid{grid-template-columns:1fr}}
+.mwa-card{background:rgba(212,175,55,.025);border:1px solid rgba(212,175,55,.1);padding:1.2rem 1.4rem;position:relative;overflow:hidden}
+.mwa-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--mc)}
+.mwa-card-label{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.28em;color:var(--mc);text-transform:uppercase;opacity:.7;margin-bottom:.4rem;display:block}
+.mwa-card-icon{font-size:1.8rem;display:block;margin-bottom:.5rem;line-height:1}
+.mwa-card-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#e0d5b8;margin-bottom:.4rem}
+.mwa-card-text{font-size:.88rem;color:rgba(180,168,140,.75);line-height:1.65;font-style:italic}
+.mwa-card-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:var(--mc);opacity:.5;position:absolute;bottom:.6rem;right:.8rem}
+.mwa-practice{background:rgba(212,175,55,.02);border:1px solid rgba(212,175,55,.08);border-left:3px solid #d4af37;padding:1.2rem 1.4rem;margin-top:.8rem}
+.mwa-practice-label{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.28em;color:#d4af37;text-transform:uppercase;opacity:.6;margin-bottom:.6rem;display:block}
+.mwa-practice-text{font-size:.92rem;color:rgba(200,190,165,.8);line-height:1.75}
+.mwa-practice-steps{list-style:none;margin-top:.7rem;display:flex;flex-direction:column;gap:.4rem}
+.mwa-practice-steps li{font-size:.88rem;color:rgba(180,168,140,.7);padding-left:1.2rem;position:relative;line-height:1.6}
+.mwa-practice-steps li::before{content:'✦';position:absolute;left:0;color:rgba(212,175,55,.35);font-size:.5rem;top:.25rem}
+.mwa-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.3),transparent);margin:1.5rem auto}
+
 <style id="rj-mobile-real-fix">
 .rj-quote{
 white-space:normal!important;
@@ -137,6 +160,19 @@ min-height:60px!important;
 
 <div class="event-panel" id="eventPanel">
   <div class="no-event">Sélectionnez un jour pour voir les événements</div>
+</div>
+
+
+<!-- ── TRAVAY ESPIRITYÈL MWA A ───────────────────────────────── -->
+<div class="mwa-section" id="mwaSection">
+  <div class="mwa-header">
+    <span class="mwa-eyebrow">✡ Bnei Ohr ✡</span>
+    <div class="mwa-title" id="mwaTitle">Travay Espirityèl Mwa a</div>
+    <span class="mwa-sub" id="mwaSub"></span>
+  </div>
+  <div class="mwa-grid" id="mwaGrid"></div>
+  <div class="mwa-practice" id="mwaPractice"></div>
+  <div class="mwa-divider"></div>
 </div>
 
 <div class="upcoming-section">
@@ -410,15 +446,149 @@ function renderUpcoming() {
 }
 
 document.getElementById('prevMonth').addEventListener('click', function(){
-  curMonth--; if(curMonth<0){curMonth=11;curYear--;} selectedDay=null; renderCalendar();
+  curMonth--; if(curMonth<0){curMonth=11;curYear--;} selectedDay=null; renderMwa(); renderCalendar();
   document.getElementById('eventPanel').innerHTML='<div class="no-event">Sélectionnez un jour pour voir les événements</div>';
 });
 document.getElementById('nextMonth').addEventListener('click', function(){
-  curMonth++; if(curMonth>11){curMonth=0;curYear++;} selectedDay=null; renderCalendar();
+  curMonth++; if(curMonth>11){curMonth=0;curYear++;} selectedDay=null; renderMwa(); renderCalendar();
   document.getElementById('eventPanel').innerHTML='<div class="no-event">Sélectionnez un jour pour voir les événements</div>';
 });
 
+
+// ── TRAVAY MWA A ──────────────────────────────────────────────
+
+var MONTHLY = [
+  // 0 = Janvye
+  { sefirah:'Keter', sefirahHe:'כֶּתֶר', sefirahColor:'#f0e8d0',
+    sefirahDesc:'Mwa Janvye ouvri nan fréquence Keter — la Couronne, la pure volonté divine. C\'est le mois des commencements absolus. Chaque intention plantée maintenant porte la puissance de l\'origine.',
+    lwa:'Papa Legba', lwaEmoji:'🗝', lwaColor:'#d4a843',
+    lwaDesc:'Legba ouvre les chemins au seuil de l\'année. Il gouverne les carrefours, les débuts et les paroles. Honore-le pour que chaque porte de l\'année nouvelle s\'ouvre à ta faveur.',
+    travay:'Fixer ses intentions annuelles. Écrire ses 3 engagements spirituels. Nettoyer son espace sacré.',
+    meditation:'Chaque matin, prononcer à voix haute : "Ein Sof m\'ouvre le chemin." Visualiser une porte de lumière blanche qui s\'ouvre devant toi.',
+    steps:['Allume une bougie blanche le 1er janvier','Écris tes 3 intentions sur papier blanc','Place-les sous ta lampe ou ton autel','Relis-les chaque lundi du mois'] },
+  // 1 = Fevriye
+  { sefirah:'Chokhmah', sefirahHe:'חָכְמָה', sefirahColor:'#d4e8f0',
+    sefirahDesc:'Fevriye vibre avec Chokhmah — la Sagesse, le premier éclair de conscience divine. C\'est le mois de l\'intuition pure et de la vision prophétique. Fais confiance à ce que tu sais sans savoir comment tu le sais.',
+    lwa:'Danbala Wedo', lwaEmoji:'🐍', lwaColor:'#e8f0e8',
+    lwaDesc:'Danbala — le Grand Serpent Blanc — incarne la sagesse ancestrale et la pureté primordiale. Il parle sans mots. En Fevriye, médite dans le silence pour entendre ce qu\'il enseigne.',
+    travay:'Pratiquer l\'écoute intérieure. Tenir un journal de rêves. Jeûner un jour par semaine si possible.',
+    meditation:'S\'asseoir en silence total pendant 15 minutes chaque jour. Ne pas chercher — juste observer ce qui émerge. La sagesse parle dans le vide.',
+    steps:['Prépare un bol d\'eau blanche sur ton autel','Médite en regardant l\'eau 10 min chaque soir','Note tes intuitions au réveil','Offre un œuf blanc à Danbala le dimanche'] },
+  // 2 = Mas
+  { sefirah:'Binah', sefirahHe:'בִּינָה', sefirahColor:'#8080c8',
+    sefirahDesc:'Mas est le mois de Binah — la Grande Compréhension, la mère cosmique. C\'est le temps de comprendre les leçons du passé et de les intégrer. La graine semée en janvier commence à germer dans la profondeur.',
+    lwa:'Ezili Freda', lwaEmoji:'💛', lwaColor:'#f0d840',
+    lwaDesc:'Ezili Freda gouverne la compréhension du cœur — comprendre avec amour, non seulement avec l\'intellect. Elle enseigne que la vraie compréhension passe par le ressenti.',
+    travay:'Faire le bilan des 2 premiers mois. Identifier les blocages répétitifs. Écrire une lettre de pardon à soi-même.',
+    meditation:'Méditer sur la question : "Quelle leçon cette situation cherche-t-elle à m\'enseigner ?" Sans jugement — juste observation bienveillante.',
+    steps:['Allume une bougie violet ou indigo','Lis une page du Zohar ou d\'un texte sacré','Écris ce que tu as compris cette semaine','Remercie les épreuves — elles sont des enseignantes'] },
+  // 3 = Avril
+  { sefirah:'Chesed', sefirahHe:'חֶסֶד', sefirahColor:'#4a88e0',
+    sefirahDesc:'Avril vibre avec Chesed — la Grâce et la Générosité divine. C\'est le mois où la vie explose de nouveau après l\'hiver. L\'élan de création est puissant. Donne sans compter — ce que tu donnes librement multiplie.',
+    lwa:'Agwe Tawoyo', lwaEmoji:'⚓', lwaColor:'#4a9eff',
+    lwaDesc:'Agwe, maître des océans, enseigne la générosité infinie de la mer. L\'océan ne refuse l\'eau à personne. En Avril, laisse couler ta générosité comme les eaux profondes.',
+    travay:'Faire un acte de générosité sans attente de retour. Aider quelqu\'un dans le besoin. Offrir son temps.',
+    meditation:'Visualiser un océan de lumière bleue qui sort de ta poitrine et inonde le monde autour de toi. Tu es une source — pas un réservoir.',
+    steps:['Chaque jour, fais une action de bonté anonyme','Bois un verre d\'eau en pensant à Chesed','Prie pour quelqu\'un qui t\'a blessé','Offre une libation d\'eau fraîche à Agwe le jeudi'] },
+  // 4 = Me
+  { sefirah:'Gevurah', sefirahHe:'גְבוּרָה', sefirahColor:'#e04040',
+    sefirahDesc:'Me est gouverné par Gevurah — la Force, la Discipline et la Rigueur sacrée. C\'est le temps de couper ce qui ne sert plus, de renforcer ses limites, et de discipliner sa pratique spirituelle.',
+    lwa:'Ogou Feray', lwaEmoji:'⚔', lwaColor:'#e04040',
+    lwaDesc:'Ogou — le guerrier de la justice — résonne parfaitement avec Gevurah. En Me, invoque sa force pour couper les liens qui t\'enchaînent et combattre avec intégrité.',
+    travay:'Identifier une habitude négative à éliminer. Établir une routine spirituelle stricte. Dire non à ce qui dévie du chemin.',
+    meditation:'Visualiser une épée de lumière rouge qui coupe les liens invisibles qui te retiennent. Tu n\'es pas obligé de porter ce que tu n\'as pas choisi.',
+    steps:['Établis ton horaire de pratique et tiens-le','Jeûne un repas pour renforcer ta volonté','Écris ce que tu dois éliminer de ta vie','Allume une bougie rouge pour Ogou le mercredi'] },
+  // 5 = Jen
+  { sefirah:'Tiferet', sefirahHe:'תִּפְאֶרֶת', sefirahColor:'#d4af37',
+    sefirahDesc:'Jen — le mois du solstice — vibre avec Tiferet, le cœur de l\'Arbre de Vie. Beauté, Harmonie, Équilibre. C\'est le temps de l\'intégration — unir toutes les parties de soi en une beauté vivante.',
+    lwa:'Ayida Wedo', lwaEmoji:'🌈', lwaColor:'#c8a0ff',
+    lwaDesc:'Ayida Wedo — le serpent arc-en-ciel — est la parfaite expression de Tiferet : toutes les couleurs unifiées en lumière. Elle enseigne que la beauté véritable est l\'harmonie des contraires.',
+    travay:'Travailler l\'équilibre corps-âme-esprit. Pratiquer la beauté consciente : cuisine, art, nature.',
+    meditation:'Méditer au lever du soleil. Observer comment la lumière contient toutes les couleurs — comme toi tu contiens tous tes aspects. Tu es un arc-en-ciel vivant.',
+    steps:['Médite 10 min face au soleil levant','Crée quelque chose de beau ce mois (art, jardin, cuisine)','Réconcilie une relation en tension','Honore Ayida avec des fleurs blanches le lundi'] },
+  // 6 = Jiyè
+  { sefirah:'Netzach', sefirahHe:'נֶצַח', sefirahColor:'#40c880',
+    sefirahDesc:'Jiyè vibre avec Netzach — la Victoire, l\'Éternité, le désir et la créativité. C\'est le mois des arts, de l\'amour et de la nature dans sa plénitude. Laisse couler le flux créateur.',
+    lwa:'Lasirèn', lwaEmoji:'🧜', lwaColor:'#4ac8dc',
+    lwaDesc:'Lasirèn gouverne la beauté, la voix et la créativité marine. En Jiyè, elle appelle les artistes et les créateurs à plonger dans leurs profondeurs pour en ramener quelque chose de vrai.',
+    travay:'Créer : écrire, peindre, chanter, danser. Reconnecter avec la nature. Suivre un désir longtemps ignoré.',
+    meditation:'Ferme les yeux et imagine que tu plonges dans une mer de lumière turquoise. Au fond, tu trouves le don que Lasirèn t\'a gardé. Remonte avec lui.',
+    steps:['Consacre du temps chaque semaine à une création','Va à la mer ou à une rivière si possible','Chante — même seul, même faux','Offre un miroir ou un peigne à Lasirèn le jeudi'] },
+  // 7 = Out
+  { sefirah:'Hod', sefirahHe:'הוֹד', sefirahColor:'#e06060',
+    sefirahDesc:'Out est le mois de Hod — la Splendeur et la Gratitude. C\'est le temps de reconnaître et d\'honorer tout ce qui a été reçu. La gratitude authentique ouvre les portes de la prochaine abondance.',
+    lwa:'Kouzen Zaka', lwaEmoji:'🌾', lwaColor:'#78b43c',
+    lwaDesc:'Kouzen Zaka — gardien des récoltes — est le Lwa parfait pour Out. C\'est le mois de la moisson. Reconnais ce que tu as semé et récolté. Honore le travail accompli.',
+    travay:'Faire l\'inventaire de ses accomplissements de l\'année. Tenir un journal de gratitude quotidien. Honorer ses ancêtres.',
+    meditation:'Chaque soir avant de dormir, lister 5 choses pour lesquelles tu es reconnaissant — même petites, même simples. La gratitude est une prière permanente.',
+    steps:['Tiens un carnet de gratitude quotidien','Remercie quelqu\'un qui t\'a aidé cette année','Offre à Zaka des fruits de saison le vendredi','Médite sur ce que tu as récolté depuis janvier'] },
+  // 8 = Septanm
+  { sefirah:'Yesod', sefirahHe:'יְסוֹד', sefirahColor:'#9060e0',
+    sefirahDesc:'Septanm vibre avec Yesod — la Fondation, le canal, le lien entre le ciel et la terre. C\'est le temps de consolider ses bases spirituelles et d\'aligner ses actions sur ses valeurs profondes.',
+    lwa:'Danbala & Ayida', lwaEmoji:'🐍', lwaColor:'#c8e8c8',
+    lwaDesc:'Danbala et Ayida ensemble symbolisent l\'alliance parfaite — la fondation du cosmos. En Septanm, travaille sur tes alliances sacrées : avec Dieu, avec toi-même, avec ta communauté.',
+    travay:'Renouveler ses engagements spirituels. Consolider sa pratique quotidienne. Renforcer ses liens communautaires.',
+    meditation:'Méditer sur la question : "Sur quoi est fondée ma vie spirituelle ?" Visualiser des racines profondes qui descendent dans la terre depuis ta colonne vertébrale.',
+    steps:['Relis tes intentions de janvier — où en es-tu ?','Établis une pratique quotidienne solide','Participe à une activité communautaire','Allume une bougie violette pour Yesod chaque lundi matin'] },
+  // 9 = Oktòb
+  { sefirah:'Malkhout', sefirahHe:'מַלְכוּת', sefirahColor:'#804080',
+    sefirahDesc:'Oktòb est gouverné par Malkhout — le Royaume, la Terre, la Présence divine dans la matière. C\'est le mois où voile entre les mondes est le plus mince. Les ancêtres sont proches.',
+    lwa:'Baron Samdi & Bawon', lwaEmoji:'💀', lwaColor:'#b060b0',
+    lwaDesc:'Baron Samdi règne en Oktòb — le mois des morts et des passages. Il gouverne la frontière entre la vie et la mort, enseignant que la mort n\'est pas une fin mais une transformation.',
+    travay:'Honorer ses ancêtres. Visiter les cimetières. Méditer sur la mort comme transformation, non comme fin.',
+    meditation:'Médite sur cette question : "Si je mourais dans un an, qu\'est-ce qui compte vraiment ?" Laisse la réponse orienter tes priorités.',
+    steps:['Dresse un autel ancestral avec photos et bougies','Prépare les plats préférés de tes défunts','Récite le Psaume 23 pour les âmes disparues','Honore Baron Samdi le 1er novembre'] },
+  // 10 = Novanm
+  { sefirah:'Da\'at', sefirahHe:'דַּעַת', sefirahColor:'#80c0c0',
+    sefirahDesc:'Novanm résonne avec Da\'at — la Connaissance d\'Union, le point caché de l\'Arbre de Vie. C\'est le temps de l\'intégration profonde : unir ce qu\'on sait à ce qu\'on est.',
+    lwa:'Loko Atisou', lwaEmoji:'🌳', lwaColor:'#80c060',
+    lwaDesc:'Loko — gardien des arbres et de la médecine — est le maître de la connaissance transmise. Comme un grand arbre dont les racines rejoignent toutes les eaux, Loko unit ce qui est séparé.',
+    travay:'Étudier un texte sacré en profondeur. Consulter un aîné ou un maître. Transmettre ce qu\'on a appris cette année.',
+    meditation:'Imagine que tu es un grand arbre — tes racines atteignent le centre de la terre, tes branches touchent le ciel. Tu es le pont vivant entre le haut et le bas.',
+    steps:['Lis un texte sacré — Zohar, Torah, Psaumes','Partage une connaissance avec quelqu\'un','Honore un aîné ou un maître dans ta vie','Médite sous un arbre si possible — touche son écorce'] },
+  // 11 = Desanm
+  { sefirah:'Ein Sof', sefirahHe:'אֵין סוֹף', sefirahColor:'#f0f0f0',
+    sefirahDesc:'Desanm est le mois du retour à Ein Sof — l\'Infini Sans Fin. L\'année se referme sur son origine. Après avoir traversé toutes les Sefirot, on retourne au Source. C\'est le temps du silence, de la paix et de la préparation au prochain cycle.',
+    lwa:'Papa Legba & Marasa', lwaEmoji:'👑', lwaColor:'#d4af37',
+    lwaDesc:'En Desanm, Papa Legba et les Marasa (les Jumeaux Sacrés) gouvernent conjointement — Legba pour fermer l\'ancienne année et les Marasa pour annoncent la dualité sacrée du renouveau.',
+    travay:'Faire le bilan complet de l\'année. Gratitude pour les leçons reçues. Préparer l\'espace pour la nouvelle année.',
+    meditation:'Méditer dans le silence total — pas de question, pas de désir. Juste être dans la Lumière. Tu n\'as rien à faire — tu es déjà ce que tu cherches.',
+    steps:['Écris les leçons de l\'année en 1 page','Brûle ce que tu veux laisser derrière (papier)','Remercie chaque Lwa et chaque Sefirah de l\'année','Accueille le solstice d\'hiver dans le silence et la lumière'] }
+];
+
+function renderMwa() {
+  var m = curMonth;
+  var data = MONTHLY[m];
+  var MONTHS_KREYO = ['Janvye','Fevriye','Mas','Avril','Me','Jen','Jiyè','Out','Septanm','Oktòb','Novanm','Desanm'];
+
+  document.getElementById('mwaSub').textContent = MONTHS_KREYO[m] + ' ' + curYear;
+
+  var grid = document.getElementById('mwaGrid');
+  grid.innerHTML =
+    '<div class="mwa-card" style="--mc:'+data.sefirahColor+'">' +
+      '<span class="mwa-card-label">✡ Sefirah Mwa a</span>' +
+      '<span class="mwa-card-icon">🌟</span>' +
+      '<div class="mwa-card-title">'+data.sefirah+'</div>' +
+      '<p class="mwa-card-text">'+data.sefirahDesc+'</p>' +
+      '<span class="mwa-card-hebrew">'+data.sefirahHe+'</span>' +
+    '</div>' +
+    '<div class="mwa-card" style="--mc:'+data.lwaColor+'">' +
+      '<span class="mwa-card-label">🌿 Lwa Mwa a</span>' +
+      '<span class="mwa-card-icon">'+data.lwaEmoji+'</span>' +
+      '<div class="mwa-card-title">'+data.lwa+'</div>' +
+      '<p class="mwa-card-text">'+data.lwaDesc+'</p>' +
+    '</div>';
+
+  var steps = data.steps.map(function(s){return '<li>'+s+'</li>';}).join('');
+  document.getElementById('mwaPractice').innerHTML =
+    '<span class="mwa-practice-label">🕯 Travay & Meditasyon Mwa a</span>' +
+    '<p class="mwa-practice-text"><strong>Travay :</strong> '+data.travay+'</p>' +
+    '<p class="mwa-practice-text" style="margin-top:.6rem"><strong>Meditasyon :</strong> '+data.meditation+'</p>' +
+    '<ul class="mwa-practice-steps">'+steps+'</ul>';
+}
+
 // Init — select today
+renderMwa();
 renderCalendar();
 selectDay(today.getFullYear(), today.getMonth(), today.getDate());
 </script>
