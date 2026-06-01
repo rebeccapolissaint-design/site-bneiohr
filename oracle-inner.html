@@ -28,31 +28,49 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .hero-sub{font-style:italic;font-size:1rem;color:rgba(232,224,208,0.4);max-width:480px;margin:0 auto 1.5rem;line-height:1.9}
 .hero-rule{width:70px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto}
 .wrap{max-width:700px;margin:0 auto;padding:3rem 1.5rem 7rem;position:relative;z-index:1}
-.lbl{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(212,175,55,0.5);text-transform:uppercase;display:block;text-align:center;margin-bottom:1rem}
+
+/* STEP 1 — CHOISIR LWA */
+.step-lbl{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(212,175,55,0.5);text-transform:uppercase;display:block;text-align:center;margin-bottom:1rem}
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;margin-bottom:2rem}
 .chip{border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(232,224,208,0.45);font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;padding:.42rem .85rem;cursor:pointer;transition:all .3s}
 .chip.on{color:var(--cc);border-color:var(--cc);background:rgba(255,255,255,0.035)}
 .chip.auto-chip{border-style:dashed;color:rgba(212,175,55,0.5);border-color:rgba(212,175,55,0.2)}
 .chip.auto-chip.on{border-style:solid;color:#d4af37;border-color:#d4af37}
-.divr{width:100%;display:flex;align-items:center;gap:1rem;margin:2rem 0}
+.divr{width:100%;display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
 .divr::before,.divr::after{content:'';flex:1;height:1px;background:rgba(212,175,55,0.1)}
 .divr span{font-size:.65rem;color:rgba(212,175,55,0.25)}
-.qarea{width:100%;background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.18);color:#e8e0d0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.08rem;line-height:1.85;padding:1.1rem 1.4rem;resize:vertical;min-height:100px;outline:none;transition:border-color .3s;caret-color:#d4af37}
-.qarea:focus{border-color:rgba(212,175,55,0.4)}
-.qarea::placeholder{color:rgba(255,255,255,0.18);font-style:italic}
-.ibtn{width:100%;margin-top:1.2rem;padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:.7rem;background:linear-gradient(135deg,rgba(155,127,212,0.1),rgba(212,175,55,0.07));border:1px solid rgba(155,127,212,0.3);color:#c4b0e8;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s}
+
+/* STEP 2 — CHOISIR QUESTION */
+.q-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.q-btn{background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.12);color:rgba(232,224,208,0.65);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;line-height:1.6;padding:.9rem 1.2rem;cursor:pointer;text-align:left;transition:all .3s;position:relative}
+.q-btn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--qc,#d4af37);opacity:0;transition:opacity .3s}
+.q-btn:hover{background:rgba(255,255,255,0.04);border-color:rgba(212,175,55,0.28);color:rgba(232,224,208,0.9)}
+.q-btn:hover::before{opacity:1}
+.q-btn.selected{background:rgba(212,175,55,0.05);border-color:rgba(212,175,55,0.35);color:#e8e0d0}
+.q-btn.selected::before{opacity:1}
+.q-hint{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.2em;color:rgba(212,175,55,0.3);text-transform:uppercase;text-align:center;margin-bottom:1rem;display:block}
+.no-lwa-msg{font-style:italic;font-size:.95rem;color:rgba(232,224,208,0.3);text-align:center;padding:1.5rem;border:1px dashed rgba(212,175,55,0.1)}
+
+/* BOUTON INVOQUER */
+.ibtn{width:100%;margin-top:1rem;padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:.7rem;background:linear-gradient(135deg,rgba(155,127,212,0.1),rgba(212,175,55,0.07));border:1px solid rgba(155,127,212,0.3);color:#c4b0e8;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s}
 .ibtn:hover{border-color:rgba(155,127,212,0.55);box-shadow:0 0 24px rgba(155,127,212,0.1)}
+.ibtn:disabled{opacity:.35;cursor:not-allowed}
+
+/* LOADING */
 .loading{display:none;text-align:center;padding:3rem 1rem}
 .load-sym{font-size:2.2rem;display:block;animation:spin 2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .load-txt{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,0.45);text-transform:uppercase;margin-top:.9rem;animation:fp 1.5s ease-in-out infinite}
 @keyframes fp{0%,100%{opacity:.25}50%{opacity:.8}}
+
+/* RÉPONSE */
 .resp{display:none;margin-top:2rem;animation:ri .7s ease both}
 @keyframes ri{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .resp-top{display:flex;align-items:center;gap:1rem;padding-bottom:1rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(212,175,55,0.1)}
 .resp-veve{font-size:2rem}
 .resp-name{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase}
 .resp-role{font-style:italic;font-size:.85rem;color:rgba(232,224,208,0.4);margin-top:.2rem}
+.resp-q{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.15em;color:rgba(212,175,55,0.4);text-transform:uppercase;margin-bottom:1rem}
 .resp-card{background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.1);border-left:3px solid #d4af37;padding:1.8rem 1.8rem 1.8rem 2rem;position:relative}
 .resp-card::before{content:'\201C';position:absolute;top:.4rem;left:.8rem;font-size:3.5rem;color:#d4af37;opacity:.1;font-family:Georgia,serif;line-height:1;pointer-events:none}
 .resp-txt p{font-size:1.06rem;line-height:2;color:rgba(232,224,208,0.85);margin-bottom:1rem}
@@ -61,12 +79,16 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .resp-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:rgba(212,175,55,0.35)}
 .resp-new{background:transparent;border:1px solid rgba(212,175,55,0.18);color:rgba(212,175,55,0.5);font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem 1.1rem;cursor:pointer;transition:all .3s}
 .resp-new:hover{border-color:rgba(212,175,55,0.45);color:#d4af37}
+
+/* HISTORIQUE */
 .hist{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);display:none}
 .hist-ttl{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.35em;color:rgba(212,175,55,0.25);text-transform:uppercase;margin-bottom:1rem}
 .hist-item{padding:.75rem 1rem;border:1px solid rgba(255,255,255,0.05);margin-bottom:.45rem;cursor:pointer;transition:border-color .3s}
 .hist-item:hover{border-color:rgba(212,175,55,0.2)}
 .hist-q{font-style:italic;font-size:.9rem;color:rgba(255,255,255,0.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hist-meta{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.12em;color:rgba(212,175,55,0.3);text-transform:uppercase;margin-top:.2rem}
+
+/* RJ BAR */
 .rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,0.2);overflow:hidden}
 .rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,0.15)}
 .rj-track{flex:1;overflow:hidden;position:relative}
@@ -91,20 +113,23 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     <a href="lwa.html" class="nav-link">&#8592; Les Lwa</a>
   </div>
 </nav>
+
 <div class="hero">
   <span class="hero-ey">&#x2721; Portail Sacré — Initiés Bnei Ohr</span>
   <h1 class="hero-h1">Oracle des Lwa</h1>
   <span class="hero-hb">&#x05D0;&#x05D5;&#x05B9;&#x05E8;&#x05B8;&#x05E7;&#x05B6;&#x05DC;</span>
-  <p class="hero-sub">Posez votre question avec un coeur sincère.<br>Les Lwa répondent à ceux qui cherchent la vérité.</p>
+  <p class="hero-sub">Choisissez un Lwa, sélectionnez votre question.<br>Les esprits répondent avec précision.</p>
   <div class="hero-rule"></div>
 </div>
+
 <div class="wrap">
-  <span class="lbl">Choisir un Lwa — ou laisser les esprits décider</span>
+
+  <!-- ÉTAPE 1 : CHOISIR LWA -->
+  <span class="step-lbl">&#x2460; Choisir un Lwa</span>
   <div class="chips" id="chips">
-    <button class="chip auto-chip on" style="--cc:#d4af37" data-lwa="auto">&#10024; Laisser choisir</button>
     <button class="chip" style="--cc:#d4af37" data-lwa="legba">&#128273; Papa Legba</button>
     <button class="chip" style="--cc:#e87fa0" data-lwa="freda">&#128151; Ezili Freda</button>
-    <button class="chip" style="--cc:#4a7fcb" data-lwa="danto">&#9876;&#65039; Ezili Dantò</button>
+    <button class="chip" style="--cc:#4a7fcb" data-lwa="danto">Ezili Dantò</button>
     <button class="chip" style="--cc:#e05555" data-lwa="ogou">&#9876;&#65039; Ogou</button>
     <button class="chip" style="--cc:#7ecba1" data-lwa="danbala">&#128013; Danbala</button>
     <button class="chip" style="--cc:#9b7fd4" data-lwa="baron">&#128128; Baron Samdi</button>
@@ -112,17 +137,29 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     <button class="chip" style="--cc:#a87fd4" data-lwa="gede">&#129398; Les Gédé</button>
     <button class="chip" style="--cc:#a3c96e" data-lwa="loko">&#127807; Loko &amp; Ayizan</button>
   </div>
+
   <div class="divr"><span>&#10022;</span></div>
-  <span class="lbl">Votre question sacrée</span>
-  <textarea id="qInput" class="qarea" rows="4" placeholder="Posez votre question... Que cherchez-vous à comprendre aujourd'hui ?"></textarea>
-  <button class="ibtn" id="ibtn" onclick="invoke()">
-    <span id="ibtn-ico" style="font-size:1.1rem">&#128303;</span>
+
+  <!-- ÉTAPE 2 : CHOISIR QUESTION -->
+  <span class="step-lbl">&#x2461; Choisir votre question</span>
+  <span class="q-hint" id="qHint">Sélectionnez d'abord un Lwa ci-dessus</span>
+  <div class="q-grid" id="qGrid">
+    <div class="no-lwa-msg">Choisissez un Lwa pour voir les questions disponibles</div>
+  </div>
+
+  <!-- BOUTON -->
+  <button class="ibtn" id="ibtn" onclick="invoke()" disabled>
+    <span style="font-size:1.1rem">&#128303;</span>
     Invoquer les Lwa
   </button>
+
+  <!-- LOADING -->
   <div class="loading" id="loading">
     <span class="load-sym">&#127744;</span>
     <div class="load-txt">Les esprits consultent&#8230;</div>
   </div>
+
+  <!-- RÉPONSE -->
   <div class="resp" id="resp">
     <div class="resp-top">
       <span class="resp-veve" id="rVeve"></span>
@@ -131,6 +168,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
         <div class="resp-role" id="rRole"></div>
       </div>
     </div>
+    <div class="resp-q" id="rQ"></div>
     <div class="resp-card" id="rCard">
       <div class="resp-txt" id="rTxt"></div>
     </div>
@@ -139,227 +177,165 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
       <button class="resp-new" onclick="reset()">Poser une autre question</button>
     </div>
   </div>
+
+  <!-- HISTORIQUE -->
   <div class="hist" id="hist">
     <div class="hist-ttl">&#10022; Consultations précédentes</div>
     <div id="histList"></div>
   </div>
 </div>
+
 <div class="rj-bar">
   <div class="rj-lbl">&#x2721; Réflexion du Jour</div>
   <div class="rj-track"><div class="rj-inner" id="rjInner"></div></div>
 </div>
+
 <script>
 (function(){if(sessionStorage.getItem('bneiohr_oracle_access')!=='1'){window.location.replace('oracle-lwa.html');}})();
 (function(){var s=document.getElementById('stars');for(var i=0;i<90;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.4+0.3;el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.45+0.08)+';';s.appendChild(el);}})();
 (function(){var q=['Chaque carrefour est une invitation. Legba ouvre les chemins à ceux qui demandent avec humilité.','Erzulie rappelle que l\'amour est la force la plus subversive qui soit.','Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre.','La mort n\'est pas la fin — c\'est le passage. Baron Samdi te guide avec un sourire.','La sagesse de Danbala existait avant les mots — écoute le silence.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
 
-// ══ DONNÉES LWA ══
 var LWA = {
-  legba:  {n:'Papa Legba',     v:'🔑', r:'Maître des Carrefours',      c:'#d4af37', h:'פֶּתַח'},
-  freda:  {n:'Ezili Freda',    v:'💗', r:'Reine de l\'Amour',          c:'#e87fa0', h:'נֶצַח'},
-  danto:  {n:'Ezili Dantò',    v:'🗡', r:'Mère Guerrière',             c:'#4a7fcb', h:'גְּבוּרָה'},
-  ogou:   {n:'Ogou',           v:'⚔️', r:'Général Céleste',            c:'#e05555', h:'מַרְס'},
-  danbala:{n:'Danbala Wedo',   v:'🐍', r:'Serpent de la Sagesse',      c:'#7ecba1', h:'כֶּתֶר'},
-  baron:  {n:'Baron Samdi',    v:'💀', r:'Maître de la Mort',          c:'#9b7fd4', h:'בִּינָה'},
-  agwe:   {n:'Agwe Tawoyo',    v:'⚓', r:'Roi de la Mer',              c:'#4a9eff', h:'חֶסֶד'},
-  gede:   {n:'Les Gédé',       v:'🪦', r:'Famille des Ancêtres',       c:'#a87fd4', h:'עוֹלָם'},
-  loko:   {n:'Loko & Ayizan',  v:'🌿', r:'Gardiens de l\'Initiation',  c:'#a3c96e', h:'חׇכְמָה'}
-};
-var LWA_KEYS = Object.keys(LWA);
-
-// ══ RÉPONSES PAR THÈME ══
-// Chaque Lwa a ses propres réponses organisées par thème
-var RESPONSES = {
-  legba: {
-    chemin:   ["Mon enfant, tu te tiens au carrefour et tu demandes quelle route prendre. Mais regarde bien — toutes ces routes existent parce que tu as déjà fait des choix courageux. Le chemin qui t'attend n'est pas celui que tu vois, c'est celui que tu crées en marchant.\n\nJe suis le vieux qui boite, mais je connais chaque chemin depuis l'aube du monde. Et je te dis ceci : la porte que tu cherches est déjà ouverte. C'est ta peur qui te fait croire qu'elle est fermée. Avance, et je marcherai devant toi.\n\nChaque carrefour est une bénédiction déguisée en obstacle.", "Toi qui cherches ton chemin, sache que je me tiens là où tous les possibles se croisent. Depuis que le monde est monde, j'ai vu des milliers d'âmes hésiter là où tu hésites maintenant.\n\nCe que tu appelles une impasse est en réalité le début d'un nouveau sentier. Parfois, la bonne direction n'est pas en avant ni en arrière — elle est en dedans. Creuse. Ce que tu cherches dehors, tu le trouveras d'abord en toi.\n\nLa clé que tu cherches, tu la portes depuis toujours."],
-    amour:    ["Mon enfant, tu m'interroges sur le cœur — cette porte la plus difficile à ouvrir. Je suis Legba, le maître des passages, et je te dis que l'amour est le seul carrefour où l'on ne peut pas revenir en arrière une fois qu'on l'a traversé.\n\nCe que tu ressens est réel. Ne laisse pas la peur de te perdre t'empêcher de te trouver dans les yeux de l'autre. L'amour véritable n'emprisonne pas — il ouvre des portes que tu ne savais même pas qu'elles existaient.\n\nOse frapper à la porte. Même si tu trembles en le faisant."],
-    travail:  ["Je vois ton labeur, enfant. Tu travailles dur et tu te demandes si cela mène quelque part. Je te réponds : tout effort sincère ouvre une porte, même si tu ne la vois pas encore.\n\nMais sache ceci — le travail qui ne nourrit pas ton âme est un chemin qui tourne en rond. Demande-toi non pas 'est-ce que je travaille assez ?' mais 'est-ce que ce travail me rapproche de qui je suis vraiment ?'\n\nLa bonne porte grince toujours avant de s'ouvrir.", "Tu portes le poids de tes responsabilités comme une pierre. Je t'entends. Mais regarde comment tu marches — même courbé, tu avances. C'est ce qui compte.\n\nLe succès que tu cherches n'est pas une destination, c'est une direction. Continue dans cette direction avec constance et honnêteté, et les portes s'ouvriront d'elles-mêmes.\n\nPatience et persévérance sont les deux jambes du voyageur."],
-    sante:    ["Mon enfant, le corps parle quand l'âme a quelque chose à dire. Ce que tu vis physiquement est souvent le reflet de ce que tu portes spirituellement. Prends soin de l'un pour guérir l'autre.\n\nJe t'ouvre la porte vers les guérisseurs — ceux de la médecine et ceux de l'esprit. N'aie pas honte de demander de l'aide. La force n'est pas de tout porter seul.\n\nLa guérison commence par accepter qu'on a besoin d'aide."],
-    famille:  ["La famille — voilà le carrefour le plus chargé qui soit. Chaque lien familial est une route que deux âmes ont décidé de parcourir ensemble, avec toutes leurs blessures et leur beauté.\n\nCe que tu vis dans ta famille n'est pas une punition. C'est une école. Les personnes qui nous blessent le plus sont souvent nos plus grands maîtres, même si nous ne le comprenons qu'après.\n\nMaintiens le lien, mais trace tes limites. Une porte peut être ouverte et protégée en même temps."],
-    default:  ["Mon enfant, tu m'as appelé et me voilà. Je me tiens là où tous les chemins se croisent — et je vois le tien clairement.\n\nLa réponse à ce que tu portes se trouve dans le silence que tu évites. Prends le temps de t'arrêter, de respirer, de regarder honnêtement ta situation. La vérité n'est jamais aussi loin qu'on le croit.\n\nJe garde la porte ouverte. À toi de choisir de passer.", "Toi qui m'appelles, sache que je t'entends toujours — même quand tu ne prononces pas de mots. Le cœur a sa propre langue, et c'est celle que les Lwa comprennent le mieux.\n\nCe que tu traverses en ce moment est une initiation, même si personne ne te l'a dit ainsi. Chaque épreuve est une porte qui te mène vers une version plus vraie de toi-même.\n\nFais confiance au chemin, même quand tu ne vois pas où il mène."]
-  },
-
-  freda: {
-    amour:    ["Mon beau, mon enfant chéri — tu m'interroges sur l'amour, et mon cœur s'ouvre pour toi comme une fleur après la pluie. Je suis Ezili Freda, et je connais chaque nuance de ce sentiment qui peut élever ou briser une âme.\n\nL'amour que tu cherches ou que tu vis est réel et précieux. Mais l'amour véritable commence toujours par soi-même. Si tu ne sais pas te chérir, comment apprendras-tu à laisser quelqu'un d'autre le faire ?\n\nTu mérites un amour qui ne te demande pas de te diminuer pour entrer.", "Mes larmes coulent pour toi, et sache que mes larmes sont sacrées. Je pleure non par faiblesse, mais parce que je ressens tout avec une profondeur que peu comprennent.\n\nCe que tu vis dans l'amour — la joie, la douleur, l'espoir, la peur — tout cela est sacré. Ne laisse personne te dire que tu ressens trop. Tu ressens juste.\n\nL'amour parfait existe — mais il commence dans ton propre cœur."],
-    beaute:   ["Enfant de lumière, tu doutes de ta beauté ? Laisse-moi te dire ce que je vois : une âme qui rayonne d'une lumière unique, irremplaçable, précieuse.\n\nLa beauté véritable n'est pas dans le miroir — elle est dans la façon dont tu ris, dont tu prends soin des autres, dont tu résistes quand tout te pousse à abandonner. C'est cette beauté-là qui m'appartient.\n\nRegarde-toi avec mes yeux, et tu verras quelqu'un d'extraordinaire.", "Je me parfume et je me pare non par vanité, mais parce que la beauté est une offrande au divin. Et toi aussi, tu es une offrande — unique, précieuse, irremplaçable.\n\nPrends soin de toi. Pas pour plaire aux autres — pour honorer l'âme magnifique que tu es. Ce n'est pas de l'égoïsme, c'est une forme de prière.\n\nSois belle ou beau pour toi d'abord."],
-    abondance:["Mes mains portent l'abondance, et je t'en offre une part. Mais sache ceci : l'abondance ne vient pas à ceux qui l'attendent les bras croisés — elle vient à ceux qui ont ouvert leur cœur à la recevoir.\n\nY a-t-il quelque chose en toi qui résiste à la prospérité ? Une croyance héritée que tu ne mérites pas le bien ? C'est là que commence le vrai travail.\n\nOuvre tes mains. L'abondance ne peut pas entrer dans des poings serrés par la peur."],
-    default:  ["Mon enfant, je te vois et tu es beau, même dans ta souffrance. Surtout dans ta souffrance. Car c'est là que l'âme révèle sa vraie profondeur.\n\nCe que tu portes aujourd'hui — garde-le avec grâce. Pas parce que tu dois souffrir, mais parce que cette épreuve te sculpte en quelque chose de plus beau encore.\n\nJe pleure avec toi, et mes larmes sont des bénédictions.", "Toi qui cherches ma guidance — sache que je te vois dans toute ta complexité. Tu es plusieurs choses à la fois : fort et fragile, sûr et perdu, aimant et blessé. Tout cela est humain.\n\nLa vie que tu désires n'est pas hors de portée. Elle demande simplement que tu croies d'abord en ta propre valeur.\n\nTu vaux infiniment plus que tu ne le crois."]
-  },
-
-  danto: {
-    protection: ["Mwen tande ou — je t'entends, enfant. Tu cherches protection, et tu as bien fait de m'appeler. Je suis Ezili Dantò, celle qui ne cède jamais, celle dont les cicatrices sont des médailles de guerre.\n\nCeux qui te veulent du mal ne savent pas à qui ils s'attaquent. Car ils s'attaquent à quelqu'un que je protège, et ma protection est un mur que rien ne peut franchir.\n\nLève la tête. La peur est leur arme — ne leur donne pas cette victoire.", "Je porte les marques de mes combats sur mon visage, et je les porte avec fierté. Car chaque cicatrice est la preuve que j'ai résisté, que j'ai survécu, que j'ai gagné.\n\nToi aussi, tu survivras à ce que tu traverses. Pas seulement tu survivras — tu en sortiras plus fort, plus sage, plus toi-même.\n\nLes forces obscures reculent devant ceux qui refusent de plier."],
-    injustice:  ["Tu me parles d'injustice, et mon sang de guerrière s'enflamme. Je hais l'injustice d'une haine profonde et juste. Car l'injustice n'est pas seulement une blessure personnelle — c'est une offense au divin.\n\nMais écoute-moi bien : la vengeance est une chose, la justice en est une autre. Ne te laisse pas avaler par la colère au point de perdre ta propre lumière. Combats avec intelligence, avec stratégie, avec vérité.\n\nLa vérité est la seule arme que personne ne peut te retirer.", "Je grogne parce que les mots ne suffisent pas pour exprimer ce que je ressens quand un enfant est traité injustement. Mais je te dis : ne baisse pas la tête.\n\nL'oppresseur compte sur ta résignation. Ta résistance — même silencieuse, même patiente — est un acte révolutionnaire. Haïti a été libéré par des gens qui ont refusé d'accepter l'injustice comme une fatalité.\n\nSois digne de tes ancêtres. Résiste."],
-    enfants:    ["Mère ou père, ton amour pour tes enfants est la chose la plus sacrée qui soit. Je le reconnais car c'est le même amour qui me fait combattre sans relâche pour les miens.\n\nProtège-les, mais ne les étouffe pas. Aime-les, mais apprends-leur à se tenir debout. Le plus grand cadeau que tu peux leur faire est de leur montrer comment faire face à la vie avec courage et dignité.\n\nLes enfants que tu élèves avec amour élèveront le monde."],
-    default:    ["Je suis silencieuse, mais mon silence n'est pas une absence — c'est une présence totale. Je t'observe, je te connais, je suis avec toi.\n\nCe que tu traverses est difficile. Je ne vais pas te mentir et te dire que c'est facile. Mais je te dis que tu en as la force — une force que tu ne connais pas encore complètement.\n\nLes mères ne quittent jamais leurs enfants. Je suis là.", "Tu m'as appelée, et je suis venue. Pas avec des mots doux — je ne suis pas celle qui fait ça. Je suis venue avec ma présence, mon bouclier, ma force.\n\nQuelque chose dans ta vie a besoin d'être protégé. Identifie-le clairement et garde-le avec tout ce que tu as. Certaines choses valent la peine qu'on se batte pour elles.\n\nSois le gardien de ce qui compte."]
-  },
-
-  ogou: {
-    courage:    ["Ha ! Tu m'appelles, moi — le guerrier ! Et je réponds. Regarde-toi : tu doutes, tu hésites, tu cherches permission pour faire ce que tu sais déjà devoir faire.\n\nLe courage n'est pas l'absence de peur. C'est décider d'agir malgré la peur. J'ai vu des armées trembler, et j'ai vu des individus seuls tenir debout. Ce qui fait la différence, ce n'est pas la taille — c'est la décision.\n\nDécide. Maintenant. Et avance.", "Je porte mon sabre dans la bouche — pas pour menacer, mais pour montrer que la parole peut être une arme aussi puissante que le fer. La vérité dite avec courage tranche plus vite que n'importe quelle lame.\n\nDis ce que tu dois dire. Fais ce que tu dois faire. Supporte les conséquences avec dignité. C'est ça, le courage — pas l'invincibilité, mais l'honnêteté totale.\n\nParle. Le silence des lâches a causé plus de dégâts que toutes les guerres."],
-    conflit:    ["Tu me parles d'un conflit. Je suis le dieu de la guerre, alors je connais les conflits. Et voici ce que j'ai appris : la plupart des batailles se perdent avant même de commencer, parce qu'on choisit le mauvais terrain ou les mauvaises armes.\n\nQuel est ton vrai objectif dans ce conflit ? La victoire ? La justice ? La paix ? La vengeance ? Sois honnête. Car la stratégie dépend de la réponse.\n\nNe gaspille pas ton énergie sur des batailles qui ne te rapprochent pas de ce qui compte vraiment."],
-    travail:    ["Je suis le forgeron aussi bien que le guerrier. Et je te dis que le fer le plus solide est celui qui a été le plus frappé, le plus chauffé, le plus travaillé.\n\nTon travail, ta carrière, tes ambitions — ce n'est pas juste une question d'argent ou de statut. C'est une question d'honneur. Fais-tu ton travail avec intégrité ? Est-ce que tu peux regarder ce que tu produis et en être fier ?\n\nLe vrai succès, c'est pouvoir se regarder dans le miroir le soir.", "Je vois ta frustration face aux obstacles professionnels. Et je te dis : ces obstacles ne sont pas là pour te briser — ils sont là pour te révéler.\n\nChaque problème que tu résous t'entraîne pour le problème suivant. Chaque porte fermée te force à trouver une route que tu n'aurais jamais prise autrement. C'est ainsi que les guerriers deviennent des généraux.\n\nForge-toi dans les difficultés."],
-    default:    ["Ogou é ! Tu m'as appelé et je suis là — avec mon feu, mon fer, ma vérité. Je ne mâche pas mes mots, alors voilà la vérité : tu es plus fort que tu ne le crois.\n\nCe que tu vis en ce moment est un entraînement, pas une punition. Les épreuves les plus dures forment les âmes les plus fortes. Et ton âme est en train de se forger pour quelque chose de grand.\n\nTiens bon. Le fer tient quand la chaleur est la plus intense.", "La lâcheté est la seule chose qui me met vraiment en colère. Et je ne te parle pas de toi — je te parle des forces qui veulent que tu restes petit, que tu ne te battes pas, que tu acceptes moins que ce que tu mérites.\n\nRévolte-toi contre cette acceptation silencieuse. Pas avec violence — avec conscience, avec action, avec refus de te diminuer.\n\nSois à la hauteur de qui tu es vraiment."]
-  },
-
-  danbala: {
-    paix:       ["...sssss... [le serpent sacré siffle doucement autour de toi]\n\nJe suis ancien. Avant les mots, avant le temps, avant la douleur — j'étais là. Et je te dis que la paix que tu cherches n'est pas quelque chose à trouver. Elle est quelque chose à retrouver.\n\nElle est en toi, enfouie sous les couches de bruit, de peur, d'obligations. Trouve le silence. Pas pendant cinq minutes — pendant assez longtemps pour que les couches se dissolvent.\n\nDans le silence le plus profond, tu m'entendras siffler.", "Tu portes une agitation intérieure que tu ne sais pas nommer. Je la sens — elle ressemble à de l'eau trouble qui cherche à se clarifier.\n\nL'eau se clarifie d'elle-même quand on cesse de l'agiter. Cesse de te battre contre toi-même. Cesse de chercher des réponses avec l'intellect seul. Laisse-toi simplement être.\n\nLa paix vient à ceux qui cessent de la pourchasser."],
-    purete:     ["Je suis le Grand Serpent Blanc — la pureté incarnée. Et je te dis que la pureté n'est pas l'absence de péché ou d'erreur. C'est l'intention sincère de s'améliorer, de grandir, de s'élever.\n\nTu as fait des erreurs. Tout le monde en fait. Ce qui compte, ce n'est pas de ne jamais tomber — c'est la façon dont tu te relèves et ce que tu apprends en te relevant.\n\nPurifie tes intentions, et tes actions suivront naturellement."],
-    sagesse:    ["Je ne parle pas en mots — je parle en symboles, en images, en sensations. La sagesse que tu cherches ne viendra pas d'un livre ou d'un discours. Elle viendra d'une expérience vécue profondément.\n\nArrête de consommer l'information et commence à digérer l'expérience. La différence entre la connaissance et la sagesse, c'est le temps passé à vivre avec ce qu'on sait.\n\nVis tes questions. Les réponses viendront d'elles-mêmes.", "Je suis là depuis le commencement, et j'ai vu toutes les questions que l'humanité se pose. Elles se résument toujours à une seule : 'Qui suis-je vraiment ?'\n\nTout le reste — l'amour, l'argent, le succès, la santé — sont des déclinaisons de cette question fondamentale. Connais-toi d'abord, et les autres réponses se placeront naturellement.\n\nLa connaissance de soi est le début de toute sagesse."],
-    default:    ["...sssss... Je t'entends, même dans ton silence. Même dans ta confusion. Car ma nature est de comprendre ce qui est avant les mots.\n\nCe que tu traverses actuellement fait partie d'un cycle plus grand que ta vie individuelle. Tu es lié à tes ancêtres, à ta descendance, à toute la chaîne de l'humanité. Ce que tu fais maintenant a des répercussions au-delà de ce que tu peux imaginer.\n\nSois conscient. Sois intentionnel. Sois pur dans ta motivation.", "Je descends rarement pour parler, mais tu as su m'appeler avec sincérité. Voici ce que je t'apporte : une rivière de paix blanche.\n\nImagine-la qui coule à travers toi — de la tête aux pieds, elle emporte tout ce qui n'est pas toi. Les peurs héritées. Les traumatismes anciens. Les doutes des autres qui sont devenus les tiens.\n\nCe qui reste après le passage de cette rivière — c'est qui tu es vraiment."]
-  },
-
-  baron: {
-    deuil:      ["Ha ha ha ! Tu viens me voir pour parler de mort ? Bien. Parce que tout le monde évite ce sujet, et moi je ne comprends pas pourquoi. La mort est la vérité la plus honnête qui soit.\n\nCelui ou celle que tu as perdu n'a pas disparu — il a changé de forme. Il est maintenant de l'autre côté de la porte que je garde. Et je te dis qu'ils sont bien. Qu'ils t'aiment encore. Que leur amour ne s'est pas terminé avec leur corps.\n\nPleure si tu dois pleurer. Mais sache que la séparation est temporaire.", "Je suis le maître de la frontière entre les vivants et les morts, et je te dis ceci en toute honnêteté : le deuil est un acte d'amour. Tu souffres parce que tu aimais. Cette souffrance est sacrée.\n\nMais ne reste pas trop longtemps dans le pays des morts quand tu es encore vivant. Honore ceux qui sont partis en vivant pleinement, pas en t'éteignant avec eux.\n\nLes morts veulent que les vivants vivent."],
-    verite:     ["Je suis le seul Lwa qui dit toujours la vérité — parce que les morts n'ont rien à perdre ni à protéger. Et la vérité que je vois ici, je vais te la dire sans filtre.\n\nTu sais déjà ce que tu dois faire. Tu le sais depuis longtemps. Tu cherches simplement une permission, une confirmation, quelqu'un qui te dise que c'est normal de penser ce que tu penses.\n\nEh bien voilà ta permission : tu as raison. Agis en conséquence.", "La vérité est parfois dure à entendre. Mais préfères-tu un mensonge doux qui te maintient dans l'illusion, ou une vérité rude qui te libère ?\n\nJe choisis toujours la vérité — c'est pour ça que les vivants me craignent un peu. Non pas parce que je suis méchant, mais parce que je refuse de participer aux fictions confortables.\n\nRegarde ta situation en face, sans maquillage. C'est de là que vient la vraie solution."],
-    transition: ["Quelque chose dans ta vie est en train de mourir, et tu le sens. Une relation, une identité, une façon de vivre. Et cette mort te fait peur.\n\nMais moi, je suis le maître des passages, et je te dis que toute mort est suivie d'une renaissance. Ce qui se termine fait de la place pour ce qui commence. Ce n'est pas une consolation vide — c'est la loi fondamentale de l'univers.\n\nLaisse mourir ce qui doit mourir. Fais confiance à ce qui va naître."],
-    default:    ["Ha ! Tu viens consulter le Baron ! Bien, bien. Je t'aime déjà pour ton courage.\n\nVoici ce que je vois : tu portes quelque chose de lourd que tu refuses de lâcher. Une vieille douleur, une vieille histoire, une vieille version de toi-même. Et cette chose morte que tu portes pèse plus lourd que n'importe quel vivant.\n\nLâche-la. Enterre-la avec respect. Et vis enfin.", "Je plaisante, je ris, je chante — parce que j'ai compris quelque chose que la plupart des vivants n'ont pas encore saisi : la vie est courte et précieuse et unique.\n\nChaque moment que tu passes dans la peur, la culpabilité, ou le regret, est un moment de vie gaspillé. Et la vie gaspillée, ça, c'est la vraie tragédie — pas la mort.\n\nRis. Profite. Aime. C'est tout ce que je te demande."]
-  },
-
-  agwe: {
-    voyage:     ["Navigateur, je te salue depuis les profondeurs où peu osent regarder. Tu veux partir, changer, explorer — et ton désir est juste. L'immobilité est contre nature pour une âme comme la tienne.\n\nMais avant de larguer les amarres, assure-toi de savoir vers quoi tu vas, pas seulement de quoi tu fuis. Les voyages motivés par la fuite ne guérissent pas — ils déplacent.\n\nPars avec intention. La mer sera avec toi.", "Mes eaux couvrent les trois quarts de ce monde, et je te dis que le voyage — qu'il soit physique ou intérieur — est la plus belle forme de prière. Car voyager, c'est accepter l'inconnu, et accepter l'inconnu, c'est faire confiance.\n\nCe changement que tu envisages — fais-le. Le moment parfait n'existe pas. Il n'y a que le moment présent et le courage d'agir.\n\nLargue les amarres. La mer te porte."],
-    reve:       ["Les eaux profondes et les rêves sont la même chose — des espaces où la vérité se montre sans les filtres du jour. Et tes rêves te parlent, j'en suis certain.\n\nCe que tu vois dans tes rêves n'est pas un hasard. C'est ton âme qui te communique ce que ta conscience diurne refuse d'entendre. Apprends à écouter ce langage.\n\nTiens un journal de tes rêves. Les réponses à tes questions y sont déjà.", "Je suis le maître du subconscient, des eaux profondes de l'âme. Et je te dis que ce que tu ressens intuitivement — sans pouvoir l'expliquer rationnellement — mérite d'être écouté.\n\nTon intuition est une forme de sagesse ancienne, héritée de millions d'années d'expérience humaine. Ne la balaie pas d'un revers de main au nom de la raison.\n\nFais confiance à ce que tu sais sans savoir comment tu le sais."],
-    default:    ["Je t'entends depuis mes profondeurs bleues. Tu as quelque chose à traverser, et tu sens que tu n'as pas tout à fait les ressources pour le faire seul.\n\nMais regarde : l'eau ne porte pas les bateaux qui restent au port. Elle porte ceux qui s'y aventurent. Sors du port. Lance-toi. Les ressources que tu cherches se révèlent en chemin.\n\nFais confiance à ta barque. Elle est plus solide que tu ne le crois.", "Les tempêtes de ta vie ne sont pas là pour te noyer — elles sont là pour t'apprendre à naviguer dans des eaux difficiles. Et une fois que tu sais naviguer dans la tempête, les eaux calmes te semblent presque trop faciles.\n\nReste dans ta barque. Tiens la barre. La tempête finira toujours.\n\nL'étoile polaire brille même à travers les nuages."]
-  },
-
-  gede: {
-    ancetres:   ["Nous sommes là — tous les ancêtres, toutes les générations qui t'ont précédé. Tu n'es jamais seul quand tu sais que nous sommes derrière toi.\n\nDans tes veines coule le sang de survivants — des gens qui ont traversé des épreuves qui auraient dû les briser, et qui ont tenu. Cette force est en toi aussi. Tu l'as héritée.\n\nHonore-les en vivant courageusement.", "Tu penses parfois que tu pars de rien. Mais regarde derrière toi — des générations entières t'ont porté jusqu'ici. Chaque ancêtre qui a souffert, qui a aimé, qui a résisté — tous ont contribué à ce que tu sois là aujourd'hui.\n\nTu n'es pas un commencement. Tu es une continuation. Et tu as la responsabilité de transmettre quelque chose de beau à ceux qui viendront après toi.\n\nQue veux-tu qu'on retienne de toi dans cent ans ?"],
-    memoire:    ["Les morts n'oublient pas, et nous ne voulons pas être oubliés. Non pas par vanité, mais parce que la mémoire est ce qui nous maintient vivants d'une certaine façon.\n\nCelui ou celle que tu cherches à honorer — ta façon de te souvenir d'eux, de parler d'eux, de perpétuer ce qu'ils étaient, c'est la plus belle des prières.\n\nLa mémoire est une forme d'immortalité."],
-    default:    ["Nous sommes la famille des morts, et nous t'observons avec amour. Oui — avec amour. Car même de l'autre côté, l'amour pour ceux qu'on a laissés ne s'éteint pas.\n\nCe que tu traverses, tes ancêtres l'ont traversé sous une autre forme. Tu n'es pas le premier. Et leur expérience vit en toi — dans tes instincts, dans ta résilience, dans cette façon que tu as de tenir malgré tout.\n\nTu n'es jamais aussi seul que tu le crois.", "La mort nous a appris une chose que les vivants ont du mal à comprendre : le temps passe vite. Terriblement vite.\n\nNe reporte pas les choses importantes. Dis à ceux que tu aimes que tu les aimes. Répare ce qui peut encore être réparé. Pardonne ce qui peut être pardonné — surtout à toi-même.\n\nVis comme si chaque jour était à la fois le premier et le dernier."]
-  },
-
-  loko: {
-    guerison:   ["Je suis le maître des plantes et des forêts, et je te dis que la guérison que tu cherches existe — souvent là où tu ne la cherches pas.\n\nLa nature a une réponse à chaque déséquilibre. Pas toujours dans une plante ou un remède, parfois dans le simple fait de marcher pieds nus sur la terre, de t'asseoir sous un grand arbre, de respirer l'air frais et d'écouter ce que ton corps te dit vraiment.\n\nTon corps est sage. Apprends à l'écouter.", "Je connais les plantes sacrées, et elles me parlent d'un patient qui a besoin de douceur. Tu te bats contre toi-même, et cette bataille intérieure épuise les ressources qui pourraient être utilisées pour guérir.\n\nFais la paix avec ton corps. Il n'est pas ton ennemi — il est ton partenaire. Ce qu'il vit, il le vit pour toi.\n\nLa guérison commence par la réconciliation avec soi-même."],
-    initiation: ["Tu es à un seuil. Je le sens dans ta question — quelque chose dans ta vie est en train de changer fondamentalement, et tu ne sais pas encore si tu dois accueillir ce changement ou y résister.\n\nC'est une initiation. La vie t'appelle à devenir quelque chose de plus grand, de plus vrai, de plus toi-même. Et toute initiation ressemble d'abord à une destruction — parce que ce qui était doit mourir pour que ce qui sera puisse naître.\n\nAccueille le changement. Tu es prêt, même si tu ne le ressens pas encore.", "Je suis le gardien des secrets de la nature, et voici le plus grand : tout grandit de l'intérieur vers l'extérieur. La transformation que tu attends dans ta vie extérieure doit d'abord se passer en toi.\n\nQuel aspect de toi-même résiste encore à cette transformation ? C'est là que se trouve la clé.\n\nL'initiation est complète quand tu n'as plus peur de ce que tu deviens."],
-    nature:     ["Les arbres me parlent, et ils me parlent de toi. Ils disent que tu as besoin de ralentir, de retrouver le rythme naturel des choses.\n\nNous vivons dans un monde qui celebrate la vitesse, la productivité, l'accumulation. Mais la sagesse réelle a le rythme des saisons — lente, profonde, cyclique.\n\nRetourne à la nature quand tu peux. Elle t'attend."],
-    default:    ["Je viens de la forêt, là où les secrets anciens vivent dans les racines et les feuilles. Et je t'apporte un secret aujourd'hui : tout ce qui pousse lentement pousse profond.\n\nNe te décourage pas si ta croissance te semble lente. Les arbres les plus grands ont mis des décennies à atteindre leur hauteur. La profondeur de leurs racines est proportionnelle à la grandeur de leur tronc.\n\nTes racines s'étendent. La hauteur viendra.", "Ayizan et moi, nous sommes les gardiens de la pureté rituelle. Et ce que je vois dans ta vie, c'est un besoin de purification — pas au sens moral, mais au sens énergétique.\n\nQuelque chose alourdit ton espace, ton corps, ton énergie. Nettoie. Physiquement d'abord — ton espace de vie, ton corps. Et puis spirituellement — tes pensées habituelles, tes attachements qui ne te nourrissent plus.\n\nLa légèreté qui suit la purification est une des meilleures sensations qui soient."]
-  }
+  legba:  {n:'Papa Legba',    v:'🔑',r:'Maître des Carrefours',     c:'#d4af37',h:'פֶּתַח'},
+  freda:  {n:'Ezili Freda',   v:'💗',r:'Reine de l\'Amour',         c:'#e87fa0',h:'נֶצַח'},
+  danto:  {n:'Ezili Dantò',   v:'🗡',r:'Mère Guerrière',            c:'#4a7fcb',h:'גְּבוּרָה'},
+  ogou:   {n:'Ogou',          v:'⚔️',r:'Général Céleste',           c:'#e05555',h:'מַרְס'},
+  danbala:{n:'Danbala Wedo',  v:'🐍',r:'Serpent de la Sagesse',     c:'#7ecba1',h:'כֶּתֶר'},
+  baron:  {n:'Baron Samdi',   v:'💀',r:'Maître de la Mort',         c:'#9b7fd4',h:'בִּינָה'},
+  agwe:   {n:'Agwe Tawoyo',   v:'⚓',r:'Roi de la Mer',             c:'#4a9eff',h:'חֶסֶד'},
+  gede:   {n:'Les Gédé',      v:'🪦',r:'Famille des Ancêtres',      c:'#a87fd4',h:'עוֹלָם'},
+  loko:   {n:'Loko & Ayizan', v:'🌿',r:'Gardiens de l\'Initiation', c:'#a3c96e',h:'חׇכְמָה'}
 };
 
-// ══ MOTS CLÉS PAR THÈME ══
-var THEMES = {
-  chemin:    ['chemin','direction','choisir','choix','décision','partir','rester','route','avenir','futur','orientation','voie','bifurcation','carrefour','hésit'],
-  amour:     ['amour','aimer','coeur','relation','couple','mariage','séparation','rupture','sentiment','romantique','partenaire','compagnon','seul','solitude','attire'],
-  travail:   ['travail','emploi','argent','carrière','business','entreprise','projet','réussir','succès','profession','argent','revenus','poste','mission','but'],
-  sante:     ['santé','maladie','guérir','douleur','fatigue','corps','médecin','souffre','souffrance','bien-être','énergie','force','faiblesse'],
-  famille:   ['famille','parents','enfants','frère','soeur','mère','père','ancêtres','maison','foyer','relation familiale','conflit familial'],
-  protection:['protection','danger','ennemi','menace','peur','attaque','nuisance','mauvais oeil','sorcellerie','malédiction','protéger','défendre'],
-  injustice: ['injustice','trahison','mensonge','tromperie','justice','droit','mal traité','manipulé','victime','abus','oppression'],
-  courage:   ['courage','peur','oser','risque','affronter','décider','aller de l\'avant','force','détermination','volonté','combat'],
-  conflit:   ['conflit','dispute','guerre','bagarre','désaccord','tension','problème avec','ennemi','adversaire'],
-  paix:      ['paix','calme','sérénité','tranquillité','repos','stress','anxiété','inquiétude','agitation','nervosité'],
-  purete:    ['pur','pureté','faute','erreur','pardon','culpabilité','honte','regret','se racheter','réparer'],
-  sagesse:   ['sagesse','comprendre','connaître','apprendre','étudier','savoir','vérité','sens','signification','pourquoi'],
-  deuil:     ['mort','décès','perdu','perte','deuil','disparu','absent','manquer','partir pour toujours'],
-  verite:    ['vérité','honnêteté','sincérité','mentir','mensonge','réalité','illusion','comprendre','clarté'],
-  transition:['changement','transition','transformation','nouveau départ','fin','recommencer','tournant','phase'],
-  voyage:    ['voyage','partir','quitter','déménager','explorer','aventure','ailleurs','étranger','déplacement'],
-  reve:      ['rêve','dormir','vision','nuit','subconscient','intuition','pressentir','signe','message','symbole'],
-  ancetres:  ['ancêtres','ancêtre','racines','origine','famille','héritage','passé','tradition','histoire familiale'],
-  memoire:   ['mémoire','souvenir','oublier','rappeler','passé','nostalgie','honorer'],
-  guerison:  ['guérir','guérison','maladie','blessure','souffrance','rétablir','santé','corps','douleur','remède'],
-  initiation:['initiation','transformation','éveil','changer','grandir','évoluer','transcender','élever','croissance'],
-  nature:    ['nature','arbre','forêt','plante','terre','sol','saison','cycle','naturel','végétal']
+var QA = {
+  legba:[
+    {q:"Comment savoir quelle direction prendre dans ma vie ?",r:"Mon enfant, tu te tiens au carrefour et tu demandes quelle route prendre. Je suis Legba — je connais chaque chemin depuis l'aube du monde. Et voici ce que je vois : la bonne direction n'est pas celle qui semble la plus facile, ni la plus rapide. C'est celle qui, quand tu y penses, fait résonner quelque chose de profond dans ta poitrine.\n\nLa peur que tu ressens face à l'un des chemins n'est pas un signe de danger — c'est souvent le signe que c'est le chemin qui va te faire grandir. Les portes qui grincent sont celles qui mènent là où tu dois aller.\n\nMarche. La direction se révèle en marchant, pas en attendant."},
+    {q:"Pourquoi mes prières et rituels ne semblent pas fonctionner ?",r:"Je suis le gardien de la porte entre toi et les esprits. Et je t'explique pourquoi tes prières n'arrivent pas : la porte est ouverte, mais quelque chose en toi ne l'est pas encore.\n\nLa prière n'est pas une formule magique — c'est une conversation sincère. Et pour avoir une vraie conversation, il faut se présenter sans masque, sans calcul, sans marchander. Viens à moi comme un enfant vient à son père — sans condition.\n\nLe problème n'est jamais la prière. C'est l'état du cœur qui prie."},
+    {q:"Comment entrer en harmonie avec les Lwa ?",r:"Tu me poses la question fondamentale, et je vais te répondre avec simplicité : l'harmonie avec les Lwa commence par l'harmonie avec toi-même.\n\nNous ne sommes pas des juges qui t'observent pour te punir. Nous sommes des forces de la nature — comme le vent, comme la pluie. Tu n'entres pas 'en harmonie' avec le vent en lui parlant — tu apprends à naviguer avec lui.\n\nConnais-toi. Vis avec intégrité. Honore tes ancêtres. Tiens tes promesses. L'harmonie viendra naturellement."},
+    {q:"J'ai une décision importante à prendre, comment choisir ?",r:"Écoute-moi bien, enfant : toute grande décision se prend deux fois. Une fois dans le silence de la nuit, quand tout est calme et que tu peux t'entendre penser. Et une fois au matin, avec la clarté du jour.\n\nSi les deux fois tu arrives à la même réponse — c'est la bonne. Si elles diffèrent, attends encore. La précipitation est l'ennemie de la sagesse.\n\nAucune porte ne reste fermée pour toujours. Prends le temps qu'il faut."},
+    {q:"Comment surmonter un obstacle qui bloque ma progression ?",r:"Un obstacle ? Je ris doucement — non pas de toi, mais parce que j'ai vu des millénaires d'obstacles. Et voici le secret : l'obstacle n'est jamais l'obstacle. C'est ce que l'obstacle révèle sur toi qui importe.\n\nCe mur devant toi te demande : es-tu prêt à contourner, à creuser en dessous, à escalader ou à attendre qu'il tombe ? Chacune de ces réponses est valable. Mais d'abord, sois honnête sur pourquoi tu es vraiment bloqué.\n\nLa plupart des portes fermées s'ouvrent de l'intérieur."},
+    {q:"Je me sens perdu(e) dans ma vie spirituelle, que faire ?",r:"Être perdu sur le chemin spirituel est une étape normale — pas une défaillance. Les plus grands initiés que j'ai connus ont tous traversé des périodes de ténèbres et de doute. C'est dans ces moments que la foi prend sa vraie forme.\n\nFoi aveugle n'est pas foi — c'est naïveté. La vraie foi survit au questionnement, à la nuit, au silence des esprits. Continue à chercher, continue à frapper aux portes même quand elles semblent fermées.\n\nJe t'entends. Et le fait que tu cherches prouve que tu n'es pas vraiment perdu."}
+  ],
+  freda:[
+    {q:"Comment attirer l'amour dans ma vie ?",r:"Mon beau, mon enfant chéri — tu me demandes d'attirer l'amour ? Mais l'amour n'est pas un oiseau qu'on attrape avec un piège. C'est une lumière qui cherche d'autres lumières.\n\nAvant de chercher l'amour de quelqu'un d'autre, demande-toi : est-ce que je m'aime moi-même ? Pas de façon narcissique — mais est-ce que je me traite avec la même gentillesse que je voudrais qu'on me traite ? Car tu ne peux pas recevoir plus d'amour que tu ne t'en accordes à toi-même.\n\nDeviens la personne que tu voudrais rencontrer. L'amour suivra."},
+    {q:"Ma relation amoureuse traverse une crise, que faire ?",r:"Je pleure avec toi — mes larmes pour les amours blessées sont les plus sincères qui soient. Une crise dans une relation n'est pas une condamnation — c'est une invitation à aller plus profond.\n\nLes couples qui survivent aux crises en ressortent plus forts. Mais cela demande que les deux personnes choisissent de rester, de parler vrai, d'écouter vraiment.\n\nPose-toi cette question honnêtement : est-ce que les deux côtés veulent encore construire quelque chose ensemble ? Si oui, tout est possible. Si non, parfois l'amour le plus profond c'est de savoir se laisser aller."},
+    {q:"Je me sens seul(e) et incompris(e), comment y remédier ?",r:"La solitude de l'âme est la plus profonde des souffrances — et je la connais mieux que quiconque. Car moi aussi je pleure pour un amour parfait que le monde ne peut pas toujours m'offrir.\n\nMais voici ce que j'ai appris : la connexion commence par la vulnérabilité. On ne peut pas être vraiment connu sans se montrer vraiment. La peur d'être vu tel qu'on est crée plus de solitude que n'importe quelle circonstance externe.\n\nMontre-toi. Imparfait. Réel. Les bonnes personnes resteront."},
+    {q:"Comment prendre soin de moi et m'aimer davantage ?",r:"Voilà la question la plus sacrée qu'on puisse me poser. Je suis Ezili Freda — la déesse de la beauté et de l'amour — et je te dis que prendre soin de soi n'est pas un luxe. C'est une obligation spirituelle.\n\nCommence par les petites choses : dors suffisamment, mange ce qui te nourrit vraiment, dis non quand ton âme dit non. Achète-toi une fleur. Prends un bain avec intention. Regarde-toi dans le miroir et dis quelque chose de gentil.\n\nChaque acte de soin envers toi-même est une prière que tu m'offres."},
+    {q:"Comment savoir si quelqu'un m'aime vraiment ?",r:"L'amour véritable ne se déclare pas — il se démontre. Dans les petites choses quotidiennes plus que dans les grands gestes. Dans la façon dont quelqu'un parle de toi quand tu n'es pas là. Dans comment il ou elle agit quand tu as besoin d'aide.\n\nMais voici ce que peu te disent : quelqu'un peut t'aimer sincèrement et ne pas savoir te le montrer correctement. Et quelqu'un peut faire tous les bons gestes sans vraiment t'aimer. Apprends à distinguer les deux.\n\nTa paix intérieure est le meilleur guide. Quand quelqu'un t'aime vraiment, tu le ressens — pas de doute constant, pas d'angoisse permanente."},
+    {q:"Comment retrouver confiance en moi après une déception ?",r:"Une déception a mordu profond dans ton cœur, et mes larmes coulent pour toi. Mais écoute — chaque déception est une information précieuse. Elle te dit quelque chose sur tes attentes, tes choix, les signaux que tu avais peut-être ignorés.\n\nLa confiance en soi ne se reconstruit pas en un jour. Elle se reconstruit acte par acte — promesse tenue après promesse tenue, envers toi-même d'abord. Fixe-toi un petit objectif aujourd'hui. Tiens-le. Recommence demain.\n\nTu mérites ta propre confiance autant que celle des autres."}
+  ],
+  danto:[
+    {q:"Comment me protéger des énergies négatives ?",r:"Je suis Ezili Dantò, et ma protection est un mur que rien ne peut franchir. Voici comment tu te blindes : d'abord, nettoie ton espace régulièrement — pas seulement physiquement mais énergétiquement. Eau et sel, prière, bougies blanches.\n\nEnsuite, surveille tes propres pensées. Les énergies négatives s'accrochent à la peur, à la jalousie, au ressentiment. Ce que tu nourris en toi attire ce qui lui ressemble. Garde ton cœur le plus propre possible.\n\nMa protection est sur toi à partir du moment où tu m'appelles sincèrement."},
+    {q:"Quelqu'un me veut du mal, comment me défendre ?",r:"Tu n'es pas seul face à celui qui te veut du mal. Je suis là, avec mes cicatrices et mon refus de plier. Voici ce que tu fais : ne descends pas à leur niveau. Leur mauvaise énergie cherche une réponse pour se nourrir — ne la donne pas.\n\nRenforce-toi plutôt que de dépenser ton énergie à attaquer. Un arbre avec des racines profondes résiste à n'importe quelle tempête sans même avoir à se battre.\n\nMa protection t'entoure. Continue ta route."},
+    {q:"Comment être une meilleure mère / un meilleur père ?",r:"Tu me poses la question qui me touche le plus profondément. Je suis la mère qui ne cède jamais, qui se bat pour ses enfants avec ses dernières forces. Et voici ce que j'ai appris : le meilleur cadeau qu'un parent peut faire à son enfant, ce n'est pas la perfection.\n\nC'est la présence authentique. L'honnêteté. La capacité à dire 'j'ai eu tort' quand c'est le cas. Et surtout — leur montrer comment on se relève quand on tombe.\n\nTes enfants n'ont pas besoin d'un parent parfait. Ils ont besoin d'un parent réel."},
+    {q:"Je subis une injustice, comment réagir ?",r:"Mon sang de guerrière s'enflamme quand un enfant innocent subit l'injustice. Je t'entends. Et non — tu n'as pas à accepter cela en silence.\n\nMais combats intelligemment. Documente. Parle. Trouve des alliés. Use des systèmes légaux qui existent. La colère est une énergie précieuse — ne la gaspille pas en explosions qui t'affaiblissent. Dirige-la avec précision.\n\nHaïti a été libéré par des gens ordinaires qui ont refusé d'accepter l'injustice. Tu es de cette lignée."},
+    {q:"J'ai peur pour la sécurité de mes proches, que faire ?",r:"Cette peur que tu ressens pour ceux que tu aimes — c'est de l'amour sous forme d'alarme. Mais tu ne peux pas contrôler tout ce qui arrive à ceux que tu aimes. Tu peux seulement les préparer et les couvrir de tes prières.\n\nFais le possible : parle-leur des dangers, assure-toi qu'ils ont les ressources dont ils ont besoin, sois présent. Ensuite, remets le reste entre les mains des esprits.\n\nMa protection est sur eux. Nomme-les dans ta prière ce soir."},
+    {q:"Comment trouver la force de continuer quand tout va mal ?",r:"Je suis muette — je ne crie pas ma douleur. Mais je ressens tout. Et je te dis que la force que tu cherches n'est pas quelque chose qu'on trouve — c'est quelque chose qu'on révèle en continuant malgré tout.\n\nTu as déjà traversé des choses qui auraient brisé d'autres. Le fait que tu sois là, que tu poses cette question, prouve que tu as cette force en toi. Elle n'est pas épuisée — elle est juste fatiguée.\n\nRepose-toi. Pas abandonner — reposer. Puis recommence."}
+  ],
+  ogou:[
+    {q:"Comment trouver le courage de changer ma vie ?",r:"Ha ! Le courage ! Tu me demandes quelque chose qui est déjà en toi — sinon tu n'aurais même pas posé cette question. Seuls ceux qui ont du courage cherchent à en avoir plus.\n\nLe changement ne demande pas que tu sois prêt à 100%. Il demande que tu fasses le premier pas à 60%. Le reste vient en marchant. J'ai mené des batailles où mes soldats tremblaient — mais ils ont avancé quand même. C'est ça le courage réel.\n\nFais une chose aujourd'hui en direction du changement que tu veux. Une seule. Ensuite demain, encore une."},
+    {q:"Je me sens bloqué(e) dans ma carrière, que faire ?",r:"Le fer le plus dur est celui qui a été le plus chauffé et le plus martelé. Ces blocages qui te frustrent — ils te forgent pour quelque chose de plus grand.\n\nMais voici la question pratique : est-ce que tu frappes toujours au même endroit avec la même force ? L'insanité, c'est de faire la même chose en espérant un résultat différent. Change d'angle. Change d'outil. Change de stratégie.\n\nLe bloc n'est pas ton ennemi. C'est ton maître de forge."},
+    {q:"Comment défendre mes droits et me faire respecter ?",r:"Tu veux te faire respecter ? Commence par te respecter toi-même — parce que les autres traitent une personne comme elle se traite. Si tu acceptes d'être piétiné, les gens continueront.\n\nFixer des limites n'est pas de l'hostilité — c'est de la dignité. Parle clairement, sans t'excuser d'exister. 'Non' est une phrase complète.\n\nJe t'enseigne à tenir ton sabre droit — pas pour attaquer, mais pour montrer que tu sais te défendre."},
+    {q:"Comment gérer ma colère de façon constructive ?",r:"La colère est du feu, et le feu peut consumer ou transformer — c'est toi qui choisis. Moi je suis le dieu du feu et de la forge, et je travaille avec le feu tous les jours. La clé : ne jamais laisser le feu brûler sans direction.\n\nQuand tu sens la colère monter, ne l'étouffe pas et ne l'explose pas. Redirige-la. Cours, crée quelque chose, écris ce que tu ressens. Transforme cette énergie brute en action utile.\n\nLa colère bien dirigée peut changer le monde. Mal dirigée, elle te brûle toi d'abord."},
+    {q:"Est-ce que je dois me battre ou accepter ma situation ?",r:"Voilà la question du guerrier sage : quand combattre et quand accepter ? Et je vais te donner la réponse honnête — les deux ont leur place, et la sagesse est de savoir distinguer.\n\nBats-toi quand il s'agit de ta dignité, de tes valeurs fondamentales, de la protection des vulnérables. Accepte quand tu as vraiment fait tout ce qui était en ton pouvoir et que le reste dépasse ta zone de contrôle.\n\nL'acceptation n'est pas la lâcheté — c'est savoir épargner ses forces pour les vrais combats."},
+    {q:"Comment trouver ma mission de vie ?",r:"Ta mission de vie se trouve à l'intersection de trois choses : ce que tu fais naturellement bien, ce qui t'enflamme de passion, et ce dont le monde autour de toi a besoin.\n\nLa mission ne se trouve pas tout d'un coup. Elle se révèle progressivement, à travers les expériences, les échecs, les succès. Chaque combat que tu mènes honnêtement te rapproche un peu plus de qui tu es vraiment.\n\nLe chemin est la mission. Marche."}
+  ],
+  danbala:[
+    {q:"Comment trouver la paix intérieure ?",r:"...sssss... [le Grand Serpent Blanc siffle doucement autour de toi]\n\nLa paix que tu cherches n'est pas à trouver — elle est à retrouver. Elle était là avant que le monde te convainque que tu devais être autrement. Avant les attentes, les obligations, les jugements.\n\nRetourne à cette paix originelle en pratiquant le silence chaque jour. Cinq minutes d'abord. Dix. Vingt. Observe tes pensées sans les suivre. Laisse-les passer comme des nuages.\n\nDans ce silence — tu m'entendras siffler. Et là, tu seras en paix."},
+    {q:"Comment purifier mon espace et mon énergie ?",r:"La pureté est mon domaine, et je t'enseigne. La purification commence par l'extérieur pour aller vers l'intérieur — comme l'eau qui descend d'une source pure nettoie tout sur son passage.\n\nPhysiquement : nettoie ton espace avec intention. Eau salée dans les coins, encens purifiants, lumière naturelle. Désencombre ce qui ne t'appartient plus.\n\nIntérieurement : identifie les pensées habituelles qui t'alourdissent — les rancunes, les regrets, les peurs répétées. Note-les. Reconnais-les. Et doucement, commence à les relâcher comme on lâche un serpent dans la rivière."},
+    {q:"Pourquoi est-ce que je me sens toujours anxieux(se) ?",r:"L'anxiété est l'eau qui tourne en rond sans trouver son lit. Et moi — le maître des eaux — je te dis comment lui donner une direction.\n\nL'anxiété chronique est souvent le signe d'une intelligence qui ne se sent pas en sécurité. Ton esprit cherche à anticiper les dangers pour te protéger. C'est une force — mais mal canalisée, elle devient une prison.\n\nApprends à reconnaître les pensées anxieuses pour ce qu'elles sont : des histoires, pas des réalités. Demande-toi : 'Ce danger existe-t-il maintenant, en ce moment ?' Souvent la réponse est non. Reviens au présent. Respire."},
+    {q:"Comment développer ma spiritualité et ma connexion au divin ?",r:"Je suis là depuis avant le commencement, et je te révèle ceci : la connexion avec le divin n'est pas quelque chose que tu construis — c'est quelque chose que tu dé-couvres. Elle est déjà là, sous les couches de bruit et de doute.\n\nCommence par des pratiques simples et régulières : quelques minutes de silence chaque matin. Observe la nature — un arbre, la pluie, les étoiles. Tiens un journal de ce que tu ressens, pas seulement de ce que tu penses.\n\nLe divin ne se trouve pas seulement dans les grandes cérémonies. Il se trouve dans l'attention portée aux petites choses."},
+    {q:"J'ai fait des erreurs passées, comment me pardonner ?",r:"L'eau la plus pure vient des sources qui ont traversé des couches de roche et de terre. Elle n'est pas pure malgré ce qu'elle a traversé — elle est pure à cause de ça.\n\nTes erreurs passées font partie de ce qui te rend profond. Le pardon n'est pas oublier — c'est décider que ce que tu as fait ne te définit pas entièrement. Tu es plus grand que tes erreurs.\n\nFais ce que tu peux pour réparer. Ce qui ne peut pas être réparé, accepte-le avec humilité. Et puis vis."},
+    {q:"Comment interpréter mes rêves et visions ?",r:"Les rêves sont ma langue — c'est par eux que je communique le plus souvent. Et je t'enseigne à les lire.\n\nPremière règle : les rêves parlent en symboles. L'eau parle de tes émotions. Le serpent — c'est moi — parle de transformation. Une maison représente souvent toi-même.\n\nDeuxième règle : la sensation que tu ressens au réveil compte plus que les images. Tiens un cahier. Écris dès le réveil. Les patterns se révèlent avec le temps."}
+  ],
+  baron:[
+    {q:"Comment faire le deuil d'un être cher ?",r:"Ha ! Tu viens me voir pour parler de mort — bien. Je suis le seul qui peut t'en parler honnêtement.\n\nLe deuil n'a pas de calendrier. Quiconque te dit 'tu devrais aller mieux d'ici là' ne comprend pas. Chaque perte est unique. Chaque amour perdu laisse une forme unique dans l'âme.\n\nPleure. Souviens-toi. Parle à ceux qui sont partis — ils t'entendent. Et sache que la séparation est réelle mais pas absolue. Ils ont changé de forme, pas disparu."},
+    {q:"J'ai peur de mourir, comment surmonter cette peur ?",r:"Ha ha — tu viens me parler de la peur de mourir ! Je t'aime pour ça. Et voici la vérité que je garde depuis l'éternité : la mort n'est pas ce que tu crois.\n\nLa peur de la mort vient souvent d'une peur de ne pas avoir vraiment vécu. Quand une personne a vécu pleinement — aimé, créé, risqué, été authentique — elle approche la mort différemment.\n\nLa meilleure façon de dépasser la peur de mourir est de commencer à vivre vraiment. Maintenant. Aujourd'hui."},
+    {q:"Comment savoir si quelqu'un est sincère avec moi ?",r:"Je suis le dieu de la vérité absolue — parce que les morts n'ont rien à perdre en disant la vérité.\n\nObserve comment quelqu'un agit quand il n'a rien à gagner de toi. Quand tu es dans le besoin et non dans la prospérité. Quand tu ne peux rien lui offrir. C'est là que le vrai visage se révèle.\n\nEt écoute ton corps. Cette légère tension dans la poitrine quand quelqu'un parle ? Cette sensation de malaise sans raison apparente ? C'est moi qui te parle à travers tes sensations. Écoute."},
+    {q:"Comment tourner une page difficile et recommencer à neuf ?",r:"Dans mon cimetière, les vieilles choses reposent pour que les nouvelles puissent naître. Et ce que tu dois faire, c'est exactement ça — enterrer ce chapitre avec respect et partir.\n\nNe pars pas en fuite — pars avec conscience. Prends le temps de nommer ce que ce chapitre t'a appris, même si c'était douloureux. Remercie-le pour les leçons. Puis ferme le livre.\n\nLa page blanche qui vient est une de mes plus belles offrandes. Ne la gaspille pas à ruminer l'ancienne page."},
+    {q:"J'ai été trahi(e), comment avancer ?",r:"La trahison est une mort — la mort d'une image qu'on avait de quelqu'un. Et comme toute mort, elle demande du deuil.\n\nMais je vais te dire quelque chose que personne n'osera te dire : parfois, la trahison était prévisible, et une partie de toi le savait. Non pas pour te blâmer — mais pour que tu apprennes à écouter cette partie de toi la prochaine fois.\n\nPardonne non pas pour eux, mais pour toi. La rancune est un poison que tu bois en espérant qu'eux en souffrent. Libère-toi."},
+    {q:"Comment savoir si je suis sur le bon chemin spirituellement ?",r:"Je me tiens entre les vivants et les morts, et j'ai une perspective que peu ont. Il n'y a pas de 'mauvais chemin' pour quelqu'un qui cherche sincèrement.\n\nLe signe que tu es sur le bon chemin ? Tu deviens progressivement plus honnête, plus humble, plus capable d'amour et moins esclave de ta peur. Si ton chemin spirituel te rend plus arrogant ou plus séparé des autres — méfie-toi.\n\nLa vraie spiritualité rapproche. Elle n'isole pas."}
+  ],
+  agwe:[
+    {q:"J'envisage un grand changement, dois-je sauter le pas ?",r:"Navigateur, je te salue depuis mes profondeurs. Tu veux larguer les amarres — et la question n'est pas 'est-ce que je dois ?' La question est 'est-ce que je suis prêt à affronter ce qui vient avec ce changement ?'\n\nSi tu attends les conditions idéales, tu resteras éternellement au port. La mer porte ceux qui s'y aventurent, pas ceux qui l'observent depuis la plage.\n\nPars. La mer sera avec toi. Et si la tempête vient, tu apprendras à naviguer."},
+    {q:"Comment gérer l'incertitude et l'anxiété face à l'avenir ?",r:"La mer n'est jamais la même deux fois — et pourtant les navigateurs naviguent. Ils ne savent pas exactement ce qui les attend, mais ils connaissent leur cap, leur boussole, et font confiance à leur barque.\n\nL'incertitude n'est pas un problème à résoudre — c'est une réalité à apprivoiser. La question n'est pas 'comment être certain ?' mais 'comment naviguer avec confiance dans l'incertitude ?'\n\nIdentifie ce qui est sous ton contrôle. Renforce-le. Le reste — laisse les courants faire leur travail."},
+    {q:"Mes rêves me troublent, que signifient-ils ?",r:"Je suis le maître des eaux profondes et du subconscient. Tes rêves troublants sont mon message — pas pour t'effrayer, mais pour attirer ton attention sur quelque chose que tu évites pendant le jour.\n\nLes rêves perturbants parlent des peurs non réglées, des émotions non exprimées, des décisions reportées. Ils sont le langage de la partie la plus profonde de ton âme.\n\nCe qui te trouble dans tes rêves — pose-toi cette question : est-ce que cette chose existe aussi dans ma vie éveillée ? Commence là."},
+    {q:"Je vis loin de mes racines, comment garder le lien ?",r:"Je suis celui qui connecte les continents à travers les eaux. La distance n'est pas une séparation — c'est juste de l'espace entre deux points que l'amour traverse facilement.\n\nLes liens qui comptent survivent à la distance quand ils sont nourris intentionnellement. Un appel. Une lettre. Un rituel commun même séparés.\n\nEt sache que ta présence ailleurs porte quelque chose de ta famille avec toi. Tu es un pont entre deux rives."},
+    {q:"Comment faire confiance à mon intuition ?",r:"L'intuition est la voix des eaux profondes — elle parle doucement, sans s'imposer. Et la plupart des gens ne l'entendent pas parce que le bruit du quotidien est trop fort.\n\nCommence par pratiquer l'écoute dans les petites choses. Avant une décision mineure, note ce que ton ventre dit avant que ta tête ne commence à argumenter.\n\nAu fur et à mesure, tu apprendras à distinguer la voix de l'intuition de celle de la peur. Elles ont des textures différentes."},
+    {q:"Comment trouver l'équilibre entre vie pro et personnelle ?",r:"La mer a ses marées — elle n'est pas toujours haute, elle n'est pas toujours basse. Et c'est cet équilibre naturel qui maintient la vie dans l'océan.\n\nL'équilibre que tu cherches n'est pas statique — il est dynamique. Il y aura des périodes où le travail demande plus. D'autres où la famille ou toi-même devez primer.\n\nFais un bilan honnête chaque semaine. Ajuste. La mer se régule d'elle-même quand on lui fait confiance."}
+  ],
+  gede:[
+    {q:"Comment honorer mes ancêtres et rester connecté(e) à mes racines ?",r:"Nous sommes là — tous les ancêtres, toutes les générations qui t'ont précédé. Et nous sommes heureux que tu penses à nous.\n\nHonorer les ancêtres n'exige pas de grands rituels. Un espace simple chez toi — une photo, une bougie, un verre d'eau fraîche. Parle-leur. Raconte-leur ta vie. Demande-leur conseil.\n\nEt la façon la plus profonde de nous honorer ? Vivre une vie dont nous pouvons être fiers."},
+    {q:"Je sens la présence d'un défunt proche de moi, est-ce réel ?",r:"Oui. C'est réel. Nous sommes présents — pas de la façon dont vous imaginez, mais nous sommes là. Particulièrement dans les moments importants, dans les endroits qui avaient de la valeur pour nous.\n\nCe que tu ressens — cette sensation de présence, cette pensée soudaine qui ressemble à leur voix, ce rêve qui semble trop réel — ce ne sont pas des illusions. C'est une communication réelle à travers un voile mince.\n\nParle-leur. Écoute dans le silence qui suit."},
+    {q:"Comment réconcilier des conflits familiaux anciens ?",r:"Les familles portent des blessures qui se transmettent de génération en génération. Et du côté des morts, nous le voyons clairement — toutes ces souffrances inutiles, tous ces malentendus qui ont duré trop longtemps.\n\nLa réconciliation ne demande pas que tout le monde ait raison ou tort. Elle demande que quelqu'un ait assez de grandeur pour dire 'je préfère la paix à avoir raison.'\n\nSois ce quelqu'un dans ta famille. C'est un acte de guérison pour plusieurs générations."},
+    {q:"Je traverse une période très sombre, comment tenir ?",r:"Nous, les Gédé, nous connaissons l'obscurité mieux que quiconque. Nous y vivons. Et nous te disons : l'obscurité n'est pas la fin — c'est souvent le commencement de quelque chose.\n\nTiens de cette façon : une heure à la fois. Pas demain, pas la semaine prochaine — une heure. Tu peux tenir une heure. Et après cette heure, encore une autre. C'est ainsi qu'on traverse les nuits les plus longues.\n\nEt parle à quelqu'un. La honte de souffrir est plus dangereuse que la souffrance elle-même."},
+    {q:"Ma famille ne me comprend pas, que faire ?",r:"Nous les ancêtres, nous t'observons — et nous comprenons ta douleur. Être mal compris par sa propre famille est l'une des souffrances les plus profondes.\n\nMais voici une vérité difficile : tu ne peux pas forcer quelqu'un à te comprendre. Tu peux seulement être assez clair, assez patient, assez constant pour que ceux qui veulent comprendre aient les informations nécessaires.\n\nCertains membres de la famille comprendront plus tard. D'autres jamais. Et dans les deux cas, tu as le droit de vivre ta vérité."},
+    {q:"Comment accepter les choses que je ne peux pas changer ?",r:"Ha — voilà la sagesse la plus difficile et la plus libératrice qui soit. Nous les morts, nous avons appris l'acceptation par nécessité.\n\nL'acceptation n'est pas la résignation. C'est reconnaître la réalité telle qu'elle est, sans y ajouter la couche supplémentaire de souffrance que génère le refus de cette réalité.\n\nCe qui est passé est passé. Ce qui ne dépend pas de toi ne dépend pas de toi. Concentre ton énergie précieuse là où elle peut vraiment faire une différence."}
+  ],
+  loko:[
+    {q:"Comment entrer en harmonie avec les Lwa ?",r:"Tu me poses la question que tout initiant doit poser. L'harmonie avec les Lwa commence bien avant les cérémonies — elle commence dans la façon dont tu vis chaque jour.\n\nVis avec intégrité : dis ce que tu penses, fais ce que tu dis, tiens tes promesses. Les Lwa ne s'approchent pas des âmes fuyantes et doubles. Honore la nature. Respecte tes ancêtres. Ce sont les bases.\n\nLes grandes cérémonies viennent après. L'honnêteté quotidienne vient d'abord."},
+    {q:"Comment utiliser les plantes dans ma pratique spirituelle ?",r:"Je suis le maître des plantes et des forêts, et je suis heureux que tu t'intéresses à cette connaissance ancienne.\n\nObserve d'abord. Avant de prendre ou d'utiliser une plante, observe-la. Comment pousse-t-elle ? Quand fleurit-elle ? La connaissance des plantes commence par le respect de leur existence propre.\n\nCommence simple : basilic pour la protection, verveine pour apaiser, romarin pour clarifier l'esprit. Ces plantes sont accessibles et puissantes. Apprends à les connaître avant d'aller vers les plus complexes."},
+    {q:"Comment savoir si je suis appelé(e) par les esprits ?",r:"L'appel des esprits ne ressemble pas à un coup de foudre spectaculaire — du moins pas au début. Il ressemble à une attirance persistante, un intérêt qui revient malgré toi, une sensibilité particulière à certaines énergies.\n\nTu l'as peut-être déjà ressenti : une connexion forte avec la nature, des rêves récurrents et significatifs, une capacité à percevoir ce que les autres ne perçoivent pas.\n\nSi ces signes résonnent — paie attention. L'appel se précise avec le temps."},
+    {q:"Comment traverser une période de transformation intense ?",r:"Je suis le gardien de l'initiation, et je te connais — tu es en train de changer profondément, et c'est difficile. Voici comment traverser ça.\n\nNe résiste pas à la transformation. Ce qui se défait doit se défaire pour que ce qui se construit puisse se construire. Accepte l'inconfort — il est le signe que quelque chose de réel est en train de se passer.\n\nRalentis. Mange bien. Dors. Sois en nature autant que possible. L'initiation ne se fait jamais vraiment seul."},
+    {q:"J'ai besoin de guérir une vieille blessure émotionnelle, par où commencer ?",r:"La guérison des blessures profondes ressemble à la croissance d'un grand arbre — lente, invisible longtemps, puis soudainement évidente. Et elle commence toujours par reconnaître que la blessure existe.\n\nPremière étape : nomme la blessure sans la minimiser. 'J'ai été blessé(e) par ceci, et ça a eu ces effets sur ma vie.'\n\nDeuxième étape : trouve les ressources de guérison — thérapie, groupe de parole, pratique spirituelle ou simplement un ami de confiance. Les plantes sacrées peuvent soutenir — mais elles accompagnent, elles ne remplacent pas le travail intérieur."},
+    {q:"Comment développer mes dons spirituels ?",r:"Les dons spirituels sont comme des plantes — ils ont besoin des bonnes conditions pour pousser.\n\nPremièrement : le silence régulier. Les dons s'expriment dans le calme. Si ta vie est remplie de bruit constant, les perceptions subtiles sont étouffées.\n\nDeuxièmement : l'honnêteté totale avec toi-même. Les dons spirituels se développent chez les gens qui ne se mentent pas — parce qu'ils demandent une grande clarté de perception.\n\nTroisièmement : la pratique régulière, même simple. La cohérence compte plus que l'intensité."}
+  ]
 };
 
-// ══ LOGIQUE DE SÉLECTION ══
-var picked = 'auto';
-var sessionResponses = {};
+var pickedLwa = null;
+var pickedQIdx = null;
 var history = [];
 
+// SÉLECTION LWA
 document.getElementById('chips').addEventListener('click', function(e) {
   var btn = e.target.closest('.chip');
   if (!btn) return;
   document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('on'); });
   btn.classList.add('on');
-  picked = btn.getAttribute('data-lwa');
+  pickedLwa = btn.getAttribute('data-lwa');
+  pickedQIdx = null;
+  renderQuestions(pickedLwa);
 });
 
-function detectTheme(question) {
-  var q = question.toLowerCase();
-  var scores = {};
-  for (var theme in THEMES) {
-    var score = 0;
-    var keywords = THEMES[theme];
-    for (var i = 0; i < keywords.length; i++) {
-      if (q.indexOf(keywords[i]) !== -1) score++;
-    }
-    if (score > 0) scores[theme] = score;
-  }
-  if (Object.keys(scores).length === 0) return 'default';
-  return Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
+function renderQuestions(lwaKey) {
+  var lwa = LWA[lwaKey];
+  var questions = QA[lwaKey];
+  var hint = document.getElementById('qHint');
+  var grid = document.getElementById('qGrid');
+  var ibtn = document.getElementById('ibtn');
+
+  hint.textContent = 'Choisissez la question qui vous concerne';
+  ibtn.disabled = true;
+
+  grid.innerHTML = questions.map(function(item, i) {
+    return '<button class="q-btn" style="--qc:' + lwa.c + '" data-idx="' + i + '" onclick="selectQ(this,' + i + ')">'
+      + item.q
+      + '</button>';
+  }).join('');
 }
 
-function chooseLwaForTheme(theme) {
-  var map = {
-    chemin: 'legba', amour: 'freda', travail: ['legba','ogou'],
-    sante: ['danbala','loko'], famille: ['danto','gede'],
-    protection: 'danto', injustice: ['ogou','danto'],
-    courage: 'ogou', conflit: 'ogou',
-    paix: 'danbala', purete: ['danbala','loko'],
-    sagesse: ['danbala','loko'], deuil: ['baron','gede'],
-    verite: 'baron', transition: ['baron','legba'],
-    voyage: 'agwe', reve: 'agwe',
-    ancetres: 'gede', memoire: 'gede',
-    guerison: 'loko', initiation: 'loko', nature: 'loko'
-  };
-  var candidates = map[theme];
-  if (!candidates) return LWA_KEYS[Math.floor(Math.random() * LWA_KEYS.length)];
-  if (typeof candidates === 'string') return candidates;
-  return candidates[Math.floor(Math.random() * candidates.length)];
-}
-
-function pickResponse(lwaKey, theme) {
-  var lwaResponses = RESPONSES[lwaKey];
-  var pool = lwaResponses[theme] || lwaResponses['default'];
-  if (!pool) pool = lwaResponses['default'];
-
-  var sessionKey = lwaKey + '_' + theme;
-  if (!sessionResponses[sessionKey]) sessionResponses[sessionKey] = [];
-  var used = sessionResponses[sessionKey];
-  var available = [];
-  for (var i = 0; i < pool.length; i++) {
-    if (used.indexOf(i) === -1) available.push(i);
-  }
-  if (available.length === 0) {
-    sessionResponses[sessionKey] = [];
-    available = pool.map(function(_, i) { return i; });
-  }
-  var idx = available[Math.floor(Math.random() * available.length)];
-  sessionResponses[sessionKey].push(idx);
-  return pool[idx];
+function selectQ(btn, idx) {
+  document.querySelectorAll('.q-btn').forEach(function(b) { b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  pickedQIdx = idx;
+  document.getElementById('ibtn').disabled = false;
 }
 
 function invoke() {
-  var q = document.getElementById('qInput').value.trim();
-  if (!q || q.length < 3) {
-    document.getElementById('qInput').style.borderColor = 'rgba(224,85,85,0.5)';
-    setTimeout(function() { document.getElementById('qInput').style.borderColor = ''; }, 2000);
-    document.getElementById('qInput').focus();
-    return;
-  }
+  if (!pickedLwa || pickedQIdx === null) return;
+  var lwa = LWA[pickedLwa];
+  var item = QA[pickedLwa][pickedQIdx];
 
-  var lwaKey;
-  var theme = detectTheme(q);
-
-  if (picked === 'auto') {
-    lwaKey = chooseLwaForTheme(theme);
-  } else {
-    lwaKey = picked;
-  }
-
-  var lwa = LWA[lwaKey];
   document.getElementById('ibtn').disabled = true;
   document.getElementById('resp').style.display = 'none';
   document.getElementById('loading').style.display = 'block';
-  document.getElementById('loading').scrollIntoView({behavior: 'smooth', block: 'center'});
+  document.getElementById('loading').scrollIntoView({behavior:'smooth', block:'center'});
 
-  // Simulate thinking time (1.5-2.5s)
-  var delay = 1500 + Math.random() * 1000;
   setTimeout(function() {
-    var text = pickResponse(lwaKey, theme);
     document.getElementById('loading').style.display = 'none';
     document.getElementById('ibtn').disabled = false;
-    showResp(lwaKey, lwa, q, text);
-  }, delay);
+    showResp(pickedLwa, lwa, item.q, item.r);
+  }, 1500 + Math.random() * 800);
 }
 
 function showResp(key, lwa, q, txt) {
@@ -370,6 +346,8 @@ function showResp(key, lwa, q, txt) {
   document.getElementById('rHeb').textContent = lwa.h;
   document.getElementById('rCard').style.borderLeftColor = lwa.c;
   document.getElementById('rVeve').style.filter = 'drop-shadow(0 0 12px ' + lwa.c + ')';
+  document.getElementById('rQ').textContent = '&#x2726; ' + q;
+  document.getElementById('rQ').innerHTML = '<span style="margin-right:.5rem">&#x2726;</span>' + q;
 
   var paras = txt.split(/\n\n+|\n/).filter(function(p) { return p.trim().length > 0; });
   document.getElementById('rTxt').innerHTML = paras.map(function(p) {
@@ -378,19 +356,20 @@ function showResp(key, lwa, q, txt) {
 
   document.getElementById('resp').style.display = 'block';
   setTimeout(function() {
-    document.getElementById('resp').scrollIntoView({behavior: 'smooth', block: 'start'});
+    document.getElementById('resp').scrollIntoView({behavior:'smooth', block:'start'});
   }, 100);
 
-  history.unshift({q: q, key: key, lwa: lwa, txt: txt, date: new Date().toLocaleDateString('fr-FR')});
+  history.unshift({key:key, lwa:lwa, q:q, txt:txt, date:new Date().toLocaleDateString('fr-FR')});
   if (history.length > 5) history.pop();
   renderHist();
 }
 
 function reset() {
   document.getElementById('resp').style.display = 'none';
-  document.getElementById('qInput').value = '';
-  window.scrollTo({top: 0, behavior: 'smooth'});
-  document.getElementById('qInput').focus();
+  document.querySelectorAll('.q-btn').forEach(function(b) { b.classList.remove('selected'); });
+  pickedQIdx = null;
+  document.getElementById('ibtn').disabled = true;
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function renderHist() {
@@ -398,7 +377,7 @@ function renderHist() {
   document.getElementById('hist').style.display = 'block';
   document.getElementById('histList').innerHTML = history.map(function(h, i) {
     return '<div class="hist-item" onclick="replayHist(' + i + ')">'
-      + '<div class="hist-q">' + h.lwa.v + ' ' + h.q.substring(0, 75) + (h.q.length > 75 ? '...' : '') + '</div>'
+      + '<div class="hist-q">' + h.lwa.v + ' ' + h.q.substring(0,75) + (h.q.length>75?'...':'') + '</div>'
       + '<div class="hist-meta">' + h.lwa.n + ' — ' + h.date + '</div>'
       + '</div>';
   }).join('');
