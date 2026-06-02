@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Musique Sacrée | Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#04030a;color:#e8e0d0;font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:tw var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes tw{0%{opacity:0}100%{opacity:var(--o)}}
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.9rem 2rem;background:rgba(4,3,10,0.92);border-bottom:1px solid rgba(212,175,55,0.12);backdrop-filter:blur(10px)}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:#d4af37}
+.nav-txt{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;color:rgba(212,175,55,0.5);text-decoration:none;text-transform:uppercase}
+/* HERO */
+.hero{padding:6rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(212,175,55,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-ey{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.5em;color:rgba(212,175,55,0.5);text-transform:uppercase;display:block;margin-bottom:.7rem}
+.hero-h1{font-family:'Cinzel',serif;font-size:clamp(1.6rem,5vw,2.6rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;text-shadow:0 0 30px rgba(212,175,55,0.2);margin-bottom:.5rem}
+.hero-hb{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:rgba(212,175,55,0.3);display:block;margin-bottom:.6rem}
+.hero-sub{font-style:italic;font-size:1rem;color:rgba(232,224,208,0.4);max-width:460px;margin:0 auto 1.5rem;line-height:1.9}
+.hero-rule{width:70px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto}
+/* TRACK CARDS */
+.tracks{max-width:680px;margin:0 auto;padding:3rem 1.5rem 7rem;position:relative;z-index:1;display:flex;flex-direction:column;gap:3rem}
+.track-frame{border:1px solid rgba(212,175,55,0.15);border-radius:16px;background:rgba(212,175,55,0.02);overflow:hidden}
+.track-top{display:flex;flex-direction:column;align-items:center;padding:2rem 1.5rem 1.5rem;text-align:center;position:relative}
+.track-top::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,var(--tc,rgba(212,175,55,.06)) 0%,transparent 70%);pointer-events:none}
+.track-eyebrow{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.4em;color:var(--tc-solid,#d4af37);text-transform:uppercase;opacity:.7;margin-bottom:.6rem;display:block}
+.track-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,3.5vw,1.5rem);letter-spacing:.12em;color:#d4af37;margin-bottom:.3rem}
+.track-title-hb{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:rgba(212,175,55,0.4);display:block;margin-bottom:.3rem}
+.track-sub{font-style:italic;font-size:.88rem;color:rgba(232,224,208,0.4);line-height:1.7;max-width:420px;margin:0 auto 1.5rem}
+/* Floating image */
+.track-img-wrap{position:relative;display:inline-block;margin-bottom:1.8rem}
+.track-img{width:200px;height:200px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid rgba(212,175,55,0.3);box-shadow:0 0 40px rgba(212,175,55,0.15),0 0 80px rgba(0,0,0,0.4);display:block;animation:floatImg 6s ease-in-out infinite}
+@keyframes floatImg{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-10px) scale(1.02)}}
+.track-ring{position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(212,175,55,0.2);animation:pulseR 3s ease-in-out infinite;pointer-events:none}
+.track-ring2{position:absolute;inset:-18px;border-radius:50%;border:1px solid rgba(212,175,55,0.1);animation:pulseR 3s ease-in-out infinite .8s;pointer-events:none}
+@keyframes pulseR{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:0}}
+/* Player */
+.track-player{padding:0 1.2rem 1.5rem}
+.track-player iframe{display:block;border:none;border-radius:10px;box-shadow:0 4px 30px rgba(0,0,0,0.5)}
+/* Meta */
+.track-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;padding:0 1.2rem 1.5rem}
+.track-tag{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .65rem;border:1px solid rgba(212,175,55,0.2);color:rgba(212,175,55,0.55)}
+/* Divider */
+.tracks-divider{display:flex;align-items:center;gap:1rem;padding:0 1rem}
+.tracks-divider::before,.tracks-divider::after{content:'';flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,0.2),transparent)}
+.tracks-divider span{font-size:.6rem;color:rgba(212,175,55,0.25)}
+/* Prochainement */
+.coming-soon{text-align:center;border:1px dashed rgba(212,175,55,0.12);padding:2.5rem 1.5rem;border-radius:12px}
+.coming-soon-icon{font-size:2rem;display:block;margin-bottom:.8rem;opacity:.4}
+.coming-soon-txt{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,0.3);text-transform:uppercase}
+/* Ticker */
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,0.2);overflow:hidden}
+.rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,0.15)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rjs 28s linear infinite}
+@keyframes rjs{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-heb">&#x05D1;&#x05BC;&#x05E0;&#x05B5;&#x05D9; &#x05D0;&#x05D5;&#x05B9;&#x05E8;</span>
+    <span class="nav-txt">Bnei Ohr</span>
+  </a>
+  <a href="index.html" class="nav-back">&#8592; Accueil</a>
+</nav>
+
+<div class="hero">
+  <span class="hero-ey">&#x2721; Productions Bnei Ohr</span>
+  <h1 class="hero-h1">Musique Sacrée</h1>
+  <span class="hero-hb">&#x05E9;&#x05B4;&#x05D9;&#x05E8; &#x05E7;&#x05B9;&#x05D3;&#x05E9;</span>
+  <p class="hero-sub">Compositions inspirées de la Kabbale et de l'âme haïtienne — pour la méditation, l'élévation et la prière.</p>
+  <div class="hero-rule"></div>
+</div>
+
+<div class="tracks">
+
+  <!-- ── TRACK 1 : Malkout nan Ekilib ── -->
+  <div class="track-frame" style="--tc:rgba(212,175,55,0.07);--tc-solid:#d4af37">
+    <div class="track-top">
+      <span class="track-eyebrow">&#x2721; Musique Kabbalistique · Bnei Ohr</span>
+      <h2 class="track-title">Malkout nan Ekilib</h2>
+      <span class="track-title-hb">&#x05DE;&#x05DC;&#x05DB;&#x05D5;&#x05EA; &#x05D1;&#x05D0;&#x05D9;&#x05D6;&#x05D5;&#x05DF;</span>
+      <p class="track-sub">Malkhout dans l'Équilibre — une composition dédiée à la Sefirah de la présence divine dans la matière.</p>
+      <div class="track-img-wrap">
+        <span class="track-ring"></span>
+        <span class="track-ring2"></span>
+        <img class="track-img"
+             src="https://i.postimg.cc/s2c5M7Xg/file-00000000cf9471f88c7b911e82f78062.png"
+             alt="Malkout nan Ekilib"
+             style="object-position:center 20%"/>
+      </div>
+    </div>
+    <div class="track-player">
+      <iframe
+        width="100%"
+        height="166"
+        scrolling="no"
+        allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bnei-ohr/malkout-nan-ekilib&color=%23d4af37&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+      </iframe>
+    </div>
+    <div class="track-meta">
+      <span class="track-tag">Malkhut</span>
+      <span class="track-tag">Méditation</span>
+      <span class="track-tag">Kabbale</span>
+      <span class="track-tag">Bnei Ohr</span>
+    </div>
+  </div>
+
+  <div class="tracks-divider"><span>&#x2726;</span></div>
+
+  <!-- ── TRACK 2 : Ana B'Koach ── -->
+  <div class="track-frame" style="--tc:rgba(160,100,220,0.07);--tc-solid:#a064dc">
+    <div class="track-top">
+      <span class="track-eyebrow" style="color:#a064dc">&#x2721; Méditation Guidée · Prière des 42 Lettres</span>
+      <h2 class="track-title">Ana B'Koach</h2>
+      <span class="track-title-hb">&#x05D0;&#x05B8;&#x05E0;&#x05BC;&#x05B8; &#x05D1;&#x05BC;&#x05B0;&#x05DB;&#x05B9;&#x05D7;</span>
+      <p class="track-sub">Prière kabbalistique des 42 lettres divines — pour l'élévation de l'âme et la libération des blocages intérieurs.</p>
+      <div class="track-img-wrap">
+        <span class="track-ring" style="border-color:rgba(160,100,220,0.2)"></span>
+        <span class="track-ring2" style="border-color:rgba(160,100,220,0.1)"></span>
+        <img class="track-img"
+             src="https://i.postimg.cc/YStSkxN5/1779718847594.jpg"
+             alt="Ana B'Koach"/>
+      </div>
+    </div>
+    <div class="track-player">
+      <iframe
+        width="100%"
+        height="166"
+        scrolling="no"
+        allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bnei-ohr/ana-b_ko_ach-a-kabbalistic&color=%23d4af37&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+      </iframe>
+    </div>
+    <div class="track-meta">
+      <span class="track-tag" style="border-color:rgba(160,100,220,0.25);color:rgba(160,100,220,0.6)">Ana BeKoach</span>
+      <span class="track-tag" style="border-color:rgba(160,100,220,0.25);color:rgba(160,100,220,0.6)">42 Lettres</span>
+      <span class="track-tag" style="border-color:rgba(160,100,220,0.25);color:rgba(160,100,220,0.6)">Prière</span>
+      <span class="track-tag" style="border-color:rgba(160,100,220,0.25);color:rgba(160,100,220,0.6)">Bnei Ohr</span>
+    </div>
+  </div>
+
+  <div class="tracks-divider"><span>&#x2726;</span></div>
+
+  <!-- ── PROCHAINEMENT ── -->
+  <div class="coming-soon">
+    <span class="coming-soon-icon">&#x1F3B5;</span>
+    <div class="coming-soon-txt">Prochaines compositions — bientôt</div>
+  </div>
+
+</div>
+
+<div class="rj-bar">
+  <div class="rj-lbl">&#x2721; Réflexion du Jour</div>
+  <div class="rj-track"><div class="rj-inner" id="rjInner"></div></div>
+</div>
+
+<script>
+(function(){var s=document.getElementById('stars');for(var i=0;i<80;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.4+0.3;el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.4+0.08)+';';s.appendChild(el);}})();
+(function(){var q=['Il n\'y a rien d\'autre que Lui. Derrière chaque apparence — une seule Lumière.','La musique est la Kabbale des sons — chaque note porte une fréquence divine.','Malkhout est le Royaume où la Lumière devient chair, souffle, chant.','Ana BeKoach — chaque mot est une clé. Chaque lettre est une porte.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
+</script>
+</body>
+</html>
