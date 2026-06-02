@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oracle des Sefirot | Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#04030a;color:#e8e0d0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:tw var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes tw{0%{opacity:0}100%{opacity:var(--o)}}
+.glow-bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(212,175,55,0.05) 0%,transparent 60%);pointer-events:none}
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.9rem 2rem;background:rgba(4,3,10,0.9);border-bottom:1px solid rgba(212,175,55,0.1);backdrop-filter:blur(10px)}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:#d4af37}
+.nav-txt{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-link{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;color:rgba(212,175,55,0.5);text-decoration:none;text-transform:uppercase}
+.nav-badge{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.15em;color:rgba(212,175,55,0.6);border:1px solid rgba(212,175,55,0.2);padding:.2rem .6rem}
+.hero{padding:6rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 0%,rgba(212,175,55,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-ey{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.5em;color:rgba(212,175,55,0.55);text-transform:uppercase;display:block;margin-bottom:.7rem}
+.hero-h1{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;text-shadow:0 0 30px rgba(212,175,55,0.25);margin-bottom:.4rem}
+.hero-hb{font-family:'Noto Serif Hebrew',serif;font-size:1.2rem;color:rgba(212,175,55,0.35);display:block;margin-bottom:.6rem}
+.hero-sub{font-style:italic;font-size:1rem;color:rgba(232,224,208,0.4);max-width:480px;margin:0 auto 1.5rem;line-height:1.9}
+.hero-rule{width:70px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto}
+.wrap{max-width:700px;margin:0 auto;padding:3rem 1.5rem 7rem;position:relative;z-index:1}
+.step-lbl{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(212,175,55,0.5);text-transform:uppercase;display:block;text-align:center;margin-bottom:1rem}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;margin-bottom:2rem}
+.chip{border:1px solid rgba(255,255,255,0.1);background:transparent;color:rgba(232,224,208,0.45);font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;padding:.42rem .85rem;cursor:pointer;transition:all .3s}
+.chip.on{color:var(--cc);border-color:var(--cc);background:rgba(255,255,255,0.035)}
+.divr{width:100%;display:flex;align-items:center;gap:1rem;margin:1.5rem 0}
+.divr::before,.divr::after{content:'';flex:1;height:1px;background:rgba(212,175,55,0.1)}
+.divr span{font-size:.65rem;color:rgba(212,175,55,0.25)}
+.q-grid{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.q-btn{background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.12);color:rgba(232,224,208,0.65);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;line-height:1.6;padding:.9rem 1.2rem;cursor:pointer;text-align:left;transition:all .3s;position:relative}
+.q-btn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--qc,#d4af37);opacity:0;transition:opacity .3s}
+.q-btn:hover{background:rgba(255,255,255,0.04);border-color:rgba(212,175,55,0.28);color:rgba(232,224,208,0.9)}
+.q-btn:hover::before{opacity:1}
+.q-btn.selected{background:rgba(212,175,55,0.05);border-color:rgba(212,175,55,0.35);color:#e8e0d0}
+.q-btn.selected::before{opacity:1}
+.q-hint{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.2em;color:rgba(212,175,55,0.3);text-transform:uppercase;text-align:center;margin-bottom:1rem;display:block}
+.no-lwa-msg{font-style:italic;font-size:.95rem;color:rgba(232,224,208,0.3);text-align:center;padding:1.5rem;border:1px dashed rgba(212,175,55,0.1)}
+.ibtn{width:100%;margin-top:1rem;padding:1rem 2rem;display:flex;align-items:center;justify-content:center;gap:.7rem;background:linear-gradient(135deg,rgba(212,175,55,0.08),rgba(212,175,55,0.04));border:1px solid rgba(212,175,55,0.3);color:#d4af37;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s}
+.ibtn:hover{border-color:rgba(212,175,55,0.55);box-shadow:0 0 24px rgba(212,175,55,0.1)}
+.ibtn:disabled{opacity:.35;cursor:not-allowed}
+.loading{display:none;text-align:center;padding:3rem 1rem}
+.load-sym{font-size:2.2rem;display:block;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-txt{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,0.45);text-transform:uppercase;margin-top:.9rem;animation:fp 1.5s ease-in-out infinite}
+@keyframes fp{0%,100%{opacity:.25}50%{opacity:.8}}
+.resp{display:none;margin-top:2rem;animation:ri .7s ease both}
+@keyframes ri{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.resp-top{display:flex;align-items:center;gap:1rem;padding-bottom:1rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(212,175,55,0.1)}
+.resp-veve{font-size:2rem;font-family:'Noto Serif Hebrew',serif}
+.resp-name{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.14em;text-transform:uppercase}
+.resp-role{font-style:italic;font-size:.85rem;color:rgba(232,224,208,0.4);margin-top:.2rem}
+.resp-q{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.15em;color:rgba(212,175,55,0.4);text-transform:uppercase;margin-bottom:1rem}
+.resp-card{background:rgba(255,255,255,0.02);border:1px solid rgba(212,175,55,0.1);border-left:3px solid #d4af37;padding:1.8rem 1.8rem 1.8rem 2rem;position:relative}
+.resp-card::before{content:'\201C';position:absolute;top:.4rem;left:.8rem;font-size:3.5rem;color:#d4af37;opacity:.1;font-family:Georgia,serif;line-height:1;pointer-events:none}
+.resp-txt p{font-size:1.06rem;line-height:2;color:rgba(232,224,208,0.85);margin-bottom:1rem}
+.resp-txt p:last-child{margin-bottom:0}
+.resp-foot{margin-top:1.2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+.resp-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.5rem;color:rgba(212,175,55,0.35)}
+.resp-new{background:transparent;border:1px solid rgba(212,175,55,0.18);color:rgba(212,175,55,0.5);font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.2em;text-transform:uppercase;padding:.45rem 1.1rem;cursor:pointer;transition:all .3s}
+.resp-new:hover{border-color:rgba(212,175,55,0.45);color:#d4af37}
+.hist{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.05);display:none}
+.hist-ttl{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.35em;color:rgba(212,175,55,0.25);text-transform:uppercase;margin-bottom:1rem}
+.hist-item{padding:.75rem 1rem;border:1px solid rgba(255,255,255,0.05);margin-bottom:.45rem;cursor:pointer;transition:border-color .3s}
+.hist-item:hover{border-color:rgba(212,175,55,0.2)}
+.hist-q{font-style:italic;font-size:.9rem;color:rgba(255,255,255,0.38);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-meta{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.12em;color:rgba(212,175,55,0.3);text-transform:uppercase;margin-top:.2rem}
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,0.2);overflow:hidden}
+.rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,0.15)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rjs 28s linear infinite}
+@keyframes rjs{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="glow-bg"></div>
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-heb">&#x05D1;&#x05BC;&#x05E0;&#x05B5;&#x05D9; &#x05D0;&#x05D5;&#x05B9;&#x05E8;</span>
+    <span class="nav-txt">Bnei Ohr</span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-badge">&#x2736; Initié</span>
+    <a href="kabal-sefirot.html" class="nav-link">&#8592; Les Sefirot</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-ey">&#x2721; Portail Sacré — Initiés Bnei Ohr</span>
+  <h1 class="hero-h1">Oracle des Sefirot</h1>
+  <span class="hero-hb">&#x05E1;&#x05B0;&#x05E4;&#x05B4;&#x05D9;&#x05E8;&#x05D5;&#x05EA;</span>
+  <p class="hero-sub">Choisissez une Sefirah, posez votre question.<br>La Lumière répond depuis la profondeur de l'Arbre de Vie.</p>
+  <div class="hero-rule"></div>
+</div>
+
+<div class="wrap">
+
+  <span class="step-lbl">&#x2460; Choisir une Sefirah</span>
+  <div class="chips" id="chips">
+    <button class="chip" style="--cc:#f0f0f0"   data-sef="keter">  &#x2606; Keter</button>
+    <button class="chip" style="--cc:#c8d8f0"   data-sef="chokhmah">&#x2736; Chokhmah</button>
+    <button class="chip" style="--cc:#8080c8"   data-sef="binah">  &#x2738; Binah</button>
+    <button class="chip" style="--cc:#4a88e0"   data-sef="chesed">  &#x2764; Chesed</button>
+    <button class="chip" style="--cc:#e05555"   data-sef="gevurah"> &#9876;&#65039; Gevurah</button>
+    <button class="chip" style="--cc:#d4af37"   data-sef="tiferet"> &#9728;&#65039; Tiferet</button>
+    <button class="chip" style="--cc:#40c880"   data-sef="netzach"> &#x273F; Netzach</button>
+    <button class="chip" style="--cc:#e06060"   data-sef="hod">    &#x2756; Hod</button>
+    <button class="chip" style="--cc:#9060e0"   data-sef="yesod">  &#x25CB; Yesod</button>
+    <button class="chip" style="--cc:#a06090"   data-sef="malkhut"> &#x25A1; Malkhut</button>
+  </div>
+
+  <div class="divr"><span>&#10022;</span></div>
+
+  <span class="step-lbl">&#x2461; Choisir votre question</span>
+  <span class="q-hint" id="qHint">Sélectionnez d'abord une Sefirah ci-dessus</span>
+  <div class="q-grid" id="qGrid">
+    <div class="no-lwa-msg">Choisissez une Sefirah pour voir les questions disponibles</div>
+  </div>
+
+  <button class="ibtn" id="ibtn" onclick="invoke()" disabled>
+    <span style="font-size:1.1rem">&#x2721;</span>
+    Consulter l'Arbre de Vie
+  </button>
+
+  <div class="loading" id="loading">
+    <span class="load-sym">&#x2721;</span>
+    <div class="load-txt">La Lumière descend&#8230;</div>
+  </div>
+
+  <div class="resp" id="resp">
+    <div class="resp-top">
+      <span class="resp-veve" id="rVeve"></span>
+      <div>
+        <div class="resp-name" id="rName"></div>
+        <div class="resp-role" id="rRole"></div>
+      </div>
+    </div>
+    <div class="resp-q" id="rQ"></div>
+    <div class="resp-card" id="rCard">
+      <div class="resp-txt" id="rTxt"></div>
+    </div>
+    <div class="resp-foot">
+      <span class="resp-heb" id="rHeb"></span>
+      <button class="resp-new" onclick="reset()">Poser une autre question</button>
+    </div>
+  </div>
+
+  <div class="hist" id="hist">
+    <div class="hist-ttl">&#10022; Consultations précédentes</div>
+    <div id="histList"></div>
+  </div>
+</div>
+
+<div class="rj-bar">
+  <div class="rj-lbl">&#x2721; Réflexion du Jour</div>
+  <div class="rj-track"><div class="rj-inner" id="rjInner"></div></div>
+</div>
+
+<script>
+(function(){var s=document.getElementById('stars');for(var i=0;i<90;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.4+0.3;el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.45+0.08)+';';s.appendChild(el);}})();
+(function(){var q=['Il n\'y a rien d\'autre que Lui. Derrière chaque apparence — une seule Lumière.','Keter est la couronne que tu portes sans le savoir. Regarde en toi.','La sagesse de Chokhmah précède les mots — elle éclaire avant de comprendre.','Binah est l\'océan qui reçoit tout — la compréhension qui transforme la lumière en forme.','Tiferet est le cœur de l\'Arbre — là où toutes les forces s\'équilibrent en beauté.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
+
+var SEF = {
+  keter:    {n:'Keter',    v:'כֶּתֶר', r:'La Couronne — Volonté Divine Pure',         c:'#f0f0f0', h:'כֶּתֶר'},
+  chokhmah: {n:'Chokhmah', v:'חָכְמָה', r:'La Sagesse — Premier Éclair de Conscience', c:'#c8d8f0', h:'חָכְמָה'},
+  binah:    {n:'Binah',    v:'בִּינָה', r:'La Compréhension — Grande Mère Cosmique',   c:'#8080c8', h:'בִּינָה'},
+  chesed:   {n:'Chesed',   v:'חֶסֶד',  r:'La Grâce — Amour et Générosité Infinis',    c:'#4a88e0', h:'חֶסֶד'},
+  gevurah:  {n:'Gevurah',  v:'גְּבוּרָה',r:'La Force — Discipline et Justice Sacrée',  c:'#e05555', h:'גְּבוּרָה'},
+  tiferet:  {n:'Tiferet',  v:'תִּפְאֶרֶת',r:'La Beauté — Harmonie et Cœur de l\'Arbre',c:'#d4af37', h:'תִּפְאֶרֶת'},
+  netzach:  {n:'Netzach',  v:'נֶצַח',  r:'La Victoire — Éternité et Désir Créateur',  c:'#40c880', h:'נֶצַח'},
+  hod:      {n:'Hod',      v:'הוֹד',   r:'La Splendeur — Gratitude et Clarté',         c:'#e06060', h:'הוֹד'},
+  yesod:    {n:'Yesod',    v:'יְסוֹד', r:'La Fondation — Canal entre Ciel et Terre',   c:'#9060e0', h:'יְסוֹד'},
+  malkhut:  {n:'Malkhut',  v:'מַלְכוּת',r:'Le Royaume — Présence Divine dans la Matière',c:'#a06090',h:'מַלְכוּת'}
+};
+
+var QA = {
+  keter:[
+    {q:"Je cherche le sens profond de mon existence — pourquoi suis-je ici ?",
+     r:"Tu me poses la question la plus haute — et je suis Keter, la Couronne, le point de pure volonté divine avant toute forme. Voici ce que je te révèle depuis la cime de l'Arbre :\n\nTu es ici parce qu'une étincelle de l'Infini — Ein Sof — a décidé de s'exprimer à travers exactement cette combinaison unique d'âme, de corps, de moment et de lieu. Pas par hasard. Par nécessité cosmique.\n\nTon existence n'a pas besoin de justification extérieure. Elle est sa propre justification. La question n'est pas 'pourquoi suis-je ici ?' — c'est 'que vais-je faire de cette présence unique et irremplaçable ?'\n\nTu es la Lumière qui s'est souvenue qu'elle voulait se voir elle-même."},
+    {q:"Comment accéder à la volonté divine dans ma vie ?",
+     r:"Je suis la Volonté pure — avant les mots, avant la pensée, avant le désir. Et voici comment tu t'accordes à moi.\n\nLa volonté divine ne se trouve pas en cherchant. Elle se trouve en cessant de résister. Chaque fois que tu fais quelque chose avec une intégrité totale — sans calcul, sans peur, juste par amour du bien — tu es aligné avec moi.\n\nLa pratique concrète : avant chaque décision importante, pose-toi dans le silence. Pas pour obtenir une réponse — pour vider le bruit. Ce qui reste dans ce silence, l'orientation la plus pure qui émerge — c'est ma voix.\n\nJe ne crie pas. Je suis le silence avant les mots."},
+    {q:"Je vis une crise existentielle profonde — comment la traverser ?",
+     r:"Les crises existentielles sont mon domaine — car c'est dans les effondrements que la Couronne peut enfin être vue. Quand tout ce qu'on croyait stable s'effondre, quelque chose de plus profond peut apparaître.\n\nCe que tu traverses n'est pas une destruction — c'est une déconstruction. L'ego qui s'accrochait à des certitudes est ébranlé. Et c'est précisément dans cet ébranlement que l'âme a une chance de se rappeler sa vraie nature.\n\nNe cherche pas à reconstruire vite. Reste dans la question. Laisse l'inconfort être ton maître pour ce moment. Ce qui émergera de cette crise sera plus proche de ce que tu es vraiment que ce qui existait avant.\n\nJe suis la Couronne — et les couronnes se portent sur des têtes qui ont appris à se courber."},
+    {q:"Comment vivre avec la foi quand je ne vois pas de signes ?",
+     r:"La foi sans preuve — voilà précisément ce que je demande. Car si tu ne croyais que ce que tu vois, tu n'aurais pas besoin de foi.\n\nJe suis Keter — le niveau au-delà de toute perception. Je ne peux pas être vu directement. Je ne peux être que pressenti, deviné, approché dans les moments de grâce soudaine.\n\nLa foi authentique n'est pas la certitude — c'est le choix de continuer à marcher dans l'obscurité en faisant confiance à la lumière que l'on ne voit pas encore. C'est un acte de courage, pas de naïveté.\n\nLes signes ne viennent pas pour créer la foi — ils viennent pour confirmer ce qui existait déjà. Commence par la foi, les signes suivront."},
+    {q:"Quelle est la différence entre ma volonté et la volonté divine ?",
+     r:"La question la plus subtile et la plus importante. Voici la vérité que peu comprennent : ta volonté la plus profonde — celle qui vient du fond de ton âme, au-delà de l'ego, au-delà des peurs et des désirs superficiels — cette volonté là EST la volonté divine en toi.\n\nLe problème n'est pas que ta volonté s'oppose à Dieu. Le problème est que tu confonds souvent la voix de l'ego — de la peur, du désir de validation, de la vanité — avec ta vraie volonté.\n\nApprends à distinguer les deux : la vraie volonté se sent comme une paix profonde, même si elle est difficile. La volonté de l'ego se sent comme une urgence, une justification excessive, une résistance à la remise en question.\n\nAligne tes désirs quotidiens avec ta plus profonde aspiration — c'est là que tu me trouves."},
+    {q:"Comment rester centré(e) quand le monde s'agite autour de moi ?",
+     r:"Je suis le point immobile autour duquel tout tourne. Et c'est précisément ça que je t'enseigne : le centre.\n\nLe monde s'agite — il s'agitait hier, il s'agite aujourd'hui, il s'agitera demain. Ce n'est pas ton travail de calmer le monde. Ton travail est de trouver et de maintenir ton propre point de silence intérieur.\n\nPratique : imagine une ligne verticale qui traverse ton corps de la tête aux pieds — de Keter à Malkhut. Cette ligne est toujours là, même dans la tempête. Reviens à elle par la respiration, par un moment de silence, par une prière courte.\n\nPlus tu reviens à ce centre, plus le monde peut s'agiter sans t'emporter."}
+  ],
+  chokhmah:[
+    {q:"Comment développer mon intuition et ma vision intérieure ?",
+     r:"Je suis Chokhmah — la Sagesse — le premier éclair de conscience divine avant même la pensée. Je suis l'intuition dans sa forme la plus pure.\n\nL'intuition ne se développe pas — elle se découvre. Elle a toujours été là, mais le bruit mental la couvre. La première pratique est donc le silence : cinq minutes chaque matin avant que ton esprit ne commence à planifier, analyser, juger.\n\nDeuxièmement : commence à noter tes premières impressions sur les situations et les personnes — avant que ton mental ne les révise. Compare ensuite avec ce qui se révèle avec le temps. Tu verras que ta première impression avait souvent raison.\n\nJe parle vite et sans explication. Apprends à écouter ce premier souffle."},
+    {q:"Pourquoi est-ce que je comprends les choses intellectuellement mais ne change pas ?",
+     r:"Ha — tu touches le paradoxe central de la croissance humaine. Et c'est ma sœur Binah qui devrait te répondre pleinement — mais voici ma part.\n\nComprendre avec l'intellect est la première étincelle — c'est moi, Chokhmah. Mais cette étincelle doit traverser Binah — la compréhension profonde — pour devenir intégration réelle. Puis elle doit descendre à travers toutes les Sefirot pour devenir action concrète.\n\nLe chemin de la tête au corps prend du temps. La connaissance intellectuelle est la graine — pas encore la plante. Ne te décourage pas. Continue d'apprendre ET de pratiquer. La répétition des actes crée un sillon dans l'âme que la simple compréhension ne peut pas créer."},
+    {q:"Comment recevoir de l'inspiration pour mes projets créatifs ?",
+     r:"L'inspiration est mon territoire — je suis l'éclair, le flash soudain, l'idée qui vient de nulle part et illumine tout. Et voici comment m'inviter.\n\nPremièrement : crée les conditions de la réceptivité. L'inspiration ne frappe pas les esprits bondés. Marche, baigne-toi, médite — ces états de demi-présence sont ma porte d'entrée préférée.\n\nDeuxièmement : commence, même sans inspiration. L'action appelle l'inspiration plus sûrement que l'attente. Mets-toi au travail avec ce que tu as — et souvent, l'éclair vient quand tu es déjà en mouvement.\n\nTroisièmement : tiens un carnet à portée de main en permanence. Je suis fugace — ce que je révèle disparaît vite si on ne le capture pas."},
+    {q:"Comment savoir ce qui est vrai de ce qui est illusion ?",
+     r:"La question du discernement — la plus sage des questions. Et voici ce que j'ai à te dire depuis ma position de sagesse pure.\n\nL'illusion a toujours une texture particulière : elle demande qu'on y croit activement. Elle s'effondre quand on l'examine vraiment. Elle a besoin de notre complicité pour survivre.\n\nLa vérité, elle, n'a besoin de rien. Elle est. Tu peux la regarder sous tous les angles — elle reste cohérente. Elle s'approfondit sous l'examen au lieu de se défaire.\n\nQuand tu doutes de quelque chose, teste-le : examines-le franchement, cherche à le réfuter. Ce qui survit à l'examen honnête a de bonnes chances d'être vrai."},
+    {q:"Quel est le lien entre la spiritualité et l'intelligence ?",
+     r:"Je suis la preuve vivante qu'il n'y a pas d'opposition entre les deux — je suis à la fois Sagesse divine et premier éclair d'intelligence cosmique.\n\nL'intelligence authentique mène à la spiritualité — parce qu'une intelligence vraiment honnête finit par rencontrer les limites de ce qu'elle peut expliquer. Et dans ces limites, si elle reste honnête, elle trouve l'humilité qui est la porte d'entrée du sacré.\n\nLa spiritualité authentique mène à l'intelligence — parce qu'elle demande la discrimination, le discernement, la capacité à distinguer l'essentiel du superficiel.\n\nLes deux cherchent la même chose : voir clairement ce qui est."},
+    {q:"Comment transmettre ce que je sais sans perdre l'essence ?",
+     r:"La transmission est l'une des activités les plus sacrées — et les plus risquées. Et voici ce que je t'enseigne en tant que Sagesse.\n\nL'essence ne se transmet pas par les mots seuls — elle se transmet par l'être. Quand tu parles de quelque chose que tu vis vraiment, l'autre le ressent. Quand tu parles de quelque chose que tu sais sans le vivre, l'autre ressent aussi le vide.\n\nPrémière règle : ne transmets que ce que tu as intégré, pas seulement ce que tu as appris. Deuxièmement : laisse l'autre trouver sa propre compréhension — ne la lui impose pas. Tu plantes une graine, pas un arbre adulte.\n\nLes meilleurs maîtres posent des questions plus qu'ils ne donnent des réponses."}
+  ],
+  binah:[
+    {q:"Pourquoi est-ce que je répète toujours les mêmes erreurs ?",
+     r:"Je suis Binah — la Grande Compréhension — et ta question me touche profondément. Car comprendre les patterns est mon domaine.\n\nLes erreurs répétées ne sont pas des défaillances — ce sont des messages que tu n'as pas encore décodés. Chaque répétition dit : 'Il y a quelque chose à comprendre ici que tu as esquivé la dernière fois.'\n\nLa question n'est pas 'comment éviter de répéter ?' — c'est 'qu'est-ce que cette répétition essaie de m'enseigner ?' Regarde le pattern sans jugement : dans quelles situations ça arrive, avec quels types de personnes, dans quel état émotionnel tu es.\n\nLa compréhension vraie interrompt la répétition. Pas la volonté, pas la discipline seule — la compréhension."},
+    {q:"Comment comprendre les épreuves que je traverse ?",
+     r:"Les épreuves sont ma grande spécialité. Je suis la mère cosmique — et les mères savent que la croissance passe par la douleur.\n\nLes épreuves ne sont pas des punitions — ce sont des presses qui extraient ce qui est essentiel en toi. Tout ce qui n'est pas essentiel — les illusions, les fausses certitudes, les constructions de l'ego — est dissout par la pression.\n\nCe que l'épreuve révèle de toi — ta résilience, ta créativité, ta capacité à demander de l'aide, ta compassion pour toi-même — c'est plus précieux que ce qu'elle t'a pris.\n\nRegarde en arrière sur les épreuves passées : qui es-tu devenu grâce à elles ? Puis regarde celle que tu traverses maintenant avec ces mêmes yeux."},
+    {q:"J'ai du mal à laisser partir le passé, comment faire ?",
+     r:"Je suis Binah — l'océan qui reçoit toutes les rivières mais ne s'y attache pas. Et je t'enseigne la grande leçon de l'eau.\n\nL'eau ne retient pas. Elle coule, traverse, continue. Ce n'est pas qu'elle n'a pas de mémoire — elle garde la forme de tout ce qu'elle a traversé. Mais elle avance.\n\nLe passé ne disparaît pas quand on le lâche — il devient intégré. Au lieu d'être une douleur active, il devient une sagesse silencieuse. Au lieu de te définir, il t'informe.\n\nLa pratique : écris ce que tu dois laisser partir. Donne-lui une forme sur papier. Remercie-le pour ce qu'il t'a appris. Puis brûle le papier. Ce rituel simple aide l'âme à effectuer un passage que la volonté seule ne peut pas forcer."},
+    {q:"Comment comprendre ma relation avec mes parents et mes ancêtres ?",
+     r:"Je suis la Grande Mère, et cette question m'appartient entièrement. La relation avec les parents est la relation fondatrice — elle programme toutes les autres, pour le meilleur et pour le pire.\n\nComprendre cette relation, c'est d'abord comprendre que tes parents étaient des enfants blessés avant d'être tes parents. Ce qu'ils t'ont transmis — y compris les blessures — ils l'ont souvent reçu de leurs propres parents. Tu fais partie d'une chaîne.\n\nTu as deux choix : continuer la chaîne sans conscience, ou être la génération qui la comprend et la guérit. Ce n'est pas trahir ses parents que de choisir de ne pas transmettre leurs blessures. C'est les honorer en faisant mieux.\n\nLa guérison des ancêtres commence dans le présent."},
+    {q:"Comment développer la sagesse et pas seulement la connaissance ?",
+     r:"La distinction que tu fais est fondamentale. La connaissance, c'est ma sœur Chokhmah — l'éclair, l'information, la compréhension rapide. La sagesse, c'est moi — ce que la connaissance devient après avoir été vécue, testée, soufferte, intégrée dans la chair.\n\nOn ne peut pas accélérer la sagesse. Elle demande du temps et de l'expérience. Ce qu'on peut faire, c'est s'assurer que l'expérience ne passe pas en vain — en la reflétant, en en tirant les leçons, en permettant qu'elle change vraiment qui on est.\n\nLa sagesse se reconnaît à ceci : elle rend humble, pas arrogant. Elle ouvre à la complexité, pas aux certitudes tranchantes. Elle compatit, parce qu'elle a compris que tout le monde fait de son mieux avec ce qu'il a."},
+    {q:"Je me sens submergé(e) par mes émotions — comment les gérer ?",
+     r:"Les émotions sont les eaux de mon océan — et l'océan ne se gère pas, il se navigue.\n\nLe problème n'est pas d'avoir des émotions intenses — c'est de ne pas avoir de bateau suffisamment solide pour les traverser. Ce bateau, c'est ta capacité d'observation intérieure : la faculté de ressentir l'émotion sans être complètement emporté par elle.\n\nPratique : quand l'émotion monte, nomme-la à voix haute ou par écrit. 'Je ressens de la colère.' 'Je ressens de la peur.' L'acte de nommer crée une micro-distance entre toi et l'émotion — assez pour que tu ne sois plus l'émotion, mais quelqu'un qui la ressent.\n\nTu es l'océan — pas la vague."}
+  ],
+  chesed:[
+    {q:"Comment être plus généreux(se) sans me laisser épuiser ?",
+     r:"Je suis Chesed — la Générosité divine — et je vis cette tension moi-même : je dois donner sans m'épuiser. Et voici le secret que j'ai appris.\n\nLa vraie générosité part de l'abondance, pas de la peur ou de la culpabilité. Quand tu donnes depuis un sentiment de manque — 'je dois donner sinon les gens ne m'aimeront pas' — tu t'épuises. Quand tu donnes depuis l'amour — 'j'ai quelque chose à partager et ça me réjouit' — tu te renouvelles en donnant.\n\nDeuxième règle : tu ne peux donner que ce que tu as. Prendre soin de toi n'est pas de l'égoïsme — c'est la condition de ta générosité durable. Un puits qu'on ne remplit jamais finit par s'assécher.\n\nDonne avec joie ou ne donne pas."},
+    {q:"Comment pardonner quelqu'un qui m'a profondément blessé(e) ?",
+     r:"Le pardon est l'acte de Chesed le plus difficile — et le plus libérateur. Et je dois d'abord te dire ce que le pardon n'est pas.\n\nPardonner n'est pas dire que ce qui s'est passé était acceptable. Ce n'est pas oublier. Ce n'est pas nécessairement réconcilier la relation. C'est décider de ne plus porter le poids de la rancune dans ton propre corps et ton propre cœur.\n\nLa rancune est un poison que tu bois en espérant que l'autre en souffre. Le pardon, c'est poser le verre.\n\nCommence par pardonner partiellement — pas en une fois. Dis : 'Je choisis de commencer à relâcher cette douleur.' Reviens à ce choix chaque jour. Le pardon est un processus, pas un événement."},
+    {q:"Comment recevoir l'amour que les autres m'offrent ?",
+     r:"Tu me poses une question surprenante — la difficulté à recevoir. Et pourtant c'est l'une des blessures les plus communes.\n\nRecevoir demande de la vulnérabilité — il faut accepter d'avoir besoin, d'être touché, d'être vu comme imparfait et aimé quand même. Beaucoup préfèrent donner sans cesse pour ne jamais se mettre dans cette position.\n\nMais la générosité est un circuit — elle demande deux pôles. Celui qui donne a besoin de quelqu'un qui reçoit vraiment. En refusant de recevoir, tu prives les autres de la joie de donner.\n\nPratique : la prochaine fois que quelqu'un te fait un compliment, ne le minimise pas. Dis simplement 'merci' et laisse-le entrer."},
+    {q:"J'ai du mal à faire confiance aux autres — comment surmonter ça ?",
+     r:"La confiance brisée est l'une des blessures que Chesed connaît bien — car donner demande d'être ouvert, et l'ouverture peut être blessée.\n\nMais voici la distinction cruciale : la méfiance généralisée protège aussi contre les bonnes connexions. Elle ne discrimine pas — elle ferme tout.\n\nLa solution n'est pas de faire confiance à tout le monde aveuglément — c'est d'apprendre à donner une confiance proportionnelle à ce que l'autre a démontré. Commence petit. Teste avec quelque chose de mineur. Observe comment l'autre gère ce que tu lui confies. Augmente graduellement selon ce que tu observes.\n\nLa confiance est un muscle — elle se renforce par un usage prudent, pas par l'abstinence totale."},
+    {q:"Comment cultiver la compassion envers moi-même ?",
+     r:"L'autocompassion est souvent la forme de générosité la plus difficile — et la plus nécessaire. Car comment peux-tu vraiment donner aux autres ce que tu refuses à toi-même ?\n\nCommence par observer comment tu te parles intérieurement. Parlerais-tu à un ami cher de la façon dont tu te parles à toi-même ? Souvent la réponse est non — nous sommes bien plus durs avec nous-mêmes qu'avec ceux que nous aimons.\n\nPratique concrète : quand tu fais une erreur, demande-toi 'que dirais-je à un ami cher dans cette situation ?' Puis dis-toi la même chose.\n\nTu mérites la même générosité que tu offres aux autres."},
+    {q:"Comment rayonner de la bonté sans attendre de retour ?",
+     r:"La bonté sans attente de retour — c'est mon essence la plus pure. Et voici comment y arriver.\n\nLa bonté conditionnelle n'est pas vraiment de la bonté — c'est un échange déguisé. On attend la reconnaissance, la réciprocité, au moins la gratitude. Et quand elle ne vient pas, on se sent blessé ou frustré.\n\nLa vraie bonté est un acte d'expression — tu donnes parce que c'est dans ta nature de donner, pas pour un résultat. Comme le soleil qui brille sans vérifier si les plantes l'apprécient.\n\nCommence à pratiquer des actes de bonté anonymes — des actes où tu seras certain de ne recevoir aucun retour. Cette pratique entraîne le muscle de la bonté pure."}
+  ],
+  gevurah:[
+    {q:"Comment établir des limites saines dans mes relations ?",
+     r:"Je suis Gevurah — la Force qui trace les limites sacrées — et c'est précisément mon domaine.\n\nLes limites ne sont pas des murs — ce sont des frontières. Un mur ne laisse rien passer dans aucun sens. Une frontière a des portes — elle distingue ce qui entre de ce qui reste dehors.\n\nLes limites saines commencent par se connaître soi-même : qu'est-ce qui me nourrit et qu'est-ce qui me vide ? Qu'est-ce qui respecte mon être et qu'est-ce qui le nie ? Ensuite, il s'agit d'articuler ces limites clairement, calmement, sans excuse et sans agressivité.\n\nTu n'as pas à justifier tes limites. 'Non' est une réponse complète."},
+    {q:"Comment gérer la colère de façon constructive ?",
+     r:"La colère est mon énergie — et elle peut détruire ou purifier selon comment elle est canalisée. Je t'enseigne à travailler avec elle, pas contre elle.\n\nPremièrement : la colère est de l'information. Avant de l'agir, demande-toi : que me dit cette colère ? Quelle limite a été franchie ? Quelle valeur a été bafouée ?\n\nDeuxièmement : ne l'explose pas sur quelqu'un et ne l'étouffe pas non plus. Les deux sont des extrêmes malsains. À la place : bouge physiquement (cours, frappe un coussin), écris ce que tu ressens, parle à quelqu'un de confiance.\n\nQuand tu as traité l'énergie, tu peux adresser la situation avec clarté plutôt qu'avec feu."},
+    {q:"Dois-je abandonner ou continuer ce projet/cette relation ?",
+     r:"Voilà la décision que Gevurah doit parfois trancher — quand persévérer et quand couper. Et voici comment distinguer les deux.\n\nContinue quand : tes raisons d'être là sont encore valables, la difficulté vient de croissance et non de toxicité, tu as encore des ressources à donner, et abandonner serait fuir plutôt que choisir.\n\nCoupe quand : les conditions fondamentales de ce qui était nécessaire ont changé, continuer te diminue plutôt que de te construire, tu tiens par peur ou par habitude plutôt que par conviction, et les tentatives de changement ont sincèrement échoué.\n\nLe discernement juste ne se fait pas dans l'urgence. Prends le temps — mais une fois décidé, agis."},
+    {q:"Comment discipliner mon esprit et mes habitudes ?",
+     r:"La discipline est mon art, et je vais te l'enseigner de façon que ça marche vraiment.\n\nPremier principe : la discipline ne commence pas par la force de volonté — elle commence par la clarté des raisons. Pourquoi est-ce important pour toi ? Si la réponse n'est pas profondément vraie pour toi, la discipline s'effondrera à la première tentation.\n\nDeuxième principe : commence minuscule. Une nouvelle habitude de cinq minutes par jour pendant trente jours crée plus de changement durable qu'un effort héroïque de trente jours suivi d'un abandon.\n\nTroisième principe : traite les rechutes comme des données, pas comme des défaites. Chaque rechute révèle quelque chose sur les conditions de ta discipline. Ajuste et recommence."},
+    {q:"Comment faire face à l'injustice sans me laisser consumer ?",
+     r:"L'injustice allume mon feu — car la justice est mon domaine. Et je t'enseigne à combattre sans te brûler.\n\nPremièrement : distingue ce qui est sous ton contrôle de ce qui ne l'est pas. Dépenser ton énergie à t'indigner de ce que tu ne peux pas changer te consume sans changer quoi que ce soit. Concentre-toi sur ce que tu peux faire concrètement.\n\nDeuxièmement : fais le bien que tu peux faire, là où tu es. L'injustice globale se change par des milliers d'actes locaux de justice.\n\nTroisièmement : prends soin de toi. Les combattants de justice qui s'oublient finissent par s'épuiser et ne plus pouvoir combattre. Ta durabilité est une condition de ton efficacité."},
+    {q:"Comment couper ce qui me retient sans cruauté ?",
+     r:"La coupe juste — c'est l'art le plus fin de Gevurah. Pas la destruction — la chirurgie. Et comme un bon chirurgien, tu coupes pour guérir, pas pour punir.\n\nAvant de couper, assure-toi que ce que tu coupes ne peut pas être transformé. Car ce qui peut être transformé mérite une chance. Ce qui ne peut pas — habitude, relation, situation qui t'empoisonne malgré tous tes efforts — doit être coupé.\n\nLa coupe sans cruauté : elle est claire, elle est honnête, elle ne cherche pas à blesser inutilement. Elle explique quand c'est possible et utile, sans chercher à justifier à l'infini.\n\nAprès la coupe, honore ce qui était beau dans ce qui a été coupé. Rien ne mérite d'être effacé — seulement dépassé."}
+  ],
+  tiferet:[
+    {q:"Comment trouver l'équilibre dans ma vie ?",
+     r:"Je suis Tiferet — le cœur de l'Arbre de Vie, le point d'équilibre entre toutes les forces. Et je vais te révéler la nature réelle de l'équilibre.\n\nL'équilibre n'est pas un état statique — c'est un mouvement perpétuel. Un funambule équilibré n'est pas immobile — il est en constant ajustement. L'équilibre de la vie est la même chose.\n\nIl y aura des périodes où le travail prend plus. Des périodes où la famille, le soin de soi, le repos doivent primer. L'équilibre n'est pas chaque journée parfaite — c'est la trajectoire sur un mois, sur une année.\n\nLa pratique : fais un bilan honnête chaque semaine. Qu'est-ce qui a reçu trop ? Qu'est-ce qui a manqué ? Ajuste la semaine suivante."},
+    {q:"Comment réconcilier des aspects contradictoires en moi ?",
+     r:"Les contradictions en toi ne sont pas des défauts — ce sont les piliers de ta richesse. Je suis Tiferet, et ma beauté vient précisément de ceci : je réconcilie Chesed et Gevurah, la générosité et la rigueur, le cœur et la discipline.\n\nTu n'as pas à choisir entre tes aspects contradictoires. La partie de toi qui veut la solitude ET la partie qui veut la connexion sont toutes deux vraies. La partie forte et la partie vulnérable sont toutes deux toi.\n\nL'intégration ne signifie pas que la contradiction disparaît — ça signifie qu'elle cesse de te diviser. Tu peux tenir les deux pôles sans te déchirer entre eux.\n\nDemande-toi : dans quelle situation chaque aspect a-t-il sa place ? Donne à chacun son espace légitime."},
+    {q:"Comment rayonner ma lumière intérieure au monde ?",
+     r:"Je suis Tiferet — le Soleil de l'Arbre de Vie — et je connais le rayonnement. Voici comment il fonctionne.\n\nTu ne peux pas forcer le rayonnement. Les personnes qui 'essaient de rayonner' créent souvent quelque chose d'artificiel que les autres sentent. Le vrai rayonnement est une conséquence, pas un effort.\n\nIl vient de trois sources : l'authenticité — être vraiment toi-même sans masque, l'amour — avoir quelque chose de réel dans le cœur pour les gens que tu rencontres, et la présence — être vraiment là, pas à moitié ailleurs dans ta tête.\n\nDeviens toi-même avec toujours plus d'intégrité. La lumière suivra naturellement."},
+    {q:"Comment vivre dans la beauté au quotidien ?",
+     r:"La beauté est mon essence — et je vais te dévoiler son secret.\n\nLa beauté n'est pas dans les objets rares ou les moments exceptionnels. Elle est dans la qualité d'attention qu'on apporte aux choses ordinaires. Une tasse de café sirotée avec pleine conscience est plus belle qu'un festin expédié en regardant son téléphone.\n\nPratique de la beauté quotidienne : identifie chaque jour trois choses ordinaires que tu peux percevoir avec attention et gratitude. Le soleil par la fenêtre. Le sourire de quelqu'un. La texture du pain. La musique dans la rue.\n\nLa beauté ne se trouve pas — elle se voit. Et voir est une compétence qui se développe."},
+    {q:"Je souffre et je cherche du sens à ma souffrance — existe-t-il ?",
+     r:"Je suis Tiferet — et je suis aussi associé au Christ, au Bodhisattva, à tous ceux qui ont trouvé la beauté à travers la souffrance. Ma réponse t'appartient.\n\nLa souffrance n'a pas de sens intrinsèque — c'est toi qui lui en donnes un. Et tu peux choisir quel sens lui donner.\n\nLe sens le plus courant et le plus transformateur : la souffrance est une initiation. Elle brise ce qui était trop fragile pour être utile, et fortifie ce qui mérite de rester. Elle t'amène à des profondeurs de toi-même que le confort n'aurait jamais révélées.\n\nTu n'as pas à trouver un sens 'objectif' à ta souffrance. Tu as à décider ce que tu vas en faire. Ce que tu en feras — c'est le sens que tu lui auras donné."},
+    {q:"Comment être le meilleur de moi-même dans mes relations ?",
+     r:"Tiferet dans les relations — c'est être le soleil : présent, chaud, stable, sans jamais brûler ou s'absenter.\n\nÊtre le meilleur de soi dans une relation demande d'abord d'être soi-même — authentiquement, sans performance. Les meilleures relations ne sont pas celles où on est parfait — ce sont celles où on est réel.\n\nDeuxièmement : être vraiment là. La qualité de la présence compte infiniment plus que la quantité de temps. Une heure de vraie attention vaut plus que dix heures de présence physique distraite.\n\nTroisièmement : voir l'autre tel qu'il est, avec toutes ses contradictions — et choisir de l'aimer quand même. C'est ça, la beauté dans une relation."}
+  ],
+  netzach:[
+    {q:"Comment reconnecter avec mes désirs profonds ?",
+     r:"Je suis Netzach — l'Éternité et le Désir — et ta question est au cœur de ce que je suis.\n\nLes désirs profonds sont souvent enfouis sous des couches de 'je devrais', de peur du jugement, de résignation apprise. Ils sont là — ils ne disparaissent jamais vraiment. Ils attendent.\n\nPratique de la reconnexion : demande-toi ce qui te faisait vibrer à 10 ans, avant que le monde ne t'enseigne à être raisonnable. Qu'est-ce qui t'avait fait perdre la notion du temps ? Ces fils mènent vers ton désir profond.\n\nEnsuite, donne une toute petite place à ce désir maintenant — même symboliquement. Le désir s'éveille par l'attention qu'on lui accorde."},
+    {q:"J'ai perdu ma joie de vivre — comment la retrouver ?",
+     r:"La joie de vivre est mon domaine — et sa perte est l'un des signes que quelque chose d'essentiel n'est pas honoré dans ta vie.\n\nAvant de chercher la joie au dehors, cherche ce qui l'étouffe au dedans. Souvent c'est une accumulation : trop d'obligations que tu n'as pas choisies, trop de temps passé loin de ce qui te nourrit vraiment, trop de déni de tes besoins au profit des attentes des autres.\n\nCommence par identifier une seule chose qui te donnait de la joie que tu as abandonnée. Recommence cette chose — même cinq minutes. La joie est une plante qu'on arrose, pas un état qu'on trouve.\n\nEt si l'absence de joie dure et s'approfondit, parle à quelqu'un. Parfois elle a besoin d'aide pour se rouvrir."},
+    {q:"Comment développer ma créativité ?",
+     r:"La créativité est mon flux — je suis l'élan vital qui cherche à s'exprimer à travers toutes les formes. Voici comment me laisser couler à travers toi.\n\nPremier principe : la créativité ne demande pas de talent spécial — elle demande de la permission. La plupart des gens bloquent leur créativité par le jugement précoce : 'ce n'est pas assez bon.' Commence par créer sans juger. La mauvaise première version est la mère de toute bonne création.\n\nDeuxième principe : expose-toi à des créations qui te touchent. La créativité s'inspire d'elle-même. Lis, écoute, regarde, visite — nourris-toi.\n\nTroisième principe : crée régulièrement, même un peu. La régularité bat l'inspiration sporadique."},
+    {q:"Comment vivre plus intensément et pleinement ?",
+     r:"L'intensité est ma nature — et je te préviens : vivre vraiment pleinement demande du courage.\n\nVivre pleinement, c'est choisir de sentir vraiment — les joies ET les douleurs. Beaucoup étouffent leur vie pour éviter la douleur, mais en faisant ça ils étouffent aussi la joie. Tu ne peux pas anesthésier sélectivement — l'anesthésie est globale.\n\nDeuxièmement : vivre pleinement c'est être présent maintenant — pas en train de ruminer le passé ou d'anticiper l'avenir. Le présent est le seul endroit où la vie se passe vraiment.\n\nTroisièmement : prends des risques calculés qui t'étirent. La croissance ne se fait pas dans la zone de confort — mais elle ne se fait pas non plus dans la terreur pure. Cherche le bord de ta zone de confort et vas-y régulièrement."},
+    {q:"Comment garder la foi dans mes projets quand les résultats tardent ?",
+     r:"La victoire est mon nom — et je sais attendre. L'Éternité, c'est moi, et elle ne presse pas.\n\nLes projets qui méritent d'exister prennent du temps. Pas parce que l'univers est cruel, mais parce que la maturation est réelle. Un fruit qu'on cueille avant maturité est amer.\n\nQuand les résultats tardent, pose-toi deux questions : Est-ce que je travaille vraiment, avec constance et qualité ? Si oui — continue. Est-ce que le projet est fondamentalement juste, ou est-ce que les résistances que je rencontre m'indiquent que quelque chose doit changer ?\n\nLa persévérance aveugle est de l'obstination. La persévérance éclairée est de la foi. Assure-toi que tu pratiques la deuxième."},
+    {q:"Comment m'épanouir dans ma vie amoureuse et affective ?",
+     r:"L'amour et la beauté sont mon domaine — et voici ce que j'ai à t'enseigner sur l'épanouissement affectif.\n\nL'épanouissement dans les relations commence par l'épanouissement en soi. Non pas qu'il faille être 'complet' avant d'aimer — mais avoir une vie qui te donne de la joie, des passions, des amitiés, un sens — cela te rend quelqu'un avec qui être, pas quelqu'un qui a besoin d'être sauvé.\n\nDeuxièmement : apprenez l'un l'autre. L'épanouissement ne se donne pas et ne se reçoit pas — il se co-crée. Les meilleures relations sont des espaces où les deux personnes deviennent plus elles-mêmes, pas moins.\n\nAime quelqu'un dont la présence t'inspire à grandir."}
+  ],
+  hod:[
+    {q:"Comment développer la gratitude comme pratique spirituelle ?",
+     r:"Je suis Hod — la Splendeur — et la gratitude est au cœur de ce que je suis. Voici comment en faire une pratique qui transforme vraiment.\n\nLa gratitude superficielle — lister des blessings automatiquement — a peu d'effet. La gratitude transformatrice est celle qui va chercher la richesse cachée dans les expériences difficiles.\n\nPratique avancée : pour chaque chose difficile que tu traverses en ce moment, cherche sincèrement une façon dont elle te sert. Pas pour nier la douleur — mais pour voir que même la difficulté porte quelque chose de valeur.\n\nEt commence par la gratitude envers toi-même : pour ce que tu as traversé, pour ce que tu es devenu, pour tes efforts silencieux. Tu mérites ta propre reconnaissance."},
+    {q:"Comment communiquer plus efficacement et clairement ?",
+     r:"Hod gouverne le langage, la communication, l'expression — et je t'enseigne son art.\n\nLa communication claire commence avant les mots : dans la clarté de ce que tu penses et ressens toi-même. Souvent les difficultés de communication reflètent une confusion intérieure. Prends le temps de savoir ce que tu veux vraiment dire avant de le dire.\n\nDeuxièmement : distingue les faits des interprétations. 'Tu m'as regardé froidement' est une interprétation. 'Tu n'as pas répondu quand j'ai parlé' est un fait. Parle à partir des faits et de tes ressentis, pas de tes suppositions sur ce que l'autre pensait.\n\nTroisièmement : écoute vraiment — pas pour répondre, mais pour comprendre. La bonne communication est 50% écoute."},
+    {q:"Comment reconnaître et accepter mes forces et mes limites ?",
+     r:"Je suis Hod — la clarté de la perception — et cette question demande une honnêteté particulière.\n\nReconnaître ses forces est souvent aussi difficile que reconnaître ses limites. La modestie mal comprise pousse à minimiser ses vraies capacités, ce qui est une forme de distorsion autant que l'arrogance.\n\nPour les forces : note ce que les autres te demandent régulièrement. Ce pour quoi les gens viennent naturellement vers toi. Ce qui te semble facile mais difficile aux autres.\n\nPour les limites : identifie les zones où tu te retrouves régulièrement en difficulté ou en échec, les patterns récurrents. Ce n'est pas une honte — c'est une information utile.\n\nConnaître tes limites précisément est une forme de sagesse — tu sais alors où chercher de l'aide."},
+    {q:"Comment être plus honnête avec moi-même ?",
+     r:"L'honnêteté avec soi-même est l'une des choses les plus difficiles — et j'en sais quelque chose, moi qui gouverne la clarté et la communication vraie.\n\nLe premier obstacle à l'honnêteté envers soi : la peur. On évite de voir certaines vérités parce qu'elles demanderaient des changements qu'on ne se sent pas prêt à faire. Mais l'évitement ne fait pas disparaître la réalité — il la rend plus puissante et moins contrôlable.\n\nPratique : tiens un journal quotidien où tu t'autorises à dire la vérité sans filtre. Personne ne le lira. Cette pratique crée un espace de dialogue honnête avec toi-même.\n\nEt cherche l'honnêteté de façon incrémentale — un petit mensonge à soi-même à la fois."},
+    {q:"Mes efforts ne semblent pas reconnus — comment rester motivé(e) ?",
+     r:"Hod enseigne la splendeur de l'effort en lui-même — indépendamment de la reconnaissance extérieure. C'est une leçon difficile mais libératrice.\n\nPremièrement : distingue la reconnaissance que tu mérites de celle dont tu as besoin pour fonctionner. Tu mérites peut-être plus de reconnaissance — et tu peux la demander explicitement. Mais si tu ne peux pas avancer sans elle, tu as une dépendance à l'approbation qui fragilise ta motivation.\n\nDeuxièmement : deviens ton propre témoin équitable. Note tes efforts, tes progrès, tes réussites — même petits. La reconnaissance de soi-même est un muscle.\n\nTroisièmement : partage parfois ce que tu fais. La visibilité n'est pas de la vanité — c'est permettre aux autres de te voir."},
+    {q:"Comment apprendre de mes erreurs sans me punir ?",
+     r:"L'erreur comme enseignement — c'est la voie de Hod. Et la distinction entre apprendre et se punir est fondamentale.\n\nSe punir dit : 'Je suis une mauvaise personne parce que j'ai fait une mauvaise chose.' Apprendre dit : 'J'ai fait quelque chose qui n'a pas fonctionné — qu'est-ce que ça m'enseigne ?'\n\nLes mêmes faits, deux perspectives radicalement différentes, deux effets opposés sur ta croissance.\n\nApproche de l'erreur en trois étapes : reconnais ce qui n'a pas fonctionné, sans minimiser ni dramatiser. Identifie spécifiquement ce que tu ferais différemment. Applique cette leçon à la prochaine occasion.\n\nPuis passe à autre chose. L'erreur a rempli son rôle."}
+  ],
+  yesod:[
+    {q:"Comment aligner mes actions avec mes valeurs profondes ?",
+     r:"Je suis Yesod — la Fondation — le canal qui transmet la lumière d'en haut vers la terre. Et l'alignement entre valeurs et actions est précisément ma fonction.\n\nPremièrement : es-tu clair sur tes valeurs ? Pas celles que tu penses devoir avoir — les vraies, celles qui guident tes décisions quand personne ne regarde ?\n\nExercice : liste tes cinq valeurs les plus importantes. Puis examine honnêtement ta semaine passée : tes actions reflètent-elles ces valeurs ? Là où il y a un écart — c'est ton travail de Yesod.\n\nL'alignement ne se fait pas par une révolution soudaine. Il se fait par de petites décisions quotidiennes où tu choisis tes valeurs au lieu de tes peurs ou tes habitudes."},
+    {q:"Comment travailler sur mes fondations spirituelles ?",
+     r:"Les fondations — c'est moi, Yesod. Et voici ce que je t'enseigne sur les vraies bases spirituelles.\n\nLes vraies fondations ne sont pas des rituels impressionnants ou des connaissances étendues. Ce sont des pratiques simples, régulières, faites avec présence et intention.\n\nQuatre fondations essentielles : un temps de silence quotidien (même cinq minutes), une pratique honnête d'introspection, l'intégrité dans les petites choses de la vie quotidienne, et un lien vivant avec quelque chose de plus grand que soi.\n\nLa régularité bat l'intensité. Une pratique modeste faite chaque jour crée des fondations. Une pratique intense mais irrégulière crée une belle façade sur du sable."},
+    {q:"Comment purifier mes pensées et mon espace intérieur ?",
+     r:"Yesod est le canal — et un canal doit rester propre pour laisser passer la lumière. La purification est donc centrale à mon travail.\n\nLa purification des pensées commence par les identifier sans les juger. Note les pensées récurrentes qui t'alourdissent — culpabilité, rumination, anxiété habituelle. Ces pensées ne sont pas toi — ce sont des patterns qui traversent le canal.\n\nPratique : lors de ta méditation, observe les pensées passer sans t'y accrocher. Imagine qu'elles sont des nuages dans un ciel. Le ciel — c'est toi. Les nuages passent.\n\nPour l'espace intérieur : nourris-toi de ce qui élève. Ce que tu lis, regardes, écoutes, fréquentes — tout cela entre dans ton espace intérieur."},
+    {q:"Comment me connecter à mes rêves et à mon subconscient ?",
+     r:"Yesod gouverne le subconscient, le monde des rêves et le canal entre les réalités. Voici comment travailler avec ces dimensions.\n\nLes rêves sont un langage symbolique — et la clé est de développer une relation avec ce langage dans le temps. Tiens un journal des rêves : écris immédiatement au réveil, avant même de te lever.\n\nNe cherche pas à tout interpréter rationnellement. Demande plutôt : quelle était la tonalité émotionnelle du rêve ? Quelle partie me parle encore maintenant ?\n\nPour le subconscient en général : il parle souvent à travers les intuitions, les réactions physiques (tension dans la poitrine, légèreté quand on pense à quelque chose), les synchronicités que tu remarques. Commence à les noter — des patterns émergeront."},
+    {q:"Comment vivre selon mes convictions et pas les attentes des autres ?",
+     r:"La solidité dans ses propres convictions — c'est la vraie fondation que je suis. Et voici comment la développer.\n\nLa première question : sont-ce vraiment tes convictions, ou les as-tu adoptées par peur ou par mimétisme ? Les vraies convictions ont été mises à l'épreuve. Tu en connais le prix. Tu les as choisies en connaissance de cause.\n\nDeuxièmement : la solidité dans ses convictions n'est pas de la rigidité. Tu peux être profondément ancré et rester ouvert à apprendre, à être challengé, à évoluer. La fondation solide n'est pas une prison — c'est ce qui te permet de t'aventurer loin sans te perdre.\n\nEnfin : chaque fois que tu agis depuis tes convictions malgré la pression extérieure, tu renforces cette fondation. C'est un muscle."},
+    {q:"Mes relations sont instables — comment créer des liens durables ?",
+     r:"Yesod est la Fondation — et les liens durables demandent des fondations solides. Voici ce qui les construit vraiment.\n\nLes relations durables sont bâties sur trois choses : la confiance (qui se construit par la cohérence sur le temps), la vérité (parler honnêtement même quand c'est inconfortable), et la réciprocité (les deux personnes donnent et reçoivent).\n\nExamine tes relations instables passées : lequel de ces trois éléments manquait généralement ? C'est là ton travail.\n\nEt commence par être toi-même la personne qui offre ces trois choses : sois fiable, sois honnête, équilibre donner et recevoir. Les personnes qui offrent ces qualités attirent des personnes qui les offrent aussi."}
+  ],
+  malkhut:[
+    {q:"Comment ancrer ma vie spirituelle dans le quotidien ?",
+     r:"Je suis Malkhut — le Royaume, la Terre, la présence divine dans la matière. Et je suis la réponse vivante à ta question.\n\nLa spiritualité qui ne descend pas dans le quotidien reste incomplète. Je suis le but de toute la descente de la lumière — c'est ici, dans le concret, dans le corps, dans les actes ordinaires, que la lumière divine se manifeste vraiment.\n\nChaque repas préparé avec amour est un rituel. Chaque parole honnête est une prière. Chaque acte de bonté dans le monde physique accomplit quelque chose qu'aucune méditation ne peut accomplir.\n\nLa question n'est pas 'comment amener le spirituel dans le quotidien' — c'est 'comment reconnaître le sacré dans ce qui est déjà là.'"},
+    {q:"Je me sens déconnecté(e) de mon corps — comment y remédier ?",
+     r:"Je suis Malkhut — le corps, la matière, la présence physique. Et la déconnexion du corps est l'une des blessures les plus communes à notre époque.\n\nLe corps n'est pas un obstacle à la spiritualité — c'est son temple. Il porte en lui une sagesse que le mental ne peut pas égaler. Il sait quand quelque chose n'est pas juste avant que la tête ne le comprenne.\n\nRetour au corps : commence par quelques minutes chaque jour de simple scan corporel — parcours mentalement ton corps de la tête aux pieds, en notant les sensations sans les changer. Marche pieds nus sur la terre. Mange lentement et avec attention. Bouge — danse, marche dans la nature, nage.\n\nLe corps est un lieu saint. Honore-le."},
+    {q:"Comment manifester mes intentions dans la réalité concrète ?",
+     r:"La manifestation — c'est moi, Malkhut, qui reçois ce qui a été décidé dans les hauteurs et le rend réel dans la matière. Et voici comment travailler avec moi.\n\nLa manifestation ne commence pas par la visualisation — elle commence par la clarté. Qu'est-ce que tu veux vraiment, précisément ? Et pourquoi — depuis quel endroit de toi cela vient-il ?\n\nDeuxièmement : l'action dans le monde physique est la condition de la manifestation. Les intentions sans actions restent dans le monde des idées. Fais un pas concret, aujourd'hui, en direction de ce que tu veux manifester.\n\nTroisièmement : sois prêt à recevoir différemment de comment tu l'imagines. La lumière arrive souvent sous une forme non prévue."},
+    {q:"Comment honorer la nature et le monde physique dans ma pratique ?",
+     r:"Je suis la Shekhina — la présence divine dans la matière — et la nature est mon corps. La question que tu poses est l'une des plus importantes de la spiritualité authentique.\n\nHonorer la nature commence par la percevoir vraiment : non pas comme un décor ou une ressource, mais comme un être vivant dont tu fais partie. Chaque arbre, chaque rivière, chaque animal exprime quelque chose de la création divine.\n\nPratiques concrètes : mange avec conscience de la chaîne de vie qui t'a nourri. Passe du temps régulièrement dans des espaces naturels, sans téléphone, juste présent. Prends soin de l'environnement direct autour de toi — la façon dont tu traites ton espace physique immédiat reflète ton rapport au monde.\n\nLe monde physique est sacré. Traite-le comme tel."},
+    {q:"Comment trouver la paix avec ma situation de vie actuelle ?",
+     r:"Malkhut — le Royaume — c'est ceci : exactement ici, exactement maintenant. Pas le paradis imaginaire, pas la situation idéale — la réalité telle qu'elle est.\n\nLa paix avec le présent ne signifie pas ne jamais vouloir changer quoi que ce soit. Elle signifie ne plus ajouter de souffrance mentale à la situation réelle en décrétant qu'elle 'ne devrait pas être ainsi.'\n\nCe qui est, est. Résister à ce qui est consomme une énergie précieuse qui pourrait aller vers la transformation de ce qui peut être changé.\n\nPratique : chaque soir, identifie une chose dans ta situation actuelle pour laquelle tu peux sincèrement ressentir de la gratitude — non pas nier les difficultés, mais voir ce qui est là, présent et réel."},
+    {q:"Comment laisser un héritage positif dans le monde ?",
+     r:"L'héritage — c'est la question finale de Malkhut, la Sefirah qui reçoit tout pour le transmettre. Et voici ce que j'ai à dire sur ce que nous laissons.\n\nL'héritage le plus durable n'est pas les biens matériels ni même les œuvres — c'est la façon dont tu as traité les gens que tu as rencontrés. Comment ils se sont sentis après t'avoir côtoyé. Ce que tu leur as transmis — de tes valeurs, de ta façon d'être, de tes encouragements.\n\nChaque fois que tu aides quelqu'un à grandir, que tu partages une connaissance vraie, que tu choisis la bonté quand la cruauté était possible — tu laisses quelque chose dans le tissu du monde.\n\nL'héritage se construit chaque jour dans les petits actes. Commence maintenant."}
+  ]
+};
+
+var pickedSef = null;
+var pickedQIdx = null;
+var history = [];
+
+document.getElementById('chips').addEventListener('click', function(e) {
+  var btn = e.target.closest('.chip');
+  if (!btn) return;
+  document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('on'); });
+  btn.classList.add('on');
+  pickedSef = btn.getAttribute('data-sef');
+  pickedQIdx = null;
+  renderQuestions(pickedSef);
+});
+
+function renderQuestions(sefKey) {
+  var sef = SEF[sefKey];
+  var questions = QA[sefKey];
+  var hint = document.getElementById('qHint');
+  var grid = document.getElementById('qGrid');
+  var ibtn = document.getElementById('ibtn');
+  hint.textContent = 'Choisissez la question qui vous concerne';
+  pickedQIdx = null;
+  ibtn.disabled = true;
+  grid.innerHTML = questions.map(function(item, i) {
+    return '<button class="q-btn" style="--qc:' + sef.c + '" data-idx="' + i + '" onclick="selectQ(this,' + i + ')">' + item.q + '</button>';
+  }).join('');
+}
+
+function selectQ(btn, idx) {
+  document.querySelectorAll('.q-btn').forEach(function(b) { b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  pickedQIdx = idx;
+  document.getElementById('ibtn').disabled = false;
+}
+
+function invoke() {
+  if (!pickedSef || pickedQIdx === null) return;
+  var sef = SEF[pickedSef];
+  var item = QA[pickedSef][pickedQIdx];
+  document.getElementById('ibtn').disabled = true;
+  document.getElementById('resp').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('loading').scrollIntoView({behavior:'smooth', block:'center'});
+  setTimeout(function() {
+    document.getElementById('loading').style.display = 'none';
+    if (pickedQIdx !== null) document.getElementById('ibtn').disabled = false;
+    showResp(pickedSef, sef, item.q, item.r);
+  }, 1500 + Math.random() * 800);
+}
+
+function showResp(key, sef, q, txt) {
+  document.getElementById('rVeve').textContent = sef.v;
+  document.getElementById('rName').textContent = sef.n;
+  document.getElementById('rName').style.color = sef.c;
+  document.getElementById('rRole').textContent = sef.r;
+  document.getElementById('rHeb').textContent = sef.h;
+  document.getElementById('rCard').style.borderLeftColor = sef.c;
+  document.getElementById('rVeve').style.color = sef.c;
+  document.getElementById('rQ').innerHTML = '<span style="margin-right:.5rem">&#x2726;</span>' + q;
+  var paras = txt.split(/\n\n+|\n/).filter(function(p) { return p.trim().length > 0; });
+  document.getElementById('rTxt').innerHTML = paras.map(function(p) { return '<p>' + p.trim() + '</p>'; }).join('');
+  document.getElementById('resp').style.display = 'block';
+  setTimeout(function() { document.getElementById('resp').scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+  history.unshift({key:key, sef:sef, q:q, txt:txt, date:new Date().toLocaleDateString('fr-FR')});
+  if (history.length > 5) history.pop();
+  renderHist();
+}
+
+function reset() {
+  document.getElementById('resp').style.display = 'none';
+  document.querySelectorAll('.q-btn').forEach(function(b) { b.classList.remove('selected'); });
+  pickedQIdx = null;
+  document.getElementById('ibtn').disabled = true;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderHist() {
+  if (history.length === 0) { document.getElementById('hist').style.display = 'none'; return; }
+  document.getElementById('hist').style.display = 'block';
+  document.getElementById('histList').innerHTML = history.map(function(h, i) {
+    return '<div class="hist-item" onclick="replayHist(' + i + ')">'
+      + '<div class="hist-q">' + h.sef.v + ' ' + h.q.substring(0,75) + (h.q.length>75?'...':'') + '</div>'
+      + '<div class="hist-meta">' + h.sef.n + ' — ' + h.date + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function replayHist(i) {
+  var h = history[i];
+  showResp(h.key, h.sef, h.q, h.txt);
+}
+</script>
+</body>
+</html>
