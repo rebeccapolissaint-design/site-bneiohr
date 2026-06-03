@@ -71,7 +71,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .cl-item.active .cl-play-btn{color:#d4af37}
 .cl-player-wrap{margin-top:.7rem;clear:both}
 .cl-player-wrap iframe{border:none;border-radius:8px;display:block}
-</style>
+/* Ticker */
 .rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,0.2);overflow:hidden}
 .rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,0.15)}
 .rj-track{flex:1;overflow:hidden;position:relative}
@@ -274,12 +274,39 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 </div>
 
 <script>
+// Stars
+(function(){
+  var s=document.getElementById('stars');
+  for(var i=0;i<80;i++){
+    var el=document.createElement('div');
+    el.className='star';
+    var sz=Math.random()*1.4+0.3;
+    el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.4+0.08)+';';
+    s.appendChild(el);
+  }
+})();
+
+// Ticker
+(function(){
+  var q=[
+    'Il n\'y a rien d\'autre que Lui. Derrière chaque apparence — une seule Lumière.',
+    'La musique est la Kabbale des sons — chaque note porte une fréquence divine.',
+    'Malkhout est le Royaume où la Lumière devient chair, souffle, chant.',
+    'Ana BeKoach — chaque mot est une clé. Chaque lettre est une porte.'
+  ];
+  var t=new Date();
+  var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];
+  var sep='<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';
+  var el=document.getElementById('rjInner');
+  if(el) el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;
+})();
+
+// Compact playlist toggle
 function toggleTrack(el, src) {
   var wrap = el.querySelector('.cl-player-wrap');
   var iframe = wrap.querySelector('iframe');
   if (wrap.style.display === 'none') {
-    // close others
-    document.querySelectorAll('.cl-item.active').forEach(function(o){ 
+    document.querySelectorAll('.cl-item.active').forEach(function(o){
       if(o !== el){ o.querySelector('.cl-player-wrap').style.display='none'; o.querySelector('iframe').src=''; o.classList.remove('active'); }
     });
     iframe.src = src;
@@ -291,8 +318,6 @@ function toggleTrack(el, src) {
     el.classList.remove('active');
   }
 }
-;for(var i=0;i<80;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.4+0.3;el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.4+0.08)+';';s.appendChild(el);}})();
-(function(){var q=['Il n\'y a rien d\'autre que Lui. Derrière chaque apparence — une seule Lumière.','La musique est la Kabbale des sons — chaque note porte une fréquence divine.','Malkhout est le Royaume où la Lumière devient chair, souffle, chant.','Ana BeKoach — chaque mot est une clé. Chaque lettre est une porte.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
 </script>
 </body>
 </html>
