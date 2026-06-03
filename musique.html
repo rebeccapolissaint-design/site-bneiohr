@@ -55,7 +55,23 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .coming-soon{text-align:center;border:1px dashed rgba(212,175,55,0.12);padding:2.5rem 1.5rem;border-radius:12px}
 .coming-soon-icon{font-size:2rem;display:block;margin-bottom:.8rem;opacity:.4}
 .coming-soon-txt{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,0.3);text-transform:uppercase}
-/* Ticker */
+/* COMPACT PLAYLIST */
+.compact-list{border:1px solid rgba(212,175,55,0.15);border-radius:14px;background:rgba(212,175,55,0.015);overflow:hidden}
+.cl-header{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.1rem;border-bottom:1px solid rgba(212,175,55,0.1)}
+.cl-title{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:#d4af37;text-transform:uppercase}
+.cl-sub{font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.2em;color:rgba(212,175,55,0.3);text-transform:uppercase}
+.cl-item{padding:.65rem 1.1rem;border-bottom:1px solid rgba(212,175,55,0.07);cursor:pointer;transition:background .2s}
+.cl-item:last-child{border-bottom:none}
+.cl-item:hover{background:rgba(212,175,55,0.04)}
+.cl-item > *:not(.cl-player-wrap){display:inline;vertical-align:middle}
+.cl-num{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.15em;color:rgba(212,175,55,0.3);margin-right:.7rem}
+.cl-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:rgba(232,224,208,0.75);letter-spacing:.04em}
+.cl-play-btn{float:right;font-size:.65rem;color:rgba(212,175,55,0.4);margin-top:.1rem;transition:color .2s}
+.cl-item:hover .cl-play-btn{color:#d4af37}
+.cl-item.active .cl-play-btn{color:#d4af37}
+.cl-player-wrap{margin-top:.7rem;clear:both}
+.cl-player-wrap iframe{border:none;border-radius:8px;display:block}
+</style>
 .rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,0.2);overflow:hidden}
 .rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,0.15)}
 .rj-track{flex:1;overflow:hidden;position:relative}
@@ -227,6 +243,23 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 
   <div class="tracks-divider"><span>&#x2726;</span></div>
 
+  <!-- ── PLAYLIST COMPACTE ── -->
+  <div class="compact-list">
+    <div class="cl-header">
+      <span class="cl-title">&#x2721; Plis Mizik</span>
+      <span class="cl-sub">Klike pou koute</span>
+    </div>
+    <div class="cl-item" onclick="toggleTrack(this, 'https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bnei-ohr/bore-bore-2&color=%23d4af37&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false')">
+      <span class="cl-num">01</span>
+      <span class="cl-name">Bore Bore</span>
+      <span class="cl-play-btn">&#9654;</span>
+      <div class="cl-player-wrap" style="display:none">
+        <iframe width="100%" height="90" scrolling="no" allow="autoplay" src=""></iframe>
+      </div>
+    </div>
+    <!-- Plus de mizik ap vini -->
+  </div>
+
   <!-- ── PROCHAINEMENT ── -->
   <div class="coming-soon">
     <span class="coming-soon-icon">&#x1F3B5;</span>
@@ -241,7 +274,24 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 </div>
 
 <script>
-(function(){var s=document.getElementById('stars');for(var i=0;i<80;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.4+0.3;el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.4+0.08)+';';s.appendChild(el);}})();
+function toggleTrack(el, src) {
+  var wrap = el.querySelector('.cl-player-wrap');
+  var iframe = wrap.querySelector('iframe');
+  if (wrap.style.display === 'none') {
+    // close others
+    document.querySelectorAll('.cl-item.active').forEach(function(o){ 
+      if(o !== el){ o.querySelector('.cl-player-wrap').style.display='none'; o.querySelector('iframe').src=''; o.classList.remove('active'); }
+    });
+    iframe.src = src;
+    wrap.style.display = 'block';
+    el.classList.add('active');
+  } else {
+    wrap.style.display = 'none';
+    iframe.src = '';
+    el.classList.remove('active');
+  }
+}
+;for(var i=0;i<80;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.4+0.3;el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*5+2)+'s;--o:'+(Math.random()*0.4+0.08)+';';s.appendChild(el);}})();
 (function(){var q=['Il n\'y a rien d\'autre que Lui. Derrière chaque apparence — une seule Lumière.','La musique est la Kabbale des sons — chaque note porte une fréquence divine.','Malkhout est le Royaume où la Lumière devient chair, souffle, chant.','Ana BeKoach — chaque mot est une clé. Chaque lettre est une porte.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(212,175,55,0.2);margin:0 2rem">&#10022;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
 </script>
 </body>
