@@ -427,7 +427,7 @@ window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');na
 .rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
 .rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
 .rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
-.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 28s linear infinite}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 55s linear infinite}
 .rj-inner:hover{animation-play-state:paused}
 @keyframes rj-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:.9rem;color:rgba(212,175,55,.5);flex-shrink:0}
@@ -480,7 +480,7 @@ window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');na
       +'<span class="rj-sep" style="margin:0 2rem">✦</span>';
   }
   var el=document.getElementById('rjInner');
-  if(el){el.innerHTML=item()+item();}
+  if(el){el.innerHTML=item()+item()+item()+item();}
 })();
 </script>
 </html>
