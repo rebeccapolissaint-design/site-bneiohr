@@ -795,7 +795,7 @@ origProceed(n);
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();

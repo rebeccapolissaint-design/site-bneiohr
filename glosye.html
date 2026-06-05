@@ -286,7 +286,7 @@ min-height:60px!important;
 }
 </style>
 </head>
-<body><div id="stars"></div><div class="glosye-container"><a href="bneiohr.html" class="back-btn" target="content">← Retour à la Page Principale</a><div class="glosye-header"><span class="glosye-hebrew-title">גְּלוֹסָרְיוּם</span><h1 class="glosye-main-title">Glossaire de Sagesse</h1><p class="glosye-subtitle">Bnei Ohr — בְּנֵי אוֹר — Termes Kabbalistiques Fondamentaux</p></div><input type="text" class="search-box" id="searchBox" placeholder="Rechercher un terme..." oninput="filterTerms()"><div class="alpha-nav" id="alphaNav"></div><div id="termsContainer"></div><p class="no-result" id="noResult">Aucun terme trouvé pour cette recherche.</p><div class="glosye-footer"><a href="bneiohr.html" target="content">← Retour à Bnei Ohr</a></div></div><script>
+<body><div id="stars"></div><div class="glosye-container"><a href="bneiohr.html" class="back-btn">← Retour à la Page Principale</a><div class="glosye-header"><span class="glosye-hebrew-title">גְּלוֹסָרְיוּם</span><h1 class="glosye-main-title">Glossaire de Sagesse</h1><p class="glosye-subtitle">Bnei Ohr — בְּנֵי אוֹר — Termes Kabbalistiques Fondamentaux</p></div><input type="text" class="search-box" id="searchBox" placeholder="Rechercher un terme..." oninput="filterTerms()"><div class="alpha-nav" id="alphaNav"></div><div id="termsContainer"></div><p class="no-result" id="noResult">Aucun terme trouvé pour cette recherche.</p><div class="glosye-footer"><a href="bneiohr.html">← Retour à Bnei Ohr</a></div></div><script>
 // ── TERMS DATA ──
 const terms = [
 {
@@ -719,7 +719,7 @@ renderTerms(terms);
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();

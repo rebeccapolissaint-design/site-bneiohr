@@ -241,7 +241,7 @@ min-height:60px!important;
 </style>
 </head>
 <body>
-<div id="stars"></div><nav><a href="index.html" class="logo" target="content"><span class="logo-heb">בְּנֵי אוֹר</span><span class="logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back" target="content">← Accueil</a>
+<div id="stars"></div><nav><a href="index.html" class="logo"><span class="logo-heb">בְּנֵי אוֹר</span><span class="logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back">← Accueil</a>
 </nav><div class="hero"><span class="eyebrow">Pratique Spirituelle — Kabbale</span><h1>Méditation sur <span>les Lettres Hébraïques</span></h1><div class="divider"></div><p class="intro">Les 22 lettres de l'alphabet hébreu sont la base de la création selon la Kabbale. Chaque lettre est un canal de lumière. Cliquez sur une lettre pour découvrir sa valeur, son attribut et son message méditatif.</p>
 </div><div class="grid-wrap"><div class="grid" id="grid"></div>
 </div><div class="info-section"><span class="info-title">✡ Les Lettres dans la Kabbale Classique</span><p class="info-text">Selon le <strong>Sefer Yetzirah</strong> (Livre de la Création), Dieu a créé le monde à travers les 22 lettres hébraïques. Chaque lettre possède une <strong>valeur numérique</strong> (Gematria), un <strong>attribut cosmique</strong> (planète, élément ou signe zodiacal), et un <strong>impact spirituel</strong> sur l'âme humaine.</p><p class="info-text">Dans la pratique méditative de Bnei Ohr, on contemple chaque lettre pendant <strong>7 respirations</strong> conscientes — en visualisant sa forme, en prononçant son nom doucement, puis en recevant son message spirituel. C'est une forme de <strong>Kavvanah</strong> — intention consciente — qui ouvre les portes d'une connaissance profonde.</p>
@@ -304,7 +304,7 @@ border:1px solid rgba(212,175,55,.18);padding:.6rem 1.6rem;
 transition:all .4s;
 "
 onmouseover="this.style.color='#d4af37';this.style.borderColor='rgba(212,175,55,.5)';this.style.background='rgba(212,175,55,.06)'"
-onmouseout="this.style.color='rgba(212,175,55,.4)';this.style.borderColor='rgba(212,175,55,.18)';this.style.background='transparent'" target="content">
+onmouseout="this.style.color='rgba(212,175,55,.4)';this.style.borderColor='rgba(212,175,55,.18)';this.style.background='transparent'">
 ✡ Accès au Cercle Intérieur
 </a><p style="margin-top:1rem;font-size:.8rem;font-style:italic;color:rgba(255,255,255,.18);font-family:'Cormorant Garamond',serif">
 Réservé aux Veilleurs de Lumière
@@ -577,7 +577,7 @@ Réservé aux Veilleurs de Lumière
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();

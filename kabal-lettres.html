@@ -99,7 +99,7 @@ min-height:60px!important;
 }
 </style>
 </head><body>
-<nav><a href="index.html" target="content">Bnei Ohr</a><a href="kabal.html" target="content">← Etid Kabal</a></nav>
+<nav><a href="index.html">Bnei Ohr</a><a href="kabal.html">← Etid Kabal</a></nav>
 <header><img style="object-fit:cover; object-position:center; filter:brightness(0.55) contrast(1.08);" src="https://i.postimg.cc/L8v9MKVY/Screenshot-20260520-080449-Google.jpg"><div class="hero"><div class="heb">אותיות</div><h1>Pouvwa <span class="gold">Alfabè Sakre</span> a</h1><p>22 lèt ebre yo kòm fòs vibratwa kreyasyon an.</p></div></header>
 <main>
 <div class="block"><h2>Pouvwa Alfabè Sakre a</h2><p>Nan Kabal Bnei Ohr, nou anseye alfabè ebre a (Otiot) pa yon senp mwayen pou moun kominike. Chak lèt se yon fòs jewometrik vibratwa, yon kòd enèji kreyatè ki konekte mond anwo yo ak mond fizik la.</p><p>Sefer Yetzirah (Liv Fòmasyon an) anseye nou Kreyatè a te desine, te vibre, epi te konbine lèt sa yo pou l te ka kreye tout sa k egziste.</p></div>
@@ -372,7 +372,7 @@ min-height:60px!important;
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();

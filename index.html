@@ -2,222 +2,638 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Bnei Ohr — École Initiatique</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bnei Ohr — École Ésotérique Haïtienne — Enfants de la Lumière</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;overflow:hidden;background:#07040d}
-
-/* IFRAME — tout ekran sof player anba */
-#content{
-  position:fixed;
-  top:0;left:0;right:0;
-  bottom:68px;
-  width:100%;border:none;
-  background:#07040d;
+html{scroll-behavior:smooth}
+body{
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;
+flex-wrap:wrap;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(5,5,5,0.92);border-bottom:1px solid rgba(212,175,55,0.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;
+flex-wrap:wrap;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,0.4)}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-links{display:flex;
+flex-wrap:wrap;gap:1.8rem;list-style:none}
+.nav-links a{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;color:#a0a0a0;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:#d4af37}
+/* HERO */
+.hero{position:relative;width:100%;overflow-y: auto}
+.hero-bg{position:relative;width:100%;aspect-ratio:21/9;min-height:340px;background-image:url('https://i.postimg.cc/SRh7ZNSs/1777948390449.jpg');background-size: cover;
+background-position: center;
+filter: brightness(0.55) contrast(1.08);background-repeat:no-repeat;background-position:center;background-color:#050505;display:block;animation:heroFadeIn 1.5s ease forwards}
+@keyframes heroFadeIn{from{opacity:0}to{opacity:1}}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,5,5,0.55) 0%,rgba(5,5,5,0.2) 35%,rgba(5,5,5,0.25) 55%,rgba(5,5,5,0.85) 88%,rgba(5,5,5,1) 100%)}
+.hero-content{position:absolute;top:4.5rem;left:1.2rem;z-index:2;padding:0;text-align:left}
+.hero-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(212,175,55,0.75);text-transform:uppercase;margin-bottom:.3rem;display:block;opacity:0;animation:fadeUp 1s .3s ease forwards}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(.7rem,1.8vw,1rem);letter-spacing:.15em;color:rgba(255,255,255,.85);text-transform:uppercase;line-height:1.3;margin-bottom:.4rem;text-shadow:0 1px 8px rgba(0,0,0,.8);opacity:0;animation:fadeUp 1s .5s ease forwards}
+.hero-title span{color:#d4af37}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero-caption{background:#050505;padding:1.8rem 2rem;text-align:center;border-bottom:1px solid rgba(212,175,55,.08)}
+.hero-caption-verse{font-size:clamp(.92rem,2.5vw,1.1rem);font-style:italic;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 1.2rem;line-height:1.85}
+.hero-caption-btn{display:inline-block;text-decoration:none;background:transparent;border:1px solid rgba(212,175,55,.6);color:#d4af37;padding:.65rem 1.8rem;font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;transition:all .35s}
+.hero-caption-btn:hover{background:rgba(212,175,55,.12);border-color:#d4af37;color:#fff}
+.scroll-indicator{display:flex;
+flex-wrap:wrap;flex-direction:column;align-items:center;gap:.4rem;padding:1rem 0 1.4rem;background:#050505}
+.scroll-indicator span{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.35);text-transform:uppercase}
+.scroll-dot{width:1px;height:30px;background:linear-gradient(to bottom,rgba(212,175,55,.6),transparent);animation:scrollDot 2s ease-in-out infinite}
+@keyframes scrollDot{0%,100%{opacity:.3}50%{opacity:1}}
+/* STATS */
+.stats-bar{display:flex;
+flex-wrap:wrap;justify-content:center;align-items:center;background:#080600;border-top:1px solid rgba(212,175,55,.12);border-bottom:1px solid rgba(212,175,55,.12);overflow-x:auto}
+.stat-item{flex:1;min-width:0;padding:1.6rem .8rem;text-align:center;border-right:1px solid rgba(212,175,55,.1)}
+.stat-item:last-child{border-right:none}
+.stat-number{font-family:'Cinzel',serif;font-size:clamp(1.4rem,4vw,1.9rem);color:#d4af37;display:block;text-shadow:0 0 15px rgba(212,175,55,.25);line-height:1}
+.stat-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-top:.4rem;display:block}
+/* MISSION BANNER */
+.misyon-banner{position:relative;z-index:1;padding:4rem 2rem;background:linear-gradient(135deg,#080600 0%,#0a0800 50%,#080600 100%);border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08);text-align:center;overflow-y: auto}
+.misyon-banner::before{content:'בְּנֵי אוֹר';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Noto Serif Hebrew',serif;font-size:8rem;color:rgba(212,175,55,.025);pointer-events:none;white-space:nowrap}
+.misyon-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;color:rgba(255,255,255,.75);max-width:720px;margin:0 auto 1rem;line-height:1.9}
+.misyon-text strong{color:#d4af37;font-style:normal;font-weight:400}
+.misyon-signature{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase}
+/* DEGRE SECTION */
+.degre-section{padding:5rem 2rem;background:linear-gradient(to bottom,#050505,#08060f,#050505);position:relative;z-index:1}
+.section-header-center{text-align:center;margin-bottom:3rem}
+.section-eyebrow{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.5em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.8rem;display:block}
+.section-main-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,1.8rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.section-main-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1rem auto 0}
+.degre-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:960px;margin:0 auto}
+.degre-card{border:1px solid rgba(212,175,55,.15);background:rgba(212,175,55,.02);padding:2.5rem 1.8rem;text-align:center;position:relative;overflow-y: auto;transition:all .4s}
+.degre-card:hover{border-color:rgba(212,175,55,.4);transform:translateY(-4px);box-shadow:0 12px 35px rgba(212,175,55,.07)}
+.degre-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(212,175,55,.4),transparent)}
+.degre-icon{font-size:2.5rem;display:block;margin-bottom:1rem;filter:drop-shadow(0 0 10px rgba(212,175,55,.3))}
+.degre-num{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.degre-name{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.3rem}
+.degre-sub{font-style:italic;font-size:.85rem;color:rgba(255,255,255,.4);display:block;margin-bottom:1rem}
+.degre-desc{font-size:.92rem;color:rgba(232,228,220,.6);line-height:1.85}
+/* SOURCES SECTION */
+.sources-section{padding:4rem 2rem;background:#050505;position:relative;z-index:1}
+.sources-grid{display:flex;
+flex-wrap:wrap;flex-wrap:wrap;justify-content:center;gap:1rem;max-width:800px;margin:2rem auto 0}
+.source-pill{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.15em;color:rgba(212,175,55,.6);text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid rgba(212,175,55,.2);background:rgba(212,175,55,.03)}
+/* GRID PAGES */
+.neuf-section{padding:3rem 1.2rem;background:linear-gradient(to bottom,#050505,#0a0800,#050505)}
+.neuf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:1000px;margin:0 auto}
+.neuf-card{position:relative;overflow-y: auto;border:1px solid rgba(212,175,55,.15);text-decoration:none;display:block;transition:all .4s;background:#080800}
+.neuf-card:hover{border-color:rgba(212,175,55,.5);transform:translateY(-3px);box-shadow:0 10px 30px rgba(212,175,55,.08)}
+@media(max-width:700px){.neuf-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}.neuf-card-placeholder{aspect-ratio:1/1}}
+.neuf-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9) 0%,transparent 60%)}
+.neuf-card-body{position:absolute;bottom:0;left:0;right:0;padding:.7rem .8rem}
+.neuf-card-tag{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.25rem}
+.neuf-card-title{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.1em;color:#fff;text-transform:uppercase;line-height:1.3}
+.neuf-card-arrow{display:inline-block;margin-top:.3rem;font-size:.65rem;color:rgba(212,175,55,.6);transition:all .3s}
+.neuf-card:hover .neuf-card-arrow{color:#d4af37;transform:translateX(4px)}
+.neuf-card-placeholder{width:100%;aspect-ratio:3/2;background:linear-gradient(135deg,#0d0a00,#1a1200);display:flex;
+flex-wrap:wrap;align-items:center;justify-content:center}
+.neuf-card-placeholder span{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.25)}
+/* PAWOL */
+.pawol-section{position:relative;z-index:1;padding:5rem 2rem;background:linear-gradient(to bottom,#050505 0%,#0c0900 50%,#050505 100%);text-align:center;overflow-y: auto}
+.pawol-eyebrow{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.5em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.pawol-main-title{font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.7rem);letter-spacing:.2em;color:#d4af37;text-transform:uppercase;margin-bottom:.8rem}
+.pawol-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto 3rem}
+.pawol-card{max-width:720px;margin:0 auto;padding:3rem 3.5rem;border:1px solid rgba(212,175,55,.18);background:rgba(212,175,55,.02);position:relative}
+.pawol-card::before,.pawol-card::after{content:'✡';position:absolute;top:1.2rem;font-size:.6rem;color:rgba(212,175,55,.3)}
+.pawol-card::before{left:1.2rem}
+.pawol-card::after{right:1.2rem}
+.pawol-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:1.5rem;color:rgba(212,175,55,.4);display:block;margin-bottom:1.5rem;min-height:2rem;transition:opacity .6s}
+.pawol-quote{font-size:clamp(1.05rem,2.5vw,1.35rem);color:rgba(255,255,255,.88);font-style:italic;line-height:1.85;margin-bottom:1.5rem;min-height:4rem;transition:opacity .6s}
+.pawol-source{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.25em;color:rgba(212,175,55,.55);text-transform:uppercase;transition:opacity .6s}
+.pawol-dots{display:flex;
+flex-wrap:wrap;justify-content:center;gap:.6rem;margin-top:2rem}
+.pawol-dot{width:5px;height:5px;border-radius:50%;background:rgba(212,175,55,.2);transition:background .3s;cursor:pointer}
+.pawol-dot.active{background:#d4af37}
+/* VERSE */
+.verse-section{padding:5rem 2rem;text-align:center;background:#050505}
+.verse-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:rgba(212,175,55,.4);direction:rtl;margin-bottom:1.5rem}
+.verse-text{font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;color:rgba(255,255,255,.7);max-width:700px;margin:0 auto 1rem;line-height:1.9}
+.verse-ref{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;color:#7a6030;text-transform:uppercase}
+/* CONTACT */
+.contact-section{padding:5rem 2rem;background:#050505;text-align:center;position:relative;z-index:1}
+.contact-form{max-width:500px;margin:2rem auto 0;display:flex;
+flex-wrap:wrap;flex-direction:column;gap:1rem}
+.contact-form input,.contact-form textarea{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.2);color:#f0f0f0;padding:.8rem 1rem;font-family:'Cormorant Garamond',serif;font-size:1rem;outline:none;width:100%}
+.contact-form textarea{resize:vertical}
+.contact-form button{background:rgba(212,175,55,.1);border:1px solid #d4af37;color:#d4af37;padding:.9rem 2rem;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.contact-form button:hover{background:rgba(212,175,55,.2)}
+/* FOOTER */
+footer{position:relative;z-index:1;background:#050505;border-top:1px solid rgba(212,175,55,.1);padding:3rem 2rem;text-align:center}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.8rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-links{display:flex;
+flex-wrap:wrap;justify-content:center;gap:2rem;list-style:none;margin-bottom:1.5rem;flex-wrap:wrap}
+.footer-links a{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.2em;color:#606060;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.footer-links a:hover{color:#d4af37}
+.footer-copy{font-size:.8rem;color:#404040;letter-spacing:.1em}
+.footer-mentions{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.15em;color:#303030;margin-top:.5rem}
+.footer-mentions a{color:#404040;text-decoration:none}
+.footer-mentions a:hover{color:#d4af37}
+@media(max-width:768px){
+nav{padding:1rem 1.5rem}
+.nav-links{display:none}
+.neuf-grid{grid-template-columns:repeat(2,1fr)}
+.degre-grid{grid-template-columns:1fr}
+.hero-bg{aspect-ratio:4/3;background-size:100%;background-position:center 25%}
+.pawol-card{padding:2rem 1.5rem}
 }
-
-/* ── PLAYER BAR ── */
-#gp{
-  position:fixed;bottom:0;left:0;right:0;height:68px;
-  background:#08050e;
-  border-top:1px solid rgba(212,175,55,.2);
-  display:flex;align-items:center;
-  padding:0 14px;gap:8px;
-  z-index:9999;font-family:'Cinzel',serif;
+@media(max-width:480px){
+.neuf-grid{grid-template-columns:1fr}
 }
+/* Traditions tooltip */
+.trad-item{position:relative;cursor:pointer}
+.trad-info-icon{font-size:.6rem;color:rgba(212,175,55,.5);vertical-align:super;margin-left:.2rem;font-style:normal}
+.trad-popup{display:none;position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);width:min(320px,88vw);background:linear-gradient(135deg,#0b0810,#07040d);border:1px solid rgba(212,175,55,.25);border-radius:10px;padding:1.2rem 1rem 1rem;z-index:999;text-align:left;box-shadow:0 12px 40px rgba(0,0,0,.7)}
+.trad-popup.open{display:block}
+.trad-popup::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:rgba(212,175,55,.25)}
+.trad-close{position:absolute;top:.5rem;right:.6rem;background:none;border:none;color:rgba(212,175,55,.4);font-size:.7rem;cursor:pointer;padding:0;line-height:1}
+.trad-entry{padding:.5rem 0}
+.trad-name{display:block;font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.12em;color:#d4af37;text-transform:uppercase;margin-bottom:.35rem}
+.trad-desc{display:block;font-family:'Cormorant Garamond',serif;font-size:.88rem;color:rgba(200,192,176,.7);line-height:1.55;font-style:italic}
+.trad-divider{height:1px;background:linear-gradient(to right,transparent,rgba(212,175,55,.15),transparent);margin:.4rem 0}
+</style>
 
-/* barre progression en haut du player */
-#gp-track{
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:rgba(212,175,55,.08);cursor:pointer;
+<style id="theme-style">
+/* MODE CLAIR — variables */
+body.light-mode{
+  --bg-main:#f5f0e8;
+  --bg-section:#ede8de;
+  --bg-nav:rgba(245,240,232,.97);
+  --text-main:#2a1f0a;
+  --text-muted:#6b5a3a;
+  --text-sub:#9a8060;
+  --gold:#8a6a20;
+  --gold-dim:rgba(138,106,32,.4);
+  --gold-faint:rgba(138,106,32,.08);
+  --border:rgba(138,106,32,.2);
+  --border-strong:rgba(138,106,32,.4);
+  --card-bg:rgba(138,106,32,.05);
+  --shadow:rgba(100,70,20,.12);
 }
-#gp-fill{height:100%;width:0;background:linear-gradient(90deg,#a07828,#d4af37,#f0d060);pointer-events:none}
+body.light-mode{background:var(--bg-main)!important;color:var(--text-main)!important}
+body.light-mode nav{background:var(--bg-nav)!important;border-bottom-color:var(--border)!important}
+body.light-mode .nav-logo-text,body.light-mode .nav-links a{color:var(--text-muted)!important}
+body.light-mode .nav-logo-hebrew{color:var(--gold)!important}
+body.light-mode .nav-links a:hover,body.light-mode .nav-links a.active{color:var(--gold)!important}
+body.light-mode section,body.light-mode .hero,body.light-mode .misyon-banner,
+body.light-mode .degre-section,body.light-mode .neuf-section,
+body.light-mode .pawol-section,body.light-mode .verse-section,
+body.light-mode .contact-section,body.light-mode .don-section,
+body.light-mode .video-section,body.light-mode .degre-card,
+body.light-mode .neuf-card{background:var(--bg-section)!important;border-color:var(--border)!important}
+body.light-mode .section-eyebrow,body.light-mode .pawol-eyebrow{color:var(--gold-dim)!important}
+body.light-mode .section-main-title,body.light-mode h1,body.light-mode h2,
+body.light-mode .pawol-main-title,body.light-mode .don-title{color:var(--gold)!important}
+body.light-mode p,body.light-mode .degre-desc,body.light-mode .pawol-quote{color:var(--text-muted)!important}
+body.light-mode .stat-number,body.light-mode .don-number{color:var(--gold)!important}
+body.light-mode .stat-label{color:var(--text-sub)!important}
+body.light-mode footer{background:var(--bg-section)!important;border-top-color:var(--border)!important}
+body.light-mode .footer-links a{color:var(--text-sub)!important}
+body.light-mode .footer-links a:hover{color:var(--gold)!important}
+body.light-mode .footer-copy,body.light-mode .footer-mentions{color:var(--text-sub)!important}
+body.light-mode .reflexion-jour-widget{background:linear-gradient(90deg,#f0ebe0,#ede5d5,#f0ebe0)!important;border-top-color:rgba(138,106,32,.2)!important}
+body.light-mode .reflexion-jour-tab{color:var(--gold)!important}
+body.light-mode .rj-quote{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:#b0a080;font-style:italic;white-space:normal!important;overflow:visible!important;text-overflow:unset!important;word-break:break-word;flex:1;min-width:0}
+body.light-mode .srch-box{background:linear-gradient(135deg,#f0ebe0,#ede5d5)!important;border-color:var(--border-strong)!important}
+body.light-mode .srch-input{color:var(--text-main)!important}
+body.light-mode .srch-item:hover{background:rgba(138,106,32,.08)!important}
+body.light-mode .srch-item-title{color:var(--gold)!important}
+body.light-mode .srch-item-desc{color:var(--text-sub)!important}
+body.light-mode .srch-overlay{background:rgba(200,185,155,.7)!important}
+/* Transition douce */
+body,body *{transition:background .35s ease,color .3s ease,border-color .3s ease!important}
 
-/* boutons prev/next */
-.gp-skip{
-  width:28px;height:28px;background:none;border:none;
-  color:rgba(212,175,55,.4);cursor:pointer;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  transition:color .2s;padding:0;
+/* Toggle button */
+.theme-toggle{background:transparent;border:1px solid rgba(212,175,55,.3);border-radius:20px;cursor:pointer;display:flex;align-items:center;gap:.3rem;padding:.25rem .5rem;transition:all .3s;color:rgba(212,175,55,.6);font-size:.7rem;line-height:1;flex-shrink:0}
+.theme-toggle:hover{border-color:#d4af37;color:#d4af37}
+.theme-toggle-icon{font-size:.85rem;transition:transform .3s}
+body.light-mode .theme-toggle{border-color:rgba(138,106,32,.4);color:rgba(138,106,32,.7)}
+body.light-mode .theme-toggle:hover{border-color:#8a6a20;color:#8a6a20}
+</style>
+<script>
+(function(){
+  // Apply saved theme immediately
+  if(localStorage.getItem('bnei-theme')==='light'){
+    document.body.classList.add('light-mode');
+  }
+  window.toggleTheme=function(){
+    var isLight=document.body.classList.toggle('light-mode');
+    localStorage.setItem('bnei-theme', isLight?'light':'dark');
+    var btn=document.getElementById('themeToggle');
+    if(btn){
+      btn.querySelector('.theme-toggle-icon').textContent=isLight?'☀':'☾';
+    }
+  };
+})();
+</script>
+<script src="/search-index.js"></script>
+
+<style id="rj-mobile-real-fix">
+.rj-quote{
+white-space:normal!important;
+overflow:visible!important;
+text-overflow:unset!important;
+display:block!important;
+line-height:1.4!important;
+max-width:100%!important;
 }
-.gp-skip:hover{color:#d4af37}
-.gp-skip svg{width:14px;height:14px;fill:currentColor}
-
-/* bouton play */
-#gp-play{
-  width:42px;height:42px;border-radius:50%;flex-shrink:0;
-  background:rgba(212,175,55,.08);
-  border:1.5px solid rgba(212,175,55,.28);
-  color:#d4af37;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .2s,transform .12s;
+.reflexion-jour-widget{
+height:auto!important;
+min-height:60px!important;
 }
-#gp-play:hover{background:rgba(212,175,55,.18);transform:scale(1.06)}
-#gp-play svg{width:15px;height:15px;fill:#d4af37}
-
-/* info */
-#gp-info{flex:1;min-width:0;padding:0 6px;overflow:hidden}
-#gp-name{font-size:.46rem;letter-spacing:.13em;color:#d4af37;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#gp-time{font-family:'Cormorant Garamond',serif;font-size:.68rem;color:rgba(212,175,55,.3);margin-top:2px;letter-spacing:.04em}
-
-/* iframe SoundCloud caché */
-#sc{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;top:-999px;left:-999px}
 </style>
 </head>
 <body>
-
-<!-- IFRAME SITE PRINCIPAL -->
-<iframe id="content" name="content" src="home.html"></iframe>
-
-<!-- PLAYER GLOBAL -->
-<div id="gp">
-  <div id="gp-track"><div id="gp-fill"></div></div>
-
-  <button class="gp-skip" id="btn-prev">
-    <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
-  </button>
-
-  <button id="gp-play">
-    <svg id="ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    <svg id="ico-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  </button>
-
-  <button class="gp-skip" id="btn-next">
-    <svg viewBox="0 0 24 24"><path d="M6 18 14.5 12 6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
-  </button>
-
-  <div id="gp-info">
-    <div id="gp-name">Bnei Ohr — Mizik Sakre</div>
-    <div id="gp-time">Klike ▶ pou koute</div>
+<div id="stars"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><ul class="nav-links"><li><a href="index.html" class="active">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="lwa.html">Les Lwa</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="trois-rayons.html">Les Rayons</a></li><li><a href="#contact">Contact</a></li><li><a href="calendrier.html">Calendrier</a></li></ul><button class="nav-srch-btn" onclick="openSrch()" aria-label="Rechercher">🔍</button>
+</nav><section class="hero"><div class="hero-bg"><div class="hero-content"><p class="hero-label">✡ École Ésotérique Haïtienne ✡</p><h1 class="hero-title">Bnei Ohr<br><span>Enfants de la Lumière</span></h1></div></div><div class="hero-caption"><p class="hero-caption-verse">« L'alliance sacrée de la Kabbale hébraïque et de l'Héritage Spirituel Ginen — Une école initiatique pour l'éveil des Fils de la Lumière. »</p><a href="presentation.html" class="hero-caption-btn">Découvrir l'École</a></div><div class="scroll-indicator"><span>Défiler vers le bas</span><div class="scroll-dot"></div></div>
+</section><div class="stats-bar"><div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Niveaux d'Exploration</span></div><div class="stat-item trad-item" id="tradItem">
+  <span class="stat-number">3</span>
+  <span class="stat-label">Traditions Intégrées <span class="trad-info-icon">ℹ</span></span>
+  <div class="trad-popup" id="tradPopup">
+    <button class="trad-close" onclick="document.getElementById('tradPopup').classList.remove('open')">✕</button>
+    <div class="trad-entry">
+      <span class="trad-name">✡ La Kabbale Pure (Kabal Pratik)</span>
+      <span class="trad-desc">Les lois mathématiques, sonores et géométriques de la création — lettres hébraïques, Noms Divins, Psaumes et Arbre de Vie.</span>
+    </div>
+    <div class="trad-divider"></div>
+    <div class="trad-entry">
+      <span class="trad-name">✡ La Tradition Ginen (Sajès Zansèt yo)</span>
+      <span class="trad-desc">Les lignées spirituelles primordiales égyptiennes (Kémétiques) et africaines conservées en Haïti — purifiées de toute distorsion syncrétique et astrrale inférieure.</span>
+    </div>
+    <div class="trad-divider"></div>
+    <div class="trad-entry">
+      <span class="trad-name">✡ L'Hermétisme Universel / La Voie du Christ (Mashiach)</span>
+      <span class="trad-desc">Les lois universelles de résonance, de guérison et de souveraineté spirituelle — sous l'Ordre de Melchisédek et de Yeshua.</span>
+    </div>
   </div>
+</div><div class="stat-item"><span class="stat-number">22</span><span class="stat-label">Modules d'Étude</span></div><div class="stat-item"><span class="stat-number">∞</span><span class="stat-label">Lumière d'Ein Sof</span></div>
+</div><section class="video-section"><div class="video-inner"><span class="video-eyebrow">✡ Bnei Ohr — Mesaj Vizyèl ✡</span><div class="video-carousel-wrapper"><div class="video-carousel" id="videoCarousel">
+<!-- Slide 1 — fòma Short 9:16, UI kache -->
+<div class="video-slide"><div class="video-wrap ratio-9-16"><div class="short-clip"><iframe id="vf1" src="https://www.youtube.com/embed/ZdWpOYs4lTQ?rel=0&modestbranding=1&controls=1" title="Bnei Ohr — Videyo 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><button class="video-fs-btn" onclick="requestFS('vf1')" title="Plen ekran">⛶</button></div></div>
+<!-- Slide 2 — fòma Short 9:16, UI kache -->
+<div class="video-slide"><div class="video-wrap ratio-9-16"><div class="short-clip"><iframe id="vf2" src="https://www.youtube.com/embed/v9FFmha6izk?rel=0&modestbranding=1&controls=1" title="Bnei Ohr — Videyo 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><button class="video-fs-btn" onclick="requestFS('vf2')" title="Plen ekran">⛶</button></div></div>
+<!-- Slide 3 — Short orijinal 9:16, UI kache -->
+<div class="video-slide"><div class="video-wrap ratio-9-16"><div class="short-clip"><iframe id="vf3" src="https://www.youtube.com/embed/_mt_8w3z3ew?rel=0&modestbranding=1&controls=1" title="Bnei Ohr — Short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><button class="video-fs-btn" onclick="requestFS('vf3')" title="Plen ekran">⛶</button></div></div>
+<!-- Slide 4 — nouvo Short -->
+<div class="video-slide"><div class="video-wrap ratio-9-16"><div class="short-clip"><iframe id="vf4" src="https://www.youtube.com/embed/bJsF0Dg9c9g?rel=0&modestbranding=1&controls=1" title="Bnei Ohr — Short 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><button class="video-fs-btn" onclick="requestFS('vf4')" title="Plen ekran">⛶</button></div></div>
+</div></div><div class="video-dots"><span class="video-dot active" onclick="goToSlide(0)"></span><span class="video-dot" onclick="goToSlide(1)"></span><span class="video-dot" onclick="goToSlide(2)"></span><span class="video-dot" onclick="goToSlide(3)"></span></div></div></section><style>
+.video-section{position:relative;z-index:1;padding:4rem 2rem;background:linear-gradient(to bottom,#050505,#07050d,#050505);border-bottom:1px solid rgba(212,175,55,.08)}
+.video-inner{max-width:400px;margin:0 auto;text-align:center}
+.video-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:1.5rem}
+.video-carousel-wrapper{overflow:hidden;width:100%;touch-action:pan-y}
+.video-carousel{display:flex;transition:transform .4s ease;will-change:transform}
+.video-slide{min-width:100%;box-sizing:border-box;padding:0 .25rem}
+/* Conteneur vertical 9:16 */
+.video-wrap.ratio-9-16{position:relative;width:100%;margin:0 auto;border:1px solid rgba(212,175,55,.15);box-shadow:0 0 40px rgba(212,175,55,.06);overflow:hidden}
+/* short-clip: zone de rognage pour masquer les boutons UI YouTube */
+.short-clip{position:relative;width:100%;padding-bottom:177.78%;overflow:hidden}
+/* iframe élargie pour masquer like/dislike/comment à droite */
+.short-clip iframe{position:absolute;top:0;left:-18%;width:136%;height:100%;border:none}
+/* Bouton fullscreen natif */
+.video-fs-btn{position:absolute;bottom:.5rem;right:.55rem;z-index:10;background:rgba(0,0,0,.65);color:#d4af37;font-size:1rem;width:2rem;height:2rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(212,175,55,.3);border-radius:3px;cursor:pointer;transition:background .25s,border-color .25s;line-height:1;padding:0}
+.video-fs-btn:hover{background:rgba(212,175,55,.2);border-color:#d4af37}
+.video-dots{display:flex;justify-content:center;gap:.6rem;margin-top:1.1rem}
+.video-dot{width:.55rem;height:.55rem;border-radius:50%;background:rgba(212,175,55,.2);border:1px solid rgba(212,175,55,.35);cursor:pointer;transition:background .3s}
+.video-dot.active{background:#d4af37}
+</style><script>
+(function(){
+  var carousel=document.getElementById('videoCarousel');
+  var dots=document.querySelectorAll('.video-dot');
+  var total=4,cur=0,startX=0,isDragging=false;
+  function goToSlide(n){cur=n;carousel.style.transform='translateX(-'+n*100+'%)';dots.forEach(function(d,i){d.classList.toggle('active',i===n)});}
+  window.goToSlide=goToSlide;
+  window.requestFS=function(id){
+    var el=document.getElementById(id);
+    if(!el)return;
+    if(el.requestFullscreen)el.requestFullscreen();
+    else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
+    else if(el.mozRequestFullScreen)el.mozRequestFullScreen();
+    else if(el.msRequestFullscreen)el.msRequestFullscreen();
+  };
+  carousel.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;isDragging=true;},{passive:true});
+  carousel.addEventListener('touchend',function(e){if(!isDragging)return;var diff=startX-e.changedTouches[0].clientX;if(Math.abs(diff)>40){if(diff>0&&cur<total-1)goToSlide(cur+1);else if(diff<0&&cur>0)goToSlide(cur-1);}isDragging=false;},{passive:true});
+  carousel.addEventListener('mousedown',function(e){startX=e.clientX;isDragging=true;});
+  document.addEventListener('mouseup',function(e){if(!isDragging)return;var diff=startX-e.clientX;if(Math.abs(diff)>40){if(diff>0&&cur<total-1)goToSlide(cur+1);else if(diff<0&&cur>0)goToSlide(cur-1);}isDragging=false;});
+})();
+</script><section class="misyon-banner"><p class="misyon-text">« Bnei Ohr est une école initiatique haïtienne qui unit la Kabbale Pure (Kabal Pratik), la Tradition Ginen (Sajès Zansèt yo) et l'Hermétisme Universel — la Voie du Christ-Mashiach sous l'Ordre de YHWH, Melchizédek et Yeshua — dans un parcours symbolique original, vivant, enraciné dans l'âme profonde du peuple haïtien. »</p><span class="misyon-signature">✡ Mission de Bnei Ohr — Fondée par Chilot ✡</span>
+</section><section class="degre-section"><div class="section-header-center"><span class="section-eyebrow">Repères Pédagogiques</span><h2 class="section-main-title">3 Niveaux d'Exploration Symbolique</h2><div class="section-main-divider"></div></div><div class="degre-grid"><div class="degre-card"><span class="degre-icon">🌅</span><span class="degre-num">Niveau 1 — L'Éveil de la Conscience</span><span class="degre-name">L'Enfant de l'Aube</span><span class="degre-sub">Découverte & Fondements</span><p class="degre-desc">L'explorateur découvre les fondements symboliques : Kabbale, images des Lwa, traditions mystiques. Un travail sur soi-même, sans cadre dogmatique. <em style="color:rgba(212,175,55,0.5);font-size:.85rem">Ce niveau est une invitation à la découverte personnelle, .</em></p></div><div class="degre-card" style="border-color:rgba(212,175,55,.3);transform:scale(1.02)"><span class="degre-icon">🔥</span><span class="degre-num">Niveau 2 — Le Travail avec les Symboles</span><span class="degre-name">Le Porteur de Lumière</span><span class="degre-sub">Étude Approfondie</span><p class="degre-desc">Le pratiquant approfondit les correspondances entre Sefirot et symboles des Lwa. Il apprend à guider d'autres chercheurs. <em style="color:rgba(212,175,55,0.5);font-size:.85rem"></em></p></div><div class="degre-card"><span class="degre-icon">⭐</span><span class="degre-num">Niveau 3 — La Connaissance Vécue</span><span class="degre-name">La Flamme qui Éclaire</span><span class="degre-sub">Incarnation Personnelle</span><p class="degre-desc">La personne vit la connaissance plutôt que de la savoir. Elle transmet une expérience personnelle, en s'inspirant librement des traditions. <em style="color:rgba(212,175,55,0.5);font-size:.85rem"></em></p></div></div>
+</section><div style="position:relative;z-index:1;max-width:760px;margin:-2rem auto 0;padding:0 1.5rem 3rem"><div style="border:1px solid rgba(212,175,55,0.2);background:rgba(212,175,55,0.03);padding:1.5rem 2rem;display:flex;
+flex-wrap:wrap;gap:1rem;align-items:flex-start"><span style="font-size:1.2rem;flex-shrink:0">⚠️</span><div><p style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;color:rgba(212,175,55,0.5);text-transform:uppercase;margin-bottom:.5rem">Cadre Éthique</p><p style="font-size:.92rem;color:rgba(232,228,220,0.6);line-height:1.85;font-style:italic">Les trois niveaux ci-dessus sont des <strong style="color:rgba(212,175,55,0.6);font-weight:400;font-style:normal">repères symboliques et pédagogiques</strong>. Ils ne remplacent aucune cheminement formel religieuse, maçonnique ou vodou. </p></div></div>
+</div><section class="sources-section"><div class="section-header-center"><span class="section-eyebrow">Nos Sources</span><h2 class="section-main-title">Une Synthèse Vivante</h2><div class="section-main-divider"></div></div><div class="sources-grid"><span class="source-pill">✡ Kabbale Classique</span><span class="source-pill">✡ Zohar</span><span class="source-pill">✡ Etz Chaïm</span><span class="source-pill">✡ Vodou Haïtien</span><span class="source-pill">✡ Philosophie des Lwa</span><span class="source-pill">✡ Hermétisme</span><span class="source-pill">✡ Traditions Mystiques Occidentales</span><span class="source-pill">✡ Symbolisme Universel</span></div>
+</section><section class="pawol-section"><span class="pawol-eyebrow">Réflexion du Jour</span><h2 class="pawol-main-title">Paroles de Sagesse</h2><div class="pawol-divider"></div><div class="pawol-card"><span class="pawol-hebrew" id="pawolHebrew"></span><p class="pawol-quote" id="pawolQuote"></p><span class="pawol-source" id="pawolSource"></span></div><div class="pawol-dots" id="pawolDots"></div>
+</section><section class="neuf-section"><div class="section-header-center"><span class="section-eyebrow">Explorer</span><h2 class="section-main-title">Nos Enseignements</h2><div class="section-main-divider"></div></div><div class="neuf-grid"><a href="musique.html" class="neuf-card" style="position:relative;overflow:hidden">
+<img src="https://i.postimg.cc/02CWj3T7/1780437318035.jpg" alt="Musique Sacrée Bnei Ohr" style="width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center center;display:block"/>
+<div class="neuf-card-overlay" style="background:linear-gradient(to top,rgba(4,3,10,0.92) 0%,rgba(4,3,10,0.3) 55%,transparent 100%)"></div>
 
-  <iframe id="sc" allow="autoplay" src=""></iframe>
+<div style="padding:.6rem .6rem 0">
+  <iframe width="100%" height="80" scrolling="no" allow="autoplay"
+    style="border:none;border-radius:6px;display:block"
+    src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bnei-ohr/mp3_160k&color=%23d4af37&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
+  </iframe>
 </div>
+<div class="neuf-card-body">
+  <span class="neuf-card-tag">🎵 Musique Sacrée</span>
+  <div class="neuf-card-title">Malkout nan Ekilib</div>
+  <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.82rem;color:rgba(212,175,55,0.55);display:block;margin-bottom:.4rem">Bnei Ohr — SoundCloud</span>
+  <span class="neuf-card-arrow">Découvrir →</span>
+</div>
+</a><a href="presentation.html" class="neuf-card"><img src="https://i.postimg.cc/NjgrLJh2/akey-semen.jpg" alt="Découvrir Bnei Ohr" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Présentation</span><div class="neuf-card-title">Découvrir Bnei Ohr</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="vodou.html" class="neuf-card"><img src="https://i.postimg.cc/GpYk0Bv2/Screenshot-20260601-212956-Gallery.jpg" alt="Le Vodou — Âme d'Haïti" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Héritage Haïtien</span><div class="neuf-card-title">Le Vodou — Âme d'Haïti</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="kabbalah-chretienne.html" class="neuf-card"><img src="https://i.postimg.cc/SRq6yykw/1780366869785.jpg" alt="Kabbale & Christianisme" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Études</span><div class="neuf-card-title">Kabbale & Christianisme</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="meditation-lettre.html" class="neuf-card"><img src="https://i.postimg.cc/VkLJBKYX/3942d0abdae0fc0263bb0ad14da659d5.jpg" alt="Méditation 22 Lettres" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Pratique</span><div class="neuf-card-title">Méditation — 22 Lettres</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="prieres.html" class="neuf-card"><img src="https://i.postimg.cc/6qFLDFY2/cba08e27b8d85d87584842769d595e81.jpg" alt="Prières Kabbalistiques" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Prières</span><div class="neuf-card-title">Prières Kabbalistiques</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="bibliyotek.html" class="neuf-card"><img src="https://i.postimg.cc/m2zGCM9K/ef785a54e828ac930a4da047a2bdcf4b.jpg" alt="Bibliothèque de Lumière" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Ressources</span><div class="neuf-card-title">Bibliothèque de Lumière</div><span class="neuf-card-arrow">Entrer →</span></div></a><a href="quiz-sefirah.html" class="neuf-card" target="_blank"><img src="https://i.postimg.cc/j2TZ5pz2/Screenshot-20260601-225842-Gallery.jpg" alt="Quelle Sefirah es-tu ?" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Exploration</span><div class="neuf-card-title">Quelle Sefirah es-tu ?</div><span class="neuf-card-arrow">Découvrir →</span></div></a></div>
+</section><section class="neuf-section" style="padding-top:2rem"><div class="section-header-center"><span class="section-eyebrow">Sagesse du Quotidien</span><h2 class="section-main-title">Réflexions</h2><div class="section-main-divider"></div></div><div class="neuf-grid" style="grid-template-columns:repeat(3,1fr)"><a href="reflexion-loi-miroir.html" class="neuf-card"><img src="https://i.postimg.cc/R0RksYHM/Screenshot-20260521-114728-Gallery.jpg"
+alt="Loi du Miroir" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">Psychologie Spirituelle</span><div class="neuf-card-title">Pourquoi on déteste dans l'autre ce qui est en nous ?</div><span class="neuf-card-arrow">Lire →</span></div></a><a href="reflexion-ein-od-milvado.html" class="neuf-card"><img src="https://i.postimg.cc/tgMpXTX4/file-00000000479471f5bb86e526bc8643b4.png"
+alt="Ein Od Milvado" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">⚖️ Théologie Kabbalistique</span><div class="neuf-card-title">Y a-t-il deux Dieux qui se battent dans l'univers ?</div><span class="neuf-card-arrow">Lire →</span></div></a><a href="reflexion-kabbalah-belle.html" class="neuf-card"><img src="https://i.postimg.cc/3wNWCN9b/1779392198813.jpg"
+alt="Kabbalah est belle" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block"/><div class="neuf-card-overlay"></div><div class="neuf-card-body"><span class="neuf-card-tag">🌟 Chemin de Lumière</span><div class="neuf-card-title">De Victime à Opérateur — La Kabbale est-elle belle ?</div><span class="neuf-card-arrow">Lire →</span></div></a></div>
+</section><section class="verse-section"><p class="verse-hebrew">אֵין עוֹד מִלְּבַדּוֹ</p><p class="verse-text">« Il n'y a rien d'autre que Lui — Ein Sof, source de toutes les sources, racine de toute réalité visible et invisible. »</p><span class="verse-ref">— Devarim 4:35 | Kabbale Bnei Ohr</span>
+</section><section class="contact-section" id="contact"><span class="section-eyebrow" style="display:block;margin-bottom:.8rem">Rejoignez-nous</span><h2 class="section-main-title" style="margin-bottom:1.5rem">Contacter Bnei Ohr</h2><div class="section-main-divider" style="margin-bottom:.8rem"></div><p style="color:#606060;font-style:italic;max-width:500px;margin:.8rem auto 0;font-size:.95rem;line-height:1.8">Vous souhaitez rejoindre l'école, poser une question ou en savoir plus sur nos enseignements ? Écrivez-nous.</p><form class="contact-form" onsubmit="handleSubmit(event)"><input type="text" placeholder="Votre nom" required><input type="email" placeholder="Votre email" required><textarea placeholder="Votre message" rows="4" required></textarea><button type="submit" id="submitBtn">Envoyer le Message</button></form>
+</section><section class="cal-promo-section"><div class="cal-promo-inner"><span class="cal-promo-eye">✡ Outil Spirituel ✡</span><h2 class="cal-promo-title">Calendrier Ésotérique</h2><div class="cal-promo-divider"></div><p class="cal-promo-text">Fêtes hébraïques · Phases lunaires · Jours sacrés du Vodou — tout dans un calendrier interactif qui s'actualise chaque jour.</p><a href="calendrier.html" class="cal-promo-btn">Ouvrir le Calendrier →</a></div></section><style>.cal-promo-section{position:relative;z-index:1;padding:3.5rem 2rem;background:linear-gradient(to bottom,#050505,#07040d,#050505);border-top:1px solid rgba(212,175,55,.08);text-align:center}.cal-promo-inner{max-width:480px;margin:0 auto}.cal-promo-eye{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.45em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:1rem}.cal-promo-title{font-family:'Cinzel',serif;font-size:clamp(1.2rem,4vw,1.8rem);color:#d4af37;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem}.cal-promo-divider{width:50px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:.8rem auto 1.2rem}.cal-promo-text{font-family:'Cormorant Garamond',serif;font-size:1rem;color:#808080;line-height:1.7;margin-bottom:1.8rem;font-style:italic}.cal-promo-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:.8rem 2rem;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);color:#d4af37;text-decoration:none;border-radius:2px;transition:all .25s;display:inline-block}.cal-promo-btn:hover{background:rgba(212,175,55,.15);border-color:#d4af37}</style>
+<section class="don-section"><div class="don-inner"><span class="don-eyebrow">✡ Sipòte Pwojè a ✡</span><h2 class="don-title">Don</h2><div class="don-divider"></div><p class="don-text">Si w vle ankouraje Akademi an epi sipòte travay n ap fè a, ou ka fè yon don via <strong>Natcash</strong> nan nimewo sa a :</p><div class="don-card"><div class="don-card-label">Nimewo Natcash</div><div class="don-number">+509 3569 9967</div><div class="don-copy-hint">📋 Kopye nimewo a</div></div></div></section><style>.don-section{position:relative;z-index:1;padding:5rem 2rem;background:linear-gradient(to bottom,#050505,#07040d,#050505);border-top:1px solid rgba(212,175,55,.08);text-align:center}.don-inner{max-width:480px;margin:0 auto}.don-eyebrow{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.45em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:1.2rem}.don-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,4vw,2rem);color:#d4af37;letter-spacing:.2em;text-transform:uppercase;margin:0 0 1rem}.don-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:0 auto 1.5rem}.don-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#909090;line-height:1.8;margin-bottom:2rem}.don-text strong{color:#d4af37;font-weight:600}.don-card{background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(212,175,55,.02));border:1px solid rgba(212,175,55,.3);border-radius:4px;padding:1.8rem 2rem;cursor:pointer;transition:border-color .3s,box-shadow .3s;position:relative;overflow:hidden}.don-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,175,55,.04),transparent);pointer-events:none}.don-card:hover{border-color:rgba(212,175,55,.6);box-shadow:0 0 30px rgba(212,175,55,.1)}.don-card-label{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.7rem}.don-number{font-family:'Cinzel',serif;font-size:clamp(1.3rem,5vw,1.8rem);color:#d4af37;letter-spacing:.15em;font-weight:700;text-shadow:0 0 20px rgba(212,175,55,.3)}.don-copy-hint{font-family:'Cormorant Garamond',serif;font-size:.8rem;color:rgba(212,175,55,.35);margin-top:.8rem;transition:color .3s}.don-card:hover .don-copy-hint{color:rgba(212,175,55,.7)}</style><script>
+document.querySelector('.don-card').addEventListener('click',function(){
+  var num='+50935699967';
+  if(navigator.clipboard){navigator.clipboard.writeText(num);}
+  else{var t=document.createElement('textarea');t.value=num;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);}
+  var hint=this.querySelector('.don-copy-hint');
+  hint.textContent='✓ Nimewo a kopye!';
+  hint.style.color='#d4af37';
+  setTimeout(function(){hint.textContent='📋 Kopye nimewo a';hint.style.color='';},2500);
+});
+</script><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="mentions-legales.html">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p><div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(212,175,55,.06)"><a href="initiation.html" style="
+font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;
+color:rgba(212,175,55,.22);text-decoration:none;text-transform:uppercase;
+border:1px solid rgba(212,175,55,.1);padding:.4rem 1rem;
+transition:all .4s;display:inline-block;
+"
+onmouseover="this.style.color='rgba(212,175,55,.65)';this.style.borderColor='rgba(212,175,55,.3)'"
+onmouseout="this.style.color='rgba(212,175,55,.22)';this.style.borderColor='rgba(212,175,55,.1)'">
+✡ Chemin d'Initiation
+</a></div><p class="footer-mentions">Haïti — <a href="mailto:bneiohr.haiti77@gmail.com">bneiohr.haiti77@gmail.com</a> — <a href="mentions-legales.html">Mentions légales & Confidentialité</a></p><div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(212,175,55,.06)"><a href="cercle.html" style="font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;color:rgba(212,175,55,.25);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.12);padding:.4rem 1rem;transition:all .4s;display:inline-block"
+onmouseover="this.style.color='rgba(212,175,55,.7)';this.style.borderColor='rgba(212,175,55,.35)'"
+onmouseout="this.style.color='rgba(212,175,55,.25)';this.style.borderColor='rgba(212,175,55,.12)'">
+✡ Accès au Cercle
+</a></div><div style="margin-top:1rem"><a href="kabal.html" style="
+font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;
+color:rgba(212,175,55,.22);text-decoration:none;text-transform:uppercase;
+border:1px solid rgba(212,175,55,.1);padding:.4rem 1rem;
+transition:all .4s;display:inline-block;
+"
+onmouseover="this.style.color='rgba(212,175,55,.65)';this.style.borderColor='rgba(212,175,55,.3)'"
+onmouseout="this.style.color='rgba(212,175,55,.22)';this.style.borderColor='rgba(212,175,55,.1)'">
+✡ Etid Kabal
+</a></div>
+</footer><script>
+// Stars
+const starsEl=document.getElementById('stars');
+for(let i=0;i<100;i++){const s=document.createElement('div');s.className='star';const sz=Math.random()*2+.5;s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*5}s;--o:${.1+Math.random()*.4};animation-delay:${Math.random()*5}s;`;starsEl.appendChild(s);}
+// Submit
+function handleSubmit(e){e.preventDefault();const btn=document.getElementById('submitBtn');btn.textContent='✓ Message Envoyé !';btn.style.color='#a0d4a0';btn.style.borderColor='#a0d4a0';setTimeout(()=>{btn.textContent='Envoyer le Message';btn.style.color='#d4af37';btn.style.borderColor='#d4af37';e.target.reset();},3000);}
+// Pawol
+const pawolList=[
+{hebrew:"אוֹר אֵין סוֹף",quote:"La Lumière d'Ein Sof est sans limite — elle pénètre toute réalité. Cherche-la dans le silence de ton cœur.",source:"Kabbale — Bnei Ohr"},
+{hebrew:"כֶּתֶר עֶלְיוֹן",quote:"La couronne suprême est au-dessus de tout. Lorsque tu abandonnes ta volonté propre, la porte de la connaissance s'ouvre.",source:"Zohar I, 15a"},
+{hebrew:"תִּקּוּן עוֹלָם",quote:"Chaque acte juste répare un fragment du monde. Ta vie entière peut être un Tikkun — une réparation sacrée.",source:"Kabbale Lourianiste"},
+{hebrew:"אֵין עוֹד מִלְּבַדּוֹ",quote:"Il n'y a rien d'autre que Lui. Toute diversité n'est qu'un voile. Quand tu comprends cela, la paix entre.",source:"Devarim 4:35"},
+{hebrew:"צִמְצוּם",quote:"Dieu s'est contracté pour te donner l'espace d'exister. Ta valeur réside dans ton existence même — telle qu'elle est.",source:"Ari z\"l — Etz Chaïm"},
+{hebrew:"נְשָׁמָה",quote:"Ton âme spirituelle n'est jamais blessée, jamais perdue. C'est toi qui l'oublies. Reviens à elle chaque matin.",source:"Zohar II, 94b"},
+{hebrew:"לֵב",quote:"Le cœur est la maison de la Lumière. Ce n'est pas dans les livres que la sagesse réside — c'est dans la profondeur de ton être.",source:"Enseignement de Bnei Ohr"},
+{hebrew:"שְׁכִינָה",quote:"La présence divine descend partout où il y a amour et sagesse. Ouvre ton cœur — elle est déjà là.",source:"Zohar III, 5a"},
+{hebrew:"מַלְכוּת",quote:"La terre sous tes pieds est sacrée. Ne méprise pas la réalité physique — c'est là que la Lumière vient germer.",source:"Kabbale — Malkout"},
+{hebrew:"דַּעַת",quote:"La vraie connaissance n'est pas dans la tête, mais dans le cœur. Elle vient quand tu unifies ce que tu comprends avec ce que tu vis.",source:"Baal HaSoulam"}
+];
+const todayIndex=new Date().getDate()%10;
+let currentPawol=todayIndex;
+const dotsContainer=document.getElementById('pawolDots');
+pawolList.forEach((_,i)=>{const dot=document.createElement('div');dot.className='pawol-dot'+(i===currentPawol?' active':'');dot.addEventListener('click',()=>{currentPawol=i;showPawol(i,true);});dotsContainer.appendChild(dot);});
+function showPawol(index,animate){
+const q=document.getElementById('pawolQuote'),h=document.getElementById('pawolHebrew'),s=document.getElementById('pawolSource');
+const dots=document.querySelectorAll('.pawol-dot');
+if(animate){[q,h,s].forEach(el=>el.style.opacity='0');setTimeout(()=>{h.textContent=pawolList[index].hebrew;q.textContent='"'+pawolList[index].quote+'"';s.textContent='— '+pawolList[index].source;[q,h,s].forEach(el=>el.style.opacity='1');},400);}
+else{h.textContent=pawolList[index].hebrew;q.textContent='"'+pawolList[index].quote+'"';s.textContent='— '+pawolList[index].source;}
+dots.forEach((d,i)=>d.classList.toggle('active',i===index));
+}
+showPawol(currentPawol,false);
+setInterval(()=>{currentPawol=(currentPawol+1)%10;showPawol(currentPawol,true);},8000);
+// Nav scroll
+window.addEventListener('scroll',()=>{const nav=document.querySelector('nav');nav.style.background=window.scrollY>50?'rgba(5,5,5,.98)':'rgba(5,5,5,.92)';});
+</script>
 
-<!-- SoundCloud API -->
-<script src="https://w.soundcloud.com/player/api.js"></script>
+<style>
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#07040d,#0a0800,#07040d);border-top:1px solid rgba(212,175,55,.22);overflow:hidden}
+.rj-label{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#d4af37;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(212,175,55,.18)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#07040d,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#07040d,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rj-scroll 55s linear infinite}
+.rj-inner:hover{animation-play-state:paused}
+@keyframes rj-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-hebrew{font-family:'Noto Serif Hebrew',serif;font-size:.9rem;color:rgba(212,175,55,.5);flex-shrink:0}
+.rj-sep{color:rgba(212,175,55,.2);font-size:.7rem;flex-shrink:0}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#b8a880;font-style:italic;white-space:nowrap}
+.rj-src{font-family:'Cinzel',serif;font-size:.36rem;letter-spacing:.12em;color:rgba(212,175,55,.3);white-space:nowrap;text-transform:uppercase;margin-left:.6rem}
+.reflexion-jour-widget,.reflexion-jour-panel,.reflexion-jour-inner,.rj-quote,.rj-source,.rj-divider,.rj-eyebrow{display:none!important}
+</style>
+<div class="rj-bar">
+  <div class="rj-track">
+    <div class="rj-inner" id="rjInner"></div>
+  </div>
+</div>
 <script>
 (function(){
-  var PL = [
-    {t:'Malkout nan Eklè',      u:'https://soundcloud.com/bnei-ohr/malkout-nan-ekl'},
-    {t:'Bore Bore',              u:'https://soundcloud.com/bnei-ohr/bore-bore-2'},
-    {t:'Poto Mitan',             u:'https://soundcloud.com/bnei-ohr/poto-mitan'},
-    {t:'Pot Bnei Ohr',           u:'https://soundcloud.com/bnei-ohr/pot-bnei-ohr'},
-    {t:'Mélodie Ocre Noire III', u:'https://soundcloud.com/bnei-ohr/melodie-ocre-noire-3'},
-    {t:'Mélodie Ocre Noire IV',  u:'https://soundcloud.com/bnei-ohr/melodie-ocre-noire-4'}
+  var med=[
+    ["אֵין עוֹד מִלְבדוֹ","Il n'y a rien d'autre que Lui. Derrière chaque apparence, chaque douleur, chaque joie — une seule Lumière qui se cherche elle-même.","Devarim 4:35 | Kabbale"],
+    ["כֶתֶר","La Couronne n'est pas au-dessus de toi — elle est en toi, attendant d'être reconnue dans le silence le plus profond.","Keter | Etz Chaïm"],
+    ["חֶסֶד","La générosité véritable ne calcule pas. Elle est comme la pluie — elle tombe sur le juste et sur l'injuste, sans demander de mérite.","Chesed | Sefirot"],
+    ["לֵב","Le coeur est le temple que tu portes partout. Prends soin de ce qui y entre, car c'est là que Dieu choisit de résider.","Kabbale Bnei Ohr"],
+    ["גְבוּרָה","La force véritable n'est pas celle qui détruit — c'est celle qui sait se contenir, tracer une limite juste et protéger ce qui est sacré.","Gevurah | Sefirot"],
+    ["אוֹר","La Lumière ne cherche pas à chasser l'obscurité. Elle se contente d'être — et l'obscurité se dissout d'elle-même.","Ohr | Zohar"],
+    ["תִקּוּן","Chaque acte de bonté, même le plus petit, répare un fragment du monde. Tu n'es pas seul dans cette oeuvre.","Tikkun Olam | Kabbale"],
+    ["נְשָמָה","Ton âme a choisi ce moment, cette vie, ce corps — pour accomplir quelque chose que seule elle peut réaliser.","Neshamah | Kabbale"],
+    ["שַבָּת","Le repos n'est pas une pause dans la création — c'est le couronnement. Ce qui ne sait pas s'arrêter ne sait pas vraiment créer.","Shabbat | Torah"],
+    ["תִפְאֶרֶת","La beauté n'est pas une décoration du monde — elle est la signature du divin sur toute chose qui est à sa juste place.","Tiferet | Sefirot"],
+    ["אֱמוּנָה","La foi n'est pas la certitude. C'est le courage de marcher dans l'obscurité en faisant confiance à la lumière que l'on ne voit pas encore.","Emunah | Kabbale"],
+    ["יְסוֹד","Ce que tu plantes dans l'invisible — tes intentions, tes prières, tes rêves — germe silencieusement avant de se manifester.","Yesod | Etz Chaïm"],
+    ["דַעַת","La vraie connaissance n'est pas dans les livres — elle est dans l'union de ce que tu sais et de ce que tu vis.","Da'at | Kabbale"],
+    ["לֵגְבָּ","Chaque carrefour de ta vie est une invitation — non une menace. Legba ouvre les chemins à ceux qui savent demander avec humilité.","Legba | Vodou Haïtien"],
+    ["מַלְכוּת","Le royaume de Dieu n'est pas loin. Il est dans la façon dont tu manges, dont tu parles, dont tu regardes ceux que tu croises.","Malkhut | Sefirot"],
+    ["אֶרְזוּלִי","Erzulie nous rappelle que l'amour est la force la plus subversive qui soit. Là où elle passe, les murs tombent.","Erzulie | Vodou Haïtien"],
+    ["בִינָה","La compréhension ne vient pas d'un coup. Elle mûrit dans le silence, comme un fruit — et quand elle arrive, elle change tout.","Binah | Sefirot"],
+    ["אוֹגוּ","Ogou ne combat pas pour détruire — il combat pour que la vérité puisse vivre. Distingue le combat qui libère de celui qui enchaîne.","Ogou | Vodou Haïtien"],
+    ["נֶצַח","La victoire véritable n'est pas sur les autres — c'est sur la peur en toi qui te disait que tu n'en étais pas capable.","Netzach | Sefirot"],
+    ["בָרוֹן","Baron Samdi nous rappelle que la mort n'est pas la fin — c'est le passage. Ce qui ne peut traverser ce seuil n'était pas essentiel.","Baron Samdi | Vodou Haïtien"],
+    ["שָלוֹם","La paix n'est pas l'absence de conflit — c'est la présence d'une harmonie plus profonde que tout conflit.","Shalom | Kabbale"],
+    ["אֵין סוֹף","Ein Sof — Sans Fin. Tu viens de l'infini et tu retournes à l'infini. Ce que tu vis entre les deux est le cadeau que l'infini se fait à lui-même.","Ein Sof | Kabbale"],
+    ["אַהֲבָה","Aimer, c'est voir l'âme derrière le visage. Quand tu regardes quelqu'un avec les yeux du coeur, tu vois ce que Dieu voit.","Ahavah | Kabbale Bnei Ohr"]
   ];
-  var idx=0, isPlaying=false, ready=false, w=null;
-
-  var scFrame  = document.getElementById('sc');
-  var btnPlay  = document.getElementById('gp-play');
-  var icoPlay  = document.getElementById('ico-play');
-  var icoPause = document.getElementById('ico-pause');
-  var nameEl   = document.getElementById('gp-name');
-  var timeEl   = document.getElementById('gp-time');
-  var fill     = document.getElementById('gp-fill');
-  var track    = document.getElementById('gp-track');
-
-  function fmt(ms){
-    if(!ms||isNaN(ms))return '0:00';
-    var s=Math.floor(ms/1000),m=Math.floor(s/60);
-    return m+':'+(('0'+(s%60)).slice(-2));
+  var t=new Date();
+  var i=(t.getFullYear()*10000+((t.getMonth()+1)*100)+t.getDate())%med.length;
+  var q=med[i];
+  function item(){
+    return '<span class="rj-hebrew">'+q[0]+'</span>'
+      +'<span class="rj-sep">·</span>'
+      +'<span class="rj-text">'+q[1]+'</span>'
+      +'<span class="rj-src">'+q[2]+'</span>'
+      +'<span class="rj-sep" style="margin:0 2rem">✦</span>';
   }
-  function icons(p){
-    isPlaying=p;
-    icoPlay.style.display=p?'none':'';
-    icoPause.style.display=p?'':'none';
-  }
-  function setName(i){
-    nameEl.textContent=PL[i].t;
-    fill.style.width='0%';
-    timeEl.textContent='';
-  }
-
-  // Init widget avec la première piste
-  function initSC(){
-    var enc=encodeURIComponent(PL[0].u);
-    scFrame.src='https://w.soundcloud.com/player/?url='+enc
-      +'&color=%23d4af37&auto_play=false&hide_related=true'
-      +'&show_comments=false&show_user=false&buying=false&sharing=false';
-
-    w=SC.Widget(scFrame);
-
-    w.bind(SC.Widget.Events.READY,function(){
-      ready=true;
-      setName(0);
-    });
-    w.bind(SC.Widget.Events.PLAY, function(){ icons(true); });
-    w.bind(SC.Widget.Events.PAUSE,function(){ icons(false); });
-    w.bind(SC.Widget.Events.FINISH,function(){
-      idx=(idx+1)%PL.length;
-      loadPlay(idx,true);
-    });
-    w.bind(SC.Widget.Events.PLAY_PROGRESS,function(e){
-      w.getDuration(function(dur){
-        if(!dur)return;
-        fill.style.width=((e.currentPosition/dur)*100)+'%';
-        timeEl.textContent=fmt(e.currentPosition)+' / '+fmt(dur);
-      });
-    });
-  }
-
-  function loadPlay(i,autoplay){
-    idx=i; setName(i);
-    if(!ready)return;
-    w.load(PL[i].u,{
-      auto_play:!!autoplay,
-      buying:false,sharing:false,download:false,
-      show_artwork:false,show_comments:false,
-      show_playcount:false,show_user:false
-    });
-    if(autoplay)icons(true);
-  }
-
-  // Boutons
-  btnPlay.addEventListener('click',function(){
-    if(!ready)return;
-    isPlaying?w.pause():w.play();
-  });
-  document.getElementById('btn-prev').addEventListener('click',function(){
-    loadPlay((idx-1+PL.length)%PL.length,isPlaying);
-  });
-  document.getElementById('btn-next').addEventListener('click',function(){
-    loadPlay((idx+1)%PL.length,isPlaying);
-  });
-  track.addEventListener('click',function(e){
-    if(!ready)return;
-    var r=track.getBoundingClientRect();
-    var p=(e.clientX-r.left)/r.width;
-    w.getDuration(function(d){w.seekTo(Math.floor(p*d));});
-  });
-
-  // Expose pou paj yo itilize: parent.gpLoad(index)
-  window.gpLoad=function(i){ loadPlay(i,true); };
-
-  // Fix navigasyon nan iframe — fè tout lyen entèn chaje anndan #content
-  var iframe=document.getElementById('content');
-  function fixIframeLinks(){
-    try{
-      var doc=iframe.contentDocument||iframe.contentWindow.document;
-      var links=doc.querySelectorAll('a[href]');
-      links.forEach(function(a){
-        var h=a.getAttribute('href')||'';
-        if(!h||h.startsWith('#')||h.startsWith('mailto')||h.startsWith('javascript'))return;
-        if(h.startsWith('http')&&h.indexOf('bneiohr')===-1)return;
-        a.setAttribute('target','content');
-      });
-    }catch(e){}
-  }
-  iframe.addEventListener('load',function(){
-    fixIframeLinks();
-    // Re-check apre JS paj la fini
-    setTimeout(fixIframeLinks,600);
-    setTimeout(fixIframeLinks,1500);
-  });
-
-  initSC();
+  var el=document.getElementById('rjInner');
+  if(el){el.innerHTML=item()+item()+item()+item();}
 })();
 </script>
-</body>
 </html>
+<!-- ✡ GID OHR — Asistan IA Bnei Ohr ✡ -->
+<script src="/gid-ohr-config.js"></script>
+<div id="gid-ohr-widget">
+  <button id="gid-ohr-toggle" aria-label="Ouvri Gid Ohr">
+    <span class="gid-icon-closed">✡</span>
+    <span class="gid-icon-open">✕</span>
+    <span class="gid-pulse"></span>
+  </button>
+  <div id="gid-ohr-panel">
+    <div class="gid-header">
+      <span class="gid-header-symbol">בְּנֵי אוֹר</span>
+      <div class="gid-header-info">
+        <span class="gid-name">Gid Ohr</span>
+        <span class="gid-status"><span class="gid-dot"></span>Disponib</span>
+      </div>
+    </div>
+    <div class="gid-messages" id="gidMessages">
+      <div class="gid-msg gid-msg-bot">
+        <div class="gid-bubble">Shalom ! Mwen se <strong>Gid Ohr</strong> — konpanyen etid ou nan Akademi Bnei Ohr. Ou ka poze m kesyon sou Kabal, Sefirot, Vodou Ayisyen, Zohar, ak anpil lòt sijè. Kijan mwen ka ede w jodi a ? ✡</div>
+      </div>
+    </div>
+    <div class="gid-input-area">
+      <textarea id="gidInput" placeholder="Ekri mesaj ou a..." rows="1"></textarea>
+      <button id="gidSend" aria-label="Voye"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+    </div>
+  </div>
+</div>
+<style>
+#gid-ohr-widget{display:none!important;position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;font-family:'Cormorant Garamond',serif}
+#gid-ohr-toggle{width:3.2rem;height:3.2rem;border-radius:50%;background:linear-gradient(135deg,#1a1200,#0a0800);border:1px solid rgba(212,175,55,.5);color:#d4af37;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 0 20px rgba(212,175,55,.15);transition:all .3s}
+#gid-ohr-toggle:hover{border-color:#d4af37;box-shadow:0 0 30px rgba(212,175,55,.3);transform:scale(1.05)}
+.gid-pulse{position:absolute;width:100%;height:100%;border-radius:50%;border:1px solid rgba(212,175,55,.3);animation:gidPulse 2.5s ease-out infinite;pointer-events:none}
+@keyframes gidPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+.gid-icon-open{display:none}
+.gid-widget-open .gid-icon-closed{display:none}
+.gid-widget-open .gid-icon-open{display:block;font-style:normal}
+#gid-ohr-panel{position:absolute;bottom:4rem;right:0;width:min(340px,90vw);background:linear-gradient(160deg,#0a0800,#07050d);border:1px solid rgba(212,175,55,.2);border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 40px rgba(212,175,55,.05);display:none;flex-direction:column;overflow:hidden;max-height:70vh}
+.gid-widget-open #gid-ohr-panel{display:flex;animation:gidSlideUp .3s ease}
+@keyframes gidSlideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.gid-header{padding:.9rem 1rem;background:linear-gradient(90deg,rgba(212,175,55,.08),rgba(212,175,55,.03));border-bottom:1px solid rgba(212,175,55,.12);display:flex;align-items:center;gap:.8rem}
+.gid-header-symbol{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:rgba(212,175,55,.6)}
+.gid-header-info{display:flex;flex-direction:column}
+.gid-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.15em;color:#d4af37;text-transform:uppercase}
+.gid-status{font-size:.7rem;color:rgba(212,175,55,.4);display:flex;align-items:center;gap:.3rem;margin-top:.1rem}
+.gid-dot{width:.45rem;height:.45rem;border-radius:50%;background:#4caf7d;display:inline-block}
+.gid-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.8rem;scroll-behavior:smooth}
+.gid-messages::-webkit-scrollbar{width:3px}.gid-messages::-webkit-scrollbar-track{background:transparent}.gid-messages::-webkit-scrollbar-thumb{background:rgba(212,175,55,.2);border-radius:2px}
+.gid-msg{display:flex;max-width:88%}
+.gid-msg-bot{align-self:flex-start}
+.gid-msg-user{align-self:flex-end;flex-direction:row-reverse}
+.gid-bubble{padding:.65rem .9rem;font-size:.9rem;line-height:1.6;color:#d0c9b8;border-radius:3px}
+.gid-msg-bot .gid-bubble{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.1);border-bottom-left-radius:0}
+.gid-msg-user .gid-bubble{background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.2);color:#e8dfc8;border-bottom-right-radius:0}
+.gid-bubble strong{color:#d4af37}
+.gid-typing{display:flex;gap:.3rem;padding:.6rem .9rem;align-items:center}
+.gid-typing span{width:.45rem;height:.45rem;border-radius:50%;background:rgba(212,175,55,.4);animation:gidBounce 1.2s infinite}
+.gid-typing span:nth-child(2){animation-delay:.2s}.gid-typing span:nth-child(3){animation-delay:.4s}
+@keyframes gidBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.gid-input-area{padding:.7rem;border-top:1px solid rgba(212,175,55,.1);display:flex;gap:.5rem;align-items:flex-end;background:rgba(0,0,0,.3)}
+#gidInput{flex:1;background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.15);color:#e0d5b8;font-family:'Cormorant Garamond',serif;font-size:.92rem;padding:.55rem .8rem;resize:none;outline:none;border-radius:2px;max-height:100px;overflow-y:auto;line-height:1.5}
+#gidInput::placeholder{color:rgba(212,175,55,.25)}
+#gidInput:focus{border-color:rgba(212,175,55,.35)}
+#gidSend{width:2.2rem;height:2.2rem;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);color:#d4af37;border-radius:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+#gidSend:hover{background:rgba(212,175,55,.2);border-color:#d4af37}
+#gidSend:disabled{opacity:.4;cursor:not-allowed}
+</style>
+<script>
+(function(){
+  var toggle=document.getElementById('gid-ohr-toggle');
+  var widget=document.getElementById('gid-ohr-widget');
+  var msgs=document.getElementById('gidMessages');
+  var input=document.getElementById('gidInput');
+  var sendBtn=document.getElementById('gidSend');
+  var history=[];
+  var SYSTEM="Tu es Gid Ohr, l'assistant spirituel et compagnon d'etude de l'Academie Bnei Ohr — une ecole esoterique haitienne fondee par Chilot. Bnei Ohr signifie Enfants de la Lumiere en hebreu. L'ecole synthetise la Kabbale classique, le Zohar, l'Etz Chaim, le Vodou haitien, la philosophie des Lwa, l'Hermetisme et le Symbolisme universel.\n\nTON ROLE : Repondre avec chaleur, patience et profondeur. Tu es un compagnon d'etude bienveillant — jamais condescendant, toujours encourageant.\n\nLANGUE : Reponds toujours dans la langue que l'utilisateur emploie. Creole haitien si l'utilisateur ecrit en creole, francais si en francais, anglais si en anglais.\n\nSUJETS : Les 10 Sefirot (Keter, Chokhmah, Binah, Chesed, Gevurah, Tiferet, Netzach, Hod, Yesod, Malkhout), l'Arbre de Vie, le Zohar, le Vodou haitien et les Lwa (Legba, Ogou, Erzulie, Baron Samdi, Ayizan, etc.), les correspondances Sefirot-Lwa, la Gematria, l'Hermetisme, les 3 niveaux d'exploration de Bnei Ohr, les rituels et pratiques spirituelles.\n\nSTYLE : Chaleureux, patient, comme un bon ami savant. Utilise des exemples concrets. N'hesite pas a utiliser des symboles avec parcimonie. Garde les reponses claires.";
+
+  toggle.addEventListener('click',function(){
+    widget.classList.toggle('gid-widget-open');
+    if(widget.classList.contains('gid-widget-open'))setTimeout(function(){input.focus();},300);
+  });
+  input.addEventListener('keydown',function(e){
+    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}
+  });
+  input.addEventListener('input',function(){
+    this.style.height='auto';
+    this.style.height=Math.min(this.scrollHeight,100)+'px';
+  });
+  sendBtn.addEventListener('click',send);
+
+  function send(){
+    var text=input.value.trim();
+    if(!text||sendBtn.disabled)return;
+    addMsg(text,'user');
+    input.value='';input.style.height='auto';
+    history.push({role:'user',content:text});
+    sendBtn.disabled=true;
+    showTyping();
+    callAPI();
+  }
+  function addMsg(text,role){
+    var div=document.createElement('div');
+    div.className='gid-msg gid-msg-'+role;
+    var bub=document.createElement('div');
+    bub.className='gid-bubble';
+    bub.innerHTML=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+    div.appendChild(bub);msgs.appendChild(div);
+    msgs.scrollTop=msgs.scrollHeight;
+  }
+  function showTyping(){
+    var div=document.createElement('div');
+    div.className='gid-msg gid-msg-bot';div.id='gid-typing';
+    var bub=document.createElement('div');
+    bub.className='gid-bubble gid-typing';
+    bub.innerHTML='<span></span><span></span><span></span>';
+    div.appendChild(bub);msgs.appendChild(div);
+    msgs.scrollTop=msgs.scrollHeight;
+  }
+  function removeTyping(){var t=document.getElementById('gid-typing');if(t)t.remove();}
+  async function callAPI(){
+    try{
+      var res=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','x-api-key':window.GID_OHR_API_KEY||'','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+        body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM,messages:history})
+      });
+      var data=await res.json();
+      var reply=(data.content&&data.content[0])?data.content[0].text:'Mwen eskize, yon ere te pase. Eseye ankò.';
+      removeTyping();
+      history.push({role:'assistant',content:reply});
+      addMsg(reply,'bot');
+    }catch(e){
+      removeTyping();
+      addMsg('Mwen eskize — koneksyon an pa mache kounye a. Eseye ankò nan yon ti moman.','bot');
+    }
+    sendBtn.disabled=false;
+  }
+})();
+</script>
+<script>
+// Traditions popup toggle
+(function(){
+  var item = document.getElementById('tradItem');
+  var popup = document.getElementById('tradPopup');
+  if(!item||!popup) return;
+  item.addEventListener('click', function(e){
+    if(e.target.classList.contains('trad-close')) return;
+    popup.classList.toggle('open');
+    e.stopPropagation();
+  });
+  document.addEventListener('click', function(){
+    popup.classList.remove('open');
+  });
+})();
+</script>
