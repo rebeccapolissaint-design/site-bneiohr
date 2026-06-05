@@ -153,12 +153,12 @@ min-height:60px!important;
 <body>
 <div id="stars"></div>
 <div class="veil" id="veil"></div>
-<nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="kabal.html" class="nav-back">← Rituels</a>
+<nav><a href="index.html" class="nav-logo" target="content"><span class="nav-logo-heb">בְּנֵי</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="kabal.html" class="nav-back" target="content">← Rituels</a>
 </nav><section class="hero"><img style="object-fit:cover; object-position:center; filter:brightness(0.55) contrast(1.08);" class="hero-img" src="https://i.postimg.cc/bJtV7wVB/file-00000000f06871fd9acc23d02a2d97d6.png" alt="Modeh Ani"/><div class="hero-overlay"></div><div class="hero-inner"><span class="hero-num">Rituel 1 · Classique · Siddour</span><span class="hero-heb">מוֹדֶה אֲנִי</span><h1 class="hero-title">Modeh <span>Ani</span></h1><span class="hero-timing">☀ Matin — Se Réveiller dans la Conscience</span><div class="hero-div"></div></div>
 </section><main class="content"><p class="intro-text">
 La première prière qui ouvre le rideau de l'esprit dès le réveil, avant même de quitter le lit.
 Elle reconnaît que l'âme vient d'être restituée par Dieu après le sommeil — acte de gratitude immédiat qui ancre la conscience dans le sacré.
-</p><div class="block"><p class="block-label">Hébreu</p><span class="heb-text">מוֹדֶה אֲנִי לְפָנֶיךָ מֶלֶךְ חַי וְקַיָּם שֶׁהֶחֱזַרְתָּ בִּי נִשְׁמָתִי בְּחֶמְלָה, רַבָּה אֱמוּנָתֶךָ</span></div><div class="block"><p class="block-label">Prononciation</p><p class="prono-text">Modè ani lefanèka, Mèlèk kay vè-kayam, chè-è-kazarta bi nichmati békèmla — raba èmounatèka.</p></div><div class="block"><p class="block-label">Traduction</p><p class="trad-text">Je Te rends grâce devant Toi, Roi vivant et éternel, car Tu m'as restitué mon âme avec miséricorde. Grande est Ta fidélité.</p></div><div class="note-box"><span class="note-label">✡ Note de pratique</span><p class="note-text">Après avoir récité le <em>Modeh Ani</em> — cette prière de gratitude pour le souffle rendu — on procède immédiatement au rituel de lavage des mains (Netilat Yadayim). Ces deux pratiques forment un bloc indissociable au réveil.</p></div><div class="nav-bottom"><a href="kabal.html" class="nav-btn">← Retour aux Rituels</a><a href="rit-netilat.html" class="nav-btn">Rituel Suivant →</a></div>
+</p><div class="block"><p class="block-label">Hébreu</p><span class="heb-text">מוֹדֶה אֲנִי לְפָנֶיךָ מֶלֶךְ חַי וְקַיָּם שֶׁהֶחֱזַרְתָּ בִּי נִשְׁמָתִי בְּחֶמְלָה, רַבָּה אֱמוּנָתֶךָ</span></div><div class="block"><p class="block-label">Prononciation</p><p class="prono-text">Modè ani lefanèka, Mèlèk kay vè-kayam, chè-è-kazarta bi nichmati békèmla — raba èmounatèka.</p></div><div class="block"><p class="block-label">Traduction</p><p class="trad-text">Je Te rends grâce devant Toi, Roi vivant et éternel, car Tu m'as restitué mon âme avec miséricorde. Grande est Ta fidélité.</p></div><div class="note-box"><span class="note-label">✡ Note de pratique</span><p class="note-text">Après avoir récité le <em>Modeh Ani</em> — cette prière de gratitude pour le souffle rendu — on procède immédiatement au rituel de lavage des mains (Netilat Yadayim). Ces deux pratiques forment un bloc indissociable au réveil.</p></div><div class="nav-bottom"><a href="kabal.html" class="nav-btn" target="content">← Retour aux Rituels</a><a href="rit-netilat.html" class="nav-btn" target="content">Rituel Suivant →</a></div>
 </main><footer><span class="footer-logo">בְּנֵי אוֹר</span><p class="footer-copy">© Bnei Ohr — Chemin des Anciens</p>
 </footer>
 <script>
@@ -431,10 +431,9 @@ document.querySelectorAll('a[href]').forEach(a=>{if(a.hostname===location.hostna
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();
 </script>
-<script src="/global-player.js"></script>
 </html>

@@ -65,15 +65,15 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;flex-wrap:wrap;jus
 <body>
 <div id="stars"></div>
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="index.html" class="nav-logo" target="content">
     <span class="nav-logo-hebrew">בְּנֵי אוֹר</span>
     <span class="nav-logo-text">Bnei Ohr</span>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="vodou.html" class="active">Héritage</a></li>
-    <li><a href="calendrier.html">Calendrier</a></li>
-    <li><a href="bibliyotek.html">Bibliothèque</a></li>
+    <li><a href="index.html" target="content">Accueil</a></li>
+    <li><a href="vodou.html" class="active" target="content">Héritage</a></li>
+    <li><a href="calendrier.html" target="content">Calendrier</a></li>
+    <li><a href="bibliyotek.html" target="content">Bibliothèque</a></li>
   </ul>
 </nav>
 
@@ -145,9 +145,9 @@ Et dans la foi.<br>
   </div>
 
   <div class="lwa-nav">
-    <a href="lwa-lasiren.html">← Lasirèn</a>
+    <a href="lwa-lasiren.html" target="content">← Lasirèn</a>
     <span class="lwa-nav-center">Les Lwa</span>
-    <a href="lwa-ayida-wedo.html">Ayida Wedo →</a>
+    <a href="lwa-ayida-wedo.html" target="content">Ayida Wedo →</a>
   </div>
 
 </div>
@@ -186,5 +186,4 @@ Et dans la foi.<br>
 })();
 </script>
 </body>
-<script src="/global-player.js"></script>
 </html>

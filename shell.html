@@ -2,314 +2,221 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Bnei Ohr — École Initiatique</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%;overflow:hidden;background:#07040d;font-family:'Cinzel',serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#07040d}
 
-  /* IFRAME PRINCIPAL */
-  #site-frame{
-    position:fixed;
-    top:0;left:0;right:0;
-    bottom:80px;
-    width:100%;
-    border:none;
-    background:#07040d;
-  }
+/* IFRAME — tout ekran sof player anba */
+#content{
+  position:fixed;
+  top:0;left:0;right:0;
+  bottom:68px;
+  width:100%;border:none;
+  background:#07040d;
+}
 
-  /* PLAYER GLOBAL */
-  #gp{
-    position:fixed;
-    bottom:0;left:0;right:0;
-    height:80px;
-    background:linear-gradient(90deg,#0a0612,#07040d,#0a0612);
-    border-top:1px solid rgba(212,175,55,.25);
-    display:flex;
-    align-items:center;
-    gap:0;
-    z-index:9999;
-    padding:0 1rem;
-  }
+/* ── PLAYER BAR ── */
+#gp{
+  position:fixed;bottom:0;left:0;right:0;height:68px;
+  background:#08050e;
+  border-top:1px solid rgba(212,175,55,.2);
+  display:flex;align-items:center;
+  padding:0 14px;gap:8px;
+  z-index:9999;font-family:'Cinzel',serif;
+}
 
-  /* Bouton play/pause */
-  #gp-btn{
-    width:44px;height:44px;
-    border-radius:50%;
-    background:rgba(212,175,55,.12);
-    border:1px solid rgba(212,175,55,.35);
-    color:#d4af37;
-    font-size:1rem;
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-    transition:background .2s,transform .15s;
-  }
-  #gp-btn:hover{background:rgba(212,175,55,.22);transform:scale(1.07)}
-  #gp-btn svg{width:16px;height:16px;fill:#d4af37}
+/* barre progression en haut du player */
+#gp-track{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:rgba(212,175,55,.08);cursor:pointer;
+}
+#gp-fill{height:100%;width:0;background:linear-gradient(90deg,#a07828,#d4af37,#f0d060);pointer-events:none}
 
-  /* Info titre */
-  #gp-info{
-    flex:1;
-    padding:0 .9rem;
-    overflow:hidden;
-    min-width:0;
-  }
-  #gp-title{
-    font-family:'Cinzel',serif;
-    font-size:.52rem;
-    letter-spacing:.12em;
-    color:#d4af37;
-    text-transform:uppercase;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-  #gp-sub{
-    font-family:'Cormorant Garamond',serif;
-    font-size:.72rem;
-    color:rgba(212,175,55,.4);
-    letter-spacing:.06em;
-    margin-top:.15rem;
-  }
+/* boutons prev/next */
+.gp-skip{
+  width:28px;height:28px;background:none;border:none;
+  color:rgba(212,175,55,.4);cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:color .2s;padding:0;
+}
+.gp-skip:hover{color:#d4af37}
+.gp-skip svg{width:14px;height:14px;fill:currentColor}
 
-  /* Barre de progression */
-  #gp-progress-wrap{
-    position:absolute;
-    top:0;left:0;right:0;
-    height:2px;
-    background:rgba(212,175,55,.1);
-    cursor:pointer;
-  }
-  #gp-progress-bar{
-    height:100%;
-    background:linear-gradient(90deg,#d4af37,#f0d060);
-    width:0%;
-    transition:width .5s linear;
-    pointer-events:none;
-  }
+/* bouton play */
+#gp-play{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:rgba(212,175,55,.08);
+  border:1.5px solid rgba(212,175,55,.28);
+  color:#d4af37;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,transform .12s;
+}
+#gp-play:hover{background:rgba(212,175,55,.18);transform:scale(1.06)}
+#gp-play svg{width:15px;height:15px;fill:#d4af37}
 
-  /* Temps */
-  #gp-time{
-    font-family:'Cinzel',serif;
-    font-size:.42rem;
-    color:rgba(212,175,55,.35);
-    letter-spacing:.08em;
-    white-space:nowrap;
-    flex-shrink:0;
-    margin-right:.5rem;
-  }
+/* info */
+#gp-info{flex:1;min-width:0;padding:0 6px;overflow:hidden}
+#gp-name{font-size:.46rem;letter-spacing:.13em;color:#d4af37;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#gp-time{font-family:'Cormorant Garamond',serif;font-size:.68rem;color:rgba(212,175,55,.3);margin-top:2px;letter-spacing:.04em}
 
-  /* Prev / Next */
-  .gp-nav{
-    width:32px;height:32px;
-    background:none;
-    border:none;
-    color:rgba(212,175,55,.45);
-    font-size:.9rem;
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-    transition:color .2s;
-  }
-  .gp-nav:hover{color:#d4af37}
-  .gp-nav svg{width:14px;height:14px;fill:currentColor}
-
-  /* Volume */
-  #gp-vol{
-    width:60px;
-    height:3px;
-    -webkit-appearance:none;
-    appearance:none;
-    background:rgba(212,175,55,.2);
-    border-radius:2px;
-    outline:none;
-    cursor:pointer;
-    flex-shrink:0;
-    margin-left:.4rem;
-  }
-  #gp-vol::-webkit-slider-thumb{
-    -webkit-appearance:none;
-    width:10px;height:10px;
-    border-radius:50%;
-    background:#d4af37;
-    cursor:pointer;
-  }
-
-  /* Icòn volume */
-  #gp-vol-icon{
-    color:rgba(212,175,55,.4);
-    font-size:.75rem;
-    flex-shrink:0;
-    margin-left:.5rem;
-    cursor:pointer;
-  }
-
-  /* SoundCloud iframe caché */
-  #sc-player{
-    position:absolute;
-    width:1px;height:1px;
-    opacity:0;pointer-events:none;
-    left:-9999px;
-  }
+/* iframe SoundCloud caché */
+#sc{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;top:-999px;left:-999px}
 </style>
 </head>
 <body>
 
-<!-- IFRAME SITE -->
-<iframe id="site-frame" src="index.html" name="site-frame"></iframe>
+<!-- IFRAME SITE PRINCIPAL -->
+<iframe id="content" name="content" src="index.html"></iframe>
 
 <!-- PLAYER GLOBAL -->
 <div id="gp">
-  <div id="gp-progress-wrap"><div id="gp-progress-bar"></div></div>
+  <div id="gp-track"><div id="gp-fill"></div></div>
 
-  <!-- Prev -->
-  <button class="gp-nav" id="gp-prev" title="Précédent">
-    <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+  <button class="gp-skip" id="btn-prev">
+    <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
   </button>
 
-  <!-- Play/Pause -->
-  <button id="gp-btn" title="Play / Pause">
-    <svg id="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    <svg id="icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <button id="gp-play">
+    <svg id="ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="ico-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
   </button>
 
-  <!-- Next -->
-  <button class="gp-nav" id="gp-next" title="Suivant">
-    <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+  <button class="gp-skip" id="btn-next">
+    <svg viewBox="0 0 24 24"><path d="M6 18 14.5 12 6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
   </button>
 
-  <!-- Info -->
   <div id="gp-info">
-    <div id="gp-title">Bnei Ohr</div>
-    <div id="gp-sub">Klike ▶ pou koute</div>
+    <div id="gp-name">Bnei Ohr — Mizik Sakre</div>
+    <div id="gp-time">Klike ▶ pou koute</div>
   </div>
 
-  <!-- Temps -->
-  <div id="gp-time">0:00</div>
-
-  <!-- Volume icon + slider -->
-  <span id="gp-vol-icon">♪</span>
-  <input type="range" id="gp-vol" min="0" max="100" value="80">
+  <iframe id="sc" allow="autoplay" src=""></iframe>
 </div>
 
-<!-- SoundCloud Widget caché -->
-<iframe id="sc-player"
-  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/bnei-ohr/malkout-nan-ekl&color=%23d4af37&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"
-  allow="autoplay">
-</iframe>
-
+<!-- SoundCloud API -->
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
 (function(){
-
-  var playlist = [
-    { title: 'Malkout nan Eklè',   url: 'https://soundcloud.com/bnei-ohr/malkout-nan-ekl' },
-    { title: 'Bore Bore',           url: 'https://soundcloud.com/bnei-ohr/bore-bore-2' },
-    { title: 'Poto Mitan',          url: 'https://soundcloud.com/bnei-ohr/poto-mitan' },
-    { title: 'Pot Bnei Ohr',        url: 'https://soundcloud.com/bnei-ohr/pot-bnei-ohr' },
-    { title: 'Mélodie Ocre Noire III', url: 'https://soundcloud.com/bnei-ohr/melodie-ocre-noire-3' },
-    { title: 'Mélodie Ocre Noire IV',  url: 'https://soundcloud.com/bnei-ohr/melodie-ocre-noire-4' }
+  var PL = [
+    {t:'Malkout nan Eklè',      u:'https://soundcloud.com/bnei-ohr/malkout-nan-ekl'},
+    {t:'Bore Bore',              u:'https://soundcloud.com/bnei-ohr/bore-bore-2'},
+    {t:'Poto Mitan',             u:'https://soundcloud.com/bnei-ohr/poto-mitan'},
+    {t:'Pot Bnei Ohr',           u:'https://soundcloud.com/bnei-ohr/pot-bnei-ohr'},
+    {t:'Mélodie Ocre Noire III', u:'https://soundcloud.com/bnei-ohr/melodie-ocre-noire-3'},
+    {t:'Mélodie Ocre Noire IV',  u:'https://soundcloud.com/bnei-ohr/melodie-ocre-noire-4'}
   ];
+  var idx=0, isPlaying=false, ready=false, w=null;
 
-  var idx = 0;
-  var playing = false;
-  var widget = SC.Widget(document.getElementById('sc-player'));
-
-  var btnPlay  = document.getElementById('gp-btn');
-  var iconPlay = document.getElementById('icon-play');
-  var iconPause= document.getElementById('icon-pause');
-  var titleEl  = document.getElementById('gp-title');
-  var subEl    = document.getElementById('gp-sub');
+  var scFrame  = document.getElementById('sc');
+  var btnPlay  = document.getElementById('gp-play');
+  var icoPlay  = document.getElementById('ico-play');
+  var icoPause = document.getElementById('ico-pause');
+  var nameEl   = document.getElementById('gp-name');
   var timeEl   = document.getElementById('gp-time');
-  var barEl    = document.getElementById('gp-progress-bar');
-  var volEl    = document.getElementById('gp-vol');
-  var progWrap = document.getElementById('gp-progress-wrap');
+  var fill     = document.getElementById('gp-fill');
+  var track    = document.getElementById('gp-track');
 
   function fmt(ms){
-    var s=Math.floor(ms/1000);
-    var m=Math.floor(s/60);
-    s=s%60;
-    return m+':'+(s<10?'0':'')+s;
+    if(!ms||isNaN(ms))return '0:00';
+    var s=Math.floor(ms/1000),m=Math.floor(s/60);
+    return m+':'+(('0'+(s%60)).slice(-2));
+  }
+  function icons(p){
+    isPlaying=p;
+    icoPlay.style.display=p?'none':'';
+    icoPause.style.display=p?'':'none';
+  }
+  function setName(i){
+    nameEl.textContent=PL[i].t;
+    fill.style.width='0%';
+    timeEl.textContent='';
   }
 
-  function loadTrack(i, autoplay){
-    idx = i;
-    var t = playlist[idx];
-    titleEl.textContent = t.title;
-    subEl.textContent   = 'Bnei Ohr';
-    barEl.style.width   = '0%';
-    timeEl.textContent  = '0:00';
-    widget.load(t.url, {
-      auto_play: !!autoplay,
-      buying: false, sharing: false, download: false,
-      show_artwork: false, show_comments: false,
-      show_playcount: false, show_user: false
+  // Init widget avec la première piste
+  function initSC(){
+    var enc=encodeURIComponent(PL[0].u);
+    scFrame.src='https://w.soundcloud.com/player/?url='+enc
+      +'&color=%23d4af37&auto_play=false&hide_related=true'
+      +'&show_comments=false&show_user=false&buying=false&sharing=false';
+
+    w=SC.Widget(scFrame);
+
+    w.bind(SC.Widget.Events.READY,function(){
+      ready=true;
+      setName(0);
     });
-    if(autoplay){ setPlaying(true); }
-  }
-
-  function setPlaying(p){
-    playing = p;
-    iconPlay.style.display  = p ? 'none'  : '';
-    iconPause.style.display = p ? ''      : 'none';
-  }
-
-  // Événements widget
-  widget.bind(SC.Widget.Events.PLAY,  function(){ setPlaying(true); });
-  widget.bind(SC.Widget.Events.PAUSE, function(){ setPlaying(false); });
-  widget.bind(SC.Widget.Events.FINISH,function(){
-    var next = (idx+1) % playlist.length;
-    loadTrack(next, true);
-  });
-  widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(e){
-    if(e.loadedProgress > 0){
-      var pct = (e.currentPosition / (e.loadedProgress * e.currentPosition / e.relativePosition || 1));
-    }
-    widget.getDuration(function(dur){
-      if(dur){
-        var pct = (e.currentPosition / dur) * 100;
-        barEl.style.width = pct + '%';
-        timeEl.textContent = fmt(e.currentPosition) + ' / ' + fmt(dur);
-      }
+    w.bind(SC.Widget.Events.PLAY, function(){ icons(true); });
+    w.bind(SC.Widget.Events.PAUSE,function(){ icons(false); });
+    w.bind(SC.Widget.Events.FINISH,function(){
+      idx=(idx+1)%PL.length;
+      loadPlay(idx,true);
     });
-  });
+    w.bind(SC.Widget.Events.PLAY_PROGRESS,function(e){
+      w.getDuration(function(dur){
+        if(!dur)return;
+        fill.style.width=((e.currentPosition/dur)*100)+'%';
+        timeEl.textContent=fmt(e.currentPosition)+' / '+fmt(dur);
+      });
+    });
+  }
+
+  function loadPlay(i,autoplay){
+    idx=i; setName(i);
+    if(!ready)return;
+    w.load(PL[i].u,{
+      auto_play:!!autoplay,
+      buying:false,sharing:false,download:false,
+      show_artwork:false,show_comments:false,
+      show_playcount:false,show_user:false
+    });
+    if(autoplay)icons(true);
+  }
 
   // Boutons
-  btnPlay.addEventListener('click', function(){
-    if(playing){ widget.pause(); } else { widget.play(); }
+  btnPlay.addEventListener('click',function(){
+    if(!ready)return;
+    isPlaying?w.pause():w.play();
   });
-  document.getElementById('gp-prev').addEventListener('click', function(){
-    var prev = (idx - 1 + playlist.length) % playlist.length;
-    loadTrack(prev, true);
+  document.getElementById('btn-prev').addEventListener('click',function(){
+    loadPlay((idx-1+PL.length)%PL.length,isPlaying);
   });
-  document.getElementById('gp-next').addEventListener('click', function(){
-    var next = (idx + 1) % playlist.length;
-    loadTrack(next, true);
+  document.getElementById('btn-next').addEventListener('click',function(){
+    loadPlay((idx+1)%PL.length,isPlaying);
   });
-
-  // Volume
-  volEl.addEventListener('input', function(){
-    widget.setVolume(parseInt(this.value));
-  });
-
-  // Cliquer barre progression
-  progWrap.addEventListener('click', function(e){
-    var rect = progWrap.getBoundingClientRect();
-    var pct  = (e.clientX - rect.left) / rect.width;
-    widget.getDuration(function(dur){
-      widget.seekTo(Math.floor(pct * dur));
-    });
+  track.addEventListener('click',function(e){
+    if(!ready)return;
+    var r=track.getBoundingClientRect();
+    var p=(e.clientX-r.left)/r.width;
+    w.getDuration(function(d){w.seekTo(Math.floor(p*d));});
   });
 
-  // Exposer pour paj yo: window.gpPlay(trackIndex)
-  window.gpPlay = function(i){
-    loadTrack(i, true);
-  };
+  // Expose pou paj yo itilize: parent.gpLoad(index)
+  window.gpLoad=function(i){ loadPlay(i,true); };
 
-  // Init
-  loadTrack(0, false);
+  // Fix navigasyon nan iframe — fè tout lyen entèn chaje anndan #content
+  var iframe=document.getElementById('content');
+  function fixIframeLinks(){
+    try{
+      var doc=iframe.contentDocument||iframe.contentWindow.document;
+      var links=doc.querySelectorAll('a[href]');
+      links.forEach(function(a){
+        var h=a.getAttribute('href')||'';
+        if(!h||h.startsWith('#')||h.startsWith('mailto')||h.startsWith('javascript'))return;
+        if(h.startsWith('http')&&h.indexOf('bneiohr')===-1)return;
+        a.setAttribute('target','content');
+      });
+    }catch(e){}
+  }
+  iframe.addEventListener('load',function(){
+    fixIframeLinks();
+    // Re-check apre JS paj la fini
+    setTimeout(fixIframeLinks,600);
+    setTimeout(fixIframeLinks,1500);
+  });
 
+  initSC();
 })();
 </script>
 </body>

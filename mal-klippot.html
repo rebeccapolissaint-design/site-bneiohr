@@ -325,7 +325,7 @@ min-height:60px!important;
 </head>
 <body><div id="stars"></div>
 <div class="glow-orb orb1"></div>
-<div class="glow-orb orb2"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="index.html" class="nav-back">Accueil</a>
+<div class="glow-orb orb2"></div><nav><a href="index.html" class="nav-logo" target="content"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="index.html" class="nav-back" target="content">Accueil</a>
 </nav><div class="article-hero"><img style="object-fit:cover; object-position:center; filter:brightness(0.55) contrast(1.08);" src="https://i.postimg.cc/bN7cMd49/file-000000005074720c9310f6e2b3a620be.png"
 alt="Le Mal dans la Vision de Bnei Ohr — Klippot et Déséquilibre"
 loading="eager"/><div class="hero-caption"><span class="hero-eyebrow fade-up">Enseignement — Bnei Ohr</span><h1 class="hero-title fade-up d1">Le Mal dans la Vision <span>Bnei Ohr</span></h1><p class="hero-subtitle fade-up d2">Entre Klippot et Déséquilibre</p></div>
@@ -361,7 +361,7 @@ En définitive, le mal — dans la vision de Bnei Ohr — est un <strong>mensong
 Cette compréhension n'est pas un optimisme naïf. Elle exige un travail rigoureux, une discipline spirituelle constante et une connaissance approfondie des lois de la Création. Mais elle offre à l'initié une position fondamentalement différente face à l'adversité : non plus celle d'une victime qui subit, mais celle d'un <strong>alchimiste qui transforme</strong>.
 </p><div class="pull-quote" style="border-color:rgba(212,175,55,.2);padding:1.2rem 0 0"><blockquote style="font-size:clamp(1rem,2.5vw,1.2rem)">
 « Le mal est un mensonge qui se dissipe devant la Vérité — une ombre qui ne peut tenir face à la clarté de la <em>Lumière</em>. »
-</blockquote></div></div></div><div class="related-section"><p class="related-title">Approfondir ce sujet</p><div class="related-grid"><a href="kabbalah-chretienne.html" class="related-item"><span class="related-item-num">✡</span><span class="related-item-title">La Kabbale et la Spiritualité Chrétienne — Convergences symboliques</span></a><a href="presentation.html" class="related-item"><span class="related-item-num">✡</span><span class="related-item-title">L'Enseignement de Bnei Ohr — L'Arbre de Vie comme carte de l'âme</span></a><a href="meditation-lettre.html" class="related-item"><span class="related-item-num">✡</span><span class="related-item-title">Méditation sur les Lettres Hébraïques — Pratique de la Lumière</span></a></div></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="mentions-legales.html">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p>
+</blockquote></div></div></div><div class="related-section"><p class="related-title">Approfondir ce sujet</p><div class="related-grid"><a href="kabbalah-chretienne.html" class="related-item" target="content"><span class="related-item-num">✡</span><span class="related-item-title">La Kabbale et la Spiritualité Chrétienne — Convergences symboliques</span></a><a href="presentation.html" class="related-item" target="content"><span class="related-item-num">✡</span><span class="related-item-title">L'Enseignement de Bnei Ohr — L'Arbre de Vie comme carte de l'âme</span></a><a href="meditation-lettre.html" class="related-item" target="content"><span class="related-item-num">✡</span><span class="related-item-title">Méditation sur les Lettres Hébraïques — Pratique de la Lumière</span></a></div></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html" target="content">Accueil</a></li><li><a href="presentation.html" target="content">Présentation</a></li><li><a href="apropos.html" target="content">À Propos</a></li><li><a href="mentions-legales.html" target="content">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p>
 </footer><script>
 (function(){
 const c=document.getElementById('stars');
@@ -642,10 +642,9 @@ document.querySelector('nav').style.background=window.scrollY>50?'rgba(5,5,5,.98
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();
 </script>
-<script src="/global-player.js"></script>
 </html>

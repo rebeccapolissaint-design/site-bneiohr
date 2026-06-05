@@ -512,7 +512,7 @@ min-height:60px!important;
 </head>
 <body><div id="stars"></div>
 <div class="glow-orb orb-blue"></div>
-<div class="glow-orb orb-gold"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="rituels.html" class="nav-back">Les Rituels</a>
+<div class="glow-orb orb-gold"></div><nav><a href="index.html" class="nav-logo" target="content"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><a href="rituels.html" class="nav-back" target="content">Les Rituels</a>
 </nav><div id="gate"><div class="gate-inner"><div class="gate-seal"><div class="seal-pulse"></div><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" stroke="rgba(91,141,217,0.2)" stroke-width="1"/><circle cx="50" cy="50" r="36" stroke="rgba(91,141,217,0.1)" stroke-width=".5" stroke-dasharray="3 5"/><polygon points="50,10 85,70 15,70" stroke="rgba(91,141,217,0.25)" stroke-width=".8" fill="none"/><circle cx="50" cy="4"  r="1.5" fill="rgba(91,141,217,0.5)"/><circle cx="50" cy="96" r="1.5" fill="rgba(91,141,217,0.5)"/><circle cx="4"  cy="50" r="1.5" fill="rgba(91,141,217,0.5)"/><circle cx="96" cy="50" r="1.5" fill="rgba(91,141,217,0.5)"/></svg><div class="gate-seal-inner">✡</div></div><p class="gate-sup">Cercle Intérieur — Nivo 1</p><p class="gate-level">Reyon Bleu · Gevurah · גְּבוּרָה</p><h1 class="gate-title"><span>Pwoteksyon</span></h1><div class="gate-divider"></div><p class="gate-verse">
 « Mete limyè anvan w, dèyè w,<br>
 ak tout kote w — anvan ou kòmanse. »
@@ -609,7 +609,7 @@ border:1px solid rgba(91,141,217,.35);padding:.6rem 1.4rem;
 transition:all .4s;
 "
 onmouseover="this.style.background='rgba(91,141,217,.1)';this.style.borderColor='rgba(91,141,217,.6)'"
-onmouseout="this.style.background='transparent';this.style.borderColor='rgba(91,141,217,.35)'">
+onmouseout="this.style.background='transparent';this.style.borderColor='rgba(91,141,217,.35)'" target="content">
 Ouvrir les Psaumes →
 </a></div></div></div></div></div></div><div class="branch branch-chret" id="branch2"><div class="branch-header" onclick="toggleBranch(2)"><div class="bh-left"><div class="bh-icon">✝</div><div class="bh-text"><p class="bh-sup">Branch II</p><p class="bh-title">Branch Krétyen Mistik — Abbé Julio &amp; Guerre Spirituelle</p></div></div><div class="bh-arrow">▾</div></div><div class="branch-body" id="body2"><div class="branch-inner"><div style="background:rgba(212,175,55,.04);border-left:2px solid rgba(212,175,55,.3);padding:1rem 1.4rem;margin-bottom:1.8rem"><p style="font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;margin-bottom:.4rem">Source — XIXe siècle</p><p style="font-size:.95rem;font-style:italic;color:rgba(255,255,255,.45);line-height:1.7">
 Prières tirées des <em>Secrets Merveilleux</em> de l'Abbé Julio (Abbé Houssaye, 1844–1912), prêtre gallican et guérisseur mystique. Ces prières, transmises à travers les siècles, sont présentées ici dans leur forme originale en français.
@@ -773,7 +773,7 @@ Mwen dòmi nan men Tè a ak Syèl la. »
 Rityèl sa yo se <strong>pratik enteryè</strong> — yo pa janm itilize nan lide kontwòle lòt moun.
 Yo toujou pratike nan respè, entansyon pwòp, ak liberasyon pèsonèl.
 Veilleur ki pratike yo responsab pou aplikasyon yo.
-</p></div><div class="back-wrap"><a href="rituels.html" class="back-link">Retounen nan Les Rituels</a></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="cercle.html">Cercle Intérieur</a></li><li><a href="rituels.html">Les Rituels</a></li></ul><p class="footer-copy">© Bnei Ohr — Cercle Intérieur — Fondé par Chilot</p></footer></div><script>
+</p></div><div class="back-wrap"><a href="rituels.html" class="back-link" target="content">Retounen nan Les Rituels</a></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html" target="content">Accueil</a></li><li><a href="cercle.html" target="content">Cercle Intérieur</a></li><li><a href="rituels.html" target="content">Les Rituels</a></li></ul><p class="footer-copy">© Bnei Ohr — Cercle Intérieur — Fondé par Chilot</p></footer></div><script>
 /* ── Voir Plus / Voir Moins ── */
 let vpCounter = 0;
 function makeCollapsible(el, cls) {
@@ -1136,10 +1136,9 @@ if(target) { target.classList.add('active'); setTimeout(initVoirPlus, 50); }
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();
 </script>
-<script src="/global-player.js"></script>
 </html>

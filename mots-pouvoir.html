@@ -164,11 +164,11 @@ min-height:60px!important;
 <div class="veil" id="veil"></div>
 
 <nav>
-  <a href="index.html" class="nav-logo">
+  <a href="index.html" class="nav-logo" target="content">
     <span class="nav-logo-heb">בְּנֵי</span>
     <span class="nav-logo-txt">Bnei Ohr</span>
   </a>
-  <a href="kabal.html" class="nav-back">← Etid Kabal</a>
+  <a href="kabal.html" class="nav-back" target="content">← Etid Kabal</a>
 </nav>
 
 <section class="hero">
@@ -309,7 +309,7 @@ min-height:60px!important;
   </div>
 
   <div class="nav-bottom">
-    <a href="kabal.html" class="nav-btn">← Retour — Etid Kabal</a>
+    <a href="kabal.html" class="nav-btn" target="content">← Retour — Etid Kabal</a>
   </div>
 
 </main>
@@ -607,10 +607,9 @@ document.querySelectorAll('a[href]').forEach(a=>{
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();
 </script>
-<script src="/global-player.js"></script>
 </html>

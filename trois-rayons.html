@@ -298,7 +298,7 @@ min-height:60px!important;
 }
 </style>
 </head>
-<body><nav><a href="index.html" class="nav-logo"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><ul class="nav-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="lwa.html">Les Lwa</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="index.html#contact">Contact</a></li></ul><button class="nav-srch-btn" onclick="openSrch()" aria-label="Rechercher">🔍</button>
+<body><nav><a href="index.html" class="nav-logo" target="content"><span class="nav-logo-hebrew">בְּנֵי אוֹר</span><span class="nav-logo-text">Bnei Ohr</span></a><ul class="nav-links"><li><a href="index.html" target="content">Accueil</a></li><li><a href="presentation.html" target="content">Présentation</a></li><li><a href="apropos.html" target="content">À Propos</a></li><li><a href="vodou.html" target="content">Héritage</a></li><li><a href="lwa.html" target="content">Les Lwa</a></li><li><a href="bibliyotek.html" target="content">Bibliothèque</a></li><li><a href="index.html#contact" target="content">Contact</a></li></ul><button class="nav-srch-btn" onclick="openSrch()" aria-label="Rechercher">🔍</button>
 </nav><div class="page-wrap"><header class="page-header"><p class="page-sup">Parcours symbolique — Bnei Ohr</p><h1 class="page-title">
 Les Trois Rayons de Lumière —<br><em>Parcours Symbolique</em></h1><div class="header-divider"></div><p class="page-intro">
 Dans la pensée kabbalistique (telle qu'interprétée dans l'ésotérisme occidental),
@@ -346,7 +346,7 @@ et ne remplacent aucun cheminement religieux, maçonnique ou vodou.
 Bnei Ohr est un espace d'<strong>exploration personnelle et symbolique</strong>,
 fondé par Chilot, enraciné dans l'âme d'Haïti.
 Toute interprétation reste la responsabilité de celui ou celle qui s'en empare.
-</p></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="vodou.html">Héritage</a></li><li><a href="bibliyotek.html">Bibliothèque</a></li><li><a href="mentions-legales.html">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p><p class="footer-mentions">Haïti — <a href="mailto:bneiohr.haiti77@gmail.com">bneiohr.haiti77@gmail.com</a> — <a href="mentions-legales.html">Mentions légales & Confidentialité</a></p>
+</p></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html" target="content">Accueil</a></li><li><a href="presentation.html" target="content">Présentation</a></li><li><a href="apropos.html" target="content">À Propos</a></li><li><a href="vodou.html" target="content">Héritage</a></li><li><a href="bibliyotek.html" target="content">Bibliothèque</a></li><li><a href="mentions-legales.html" target="content">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p><p class="footer-mentions">Haïti — <a href="mailto:bneiohr.haiti77@gmail.com">bneiohr.haiti77@gmail.com</a> — <a href="mentions-legales.html" target="content">Mentions légales & Confidentialité</a></p>
 </footer><script>
 window.addEventListener('scroll', () => {
 const nav = document.querySelector('nav');
@@ -618,10 +618,9 @@ nav.style.background = window.scrollY > 50 ? 'rgba(5,5,5,.98)' : 'rgba(5,5,5,.92
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();
 </script>
-<script src="/global-player.js"></script>
 </html>

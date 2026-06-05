@@ -194,7 +194,7 @@ min-height:60px!important;
 </head>
 <body><div id="stars"></div>
 <div class="glow-orb orb1"></div>
-<div class="glow-orb orb2"></div><nav><a href="index.html" class="nav-logo"><span class="nav-logo-heb">בְּנֵי אוֹר</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back">Accueil</a>
+<div class="glow-orb orb2"></div><nav><a href="index.html" class="nav-logo" target="content"><span class="nav-logo-heb">בְּנֵי אוֹר</span><span class="nav-logo-txt">Bnei Ohr</span></a><a href="index.html" class="nav-back" target="content">Accueil</a>
 </nav><div class="article-hero"><img style="object-fit:cover; object-position:center; filter:brightness(0.55) contrast(1.08);" src="https://i.postimg.cc/G341SJPP/file-000000003d2c722f815c93ff24617373.png"
 alt="Décodage du Lougarou — Vision Bnei Ohr" loading="eager"/><div class="hero-caption"><span class="hero-eyebrow fu">Enseignement — Bnei Ohr · Haïti</span><h1 class="hero-title fu d1">Décodage du <span>Lougarou</span></h1><p class="hero-subtitle fu d2">Technologie Astrale &amp; Klippot</p></div>
 </div><div class="article-wrap"><div class="article-meta fu d3"><span class="meta-tag">Kabbale</span><span class="meta-tag">Tradition Haïtienne</span><span class="meta-tag">Nefesh · Corps Astral</span></div><div class="toc"><p class="toc-title">Dans cet article</p><ul class="toc-list"><li><a href="#projection">Projection Astrale du Nefesh</a></li><li><a href="#parasite">Parasitisme Énergétique</a></li><li><a href="#metamorphose">Métamorphose Astrale</a></li><li><a href="#autorite">Autorité de l'Initié Bnei Ohr</a></li><li><a href="#conclusion">Sécurité par la Lumière</a></li></ul></div><p class="article-lead">
@@ -232,7 +232,7 @@ Pour Bnei Ohr, le lougarou est un être humain qui a perdu son chemin — qui a 
 La sécurité d'un initié Bnei Ohr repose sur son <strong>niveau vibratoire</strong>. Plus il possède de Lumière intérieure, plus il devient « invisible » et « invulnérable » à toute force qui circule dans les ténèbres de la nuit. Ce n'est pas une protection magique extérieure — c'est le résultat naturel d'un travail intérieur constant et discipliné.
 </p><div class="pull-quote" style="border-color:rgba(212,175,55,.2);padding:1.2rem 0 0"><blockquote style="font-size:clamp(1rem,2.5vw,1.2rem)">
 « Plus tu portes de Lumière, plus tu deviens <em>invisible</em> pour tout ce qui circule dans les ténèbres. »
-</blockquote></div></div></div><div class="related-section"><p class="related-title">Approfondir ce sujet</p><div class="related-grid"><a href="mal-klippot.html" class="related-item"><span class="related-item-num">✡</span><span class="related-item-title">Le Mal dans la Vision Bnei Ohr — Klippot et Déséquilibre</span></a><a href="kabbalah-chretienne.html" class="related-item"><span class="related-item-num">✡</span><span class="related-item-title">La Kabbale et la Spiritualité Chrétienne — Convergences symboliques</span></a><a href="presentation.html" class="related-item"><span class="related-item-num">✡</span><span class="related-item-title">L'Enseignement de Bnei Ohr — Une approche universelle de la Sagesse</span></a></div></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="presentation.html">Présentation</a></li><li><a href="apropos.html">À Propos</a></li><li><a href="mentions-legales.html">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p>
+</blockquote></div></div></div><div class="related-section"><p class="related-title">Approfondir ce sujet</p><div class="related-grid"><a href="mal-klippot.html" class="related-item" target="content"><span class="related-item-num">✡</span><span class="related-item-title">Le Mal dans la Vision Bnei Ohr — Klippot et Déséquilibre</span></a><a href="kabbalah-chretienne.html" class="related-item" target="content"><span class="related-item-num">✡</span><span class="related-item-title">La Kabbale et la Spiritualité Chrétienne — Convergences symboliques</span></a><a href="presentation.html" class="related-item" target="content"><span class="related-item-num">✡</span><span class="related-item-title">L'Enseignement de Bnei Ohr — Une approche universelle de la Sagesse</span></a></div></div></div><footer><span class="footer-logo">בְּנֵי אוֹר</span><ul class="footer-links"><li><a href="index.html" target="content">Accueil</a></li><li><a href="presentation.html" target="content">Présentation</a></li><li><a href="apropos.html" target="content">À Propos</a></li><li><a href="mentions-legales.html" target="content">Mentions Légales</a></li></ul><p class="footer-copy">© Bnei Ohr — École Ésotérique Haïtienne — Fondée par Chilot</p>
 </footer><script>
 (function(){
 const c=document.getElementById('stars');
@@ -513,10 +513,9 @@ document.querySelector('nav').style.background=window.scrollY>50?'rgba(5,5,5,.98
     });
     if(hits.length===0){results.innerHTML='<p class="srch-empty">Aucun résultat pour « '+q+' »</p>';return;}
     results.innerHTML=hits.map(function(p){
-      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
+      return '<a href="/'+p.f+'" class="srch-item" onclick="closeSrch()" target="content"><span class="srch-item-title">'+p.t+'</span><span class="srch-item-desc">'+p.d+'</span></a>';
     }).join('');
   });
 })();
 </script>
-<script src="/global-player.js"></script>
 </html>
