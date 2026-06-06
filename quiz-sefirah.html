@@ -452,6 +452,10 @@ function showResult() {
     <p class="result-desc">${s.desc}</p>
     <div class="result-qualities">${s.qualities.map(q=>`<span class="result-tag">${q}</span>`).join('')}</div>
     <p class="result-lwa">${s.lwa}</p>
+    <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(212,175,55,.1);text-align:center">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:rgba(212,175,55,.45);margin-bottom:.8rem">Découvrez comment guérir les blessures liées à cette Sefirah ↓</p>
+      <a href="tikkun-nefesh.html" style="display:inline-block;font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;color:#d4af37;border:1px solid rgba(212,175,55,.35);padding:.6rem 1.4rem;text-decoration:none;background:rgba(212,175,55,.05);transition:all .2s;border-radius:4px">✡ Alchimie des 5 Blessures · Tikkun Nefesh</a>
+    </div>
     <button class="btn-retry" onclick="retryQuiz()">Recommencer le quiz</button>
   `;
   rc.scrollIntoView({behavior:'smooth', block:'center'});
