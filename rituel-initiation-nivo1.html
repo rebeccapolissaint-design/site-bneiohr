@@ -422,7 +422,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     <div class="final-section">
       <p class="ready-status" id="readyStatus">⏱ Kontinye rityèl la — tan ak etap yo p ap fin toujou</p>
       <span class="final-eyebrow">&#x2726; Lè ou pare — fèmen je ou yon dènye fwa. Respire. Epi klike.</span>
-      <button class="final-btn" id="finalBtn" onclick="finishRitual()" disabled>
+      <button class="final-btn" id="finalBtn" onclick="finishRitual()">
         <span style="font-size:1.1rem">&#x2721;</span>
         Mwen fini rityèl la — Mwen pare pou m antre nan Pòtay la
       </button>
@@ -468,31 +468,17 @@ function confirmDraw(){
   checkReady();
 }
 
-// Check all ready — tout checkbox + tan + non
+// Check all ready — non sèlman
 function checkReady(){
-  const cb1=document.getElementById('cb1').checked;
-  const cb2=document.getElementById('cb2').checked;
-  const cb3=document.getElementById('cb3').checked;
-  const cb4=document.getElementById('cb4').checked;
   const name=document.getElementById('sigName').value.trim();
   const btn=document.getElementById('finalBtn');
   const status=document.getElementById('readyStatus');
-  const allChecked = cb1 && cb2 && cb3 && cb4;
-  const allDone = allChecked && timerDone && name.length>1;
-  btn.disabled = !allDone;
-  if(allDone){
+  if(name.length>1){
+    btn.disabled = false;
     status.textContent='✓ Ou pare — rityèl la konplè';
     status.classList.add('ok');
-  } else if(!timerDone && !allChecked){
-    status.textContent='⏱ Kontinye rityèl la — tan ak etap yo p ap fin toujou';
-    status.classList.remove('ok');
-  } else if(!timerDone){
-    status.textContent='⏱ Pran tan ou — tan minimòm la poko fin';
-    status.classList.remove('ok');
-  } else if(!allChecked){
-    status.textContent='☐ Tcheke tout etap yo anvan ou kontinye';
-    status.classList.remove('ok');
-  } else if(name.length<=1){
+  } else {
+    btn.disabled = true;
     status.textContent='✏ Siyen non ou anba a';
     status.classList.remove('ok');
   }
