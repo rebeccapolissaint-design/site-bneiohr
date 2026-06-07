@@ -13,6 +13,24 @@ body{background:#030509;color:#e8e0d0;font-family:'Cormorant Garamond',serif;ove
 #stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
 .star{position:absolute;border-radius:50%;animation:tw var(--d) ease-in-out infinite alternate;opacity:0}
 @keyframes tw{0%{opacity:0}100%{opacity:var(--o)}}
+
+/* ── Timer & Checkboxes ── */
+.timer-bar{position:sticky;top:58px;z-index:40;background:rgba(3,5,9,.95);border-bottom:1px solid rgba(91,141,217,.1);padding:.6rem 1.5rem;display:flex;align-items:center;gap:1rem;backdrop-filter:blur(8px)}
+.timer-icon{font-size:1rem;flex-shrink:0}
+.timer-label{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.25em;color:rgba(91,141,217,.5);text-transform:uppercase;flex-shrink:0}
+.timer-progress{flex:1;height:3px;background:rgba(91,141,217,.1);border-radius:2px;overflow:hidden}
+.timer-fill{height:100%;background:linear-gradient(to right,rgba(91,141,217,.4),#5b8dd9);width:0%;transition:width 1s linear;border-radius:2px}
+.timer-count{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.15em;color:rgba(91,141,217,.5);flex-shrink:0;min-width:3.5rem;text-align:right}
+.timer-count.done{color:rgba(100,200,100,.6)}
+.step-check-wrap{display:flex;align-items:flex-start;gap:.8rem;margin-top:1rem;padding:.9rem 1.1rem;border:1px solid rgba(91,141,217,.12);background:rgba(91,141,217,.02);cursor:pointer}
+.step-check-wrap input[type=checkbox]{width:18px;height:18px;min-width:18px;border:1px solid rgba(91,141,217,.3);background:transparent;appearance:none;-webkit-appearance:none;cursor:pointer;position:relative;transition:all .3s;margin-top:2px}
+.step-check-wrap input[type=checkbox]:checked{background:rgba(91,141,217,.3);border-color:#5b8dd9}
+.step-check-wrap input[type=checkbox]:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5b8dd9;font-size:.7rem}
+.step-check-label{font-size:.88rem;font-style:italic;color:rgba(91,141,217,.55);line-height:1.6;cursor:pointer}
+.step-check-label strong{color:rgba(91,141,217,.75);font-style:normal}
+.ready-status{text-align:center;margin:.8rem 0;font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(200,80,80,.5);transition:color .3s}
+.ready-status.ok{color:rgba(100,200,100,.6)}
+
 /* Blue ambient */
 .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px)}
 .orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(30,80,200,.07),transparent);top:-200px;left:-200px}
@@ -171,6 +189,13 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
   </a>
   <a href="leson.html" class="nav-back">&#8592; Espas Etid</a>
 </nav>
+<!-- ── TIMER BAR ── -->
+<div class="timer-bar">
+  <span class="timer-icon">&#x23F1;</span>
+  <span class="timer-label">Tan Minimòm</span>
+  <div class="timer-progress"><div class="timer-fill" id="timerFill"></div></div>
+  <span class="timer-count" id="timerCount">20:00</span>
+</div>
 
 <!-- ══ CONTENT ══ -->
 <div id="content" style="display:block">
@@ -254,6 +279,12 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
       </div>
     </div>
 
+
+        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
+          <input type="checkbox" id="cb1" onchange="checkReady()"/>
+          <label class="step-check-label" for="cb1">&#x2713; Mwen fin fè <strong>purifikasyon an</strong> — mwen bwè dlo ak sèl la, mwen vizualize sfè ble a</label>
+        </div>
+
     <div class="step-divider"><span>&#x2726;</span></div>
 
     <!-- ETAP 2 — TRASE SAMEKH -->
@@ -284,6 +315,12 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
         </div>
       </div>
     </div>
+
+
+        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
+          <input type="checkbox" id="cb2" onchange="checkReady()"/>
+          <label class="step-check-label" for="cb2">&#x2713; Mwen fin <strong>trase Sèk Samekh</strong> nan lè a epi pwononse fòmil selasyon an</label>
+        </div>
 
     <div class="step-divider"><span>&#x2726;</span></div>
 
@@ -326,6 +363,12 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
       </div>
     </div>
 
+
+        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
+          <input type="checkbox" id="cb3" onchange="checkReady()"/>
+          <label class="step-check-label" for="cb3">&#x2713; Mwen fin vibre <strong>EHYEH 7 fwa</strong> ak <strong>ADONAI 7 fwa</strong> — mwen santi rezonnans la</label>
+        </div>
+
     <div class="step-divider"><span>&#x2726;</span></div>
 
     <!-- ETAP 4 — SÒOM 91 -->
@@ -356,6 +399,12 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
         <p>Apre lekti a, rete nan silans 1-2 minit. Santi koneksyon an. Zansèt Limyè yo la.</p>
       </div>
     </div>
+
+
+        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
+          <input type="checkbox" id="cb4" onchange="checkReady()"/>
+          <label class="step-check-label" for="cb4">&#x2713; Mwen fin li <strong>Sòm 91 konplè a</strong> nan vwa mwen — mwen santi koneksyon ak Zansèt Limyè yo</label>
+        </div>
 
     <div class="step-divider"><span>&#x2721;</span></div>
 
@@ -389,6 +438,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 
     <!-- FINAL BUTTON -->
     <div class="final-section">
+      <p class="ready-status" id="readyStatus">⏱ Kontinye rityèl la — tan ak etap yo p ap fin toujou</p>
       <span class="final-eyebrow">&#x2726; Lè ou pare — fèmen je ou yon dènye fwa. Respire. Epi klike.</span>
       <button class="final-btn" id="finalBtn" onclick="finishRitual()" disabled>
         <span style="font-size:1.1rem">&#x2721;</span>
@@ -423,46 +473,67 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 // Ticker
 (function(){var q=['EHYEH ASHER EHYEH — Mwen Se Sa Mwen Se. Sous tout Limyè.','Alyans Ble a pa yon sereman vid — se yon transformasyon reyèl.','Veso ki konsekre ka resevwa Limyè ki pa ka antre nan yon veso ki pa prepare.','Samekh — Sèk Konplè — Pwoteksyon san fant, san kòmansman, san fen.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(91,141,217,0.2);margin:0 2rem">&#x2726;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
 
-// Gate
-const SECRETS = ['alyansble','alyans ble','ALYANS BLE','AlyAnsBle','alyans-ble','portail777','portail 777'];
-var drawDone = false;
-
-function checkPass(){
-  const val=document.getElementById('pwInput').value.trim();
-  const err=document.getElementById('gateError');
-  if(SECRETS.map(s=>s.toLowerCase()).includes(val.toLowerCase())){
-    const gate=document.getElementById('gate');
-    gate.style.transition='opacity .8s ease';
-    gate.style.opacity='0';
-    setTimeout(()=>{
-      gate.style.display='none';
-      document.getElementById('content').style.display='block';
-      document.body.classList.add('unlocked');
-    },800);
-  } else {
-    err.classList.add('show');
-    document.getElementById('pwInput').style.borderColor='rgba(200,80,80,.5)';
-    setTimeout(()=>{err.classList.remove('show');document.getElementById('pwInput').style.borderColor='';},3000);
+// ── TIMER 20 minutes ──
+const TOTAL_SEC = 20 * 60; // 1200 secondes
+var elapsed = 0;
+var timerDone = false;
+var timerInterval = setInterval(function(){
+  elapsed++;
+  var pct = Math.min(elapsed / TOTAL_SEC * 100, 100);
+  document.getElementById('timerFill').style.width = pct + '%';
+  var rem = Math.max(TOTAL_SEC - elapsed, 0);
+  var mm = String(Math.floor(rem/60)).padStart(2,'0');
+  var ss = String(rem%60).padStart(2,'0');
+  var counter = document.getElementById('timerCount');
+  if(rem === 0 && !timerDone){
+    timerDone = true;
+    counter.textContent = '✓ Bon';
+    counter.classList.add('done');
+    clearInterval(timerInterval);
+    checkReady();
+  } else if(rem > 0){
+    counter.textContent = mm+':'+ss;
   }
-}
-document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPass();});
-function togglePw(){const i=document.getElementById('pwInput');i.type=i.type==='password'?'text':'password';}
+}, 1000);
 
 // Draw Samekh confirm
 function confirmDraw(){
-  drawDone=true;
   const btn=document.getElementById('drawBtn');
   btn.classList.add('done');
   btn.textContent='✓ Samekh trace — espas la sele';
   btn.disabled=true;
+  document.getElementById('cb2').checked=true;
   checkReady();
 }
 
-// Check all ready
+// Check all ready — tout checkbox + tan + non
 function checkReady(){
+  const cb1=document.getElementById('cb1').checked;
+  const cb2=document.getElementById('cb2').checked;
+  const cb3=document.getElementById('cb3').checked;
+  const cb4=document.getElementById('cb4').checked;
   const name=document.getElementById('sigName').value.trim();
   const btn=document.getElementById('finalBtn');
-  btn.disabled=!(drawDone && name.length>1);
+  const status=document.getElementById('readyStatus');
+  const allChecked = cb1 && cb2 && cb3 && cb4;
+  const allDone = allChecked && timerDone && name.length>1;
+  btn.disabled = !allDone;
+  if(allDone){
+    status.textContent='✓ Ou pare — rityèl la konplè';
+    status.classList.add('ok');
+  } else if(!timerDone && !allChecked){
+    status.textContent='⏱ Kontinye rityèl la — tan ak etap yo p ap fin toujou';
+    status.classList.remove('ok');
+  } else if(!timerDone){
+    status.textContent='⏱ Pran tan ou — tan minimòm la poko fin';
+    status.classList.remove('ok');
+  } else if(!allChecked){
+    status.textContent='☐ Tcheke tout etap yo anvan ou kontinye';
+    status.classList.remove('ok');
+  } else if(name.length<=1){
+    status.textContent='✏ Siyen non ou anba a';
+    status.classList.remove('ok');
+  }
 }
 
 // Finish ritual
