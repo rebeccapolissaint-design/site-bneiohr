@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Rityèl Pòtay Alyans Ble a — Inisyasyon Nivo 1 | Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#030509;color:#e8e0d0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh;overflow-y:auto}
+
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;border-radius:50%;animation:tw var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes tw{0%{opacity:0}100%{opacity:var(--o)}}
+/* Blue ambient */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px)}
+.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(30,80,200,.07),transparent);top:-200px;left:-200px}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,rgba(60,100,220,.05),transparent);bottom:-100px;right:-100px}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:.9rem 2rem;background:rgba(3,5,9,.92);border-bottom:1px solid rgba(91,141,217,.1);backdrop-filter:blur(10px)}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:#d4af37}
+.nav-txt{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;color:rgba(91,141,217,.5);text-decoration:none;text-transform:uppercase}
+
+/* ══ GATE ══ */
+#gate{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:5rem 1.5rem 2rem;background:rgba(3,5,9,.97)}
+.gate-inner{max-width:420px;width:100%;text-align:center;animation:gIn 1.2s ease forwards}
+@keyframes gIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.gate-seal{width:90px;height:90px;margin:0 auto 2rem;position:relative}
+.gate-seal svg{width:100%;height:100%;animation:spin 30s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gate-seal-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#5b8dd9;text-shadow:0 0 20px rgba(91,141,217,.5)}
+.seal-pulse{position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(91,141,217,.15);animation:pulseR 2.5s ease-in-out infinite}
+@keyframes pulseR{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.12);opacity:0}}
+.gate-sup{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.45em;color:rgba(91,141,217,.5);text-transform:uppercase;margin-bottom:.6rem}
+.gate-level{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.5rem}
+.gate-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,5vw,1.8rem);color:#fff;margin-bottom:.3rem}
+.gate-title span{color:#5b8dd9}
+.gate-divider{width:40px;height:1px;background:linear-gradient(to right,transparent,#5b8dd9,transparent);margin:1.2rem auto}
+.gate-verse{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.32);line-height:1.9;margin-bottom:1.8rem;max-width:320px;margin-left:auto;margin-right:auto}
+.gate-field-wrap{position:relative;margin-bottom:1rem}
+.gate-input{width:100%;background:rgba(91,141,217,.05);border:1px solid rgba(91,141,217,.25);color:#e8e0d0;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.35em;text-transform:uppercase;padding:.9rem 3rem .9rem 1.2rem;outline:none;text-align:center;transition:border-color .3s}
+.gate-input::placeholder{color:rgba(91,141,217,.3);letter-spacing:.35em}
+.gate-input:focus{border-color:rgba(91,141,217,.5)}
+.toggle-pw{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(91,141,217,.5);cursor:pointer;font-size:1rem;padding:.2rem}
+.gate-btn{width:100%;padding:.9rem 2rem;background:linear-gradient(135deg,rgba(91,141,217,.12),rgba(91,141,217,.06));border:1px solid rgba(91,141,217,.35);color:#5b8dd9;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-bottom:.8rem}
+.gate-btn:hover{border-color:rgba(91,141,217,.6);box-shadow:0 0 20px rgba(91,141,217,.1)}
+.gate-error{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(200,80,80,.7);text-transform:uppercase;opacity:0;transition:opacity .3s}
+.gate-error.show{opacity:1}
+.gate-hint{font-size:.78rem;font-style:italic;color:rgba(255,255,255,.2);margin-top:.8rem}
+
+/* ══ CONTENT ══ */
+#content{display:none;position:relative;z-index:1}
+
+/* HERO */
+.rit-hero{padding:7rem 1.5rem 4rem;text-align:center;position:relative;border-bottom:1px solid rgba(91,141,217,.1)}
+.rit-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(30,80,200,.07) 0%,transparent 70%);pointer-events:none}
+.rit-eyebrow{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.5em;color:rgba(91,141,217,.5);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.rit-name-fr{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;color:rgba(91,141,217,.4);text-transform:uppercase;margin-bottom:.5rem;display:block}
+.rit-title{font-family:'Cinzel',serif;font-size:clamp(1.4rem,5vw,2.2rem);letter-spacing:.15em;color:#fff;text-transform:uppercase;margin-bottom:.4rem}
+.rit-title span{color:#5b8dd9}
+.rit-heb{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(91,141,217,.35);display:block;margin-bottom:.8rem}
+.rit-intro{font-style:italic;font-size:1rem;color:rgba(232,224,208,.38);max-width:500px;margin:0 auto 1.5rem;line-height:1.95}
+.rit-rule{width:60px;height:1px;background:linear-gradient(to right,transparent,#5b8dd9,transparent);margin:0 auto}
+/* WARNING */
+.rit-warning{max-width:680px;margin:2rem auto 0;padding:0 1.5rem}
+.warning-box{border:1px solid rgba(91,141,217,.15);background:rgba(91,141,217,.03);padding:1.2rem 1.5rem;display:flex;gap:1rem;align-items:flex-start}
+.warning-icon{font-size:1.2rem;flex-shrink:0;margin-top:.1rem}
+.warning-txt{font-size:.85rem;color:rgba(232,224,208,.4);line-height:1.75;font-style:italic}
+
+/* WRAP */
+.rit-wrap{max-width:680px;margin:0 auto;padding:3rem 1.5rem 8rem}
+
+/* Elements requis */
+.elements-section{margin-bottom:3rem}
+.section-eyebrow{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(91,141,217,.45);text-transform:uppercase;display:block;margin-bottom:1rem}
+.elements-grid{display:flex;flex-direction:column;gap:.7rem}
+.element-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.2rem;border:1px solid rgba(91,141,217,.1);background:rgba(91,141,217,.02)}
+.el-icon{font-size:1.3rem;flex-shrink:0;width:2rem;text-align:center}
+.el-body{}
+.el-name{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;color:#5b8dd9;text-transform:uppercase;display:block;margin-bottom:.3rem}
+.el-desc{font-size:.9rem;color:rgba(232,224,208,.6);line-height:1.7}
+
+/* ÉTAPES */
+.rit-step{margin-bottom:2.5rem;position:relative}
+.step-header{display:flex;gap:1rem;align-items:center;margin-bottom:1.2rem}
+.step-num{width:2.2rem;height:2.2rem;border:1px solid rgba(91,141,217,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.65rem;color:#5b8dd9;flex-shrink:0}
+.step-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;color:#e8e0d0;text-transform:uppercase}
+.step-body{padding-left:3.2rem}
+.step-body p{font-size:.95rem;color:rgba(232,224,208,.65);line-height:1.85;margin-bottom:.8rem}
+.step-body p:last-child{margin-bottom:0}
+/* Prayer box */
+.prayer-box{border:1px solid rgba(91,141,217,.15);border-left:3px solid #5b8dd9;background:rgba(91,141,217,.03);padding:1.4rem 1.6rem;margin:.8rem 0;position:relative}
+.prayer-box::before{content:'"';position:absolute;top:.3rem;left:.8rem;font-size:3rem;color:#5b8dd9;opacity:.08;font-family:Georgia,serif;line-height:1}
+.prayer-txt{font-style:italic;font-size:1rem;color:rgba(232,224,208,.82);line-height:2.1}
+.prayer-txt strong{color:#5b8dd9;font-style:normal}
+/* Divine Name */
+.divine-name{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:#5b8dd9;display:block;text-align:center;margin:1rem 0;text-shadow:0 0 20px rgba(91,141,217,.3);letter-spacing:.1em}
+.divine-name-latin{font-family:'Cinzel',serif;font-size:1.1rem;color:rgba(91,141,217,.7);display:block;text-align:center;letter-spacing:.3em;margin-bottom:.4rem}
+.divine-phonetic{font-size:.82rem;color:rgba(91,141,217,.4);display:block;text-align:center;font-style:italic}
+/* Visualisation */
+.viz-box{background:rgba(30,60,180,.04);border:1px solid rgba(91,141,217,.1);padding:1.2rem 1.5rem;margin:.8rem 0}
+.viz-label{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.3em;color:rgba(91,141,217,.4);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.viz-text{font-size:.92rem;color:rgba(232,224,208,.6);line-height:1.8;font-style:italic}
+/* Psaume */
+.psaume-box{border:1px solid rgba(212,175,55,.15);border-left:3px solid rgba(212,175,55,.4);background:rgba(212,175,55,.02);padding:1.4rem 1.6rem;margin:.8rem 0}
+.psaume-ref{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.psaume-txt{font-size:.9rem;color:rgba(232,224,208,.65);line-height:2;font-style:italic}
+/* Sèman */
+.seman-section{border:1px solid rgba(91,141,217,.2);background:rgba(91,141,217,.03);padding:2rem 1.5rem;margin:2.5rem 0}
+.seman-eyebrow{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(91,141,217,.5);text-transform:uppercase;display:block;text-align:center;margin-bottom:1.5rem}
+.seman-item{padding:1rem 1.2rem;border-bottom:1px solid rgba(91,141,217,.08);margin-bottom:.8rem}
+.seman-item:last-child{border-bottom:none;margin-bottom:0}
+.seman-name{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.25em;color:#5b8dd9;text-transform:uppercase;display:block;margin-bottom:.5rem}
+.seman-txt{font-size:.92rem;font-style:italic;color:rgba(232,224,208,.72);line-height:1.85}
+/* Signature */
+.signature-area{margin:2.5rem 0}
+.sig-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(91,141,217,.4);text-transform:uppercase;display:block;margin-bottom:.8rem;text-align:center}
+.sig-name-input{width:100%;background:rgba(91,141,217,.04);border:none;border-bottom:1px solid rgba(91,141,217,.25);color:#e8e0d0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;padding:.7rem 1rem;outline:none;text-align:center;transition:border-color .3s}
+.sig-name-input:focus{border-bottom-color:rgba(91,141,217,.6)}
+.sig-name-input::placeholder{color:rgba(91,141,217,.25)}
+/* Sèl Samekh */
+.samekh-section{margin:2rem 0;text-align:center}
+.samekh-canvas{width:160px;height:160px;margin:0 auto;position:relative}
+.samekh-circle{width:100%;height:100%;border:2px solid rgba(91,141,217,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
+.samekh-letter{font-family:'Noto Serif Hebrew',serif;font-size:4rem;color:rgba(91,141,217,.2);line-height:1}
+.samekh-ring{position:absolute;inset:-10px;border:1px solid rgba(91,141,217,.08);border-radius:50%;animation:pulseR 3s ease-in-out infinite}
+.samekh-ring2{position:absolute;inset:-20px;border:1px solid rgba(91,141,217,.04);border-radius:50%;animation:pulseR 3s ease-in-out infinite .8s}
+.draw-btn{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(91,141,217,.5);text-transform:uppercase;background:none;border:1px solid rgba(91,141,217,.2);padding:.5rem 1.2rem;cursor:pointer;margin-top:.8rem;transition:all .3s}
+.draw-btn:hover{border-color:rgba(91,141,217,.4);color:#5b8dd9}
+.draw-btn.done{color:rgba(100,200,100,.6);border-color:rgba(100,200,100,.2)}
+/* Divider */
+.step-divider{width:100%;display:flex;align-items:center;gap:1rem;margin:2rem 0}
+.step-divider::before,.step-divider::after{content:'';flex:1;height:1px;background:rgba(91,141,217,.08)}
+.step-divider span{font-size:.6rem;color:rgba(91,141,217,.2)}
+/* FINAL BUTTON */
+.final-section{text-align:center;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(91,141,217,.1)}
+.final-eyebrow{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(91,141,217,.35);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.final-btn{display:inline-flex;align-items:center;gap:.8rem;padding:1.2rem 2.5rem;background:linear-gradient(135deg,rgba(91,141,217,.15),rgba(91,141,217,.06));border:1px solid rgba(91,141,217,.4);color:#5b8dd9;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;cursor:pointer;transition:all .4s;text-decoration:none}
+.final-btn:hover{border-color:rgba(91,141,217,.7);box-shadow:0 0 30px rgba(91,141,217,.15);color:#7baae0}
+.final-btn:disabled{opacity:.35;cursor:not-allowed}
+/* Confirmation */
+.confirm-box{display:none;margin-top:2rem;border:1px solid rgba(91,141,217,.2);background:rgba(91,141,217,.04);padding:2rem;text-align:center;animation:gIn .8s ease}
+.confirm-seal{font-size:2.5rem;display:block;margin-bottom:1rem;text-shadow:0 0 20px rgba(91,141,217,.4)}
+.confirm-title{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.15em;color:#5b8dd9;text-transform:uppercase;margin-bottom:.5rem}
+.confirm-txt{font-size:.95rem;font-style:italic;color:rgba(232,224,208,.5);line-height:1.9;margin-bottom:1.5rem}
+.confirm-link{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;border-bottom:1px solid rgba(212,175,55,.2);padding-bottom:.1rem}
+/* Ticker */
+.rj-bar{position:fixed;bottom:0;left:0;right:0;z-index:800;height:2.5rem;display:flex;align-items:center;background:linear-gradient(90deg,#030509,#030509);border-top:1px solid rgba(91,141,217,.12);overflow:hidden}
+.rj-lbl{font-family:'Cinzel',serif;font-size:.4rem;letter-spacing:.22em;color:#5b8dd9;text-transform:uppercase;white-space:nowrap;padding:0 .8rem;flex-shrink:0;border-right:1px solid rgba(91,141,217,.12)}
+.rj-track{flex:1;overflow:hidden;position:relative}
+.rj-track::before,.rj-track::after{content:'';position:absolute;top:0;bottom:0;width:2.5rem;z-index:1}
+.rj-track::before{left:0;background:linear-gradient(90deg,#030509,transparent)}
+.rj-track::after{right:0;background:linear-gradient(-90deg,#030509,transparent)}
+.rj-inner{display:flex;align-items:center;gap:4rem;white-space:nowrap;will-change:transform;animation:rjs 32s linear infinite}
+@keyframes rjs{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.rj-text{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:rgba(91,141,217,.45);font-style:italic;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-heb">&#x05D1;&#x05BC;&#x05E0;&#x05B5;&#x05D9; &#x05D0;&#x05D5;&#x05B9;&#x05E8;</span>
+    <span class="nav-txt">Bnei Ohr</span>
+  </a>
+  <a href="leson.html" class="nav-back">&#8592; Espas Etid</a>
+</nav>
+
+<!-- ══ CONTENT ══ -->
+<div id="content" style="display:block">
+
+  <div class="rit-hero">
+    <span class="rit-eyebrow">&#x2721; Rityèl Fondatè — Oto-Inisyasyon Sakre</span>
+    <span class="rit-name-fr">Le Rituel de l'Alliance Bleue — Consécration du Vaisseau</span>
+    <h1 class="rit-title">Rityèl Pòtay <span>Alyans Ble</span> a</h1>
+    <span class="rit-heb">&#x05D1;&#x05B0;&#x05E8;&#x05B4;&#x05D9;&#x05EA; &#x05D4;&#x05B8;&#x05EA;&#x05B0;&#x05DB;&#x05B5;&#x05DC;&#x05EA; &#x05D4;&#x05B0;&#x05D8;&#x05B0;&#x05D4;&#x05D5;&#x05B9;&#x05E8;&#x05B8;&#x05D4;</span>
+    <p class="rit-intro">Rityèl fondatè Nivo 1 la — Reyon Ble. Ou pral konsakre veso fizik ou a kòm yon kanal Limyè, nan pite total liyaj Kabal ak Ginen an.</p>
+    <div class="rit-rule"></div>
+  </div>
+
+  <div class="rit-warning">
+    <div class="warning-box">
+      <span class="warning-icon">&#x26A0;&#xFE0F;</span>
+      <p class="warning-txt">Rityèl sa a se yon angajman serye devan Limyè San Fen an. Pa gen san, pa gen kontra ak lespri parazit. Sèlman koneksyon dirèk ak Ohr Ein Sof. Si ou pa pare, tounen vin fè li lè ou sera pare.</p>
+    </div>
+  </div>
+
+  <div class="rit-wrap">
+
+    <!-- ELEMAN OBLIGATWA -->
+    <div class="elements-section">
+      <span class="section-eyebrow">&#x2726; Prepare anvan ou kòmanse</span>
+      <div class="elements-grid">
+        <div class="element-item">
+          <span class="el-icon">&#x1F4A7;</span>
+          <div class="el-body">
+            <span class="el-name">Vè Dlo Klè + Ti Sèl Gwo Grenn</span>
+            <span class="el-desc">Netwayaj ak purifikasyon veso fizik la — Malkhut. Dlo a reprezante pite, sèl la reprezante pwoteksyon ak konsekrasyon.</span>
+          </div>
+        </div>
+        <div class="element-item">
+          <span class="el-icon">&#x1F56F;</span>
+          <div class="el-body">
+            <span class="el-name">Yon Bouji Blan oswa Ble</span>
+            <span class="el-desc">Limyè Keter k ap desann nan espas la. Bouji a reprezante prezans Divin ki ap temwen angajman ou a.</span>
+          </div>
+        </div>
+        <div class="element-item">
+          <span class="el-icon">&#x1F5E3;</span>
+          <div class="el-body">
+            <span class="el-name">Vibrasyon Sonik — Vwa</span>
+            <span class="el-desc">Ou pral vibre EHYEH (אהיה) pou koneksyon ak Sous la, ak ADONAI (אדני) pou ankraj sou tè a. Vwa ou se zouti sakre a.</span>
+          </div>
+        </div>
+        <div class="element-item">
+          <span class="el-icon">ס</span>
+          <div class="el-body">
+            <span class="el-name">Kativah — Trase Sèk Samekh</span>
+            <span class="el-desc">Ou pral trase yon gwo Sèk Limyè Ble nan lè a ak de dwèt ou — lèt Samekh (ס) — pou sele espas la anvan ou kòmanse.</span>
+          </div>
+        </div>
+        <div class="element-item">
+          <span class="el-icon">&#x1F4D6;</span>
+          <div class="el-body">
+            <span class="el-name">Sòm 91 — Lekti Sakre</span>
+            <span class="el-desc">Pou kase vye kòd ak parazit astral (Klippot) epi konekte ak Zansèt Limyè yo. Li l nan vwa ou, klèman ak entansyon.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-divider"><span>&#x2721;</span></div>
+
+    <!-- ETAP 1 — PURIFIKASYON -->
+    <div class="rit-step">
+      <div class="step-header">
+        <div class="step-num">1</div>
+        <div class="step-title">Purifikasyon Espas ak Veso a — Malkuth</div>
+      </div>
+      <div class="step-body">
+        <p>Chwazi yon espas trankil kote pèsonn p ap deranje ou. Mete bouji a devan ou epi limen l. Poze vè dlo ak sèl la akote bouji a.</p>
+        <p>Kanpe oswa chita, do dwat. Fèmen je ou. Pran twa (3) respirasyon pwofon — antre nan trankiltite, ekspire tansyon.</p>
+        <div class="viz-box">
+          <span class="viz-label">&#x1F4A1; Vizyalizasyon</span>
+          <p class="viz-text">Imajine yon limyè ble pwofon k ap desann soti nan syèl la, antre nan pòt tèt ou, epi kouvri tout kò ou tankou yon zèl pwotektè. Ou nan yon sfè Limyè — anyen ki pa Limyè pa ka antre.</p>
+        </div>
+        <p>Pran vè dlo a. Soufle twa (3) fwa dousman sou dlo a — voye entansyon purifikasyon ou nan dlo a. Bwè yon ti gout. Kite sèl la rété nan vè a.</p>
+      </div>
+    </div>
+
+    <div class="step-divider"><span>&#x2726;</span></div>
+
+    <!-- ETAP 2 — TRASE SAMEKH -->
+    <div class="rit-step">
+      <div class="step-header">
+        <div class="step-num">2</div>
+        <div class="step-title">Kativah — Sele Espas la ak Samekh</div>
+      </div>
+      <div class="step-body">
+        <p>Leve men dwat ou. Ak de (2) dwèt — endèks ak majè — trase yon gwo sèk nan lè a, nan direksyon solèy (gòch al dwat). Sa se lèt Samekh (ס) — sèk konplè — ki sele espas la kont tout pénétration ki pa Limyè.</p>
+        <div class="samekh-section">
+          <div class="samekh-canvas">
+            <span class="samekh-ring"></span>
+            <span class="samekh-ring2"></span>
+            <div class="samekh-circle">
+              <span class="samekh-letter">ס</span>
+            </div>
+          </div>
+          <p style="font-size:.82rem;color:rgba(91,141,217,.4);font-style:italic;margin-top:.8rem">Trase sèk sa a nan lè a ak de dwèt ou pandan w di fòmil la</p>
+          <button class="draw-btn" id="drawBtn" onclick="confirmDraw()">&#x2713; Mwen fin trase Sèk Samekh la</button>
+        </div>
+        <div class="prayer-box">
+          <p class="prayer-txt">Pandan w trase sèk la, di fò oswa nan kè w :<br><br>
+          <strong>« Nan non EHYEH ASHER EHYEH —<br>
+          Mwen sele espas sa a nan Limyè.<br>
+          Sa ki nan fènwa pa ka pénétre.<br>
+          Samekh — Sèk Konplè — Pwoteksyon Tout Kote. »</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-divider"><span>&#x2726;</span></div>
+
+    <!-- ETAP 3 — VIBRASYON NOM YO -->
+    <div class="rit-step">
+      <div class="step-header">
+        <div class="step-num">3</div>
+        <div class="step-title">Vibrasyon Non Divin yo — EHYEH ak ADONAI</div>
+      </div>
+      <div class="step-body">
+        <p>Vibrasyon an se pa lekti — se rezonnans. Vwa ou dwe fèt nan vant ou, monte nan pwatrin nan, rezonne nan tèt ou. Pran tan ou ant chak Non.</p>
+
+        <div class="prayer-box">
+          <span class="divine-name">אֶהְיֶה</span>
+          <span class="divine-name-latin">EHYEH</span>
+          <span class="divine-phonetic">Eh-heh-YEH · 7 fwa</span>
+          <p class="prayer-txt" style="text-align:center;margin-top:.8rem">Souverènte — Koneksyon ak Sous la — Keter<br>
+          <em>« Mwen Se — Mwen Egziste — Mwen Konekte ak Sous Tout Bagay »</em></p>
+        </div>
+
+        <div class="viz-box">
+          <span class="viz-label">&#x1F4A1; Pandan vibrasyon EHYEH la</span>
+          <p class="viz-text">Imajine yon lumyè blan kris k ap desann soti anlè — pase nan kouwòn tèt ou, antre nan kè ou. Ou konekte dirèkteman ak Ohr Ein Sof — Limyè San Fen an.</p>
+        </div>
+
+        <p style="margin-top:1.2rem">Apre yon moman silans, pase nan dezyèm Non an :</p>
+
+        <div class="prayer-box">
+          <span class="divine-name">אֲדֹנָי</span>
+          <span class="divine-name-latin">ADONAI</span>
+          <span class="divine-phonetic">Ah-doh-NAI · 7 fwa</span>
+          <p class="prayer-txt" style="text-align:center;margin-top:.8rem">Ankraj — Souverènte sou Tè a — Malkhut<br>
+          <em>« Mèt la — Fòs sou Tè a — Limyè nan Matè a »</em></p>
+        </div>
+
+        <div class="viz-box">
+          <span class="viz-label">&#x1F4A1; Pandan vibrasyon ADONAI la</span>
+          <p class="viz-text">Imajine rasin ki soti nan pye ou yo, antre nan tè a, konekte ak fòs Tè a. Ou se yon kanal — Limyè antre anlè, mache nan kò ou, ankre nan Tè a.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-divider"><span>&#x2726;</span></div>
+
+    <!-- ETAP 4 — SÒOM 91 -->
+    <div class="rit-step">
+      <div class="step-header">
+        <div class="step-num">4</div>
+        <div class="step-title">Lekti Sakre — Sòm 91</div>
+      </div>
+      <div class="step-body">
+        <p>Li Sòm 91 la nan vwa ou — klèman, dousman, ak entansyon. Chak vèsèt se yon kòd ki kase parazit astral ak Klippot, epi ki konekte ou ak Zansèt Limyè yo (Sajès Ginen an).</p>
+        <div class="psaume-box">
+          <span class="psaume-ref">&#x1F4DC; Sòm 91 — Psalm 91 — Tehilim צ״א</span>
+          <p class="psaume-txt">
+            « Sa ki rete nan abri Trèwotan, ki repose anba lonbraj Toupisan an —<br>
+            li di pou SENYÈ a : Refij mwen ak pwoteksyon mwen,<br>
+            Bondye mwen, mwen mete konfyans mwen nan ou.<br><br>
+            Se li menm ki delivre ou anba pèlen chasè a,<br>
+            anba maladi ki ravaje a.<br>
+            Li kouvri ou ak plim li yo,<br>
+            anba zèl li ou jwenn refij...<br><br>
+            <em>— Li Sòm 91 konplè a nan Bib ou a —</em><br><br>
+            ...Pa gen moun ki ka rive jwenn ou,<br>
+            pa gen malè ki ka frape tant ou an.<br>
+            L ap bay zanj li yo lòd pou yo veye sou ou,<br>
+            pou yo pwoteje ou nan tout chemen ou yo. »
+          </p>
+        </div>
+        <p>Apre lekti a, rete nan silans 1-2 minit. Santi koneksyon an. Zansèt Limyè yo la.</p>
+      </div>
+    </div>
+
+    <div class="step-divider"><span>&#x2721;</span></div>
+
+    <!-- TRIPLE SÈMAN -->
+    <div class="seman-section">
+      <span class="seman-eyebrow">&#x2721; Triple Alyans Bnei Ohr — Sèman Fondatè a</span>
+
+      <div class="seman-item">
+        <span class="seman-name">I — L'Ishma · Altruism</span>
+        <p class="seman-txt">« Mwen pran angajman pou m sèvi ak konesans sa a sèlman pou m ka bay, pou m ka pote limyè, ak pou m ka geri, san okenn enterè egoyis oswa dezi pou m kontwole lòt moun. »</p>
+      </div>
+
+      <div class="seman-item">
+        <span class="seman-name">II — Arvut · Solidarite Fratènèl</span>
+        <p class="seman-txt">« Mwen pwomèt pou m konsidere chak pitit Limyè tankou tèt mwen, pou nou ka bati yon sèl Veso k ap travay pou delivrans ak rekonstriksyon nasyon nou. »</p>
+      </div>
+
+      <div class="seman-item">
+        <span class="seman-name">III — Pite Liyaj la</span>
+        <p class="seman-txt">« Mwen pran angajman pou m pa janm melanje sajès sa a ak vye pratik fènwa, maji nwa, oswa pratik senkretik k ap sal rasin Ginen an. »</p>
+      </div>
+    </div>
+
+    <!-- SIGNATURE -->
+    <div class="signature-area">
+      <span class="sig-label">&#x270F; Siyen angajman ou a — ekri non ou anba a</span>
+      <input type="text" class="sig-name-input" id="sigName"
+        placeholder="Non ou — kòm temwen devan Ohr Ein Sof"
+        oninput="checkReady()"/>
+    </div>
+
+    <!-- FINAL BUTTON -->
+    <div class="final-section">
+      <span class="final-eyebrow">&#x2726; Lè ou pare — fèmen je ou yon dènye fwa. Respire. Epi klike.</span>
+      <button class="final-btn" id="finalBtn" onclick="finishRitual()" disabled>
+        <span style="font-size:1.1rem">&#x2721;</span>
+        Mwen fini rityèl la — Mwen pare pou m antre nan Pòtay la
+      </button>
+
+      <div class="confirm-box" id="confirmBox">
+        <span class="confirm-seal">&#x2721;</span>
+        <div class="confirm-title">Konsekrasyon Aksepte</div>
+        <p class="confirm-txt">
+          Veso ou a konsekre.<br>
+          Liyaj Chilot la temwen angajman ou.<br>
+          Alyans Ble a sele — nan non EHYEH ASHER EHYEH.<br><br>
+          <em>Bienveni nan Bnei Ohr, pitit Limyè.</em>
+        </p>
+        <a href="leson.html" class="confirm-link">&#x2192; Antre nan Modil Etid yo</a>
+      </div>
+    </div>
+
+  </div><!-- /rit-wrap -->
+</div><!-- /content -->
+
+<div class="rj-bar">
+  <div class="rj-lbl">&#x2721; Alyans Ble</div>
+  <div class="rj-track"><div class="rj-inner" id="rjInner"></div></div>
+</div>
+
+<script>
+// Stars
+(function(){var s=document.getElementById('stars');for(var i=0;i<80;i++){var el=document.createElement('div');el.className='star';var sz=Math.random()*1.2+.3;var col=Math.random()>.7?'#5b8dd9':'#d4af37';el.style.cssText='width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;background:'+col+';--d:'+(Math.random()*6+2)+'s;--o:'+(Math.random()*.35+.05)+';';s.appendChild(el);}})();
+
+// Ticker
+(function(){var q=['EHYEH ASHER EHYEH — Mwen Se Sa Mwen Se. Sous tout Limyè.','Alyans Ble a pa yon sereman vid — se yon transformasyon reyèl.','Veso ki konsekre ka resevwa Limyè ki pa ka antre nan yon veso ki pa prepare.','Samekh — Sèk Konplè — Pwoteksyon san fant, san kòmansman, san fen.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(91,141,217,0.2);margin:0 2rem">&#x2726;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
+
+// Gate
+const SECRETS = ['alyansble','alyans ble','ALYANS BLE','AlyAnsBle','alyans-ble','portail777','portail 777'];
+var drawDone = false;
+
+function checkPass(){
+  const val=document.getElementById('pwInput').value.trim();
+  const err=document.getElementById('gateError');
+  if(SECRETS.map(s=>s.toLowerCase()).includes(val.toLowerCase())){
+    const gate=document.getElementById('gate');
+    gate.style.transition='opacity .8s ease';
+    gate.style.opacity='0';
+    setTimeout(()=>{
+      gate.style.display='none';
+      document.getElementById('content').style.display='block';
+      document.body.classList.add('unlocked');
+    },800);
+  } else {
+    err.classList.add('show');
+    document.getElementById('pwInput').style.borderColor='rgba(200,80,80,.5)';
+    setTimeout(()=>{err.classList.remove('show');document.getElementById('pwInput').style.borderColor='';},3000);
+  }
+}
+document.getElementById('pwInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPass();});
+function togglePw(){const i=document.getElementById('pwInput');i.type=i.type==='password'?'text':'password';}
+
+// Draw Samekh confirm
+function confirmDraw(){
+  drawDone=true;
+  const btn=document.getElementById('drawBtn');
+  btn.classList.add('done');
+  btn.textContent='✓ Samekh trace — espas la sele';
+  btn.disabled=true;
+  checkReady();
+}
+
+// Check all ready
+function checkReady(){
+  const name=document.getElementById('sigName').value.trim();
+  const btn=document.getElementById('finalBtn');
+  btn.disabled=!(drawDone && name.length>1);
+}
+
+// Finish ritual
+function finishRitual(){
+  const btn=document.getElementById('finalBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span style="font-size:1.1rem;animation:spin 1s linear infinite;display:inline-block">&#x2721;</span> &nbsp; Konsekrasyon an ap fèt...';
+  setTimeout(()=>{
+    btn.style.display='none';
+    document.getElementById('confirmBox').style.display='block';
+    document.getElementById('confirmBox').scrollIntoView({behavior:'smooth',block:'center'});
+  },2500);
+}
+</script>
+</body>
+</html>
