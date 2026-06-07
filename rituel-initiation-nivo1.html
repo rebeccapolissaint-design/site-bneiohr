@@ -22,12 +22,6 @@ body{background:#030509;color:#e8e0d0;font-family:'Cormorant Garamond',serif;ove
 .timer-fill{height:100%;background:linear-gradient(to right,rgba(91,141,217,.4),#5b8dd9);width:0%;transition:width 1s linear;border-radius:2px}
 .timer-count{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.15em;color:rgba(91,141,217,.5);flex-shrink:0;min-width:3.5rem;text-align:right}
 .timer-count.done{color:rgba(100,200,100,.6)}
-.step-check-wrap{display:flex;align-items:flex-start;gap:.8rem;margin-top:1rem;padding:.9rem 1.1rem;border:1px solid rgba(91,141,217,.12);background:rgba(91,141,217,.02);cursor:pointer}
-.step-check-wrap input[type=checkbox]{width:18px;height:18px;min-width:18px;border:1px solid rgba(91,141,217,.3);background:transparent;appearance:none;-webkit-appearance:none;cursor:pointer;position:relative;transition:all .3s;margin-top:2px}
-.step-check-wrap input[type=checkbox]:checked{background:rgba(91,141,217,.3);border-color:#5b8dd9}
-.step-check-wrap input[type=checkbox]:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5b8dd9;font-size:.7rem}
-.step-check-label{font-size:.88rem;font-style:italic;color:rgba(91,141,217,.55);line-height:1.6;cursor:pointer}
-.step-check-label strong{color:rgba(91,141,217,.75);font-style:normal}
 .ready-status{text-align:center;margin:.8rem 0;font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(200,80,80,.5);transition:color .3s}
 .ready-status.ok{color:rgba(100,200,100,.6)}
 
@@ -280,10 +274,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     </div>
 
 
-        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
-          <input type="checkbox" id="cb1" onchange="checkReady()"/>
-          <label class="step-check-label" for="cb1">&#x2713; Mwen fin fè <strong>purifikasyon an</strong> — mwen bwè dlo ak sèl la, mwen vizualize sfè ble a</label>
-        </div>
+        
 
     <div class="step-divider"><span>&#x2726;</span></div>
 
@@ -317,10 +308,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     </div>
 
 
-        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
-          <input type="checkbox" id="cb2" onchange="checkReady()"/>
-          <label class="step-check-label" for="cb2">&#x2713; Mwen fin <strong>trase Sèk Samekh</strong> nan lè a epi pwononse fòmil selasyon an</label>
-        </div>
+        
 
     <div class="step-divider"><span>&#x2726;</span></div>
 
@@ -364,10 +352,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     </div>
 
 
-        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
-          <input type="checkbox" id="cb3" onchange="checkReady()"/>
-          <label class="step-check-label" for="cb3">&#x2713; Mwen fin vibre <strong>EHYEH 7 fwa</strong> ak <strong>ADONAI 7 fwa</strong> — mwen santi rezonnans la</label>
-        </div>
+
 
     <div class="step-divider"><span>&#x2726;</span></div>
 
@@ -401,10 +386,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
     </div>
 
 
-        <div class="step-check-wrap" onclick="this.querySelector('input').click()">
-          <input type="checkbox" id="cb4" onchange="checkReady()"/>
-          <label class="step-check-label" for="cb4">&#x2713; Mwen fin li <strong>Sòm 91 konplè a</strong> nan vwa mwen — mwen santi koneksyon ak Zansèt Limyè yo</label>
-        </div>
+        
 
     <div class="step-divider"><span>&#x2721;</span></div>
 
