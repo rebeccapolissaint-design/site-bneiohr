@@ -474,27 +474,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 (function(){var q=['EHYEH ASHER EHYEH — Mwen Se Sa Mwen Se. Sous tout Limyè.','Alyans Ble a pa yon sereman vid — se yon transformasyon reyèl.','Veso ki konsekre ka resevwa Limyè ki pa ka antre nan yon veso ki pa prepare.','Samekh — Sèk Konplè — Pwoteksyon san fant, san kòmansman, san fen.'];var t=new Date();var txt=q[(t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate())%q.length];var sep='<span style="color:rgba(91,141,217,0.2);margin:0 2rem">&#x2726;</span>';var el=document.getElementById('rjInner');if(el)el.innerHTML='<span class="rj-text">'+txt+'</span>'+sep+'<span class="rj-text">'+txt+'</span>'+sep;})();
 
 // ── TIMER 20 minutes ──
-const TOTAL_SEC = 5 * 60; // 300 secondes
-var elapsed = 0;
-var timerDone = false;
-var timerInterval = setInterval(function(){
-  elapsed++;
-  var pct = Math.min(elapsed / TOTAL_SEC * 100, 100);
-  document.getElementById('timerFill').style.width = pct + '%';
-  var rem = Math.max(TOTAL_SEC - elapsed, 0);
-  var mm = String(Math.floor(rem/60)).padStart(2,'0');
-  var ss = String(rem%60).padStart(2,'0');
-  var counter = document.getElementById('timerCount');
-  if(rem === 0 && !timerDone){
-    timerDone = true;
-    counter.textContent = '✓ Bon';
-    counter.classList.add('done');
-    clearInterval(timerInterval);
-    checkReady();
-  } else if(rem > 0){
-    counter.textContent = mm+':'+ss;
-  }
-}, 1000);
+var timerDone = true; // Timer désactivé
 
 // Draw Samekh confirm
 function confirmDraw(){
