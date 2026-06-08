@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Analiz sou Esans Kabal la — Bnei Ohr</title>
+<title>Fondasyon Metafizik Bnei Ohr — Bnei Ohr</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -25,9 +25,11 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:sp
 
 /* ── PAGE HERO ── */
 .page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
-.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:1rem}
-.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:1rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem;font-style:italic}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
 .hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
 .hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
 .hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
 .meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
@@ -36,47 +38,60 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:sp
 /* ── ARTICLE BODY ── */
 .article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
 
-/* Intro block */
 .intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
 .intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
 
-/* Section headers */
 .sec-head{margin:3.5rem 0 1.5rem}
 .sec-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,.45);text-transform:uppercase;display:block;margin-bottom:.6rem}
-.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.1rem,3vw,1.6rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
 .sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
 
-/* Paragraph */
 .para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
 .para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
 
-/* Questions block */
-.questions-block{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.14);padding:1.8rem;margin:2rem 0}
-.q-intro{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1.2rem}
-.q-item{display:flex;align-items:flex-start;gap:1rem;padding:.7rem 0;border-bottom:1px solid rgba(212,175,55,.08)}
-.q-item:last-child{border-bottom:none}
-.q-num{font-family:'Cinzel',serif;font-size:.9rem;color:rgba(212,175,55,.5);flex-shrink:0;min-width:1.5rem}
-.q-text{font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.7}
+/* Definition cards */
+.def-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.8rem 0}
+@media(max-width:580px){.def-grid{grid-template-columns:1fr}}
+.def-card{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.14);padding:1.5rem;position:relative}
+.def-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,rgba(212,175,55,.4),transparent)}
+.def-word{font-family:'Noto Serif Hebrew',serif;font-size:.85rem;color:rgba(212,175,55,.4);margin-bottom:.3rem}
+.def-title{font-family:'Cinzel',serif;font-size:.95rem;color:#d4af37;margin-bottom:.6rem}
+.def-q{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.35);text-transform:uppercase;margin-bottom:.4rem}
+.def-text{font-size:.97rem;font-style:italic;color:rgba(255,255,255,.6);line-height:1.7}
+
+/* Metaphor block */
+.metaphor-block{background:rgba(100,80,200,.04);border:1px solid rgba(180,130,220,.15);border-left:3px solid rgba(180,130,220,.35);padding:1.8rem;margin:2rem 0}
+.metaphor-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(180,130,220,.5);text-transform:uppercase;margin-bottom:1rem}
+.metaphor-row{display:flex;align-items:center;gap:1rem;margin-bottom:.7rem;flex-wrap:wrap}
+.metaphor-icon{font-size:1.5rem;flex-shrink:0;min-width:2rem;text-align:center}
+.metaphor-text{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.7}
+.metaphor-text strong{color:#d4af37;font-weight:400}
 
 /* Pull quote */
 .pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
 .pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
 .pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
 
-/* Concept card */
-.concept-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
-@media(max-width:600px){.concept-row{grid-template-columns:1fr}}
-.concept-card{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.12);padding:1.4rem}
-.cc-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.5rem}
-.cc-title{font-family:'Cinzel',serif;font-size:.95rem;color:#d4af37;margin-bottom:.5rem}
-.cc-text{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.55);line-height:1.7}
+/* Key insight */
+.key-insight{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.2);padding:1.8rem;margin:2rem 0;text-align:center}
+.ki-icon{font-size:2rem;margin-bottom:.8rem;display:block}
+.ki-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.ki-text{font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.75);line-height:1.9}
+.ki-text strong{color:#d4af37;font-style:normal}
 
-/* Bottom nav */
+/* NB block */
+.nb-block{background:rgba(100,80,50,.08);border:1px solid rgba(212,175,55,.12);padding:1.4rem 1.6rem;margin-top:3rem}
+.nb-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.5rem}
+.nb-text{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.45);line-height:1.7}
+
 .nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
 .nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
 .nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
 
-footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1;margin-top:0}
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
 .footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
 .footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
 </style>
@@ -95,102 +110,116 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,
 </nav>
 
 <section class="page-hero">
-<p class="hero-cat">✡ Étude Kabbalistique — Bnei Ohr ✡</p>
-<h1 class="hero-title">Analiz sou <span>Esans Kabal la</span><br/>Ant Orijin, Definisyon ak Dimansyon Espirityèl</h1>
+<p class="hero-cat">✡ Fondasyon Metafizik — Bnei Ohr ✡</p>
+<p class="hero-series">Seri: Fondasyon Metafizik Akademi Bnei Ohr</p>
+<h1 class="hero-title">Esans ak Sibstans Lòm</h1>
+<p class="hero-subtitle">Sekrè Dezi pou Resevwa a</p>
 <div class="hero-divider"></div>
 <div class="hero-meta">
   <span class="meta-item">Kabal</span>
   <span class="meta-sep">✦</span>
-  <span class="meta-item">Filozofi</span>
+  <span class="meta-item">Metafizik</span>
   <span class="meta-sep">✦</span>
-  <span class="meta-item">Tradisyon Ezoterisk</span>
+  <span class="meta-item">Fondasyon</span>
 </div>
 </section>
 
 <main class="article-wrap">
 
 <div class="intro-block">
-<p class="intro-text">Pou nou konprann reyalite ki antoure egzistans nou, li esansyèl pou nou tounen nan sous konesans yo. Souvan, tèm "Kabal" la se objè anpil move entèpretasyon, kote anpil moun asosye l ak pratik fènwa oswa rechèch materyèl sèlman. Sepandan, yon analiz apwofondi montre <strong>Kabal la pa ni yon relijyon, ni yon senp kwayans popilè</strong>. Li prezante tèt li kòm yon syans metafizik — yon etid sou "Mond Koz la" ki vize konprann fòs envizib k ap gouvène linivè ak lavi moun.</p>
+<p class="intro-text">Nan kadestri syans koneksyon ak sajès pwofon n ap etidye nan Akademi Bnei Ohr, premye etap pou yon moun konprann tèt li ak reyalite a, se mete dwèt li sou sa li ye tout bon vre nan nivo ki pi pwofon an. Pou nou reyalize sa, nou dwe separe <strong>de gwo poto mitan</strong> : Esans ak Sibstans.</p>
 </div>
 
+<!-- SECTION 1 -->
 <div class="sec-head">
-<span class="sec-label">✡ Rasin ak Siyifikasyon ✡</span>
-<h2 class="sec-title">Etimoloji ak Definisyon — Syans Resevwa a</h2>
+<span class="sec-label">✡ Konsèp Fondamantal ✡</span>
+<h2 class="sec-title">1 — Kisa yon Esans ak yon Sibstans ye ?</h2>
 <div class="sec-divider"></div>
 </div>
 
-<p class="para">Mo "<strong>Kabal</strong>" la soti nan rasin ebre <em>Lekabel</em> ki vle di "<strong>Resevwa</strong>". Kontrèman ak syans anpirik ki limite yo nan obsèvasyon matyè ak fenomèn fizik, Kabal la konsantre sou mekanis resepsyon limyè espirityèl la. Li poze twa kesyon fondamantal :</p>
+<p class="para">Anvan nou gade lòm, nou dwe konprann zouti sa yo :</p>
 
-<div class="questions-block">
-<p class="q-intro">✡ Twa Kesyon Fondamantal ✡</p>
-<div class="q-item">
-  <span class="q-num">I</span>
-  <p class="q-text">Kisa n ap resevwa ?</p>
+<div class="def-grid">
+<div class="def-card">
+  <p class="def-word">— L'Essence</p>
+  <p class="def-title">Esans la</p>
+  <p class="def-q">Kesyon li reponn</p>
+  <p class="def-text">Se idantite fondamantal yon bagay, fòmil orijinal li, sa ki fè li ye sa li ye a e san sa li pa ta ka egziste. <em>Kisa sa ye menm menm ?</em></p>
 </div>
-<div class="q-item">
-  <span class="q-num">II</span>
-  <p class="q-text">Ki metodoloji pou nou resevwa ?</p>
-</div>
-<div class="q-item">
-  <span class="q-num">III</span>
-  <p class="q-text">Poukisa veso imen an sanble pa ka kenbe plenitid sa a ?</p>
+<div class="def-card">
+  <p class="def-word">— La Substance</p>
+  <p class="def-title">Sibstans la</p>
+  <p class="def-q">Wòl li</p>
+  <p class="def-text">Se twal, matris, oswa sipò vibratwa ki pèmèt Esans sa a pran fòm pou l ka manifeste nan reyalite a.</p>
 </div>
 </div>
 
-<p class="para">Kabal la pa chèche modifye mond ekstèn lan. Li vize <strong>transfòmasyon enteryè moun nan</strong> pou l ka vin yon reseptè ki adapte ak lwa lanati yo.</p>
-
+<!-- SECTION 2 -->
 <div class="sec-head">
-<span class="sec-label">✡ Kondisyon Imen an ✡</span>
-<h2 class="sec-title">Pwoblèm Kondisyon Imen an — Veso a ak Dezi a</h2>
+<span class="sec-label">✡ Idantite Primòdyal ✡</span>
+<h2 class="sec-title">2 — Idantite Fondamantal Lòm : Yon Dezi pou Resevwa</h2>
 <div class="sec-divider"></div>
 </div>
 
-<p class="para">Daprè sajès sa a, soufrans limanite soti nan yon dezekilib ant "<strong>Limyè</strong>" (savledi kreyatris la) ak "<strong>Veso</strong>" a (savledi nanm nan). Nan eta aktyèl li, dezi imen an souvan limite nan yon nivo egoyis, sa ki rann li enkapab pou l kenbe plenitid la.</p>
+<p class="para">Atravè bousòl sa a, nou dekouvri verite primòdyal la : Nan esans li ak nan sibstans li, <strong>lòm se yon Dezi pou Resevwa</strong> — <em>Ratzon Lezakbel</em>.</p>
+
+<p class="para">Poukisa nou di sa ? Paske sèl Fòs ki gen "Dezi pou Bay" kòm esans, se <strong>Sous la</strong> — Kreyatè a, Limyè Pi a. Kreyatè a se altrouyis absoli, Li pa gen okenn mank, Li se don tou kout.</p>
 
 <div class="pull-quote">
-<p class="pq-text">Metafò "gode ki gen twou nan fon l" la eksplike poukisa akimilasyon materyèl — lajan, pouvwa — pa janm rive satisfè swaf enteryè moun nan. Objektif Kabal la se <strong>repare veso sa a</strong>.</p>
+<p class="pq-text">Pou Limyè Kreyatè a te ka bay ak pataje bonte L, Li te blije kreye yon bagay ki opoze nèt ak Li : yon <strong>Veso</strong>, yon vakyòm, yon mank ki pare pou kontni an. Veso sa a — se Lòm.</p>
 </div>
 
-<p class="para">Kabal la vize soti nan yon nivo konsyans "<strong>animal</strong>" (ki baze sou siviv ak satisfaksyon pèsonèl) pou rive nan nivo "<strong>Adan</strong>" — moun nan ki aji an amoni ak Kreyatè a oswa <em>Ha-Boreh</em>.</p>
+<p class="para">Sa vle di :</p>
 
-<div class="concept-row">
-<div class="concept-card">
-  <p class="cc-label">Nivo Debaz</p>
-  <p class="cc-title">Konsyans "Animal"</p>
-  <p class="cc-text">Viv pou siviv ak satisfaksyon pèsonèl — dezi k ap dominen san konpreyansyon</p>
+<div class="def-grid">
+<div class="def-card">
+  <p class="def-word">— Esans</p>
+  <p class="def-title">Esans lòm = Dezi pou Resevwa</p>
+  <p class="def-text">Se idantite lojik li nan Panse Kreyasyon an. Se sa ki separe l ak Kreyatè a epi ki fè l egziste kòm kreyati endepandan. Si ou wete dezi pou resevwa a, lòm ap fonn anndan Limyè a.</p>
 </div>
-<div class="concept-card">
-  <p class="cc-label">Nivo Siperyè</p>
-  <p class="cc-title">Nivo "Adan"</p>
-  <p class="cc-text">Moun nan ki aji an amoni ak Kreyatè a — veso ki vin reseptè veritab Limyè a</p>
+<div class="def-card">
+  <p class="def-word">— Sibstans</p>
+  <p class="def-title">Sibstans lòm = Dezi pou Resevwa</p>
+  <p class="def-text">Se "ajil espirityèl" ak enèji ki konpoze tout estrikti lòm nan — depi nan kò mantal li rive nan kò fizik li. Se materyèl anvan fòs kreyasyon an itilize.</p>
 </div>
 </div>
 
+<div class="metaphor-block">
+<p class="metaphor-label">✡ Metafò Vaz la ✡</p>
+<div class="metaphor-row">
+  <span class="metaphor-icon">🏺</span>
+  <p class="metaphor-text">Imajine yon Atizan ki fè yon vaz pou l mete dlo. <strong>Esans vaz la</strong> se kapasite li genyen pou l "vid pou l ka kenbe kontni" — li pa ka gen menm esans ak dlo a.</p>
+</div>
+<div class="metaphor-row">
+  <span class="metaphor-icon">🪨</span>
+  <p class="metaphor-text"><strong>Sibstans vaz la</strong> se ajil la ki bay vid sa a fòm fizik.</p>
+</div>
+<div class="metaphor-row">
+  <span class="metaphor-icon">💧</span>
+  <p class="metaphor-text">Nan menm fason an : <strong>Kreyatè a = Dlo a</strong> (Limyè k ap bay la). <strong>Lòm = Vaz la</strong> (Esans ak Sibstans li se dezi pou l kenbe Limyè sa a).</p>
+</div>
+</div>
+
+<!-- SECTION 3 -->
 <div class="sec-head">
-<span class="sec-label">✡ Trajektwa Istorik ✡</span>
-<h2 class="sec-title">Yon Trajektwa Istorik ak Evolisyon Konsyans</h2>
+<span class="sec-label">✡ Travay Espirityèl ✡</span>
+<h2 class="sec-title">3 — Soti nan Nati Otomatik pou rive nan Koneksyon an</h2>
 <div class="sec-divider"></div>
 </div>
 
-<p class="para">Sajès Kabal la pa yon dekouvèt resan. Li se yon <strong>transmisyon ki soti depi nan premye etap konsyans imen an</strong> (Adan), ki pase pa patriyak tankou Abraram ak Moyiz. Si konesans sa a te rete sekrè pandan plizyè syèk, se paske nivo devlopman kolektif limanite a potko pèmèt yon konpreyansyon total sou lwa sa yo.</p>
+<p class="para">Poutèt Esans ak Sibstans lòm se yon dezi pou resevwa, <strong>Nati li otomatik</strong> (Ego a) pouse l pou l toujou ap rale sou tèt li nan mond fizik sa a. Se la tout soufrans ak sansasyon vid la soti — paske veso a lwen Limyè a.</p>
 
-<p class="para">Jodi a, nan yon epòk kriz mondyal ak kriz egzistansyèl, nesesite pou nou retounen nan sous sa a vin pi ijan. Lè mwayen materyèl yo pa ka reponn ak kriz nanm nan, se lè sa a moun nan kòmanse chèche "Limyè" ki ka ranpli vid enteryè li a.</p>
+<p class="para">Lè nou reyalize sa, nou kenbe Esans pa nou (Veso a), men nou vin gen yon fòm ki aliyen nèt ak Esans Kreyatè a. Se sa nou rele <strong>Lwa Egalite de Fòm</strong> — gwo pòt ki louvri sou Limyè ak Koneksyon pèmanan an.</p>
 
-<div class="sec-head">
-<span class="sec-label">✡ Aplikasyon Pratik ✡</span>
-<h2 class="sec-title">Kabal nan Kad Bnei Ohr — Yon Aprantisaj Pratik</h2>
-<div class="sec-divider"></div>
-</div>
-
-<p class="para">Nan kad yon lekòl sajès tankou Bnei Ohr, etid Kabal la pa limite nan teyori abstrè. Li se yon <strong>aprantisaj pratik sou Lwa Lanati yo</strong>. Lè yon moun rive dekode lwa sa yo, li sispann yon viktim sikonstans pou l vin yon aktè konsyan nan pwòp evolisyon pa l.</p>
-
-<div class="pull-quote">
-<p class="pq-text">Se nan konesans sa a nou jwenn kle pou nou transfòme tèt nou e, finalman, vin <strong>Pitit Limyè</strong> toutbon.</p>
+<div class="key-insight">
+<span class="ki-icon">✡</span>
+<p class="ki-label">Travay Elèv la — Chaver</p>
+<p class="ki-text">Travay <strong>Chaver</strong> (elèv) nan Akademi Bnei Ohr, se pa detwi Esans li — nou pa ka sispann dezi pou nou resevwa, paske se sa nou ye. Travay la se <strong>chanje Entansyon</strong> k ap dirije dezi sa a : aprann kijan pou nou <em>Resevwa nan entansyon pou nou Bay</em> — Resevwa pou fè Sous la plezi.</p>
 </div>
 
 <div class="nav-bottom">
-<a href="etudes.html" class="nav-btn">← Retounen nan Études yo</a>
-<a href="etude-kabal-fondasyon.html" class="nav-btn">Étude II →</a>
+<a href="etude-kabal-esans.html" class="nav-btn">← Étude I</a>
+<a href="etudes.html" class="nav-btn">Tout Études →</a>
 </div>
 
 </main>
@@ -212,7 +241,7 @@ c.appendChild(s);
 })();
 </script>
 
-<!-- ✡ GID OHR — Asistan IA Bnei Ohr ✡ -->
+<!-- ✡ GID OHR ✡ -->
 <script src="/gid-ohr-config.js"></script>
 <div id="gid-ohr-widget">
   <button id="gid-ohr-toggle" aria-label="Ouvri Gid Ohr">
@@ -230,7 +259,7 @@ c.appendChild(s);
     </div>
     <div class="gid-messages" id="gidMessages">
       <div class="gid-msg gid-msg-bot">
-        <div class="gid-bubble">Shalom ! Mwen se <strong>Gid Ohr</strong> — konpanyen etid ou nan Akademi Bnei Ohr. Ou ka poze m kesyon sou Kabal, Sefirot, Vodou Ayisyen, Zohar, ak anpil lòt sijè. Kijan mwen ka ede w jodi a ? ✡</div>
+        <div class="gid-bubble">Shalom ! Mwen se <strong>Gid Ohr</strong> — konpanyen etid ou nan Akademi Bnei Ohr. Kijan mwen ka ede w jodi a ? ✡</div>
       </div>
     </div>
     <div class="gid-input-area">
@@ -286,7 +315,7 @@ c.appendChild(s);
   var input=document.getElementById('gidInput');
   var sendBtn=document.getElementById('gidSend');
   var history=[];
-  var SYSTEM="Tu es Gid Ohr, l'assistant spirituel et compagnon d'etude de l'Academie Bnei Ohr — une ecole esoterique haitienne fondee par Chilot. Bnei Ohr signifie Enfants de la Lumiere en hebreu. L'ecole synthetise la Kabbale classique, le Zohar, l'Etz Chaim, le Vodou haitien, la philosophie des Lwa, l'Hermetisme et le Symbolisme universel.\n\nTON ROLE : Repondre avec chaleur, patience et profondeur. Tu es un compagnon d'etude bienveillant — jamais condescendant, toujours encourageant.\n\nLANGUE : Reponds toujours dans la langue que l'utilisateur emploie. Creole haitien si l'utilisateur ecrit en creole, francais si en francais, anglais si en anglais.\n\nSUJETS : Les 10 Sefirot, l'Arbre de Vie, le Zohar, le Vodou haitien et les Lwa, les correspondances Sefirot-Lwa, la Gematria, l'Hermetisme, les rituels et pratiques spirituelles.\n\nSTYLE : Chaleureux, patient, comme un bon ami savant.";
+  var SYSTEM="Tu es Gid Ohr, l'assistant spirituel et compagnon d'etude de l'Academie Bnei Ohr. Reponds avec chaleur et profondeur. Langue : reponds dans la langue de l'utilisateur.";
   toggle.addEventListener('click',function(){widget.classList.toggle('gid-widget-open');if(widget.classList.contains('gid-widget-open'))setTimeout(function(){input.focus();},300);});
   input.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}});
   input.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
@@ -295,7 +324,7 @@ c.appendChild(s);
   function addMsg(text,role){var div=document.createElement('div');div.className='gid-msg gid-msg-'+role;var bub=document.createElement('div');bub.className='gid-bubble';bub.innerHTML=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');div.appendChild(bub);msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;}
   function showTyping(){var div=document.createElement('div');div.className='gid-msg gid-msg-bot';div.id='gid-typing';var bub=document.createElement('div');bub.className='gid-bubble gid-typing';bub.innerHTML='<span></span><span></span><span></span>';div.appendChild(bub);msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;}
   function removeTyping(){var t=document.getElementById('gid-typing');if(t)t.remove();}
-  async function callAPI(){try{var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':window.GID_OHR_API_KEY||'','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM,messages:history})});var data=await res.json();var reply=(data.content&&data.content[0])?data.content[0].text:'Mwen eskize, yon ere te pase. Eseye ankò.';removeTyping();history.push({role:'assistant',content:reply});addMsg(reply,'bot');}catch(e){removeTyping();addMsg('Mwen eskize — koneksyon an pa mache kounye a. Eseye ankò nan yon ti moman.','bot');}sendBtn.disabled=false;}
+  async function callAPI(){try{var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':window.GID_OHR_API_KEY||'','anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM,messages:history})});var data=await res.json();var reply=(data.content&&data.content[0])?data.content[0].text:'Mwen eskize, yon ere te pase.';removeTyping();history.push({role:'assistant',content:reply});addMsg(reply,'bot');}catch(e){removeTyping();addMsg('Mwen eskize — koneksyon an pa mache kounye a.','bot');}sendBtn.disabled=false;}
 })();
 </script>
 </body>
