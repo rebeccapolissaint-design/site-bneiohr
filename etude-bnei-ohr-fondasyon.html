@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fondasyon Metafizik Akademi Bnei Ohr — Esans, Sibstans ak Nati Bondye</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem;font-style:italic}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,.45);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+.trinite-grid{display:grid;grid-template-columns:1fr;gap:1.2rem;margin:2rem 0}
+.trinite-card{background:rgba(212,175,55,.03);border:1px solid rgba(212,175,55,.14);padding:1.5rem;position:relative}
+.trinite-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,rgba(212,175,55,.4),transparent)}
+.tc-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:rgba(212,175,55,.35);display:block;margin-bottom:.3rem}
+.tc-term{font-family:'Cinzel',serif;font-size:.85rem;color:#d4af37;display:block;margin-bottom:.5rem}
+.tc-def{font-size:1rem;font-style:italic;color:rgba(255,255,255,.6);line-height:1.8}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+.metaphor-block{background:rgba(100,80,200,.04);border:1px solid rgba(180,130,220,.15);border-left:3px solid rgba(180,130,220,.35);padding:1.8rem;margin:2rem 0}
+.metaphor-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(180,130,220,.5);text-transform:uppercase;margin-bottom:1rem}
+.metaphor-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:.8rem;flex-wrap:wrap}
+.metaphor-icon{font-size:1.4rem;min-width:2rem;text-align:center;padding-top:.1rem}
+.metaphor-text{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.7}
+.metaphor-text strong{color:#d4af37;font-weight:400}
+
+.key-insight{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.2);padding:1.8rem;margin:2rem 0;text-align:center}
+.ki-icon{font-size:2rem;margin-bottom:.8rem;display:block}
+.ki-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.35em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.ki-text{font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.75);line-height:1.9}
+.ki-text strong{color:#d4af37;font-style:normal}
+
+.conclusion-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.18);padding:2.2rem;margin:3rem 0;text-align:center}
+.conc-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:1rem}
+.conc-text{font-size:clamp(1rem,2.5vw,1.15rem);font-style:italic;color:rgba(255,255,255,.75);line-height:2}
+.conc-text strong{color:#d4af37;font-style:normal}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Etid yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Kabal · Metafizik · Fondasyon</p>
+  <p class="hero-series">Koleksyon Etid Bnei Ohr — 03</p>
+  <h1 class="hero-title">Fondasyon Metafizik<br><span>Akademi Bnei Ohr</span></h1>
+  <p class="hero-subtitle">Esans, Sibstans, ak Nati Bondye — Sekrè Limyè Absoli a</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Tradisyon Ebre</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Nan Akademi Bnei Ohr, aprann konnen Kreyatè a (<strong>Sous la, Ein Sof la</strong>) pa baze sou kwayans avèg oswa imajinasyon moun. Li baze sou yon syans egzak: <strong>Syans Koneksyon an</strong>. Pou nou konprann fòs sa a k ap gouvène reyalite a, nou dwe etidye Trinite metafizik la nan nivo Siprèm nan: <strong>Esans, Sibstans, ak Nati Diven</strong>.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Esans Bondye — <span>"Dezi pou Bay Pi" (Altrouyis Absoli)</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Nan nivo elve L — sa tradisyon an rele <strong>Atzmutò</strong> (Esans Absoli a ki kache) — lespri lòm pa ka manyen ni konprann Bondye, paske Li pi lwen pase limit nou. Men, nan sa Li chwazi parèt pou nou nan Panse Kreyasyon an, Esans Bondye se <strong>Dezi pou Bay Pi</strong> (<em>Ratzon Lehashpia</em>).</p>
+
+  <div class="trinite-grid">
+    <div class="trinite-card">
+      <span class="tc-heb">עַצְמוּתוֹ</span>
+      <span class="tc-term">Idantite Kreyatè a — Plenitid Total</span>
+      <p class="tc-def">Li pa manke anyen, Li pa gen okenn bezwen, epi Li pa gen okenn limit. Poutèt sa, Li pa kreye pou L te ka jwenn yon bagay pou tèt Li, men sèlman pou L te ka gaye bonte L ak lanmou L sou kreyati yo.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pq-text">Si Esans lòm se yon <strong>"Veso"</strong> (mank k ap tann), Esans Bondye se <strong>"Kontni an"</strong> (Abandans k ap bay). Bay se sa Li ye — se idantite L ki pa ka chanje.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Sibstans Bondye — <span>Limyè a menm (Ohr)</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Pou lòm, nou te wè gen yon distenksyon ant Esans li (Lide dezi a) ak Sibstans li (Ajil enèjetik la). Men nan nivo Diven an, pa gen divizyon. Bondye pa fèt ak plizyè moso, ni ak materyèl separe.</p>
+
+  <div class="trinite-grid">
+    <div class="trinite-card">
+      <span class="tc-heb">אוֹר</span>
+      <span class="tc-term">Linite Absoli a — Ohr (Limyè)</span>
+      <p class="tc-def">Sibstans Bondye fè yon sèl ak Esans Li. Limyè sa a se pa limyè fizik nou wè ak je nou an — se yon sibstans espirityèl vivan, yon enèji primòdyal ki pote lavi, konesans, ak sajès. Nan Bondye, Lide pou L Bay la (Esans) ak Fòs k ap deplwaye a (Sibstans) se menm bagay la: yon sèl enèji san melanj.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Nati Bondye — <span>"Lwa Bonte a" (Le Bien Absolu)</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Nati yon bagay se lwa fonksyonman li, fason li aji otomatikman selon sa li ye. Poutèt Esans Li se Bay epi Sibstans Li se Limyè, <strong>Nati Bondye se pou L Bon nèt ale, san okenn chanjman</strong>.</p>
+
+  <p class="para">Lwa Aktivite a: Nati Bondye se pou L kreyatè, pou L bay lavi, pou L soutni reyalite a, epi pou L mennen tout veso yo vè kwasans ak liberasyon. Menm jan nati dife se pou l cho, epi nati dlo se pou l mouye, <em>Nati Kreyatè a se Bonte pi</em>.</p>
+
+  <div class="key-insight">
+    <span class="ki-icon">✡</span>
+    <p class="ki-label">Pwen Kle — Orijin Mal la</p>
+    <p class="ki-text">Nan nivo sa a, <strong>"malè" oswa "fènwa"</strong> pa soti nan Nati Bondye. Yo se senpleman rezilta kachèt Limyè a (<em>Tzimtzum</em>) — yon filtè ki nesesè pou Veso a (Lòm) ka gen espas pou l egziste epi pou l fè chwa pa l.</p>
+  </div>
+
+  <div class="metaphor-block">
+    <p class="metaphor-label">✡ Metafò Pedagojik — Solèy la</p>
+    <div class="metaphor-row">
+      <span class="metaphor-icon">☀️</span>
+      <p class="metaphor-text"><strong>Esans:</strong> Fòs entèn ki pwodui chalè ak limyè a</p>
+    </div>
+    <div class="metaphor-row">
+      <span class="metaphor-icon">🌟</span>
+      <p class="metaphor-text"><strong>Sibstans:</strong> Reyon yo k ap deplwaye nan lespas</p>
+    </div>
+    <div class="metaphor-row">
+      <span class="metaphor-icon">🔆</span>
+      <p class="metaphor-text"><strong>Nati:</strong> Klere epi chofe tout sa li manyen san distenksyon. <em>Solèy la pa ka chwazi pou l fè nwa, paske sa ta ale kont nati l.</em> Se menm jan an pou Kreyatè a: Li se yon <strong>Solèy Espirityèl ki pa janm sispann bay</strong>.</p>
+    </div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="sec-head">
+    <span class="sec-label">✡ Konklizyon</span>
+    <h2 class="sec-title">Pwen Rankont lan nan Bnei Ohr</h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Akademi Bnei Ohr montre nou gwo mistè sa a: rezon ki fè nou egziste, se pou <strong>Nati lòm</strong> (Egoyis natirèl) ka vwayaje jiskaske li aliyen ak <strong>Nati Kreyatè a</strong> (Altrouyis ak Bonte).</p>
+
+  <div class="conclusion-block">
+    <span class="conc-label">✡ Sintèz Final ✡</span>
+    <p class="conc-text">Lè yon elèv (<em>Chaver</em>) aprann deplase entansyon li soti nan <strong>"Resevwa pou tèt li sèlman"</strong> pou l rive nan <strong>"Resevwa pou l ka Bay"</strong>, li kreye yon Egalite de Fòm ak Kreyatè a. Nan moman sa a, Veso lòm nan (Sibstans pa nou) ranpli nèt ak Limyè Kreyatè a (Sibstans Diven an), epi rankont lan fèt nan yon koneksyon pèmanan.</p>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="etudes.html" class="nav-btn">← Tounen nan Etid yo</a>
+    <a href="etude-kabal-fondasyon.html" class="nav-btn">Etid 02 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Koleksyon Etid yo ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
