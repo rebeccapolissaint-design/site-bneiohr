@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 1 · Leson 3 — Chèn Mond yo ak Anatomi Espirityèl Lòm — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* Korèlasyon dual — Mond + Nanm */
+.dual-table{display:flex;flex-direction:column;gap:.5rem;margin:2rem 0}
+.dual-row{display:grid;grid-template-columns:1fr auto 1fr;gap:.8rem;align-items:stretch}
+.dual-row.header-row{margin-bottom:.3rem}
+.dual-header{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;text-align:center;padding:.5rem}
+.dual-sep-head{width:2rem}
+.mond-card{padding:1rem 1.2rem;border:1px solid;position:relative}
+.nanm-card{padding:1rem 1.2rem;border:1px solid;position:relative}
+.dual-link{display:flex;align-items:center;justify-content:center;color:rgba(212,175,55,.25);font-size:.8rem;min-width:2rem}
+/* Nivo 1 — pi wo, pi klè */
+.nv1 .mond-card,.nv1 .nanm-card{background:rgba(212,175,55,.1);border-color:rgba(212,175,55,.4)}
+.nv2 .mond-card,.nv2 .nanm-card{background:rgba(212,175,55,.07);border-color:rgba(212,175,55,.28)}
+.nv3 .mond-card,.nv3 .nanm-card{background:rgba(212,175,55,.04);border-color:rgba(212,175,55,.18)}
+.nv4 .mond-card,.nv4 .nanm-card{background:rgba(212,175,55,.025);border-color:rgba(212,175,55,.12)}
+.nv5 .mond-card,.nv5 .nanm-card{background:rgba(30,20,10,.5);border-color:rgba(212,175,55,.07)}
+.card-heb{font-family:'Noto Serif Hebrew',serif;font-size:.95rem;display:block;margin-bottom:.2rem}
+.nv1 .card-heb{color:rgba(212,175,55,.7)}
+.nv2 .card-heb{color:rgba(212,175,55,.55)}
+.nv3 .card-heb{color:rgba(212,175,55,.42)}
+.nv4 .card-heb{color:rgba(212,175,55,.3)}
+.nv5 .card-heb{color:rgba(212,175,55,.2)}
+.card-name{font-family:'Cinzel',serif;font-size:.7rem;display:block;margin-bottom:.4rem}
+.nv1 .card-name{color:#d4af37}
+.nv2 .card-name{color:rgba(212,175,55,.8)}
+.nv3 .card-name{color:rgba(212,175,55,.65)}
+.nv4 .card-name{color:rgba(212,175,55,.5)}
+.nv5 .card-name{color:rgba(212,175,55,.35)}
+.card-def{font-size:.88rem;font-style:italic;color:rgba(255,255,255,.55);line-height:1.6}
+@media(max-width:500px){
+  .dual-row{grid-template-columns:1fr}
+  .dual-link,.dual-sep-head{display:none}
+  .dual-row.header-row{display:none}
+}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+/* Reveye sans */
+.sans-block{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.15);padding:1.8rem;margin:2rem 0}
+.sans-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem}
+.sans-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:.9rem}
+.sans-icon{min-width:2rem;text-align:center;font-size:1.1rem;padding-top:.1rem}
+.sans-text{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.75}
+.sans-text strong{color:#d4af37;font-weight:400}
+
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-steps{display:flex;flex-direction:column;gap:.7rem;margin-top:1rem}
+.pratik-step{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1.1rem;background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.2)}
+.ps-num{font-family:'Cinzel',serif;font-size:.7rem;color:rgba(212,175,55,.5);min-width:1.5rem}
+.ps-txt{font-size:1rem;font-style:italic;color:rgba(255,255,255,.68);line-height:1.8}
+.ps-txt strong{color:#d4af37;font-style:normal}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 1 · Leson 3</p>
+  <p class="hero-series">Chèn Koneksyon an — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Chèn Mond yo ak<br><span>Anatomi Espirityèl Lòm</span></h1>
+  <p class="hero-subtitle">5 Mond Espirityèl — 5 Nivo Nanm — 5 Sans Espiritèl</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil Fondamantal</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Apre Pwosesis Restriksyon an (Tzimtzum), Limyè a pa t ka tonbe soti nan nivo San Limit la (Ein Sof) dirèkteman nan mond fizik la san li pa ta brile "Veso" a. Pou evite sa, Kreyatè a te mete sou pye yon <strong>Chèn Mond Espirityèl</strong> ki sèvi tankou filtè oswa transfòmatè vòltaj. Paralèlman, Li mete anndan lòm yon estrikti entèn pou l ka konekte ak chak nivo sa yo.</p>
+  </div>
+
+  <!-- SECTION 1 + 2 — Tableau korespondans -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I & II</span>
+    <h2 class="sec-title">5 Mond Espirityèl yo <span>& 5 Nivo Nanm nan</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Nan metafizik Bnei Ohr, chak mond espirityèl koresponn egzakteman ak yon nivo konsyans ki egziste anndan lòm. Plis yon mond pi wo, se plis Limyè a parèt klè ladan l — epi plis nivo nanm nan pi elve, se plis li ka aksede Limyè sa a:</p>
+
+  <div class="dual-table">
+    <div class="dual-row header-row">
+      <div class="dual-header">Mond Espirityèl</div>
+      <div class="dual-sep-head"></div>
+      <div class="dual-header">Nivo Nanm</div>
+    </div>
+
+    <div class="dual-row nv1">
+      <div class="mond-card">
+        <span class="card-heb">אָדָם קַדְמוֹן</span>
+        <span class="card-name">Adam Kadmon</span>
+        <p class="card-def">Mond primòdyal la — pi pre Sous la. Plan Diven nan nivo ki pi elve.</p>
+      </div>
+      <div class="dual-link">⟷</div>
+      <div class="nanm-card">
+        <span class="card-heb">יְחִידָה</span>
+        <span class="card-name">Yechidah</span>
+        <p class="card-def">Linite Absoli a — pwen ki konekte nèt ak Ein Sof la</p>
+      </div>
+    </div>
+
+    <div class="dual-row nv2">
+      <div class="mond-card">
+        <span class="card-heb">אֲצִילוּת</span>
+        <span class="card-name">Atzilut</span>
+        <p class="card-def">Mond Emanasyon an — Limyè ak Veso fè yon sèl, pa gen separasyon</p>
+      </div>
+      <div class="dual-link">⟷</div>
+      <div class="nanm-card">
+        <span class="card-heb">חַיָּה</span>
+        <span class="card-name">Chayah</span>
+        <p class="card-def">Fòs Vivan an — konsyans k ap santi fè pati tout sistèm nan</p>
+      </div>
+    </div>
+
+    <div class="dual-row nv3">
+      <div class="mond-card">
+        <span class="card-heb">בְּרִיאָה</span>
+        <span class="card-name">Beriah</span>
+        <p class="card-def">Mond Kreyasyon an — premye "Veso" separe kòmanse parèt nan panse pi</p>
+      </div>
+      <div class="dual-link">⟷</div>
+      <div class="nanm-card">
+        <span class="card-heb">נְשָׁמָה</span>
+        <span class="card-name">Neshama</span>
+        <p class="card-def">Nanm Entelektyèl la — etensèl limyè ak lasajès pi a</p>
+      </div>
+    </div>
+
+    <div class="dual-row nv4">
+      <div class="mond-card">
+        <span class="card-heb">יְצִירָה</span>
+        <span class="card-name">Yetzirah</span>
+        <p class="card-def">Mond Fòmasyon an — emosyon ak fòs enèjetik k ap bay estrikti fòm</p>
+      </div>
+      <div class="dual-link">⟷</div>
+      <div class="nanm-card">
+        <span class="card-heb">רוּחַ</span>
+        <span class="card-name">Ruach</span>
+        <p class="card-def">Lespri / Emosyon an — nivo kè a ak vi emosyonèl la</p>
+      </div>
+    </div>
+
+    <div class="dual-row nv5">
+      <div class="mond-card">
+        <span class="card-heb">עֲשִׂיָּה</span>
+        <span class="card-name">Asiyah</span>
+        <p class="card-def">Mond Aksyon an — mond fizik nou an. Kachèt Limyè a prèske total, ego domine.</p>
+      </div>
+      <div class="dual-link">⟷</div>
+      <div class="nanm-card">
+        <span class="card-heb">נֶפֶשׁ</span>
+        <span class="card-name">Nefesh</span>
+        <p class="card-def">Lavi Animasyon an — nivo kò fizik la ak aksyon nou yo, ki pi ba a</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Reveye <span>"5 Sans Espiritèl yo"</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Nan eta natirèl li, lòm fèt nan mond Asiyah a ak sèlman <strong>5 sans fizik</strong> (je, zòrèy, elatriye). Sans sa yo kapab pèsevwa sèlman "Aksidan" yo — sa ki ekstèn ak sa k ap chanje nan matyè a.</p>
+
+  <div class="sans-block">
+    <p class="sans-label">✡ Travay Chaver nan Akademi an</p>
+    <div class="sans-row">
+      <span class="sans-icon">🔺</span>
+      <p class="sans-text">Devlope <strong>5 Sans Espiritèl</strong> yo nan travay entansyon chak jou</p>
+    </div>
+    <div class="sans-row">
+      <span class="sans-icon">🔺</span>
+      <p class="sans-text">Monte soti nan <strong>Nefesh → Ruach → Neshama</strong> nan konsyans</p>
+    </div>
+    <div class="sans-row">
+      <span class="sans-icon">🔺</span>
+      <p class="sans-text">Kòmanse <strong>"wè" ak "tande"</strong> lwa espirityèl k ap dirije lavi l</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pq-text">Lè nivo konsyans yon moun kòmanse monte, li <strong>sispann viktim sikonstans yo</strong> pou l vin yon kreyatè k ap aji an koneksyon ak Limyè a.</p>
+  </div>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">✍</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Lasemenn — Vwayaj Anndan ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">Chita nan yon espas trankil pandan <strong>10 minit chak jou</strong>. Fèmen je w epi rale respè pwofondman. Fè vwayaj anndan sa a nan 3 etap:</p>
+    <div class="pratik-steps">
+      <div class="pratik-step">
+        <span class="ps-num">①</span>
+        <p class="ps-txt">Deplase atansyon w soti nan <strong>sansasyon kò w (Nefesh)</strong> — respire, santi kò w nan chèz la, ak pwa li</p>
+      </div>
+      <div class="pratik-step">
+        <span class="ps-num">②</span>
+        <p class="ps-txt">Monte nan <strong>sa k ap pase nan emosyon w (Ruach)</strong> — obsève san jije sa w santi anndan</p>
+      </div>
+      <div class="pratik-step">
+        <span class="ps-num">③</span>
+        <p class="ps-txt">Chache <strong>pwen silans ki pi pwofon anndan w lan (Neshama)</strong> — kote ki pa gen pale, pa gen muvman</p>
+      </div>
+    </div>
+    <p class="para" style="margin-top:1.2rem;margin-bottom:0"><em>Ekri nan kaye w sa w santi lè w fè vwayaj anndan sa a.</em></p>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="modil-1-leson-2.html" class="nav-btn">← Leson 2</a>
+    <a href="etudes.html" class="nav-btn">Modil yo →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 1 · Leson 3 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
