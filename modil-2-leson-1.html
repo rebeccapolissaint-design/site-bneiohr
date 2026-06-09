@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 2 · Leson 1 — Ego a kòm Koki (Klipah) — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* Ego diagram — koki + etensèl */
+.klipah-diagram{position:relative;margin:2.5rem auto;width:260px;height:260px}
+.kd-outer{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(180,130,220,.25);background:radial-gradient(circle,rgba(180,130,220,.06),transparent 70%);display:flex;align-items:center;justify-content:center}
+.kd-middle{width:180px;height:180px;border-radius:50%;border:2px solid rgba(180,130,220,.15);background:radial-gradient(circle,rgba(180,130,220,.08),transparent 70%);display:flex;align-items:center;justify-content:center}
+.kd-inner{width:100px;height:100px;border-radius:50%;border:2px solid rgba(212,175,55,.4);background:radial-gradient(circle,rgba(212,175,55,.18),rgba(212,175,55,.04));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem}
+.kd-inner-heb{font-family:'Noto Serif Hebrew',serif;font-size:.9rem;color:rgba(212,175,55,.7)}
+.kd-inner-label{font-family:'Cinzel',serif;font-size:.38rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-transform:uppercase}
+.kd-label-out{position:absolute;font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(180,130,220,.4);text-transform:uppercase}
+.kd-label-out.top{top:.5rem;left:50%;transform:translateX(-50%)}
+.kd-label-out.bot{bottom:.5rem;left:50%;transform:translateX(-50%)}
+
+/* Ego rol — positif vs pyèj */
+.ego-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.ego-grid{grid-template-columns:1fr}}
+.ego-card{padding:1.4rem;border:1px solid rgba(212,175,55,.12)}
+.ego-card.pozitif{border-left:3px solid rgba(212,175,55,.4);background:rgba(212,175,55,.03)}
+.ego-card.pyej{border-left:3px solid rgba(180,130,220,.35);background:rgba(180,130,220,.03)}
+.ec-label{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;display:block;margin-bottom:.6rem}
+.ego-card.pozitif .ec-label{color:rgba(212,175,55,.45)}
+.ego-card.pyej .ec-label{color:rgba(180,130,220,.45)}
+.ec-text{font-size:.98rem;font-style:italic;color:rgba(255,255,255,.62);line-height:1.75}
+
+/* Blesi → Koki epè */
+.blesi-flow{display:flex;flex-direction:column;gap:.5rem;margin:2rem 0}
+.bf-step{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 1.3rem;border:1px solid rgba(212,175,55,.1);background:rgba(212,175,55,.02)}
+.bf-icon{font-size:1rem;min-width:2rem;text-align:center;padding-top:.15rem}
+.bf-text{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.8}
+.bf-text strong{color:#d4af37;font-weight:400}
+.bf-arrow{text-align:center;color:rgba(212,175,55,.2);font-size:.9rem;padding:.1rem 0}
+
+/* Mask yo */
+.mask-list{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+@media(max-width:480px){.mask-list{grid-template-columns:1fr}}
+.mask-item{display:flex;align-items:center;gap:.7rem;padding:.8rem 1rem;background:rgba(200,80,80,.04);border:1px solid rgba(200,80,80,.12);border-left:2px solid rgba(200,80,80,.3)}
+.mask-icon{font-size:1rem;min-width:1.5rem;text-align:center}
+.mask-text{font-size:.95rem;color:rgba(255,255,255,.6);font-style:italic}
+
+/* Deplase soti nan koki */
+.deplase-block{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.18);padding:2rem;margin:2rem 0}
+.db-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.32em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1.2rem}
+.db-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:.9rem}
+.db-num{font-family:'Cinzel',serif;font-size:.7rem;color:rgba(212,175,55,.4);min-width:1.5rem}
+.db-text{font-size:1rem;color:rgba(255,255,255,.72);line-height:1.8}
+.db-text strong{color:#d4af37;font-weight:400}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-q{background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.25);padding:1.2rem 1.4rem;margin-top:1rem;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.72);line-height:1.85}
+.pratik-q strong{color:#d4af37;font-style:normal}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 2 · Leson 1</p>
+  <p class="hero-series">Sikoloji Metafizik ak Gidans Entèn — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Ego a kòm Koki <span>(Klipah)</span><br>ak Sekrè Blesi yo</h1>
+  <p class="hero-subtitle">Klipah · Mask Ego a · Travay Obsèvasyon an</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 2</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Nan Modil 1 an, nou te aprann lè Veso yo te kraze (Shevirat HaKelim), etensèl Limyè yo te vin kouvri anba yon koki. Nan syans koneksyon an, nou rele koki sa a <strong>Klipah (Koki)</strong>. Nan nivo sikolojik lòm, Klipah sa a pa gen lòt non pase: <strong>Ego a</strong>.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Kisa Ego a (Klipah a) ye <span>tout bon vre?</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <!-- Diagram koki + etensèl -->
+  <div class="klipah-diagram">
+    <div class="kd-outer">
+      <span class="kd-label-out top">Klipah — Koki Ego a</span>
+      <div class="kd-middle">
+        <div class="kd-inner">
+          <span class="kd-inner-heb">נִיצוֹץ</span>
+          <span class="kd-inner-label">Etensèl</span>
+        </div>
+      </div>
+      <span class="kd-label-out bot">Mask · Reyaksyon Otomatik</span>
+    </div>
+  </div>
+
+  <p class="para">Nan Akademi Bnei Ohr, nou pa gade ego a kòm yon lènmi pou nou rayi oswa pou nou touye. Ego a se yon <strong>koki pwoteksyon</strong> ki fòme otou etensèl nanm nan depi lè nou fèt nan mond fizik la.</p>
+
+  <div class="ego-grid">
+    <div class="ego-card pozitif">
+      <span class="ec-label">✡ Wòl Pozitif Ego a</span>
+      <p class="ec-text">Menm jan yon koki pwoteje yon ti grenn pou l ka jèmen, ego a nesesè nan premye etap lavi lòm — li konstwi pèsonalite l, li pèmèt li siviv, li ba li yon sans idantite</p>
+    </div>
+    <div class="ego-card pyej">
+      <span class="ec-label">⚠ Pyèj la</span>
+      <p class="ec-text">Moun kwè koki a — pèsonalite a, tit li genyen, imaj li — se <em>li menm menm</em>, epi li bliye etensèl Limyè ki kache anndan an</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Sekrè Blesi yo — <span>Kote Ego a fòme koki l</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Chak moun ki fèt sou tè sa a ap pase nan yon seri eksperyans nan anfans li — rejè, abandon, enjistis, trayizon — ki kreye sa nou rele <strong>Blesi Emosyonèl</strong>.</p>
+
+  <div class="blesi-flow">
+    <div class="bf-step">
+      <span class="bf-icon">💔</span>
+      <p class="bf-text"><strong>Nan nivo fizik ak sikolojik:</strong> blesi sa yo parèt tankou soufrans ak mank</p>
+    </div>
+    <div class="bf-arrow">↓</div>
+    <div class="bf-step">
+      <span class="bf-icon">🪨</span>
+      <p class="bf-text"><strong>Nan nivo metafizik:</strong> blesi a se egzakteman kote Koki a (Klipah a) vin <strong>pi epè</strong></p>
+    </div>
+    <div class="bf-arrow">↓</div>
+    <div class="bf-step">
+      <span class="bf-icon">🎭</span>
+      <p class="bf-text">Pou pwoteje nou pou nou pa santi doulè a ankò, ego a kreye yon <strong>"mask"</strong> — yon reyaksyon otomatik</p>
+    </div>
+  </div>
+
+  <p class="para">Mask sa yo ak reyaksyon otomatik sa yo se yo ki fòme <strong>Nati otomatik lòm nan</strong> — k ap rale tout bagay sou tèt li pou l pwoteje tèt li:</p>
+
+  <div class="mask-list">
+    <div class="mask-item"><span class="mask-icon">😠</span><span class="mask-text">Kòlè otomatik</span></div>
+    <div class="mask-item"><span class="mask-icon">🚪</span><span class="mask-text">Izolman</span></div>
+    <div class="mask-item"><span class="mask-icon">🎮</span><span class="mask-text">Kontwole tout bagay</span></div>
+    <div class="mask-item"><span class="mask-icon">😶</span><span class="mask-text">Fèmen emosyon</span></div>
+    <div class="mask-item"><span class="mask-icon">🏃</span><span class="mask-text">Kouri pou konfli</span></div>
+    <div class="mask-item"><span class="mask-icon">🎭</span><span class="mask-text">Pèfòmans sosyal</span></div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Deplase soti nan Koki a <span>vè Etensèl la</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Gwo travay kwasans lan anndan Bnei Ohr, se aprann <strong>"fann koki a"</strong> pou n ka libere etensèl la. Sa pa fèt nan goumen ak ego a, men li fèt nan <strong>Konesans ak Obsèvasyon</strong>.</p>
+
+  <div class="deplase-block">
+    <p class="db-label">✡ Chemen Liberasyon an — Etap pa Etap</p>
+    <div class="db-row">
+      <span class="db-num">①</span>
+      <p class="db-text">Kòmanse <strong>rekonèt mask ego w</strong> ap itilize yo — san jijman, sèlman ak obsèvasyon</p>
+    </div>
+    <div class="db-row">
+      <span class="db-num">②</span>
+      <p class="db-text">Sispann <strong>idantifye tèt ou ak "Aksidan" yo</strong> — blesi w yo, emosyon pasajè w yo pa se ou menm</p>
+    </div>
+    <div class="db-row">
+      <span class="db-num">③</span>
+      <p class="db-text">Kreye yon <strong>espas kote Limyè Neshama w</strong> (Nanm ou) ka klere — silans entèn</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pq-text">Ou sispann reyaji tankou yon bèt ki pè, pou w vin aji tankou yon <strong>kreyatè k ap chwazi entansyon l</strong>.</p>
+  </div>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">✍</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Lasemenn — Analiz Mask yo ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">Pandan semenn nan, gade byen lè yon moun di w yon bagay ki fè w fache, ki fè w pè, oswa ki fè w vle diskite. <em>Pa gade moun nan</em> — gade anndan w epi poze tèt ou 2 kesyon sa yo:</p>
+    <div class="pratik-q">
+      <strong>"Ki mask ego m ap mete la a pou l pwoteje m?"</strong><br><br>
+      <strong>"Ki blesi koki sa a ap kache anba l?"</strong><br><br>
+      <em>Ekri sa w dekouvri a nan kaye w. Sa se premye pa pou n fann koki a.</em>
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="etudes.html" class="nav-btn">← Modil yo</a>
+    <a href="etudes.html" class="nav-btn">Leson 2 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 2 · Leson 1 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
