@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 3 · Leson 2 — Lwa Polarite a — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* De Fòs — diagram balans */
+.polarite-diagram{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin:2rem 0;align-items:stretch}
+@media(max-width:500px){.polarite-diagram{grid-template-columns:1fr;gap:.5rem}}
+.pol-card{padding:1.6rem 1.3rem;text-align:center;position:relative}
+.pol-card.dwat{background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(212,175,55,.03));border:1px solid rgba(212,175,55,.3);border-right:none}
+.pol-card.goch{background:linear-gradient(225deg,rgba(100,120,200,.1),rgba(100,120,200,.03));border:1px solid rgba(100,120,200,.25);border-left:none}
+@media(max-width:500px){.pol-card.dwat,.pol-card.goch{border:1px solid rgba(212,175,55,.2)}}
+.pol-symbol{font-size:2rem;display:block;margin-bottom:.5rem}
+.pol-heb{font-family:'Noto Serif Hebrew',serif;font-size:1rem;display:block;margin-bottom:.4rem}
+.pol-card.dwat .pol-heb{color:rgba(212,175,55,.5)}
+.pol-card.goch .pol-heb{color:rgba(100,120,200,.5)}
+.pol-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;display:block;margin-bottom:.7rem}
+.pol-card.dwat .pol-name{color:#d4af37}
+.pol-card.goch .pol-name{color:rgba(150,170,255,.7)}
+.pol-traits{display:flex;flex-direction:column;gap:.3rem}
+.pol-trait{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.55)}
+.pol-center{display:flex;align-items:center;justify-content:center;padding:0 .5rem;background:rgba(212,175,55,.06);border-top:1px solid rgba(212,175,55,.15);border-bottom:1px solid rgba(212,175,55,.15);min-width:50px}
+.pol-center-text{font-family:'Noto Serif Hebrew',serif;font-size:1.1rem;color:rgba(212,175,55,.3);writing-mode:vertical-rl;text-orientation:mixed}
+@media(max-width:500px){.pol-center{display:none}}
+
+/* Sekrè — fòs gòch pa mal */
+.secret-box{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);border-left:3px solid rgba(212,175,55,.5);padding:1.8rem;margin:2rem 0}
+.sb-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.32em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.8rem}
+.sb-text{font-size:clamp(1rem,2.5vw,1.1rem);color:rgba(255,255,255,.75);line-height:1.9;font-style:italic}
+.sb-text strong{color:#d4af37;font-style:normal}
+
+/* Dezekilib — 2 pitak */
+.dezekilib-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.dezekilib-grid{grid-template-columns:1fr}}
+.dz-card{padding:1.4rem;border:1px solid rgba(212,175,55,.1)}
+.dz-card.twop-goch{border-left:3px solid rgba(100,120,200,.4);background:rgba(100,120,200,.04)}
+.dz-card.twop-dwat{border-left:3px solid rgba(212,175,55,.3);background:rgba(212,175,55,.03)}
+.dz-label{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.25em;text-transform:uppercase;display:block;margin-bottom:.6rem}
+.dz-card.twop-goch .dz-label{color:rgba(100,120,200,.5)}
+.dz-card.twop-dwat .dz-label{color:rgba(212,175,55,.45)}
+.dz-text{font-size:.97rem;font-style:italic;color:rgba(255,255,255,.62);line-height:1.8}
+.dz-metafo{font-size:.88rem;color:rgba(255,255,255,.4);margin-top:.6rem;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06);font-style:italic}
+
+/* Liy mitan */
+.liy-mitan{margin:2rem 0;position:relative}
+.lm-diagram{display:flex;align-items:center;gap:0;border:1px solid rgba(212,175,55,.15);overflow:hidden;height:72px}
+.lm-seg{flex:1;display:flex;align-items:center;justify-content:center;height:100%;text-align:center;padding:.5rem}
+.lm-seg.goch-side{background:rgba(100,120,200,.07)}
+.lm-seg.mitan{flex:.6;background:rgba(212,175,55,.1);border-left:1px solid rgba(212,175,55,.2);border-right:1px solid rgba(212,175,55,.2)}
+.lm-seg.dwat-side{background:rgba(212,175,55,.04)}
+.lm-label{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.18em;color:rgba(255,255,255,.35);text-transform:uppercase;display:block;margin-bottom:.2rem}
+.lm-seg.mitan .lm-label{color:rgba(212,175,55,.6)}
+.lm-text{font-size:.82rem;font-style:italic;color:rgba(255,255,255,.5)}
+.lm-seg.mitan .lm-text{color:rgba(212,175,55,.85);font-size:.92rem;font-style:normal;font-family:'Cinzel',serif;font-weight:400;letter-spacing:.05em}
+
+.liy-defn{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.15);padding:1.5rem;margin-top:1rem}
+.ld-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.ld-text{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.85;font-style:italic}
+.ld-text strong{color:#d4af37;font-style:normal}
+
+/* Pratik */
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-steps{display:flex;flex-direction:column;gap:.7rem;margin:1rem 0}
+.pratik-step{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1.1rem;background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.25)}
+.ps-num{font-family:'Cinzel',serif;font-size:.7rem;color:rgba(212,175,55,.5);min-width:1.5rem}
+.ps-txt{font-size:1rem;font-style:italic;color:rgba(255,255,255,.68);line-height:1.8}
+.ps-txt strong{color:#d4af37;font-style:normal}
+.pratik-final{background:rgba(212,175,55,.06);border-left:2px solid rgba(212,175,55,.4);padding:1rem 1.3rem;margin-top:1rem;font-size:1rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.8}
+.pratik-final strong{color:#d4af37;font-style:normal}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 3 · Leson 2</p>
+  <p class="hero-series">Lwa Inivèsèl ak Agrikilti Selès — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Lwa Polarite a —<br><span>De Fòs k ap Soutni Lanati</span></h1>
+  <p class="hero-subtitle">Fòs Dwat · Fòs Gòch · Liy Mitan an</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 3</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Nan mond fizik la, anyen pa ka fonksyone ak yon sèl pol. Pou kouran elektrik bay limyè, fòk gen yon fil <strong>pozitif (+)</strong> ak yon fil <strong>negatif (−)</strong>. Pou yon plant grandi, fòk gen chalè solèy la k ap rale l monte, epi fòk tè a kenbe rasin li desann. Nou rele dinamik inivèsèl sa a: <strong>Lwa Polarite a</strong>.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">De Fòs <span>Primordial yo</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Nan nivo metafizik, tout kreyasyon an se yon <strong>dans kontinyèl</strong> ant de fòs Kreyatè a mete sou pye depi nan kòmansman:</p>
+
+  <div class="polarite-diagram">
+    <div class="pol-card dwat">
+      <span class="pol-symbol">☀️</span>
+      <span class="pol-heb">יָמִין</span>
+      <span class="pol-name">Fòs Dwat la (+)</span>
+      <div class="pol-traits">
+        <span class="pol-trait">Dezi pou Bay</span>
+        <span class="pol-trait">Kwasans · Ekspansyon</span>
+        <span class="pol-trait">Chalè · Klate</span>
+        <span class="pol-trait">Pouse vè avan</span>
+      </div>
+    </div>
+    <div class="pol-center">
+      <span class="pol-center-text">אֱמְצַע</span>
+    </div>
+    <div class="pol-card goch">
+      <span class="pol-symbol">🌑</span>
+      <span class="pol-heb">שְׂמֹאל</span>
+      <span class="pol-name">Fòs Gòch la (−)</span>
+      <div class="pol-traits">
+        <span class="pol-trait">Dezi pou Resevwa</span>
+        <span class="pol-trait">Kontraksyon · Limit</span>
+        <span class="pol-trait">Lwa · Gravite</span>
+        <span class="pol-trait">Rale vè anba</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="secret-box">
+    <p class="sb-label">✡ Gwo Sekrè Elèv la dwe Konprann</p>
+    <p class="sb-text">Fòs Gòch la (rezistans lan) <strong>pa yon fòs "mal"</strong> pou nou detwi. Li se yon fòs ki nesesè pou ekilib sistèm nan. San fòs gòch la k ap limite enèji a, Limyè a t ap brile tout mond lan — <strong>pa t ap gen fòm, pa t ap gen matyè, epi pa t ap gen veso</strong>.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Pyèj Dezekilib la <span>nan Lavi Lòm</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Evolisyon lòm bloke lè li kite yon sèl pol domine l lavi l otomatikman:</p>
+
+  <div class="dezekilib-grid">
+    <div class="dz-card twop-goch">
+      <span class="dz-label">⚠ Twòp Fòs Gòch</span>
+      <p class="dz-text">Tonbe nan egoyism pi, nan krent, ak separasyon. Rale kò w sou moun ak sou lavi a.</p>
+      <p class="dz-metafo">Tankou yon tè ki sèk — kenbe tout dlo pou li menm san li pa kite anyen koule pou lòt moun.</p>
+    </div>
+    <div class="dz-card twop-dwat">
+      <span class="dz-label">⚠ Twòp Fòs Dwat</span>
+      <p class="dz-text">Gwo emosyon espirityèl men ki pa gen okenn baz nan reyalite a. Kite moun anvayi espas ou san limit.</p>
+      <p class="dz-metafo">Tankou yon kiltivatè ki gen dlo ak solèy pou jaden l, men ki pa gen yon veso solid pou kenbe dlo a — enèji a gaspiye.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Liy Mitan an <span>(Kav HaEmtza'i) — Pwen Aliyman an</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <div class="liy-mitan">
+    <div class="lm-diagram">
+      <div class="lm-seg goch-side">
+        <div>
+          <span class="lm-label">Fòs Gòch (−)</span>
+          <p class="lm-text">Rezistans · Limit · Veso</p>
+        </div>
+      </div>
+      <div class="lm-seg mitan">
+        <div>
+          <span class="lm-label">✡ Pwen Aliyman</span>
+          <p class="lm-text">Liy Mitan</p>
+        </div>
+      </div>
+      <div class="lm-seg dwat-side">
+        <div>
+          <span class="lm-label">Fòs Dwat (+)</span>
+          <p class="lm-text">Limyè · Bay · Entansyon</p>
+        </div>
+      </div>
+    </div>
+    <div class="liy-defn">
+      <span class="ld-label">✡ Definisyon Liy Mitan an</span>
+      <p class="ld-text">Liy mitan an pa yon melanj flou ant de fòs yo. Se kapasite pou yon moun pran <strong>Fòs Gòch la (Dezi pou Resevwa / Sibstans li)</strong> epi mete l anba lòd <strong>Fòs Dwat la (Dezi pou Bay / Entansyon li)</strong>. Ou pa detwi rezistans lan — ou itilize l kòm yon fòs pou bati yon veso ki pi solid pou kenbe Limyè Kreyatè a.</p>
+    </div>
+  </div>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">⚖️</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Lasemenn — Chache Liy Mitan an ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">Obsève konpòtman w pandan semèn nan pou w wè nan ki pol ou gen tandans glise plis otomatikman:</p>
+    <div class="pratik-steps">
+      <div class="pratik-step">
+        <span class="ps-num">①</span>
+        <p class="ps-txt">Si w wè w <strong>twò frèt, twò sevè, oswa w ap rale kò w sou moun</strong> (Twòp Fòs Gòch) — fè yon aksyon don ak jenerozite pou w atire Fòs Dwat la</p>
+      </div>
+      <div class="pratik-step">
+        <span class="ps-num">②</span>
+        <p class="ps-txt">Si w wè w <strong>twò emosyonèl, san limit, epi w ap kite moun anvayi espas ou</strong> (Twòp Fòs Dwat) — mete yon limit ki klè ak yon disiplin (Fòs Gòch)</p>
+      </div>
+    </div>
+    <div class="pratik-final">
+      <strong>Pratik:</strong> Kenbe tèt ou nan liy mitan an — kote <strong>sajès ak ekilib ap gouvène</strong>.
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="modil-3-leson-1.html" class="nav-btn">← Leson 1</a>
+    <a href="etudes.html" class="nav-btn">Modil yo →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 3 · Leson 2 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
