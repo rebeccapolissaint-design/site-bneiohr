@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 4 · Leson 1 — Pouvwa Kreyatè Pawòl la — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* Vibrasyon pawòl — desann nivo */
+.vibra-flow{display:flex;flex-direction:column;align-items:center;gap:0;margin:2rem 0}
+.vf-level{width:100%;padding:1rem 1.4rem;text-align:center;border:1px solid}
+.vf-level:not(:last-child){border-bottom:none}
+.vf-arrow{text-align:center;color:rgba(212,175,55,.25);font-size:1rem;padding:.2rem 0;border-left:1px solid rgba(212,175,55,.08);border-right:1px solid rgba(212,175,55,.08);width:100%}
+.vl-1{border-color:rgba(212,175,55,.25);background:rgba(212,175,55,.07)}
+.vl-2{border-color:rgba(212,175,55,.18);background:rgba(212,175,55,.04)}
+.vl-3{border-color:rgba(212,175,55,.1);background:rgba(212,175,55,.02)}
+.vf-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;display:block;margin-bottom:.3rem;color:rgba(212,175,55,.45)}
+.vf-text{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.6)}
+
+/* De Vibrasyon — nwa vs limye */
+.vibra-kontra{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.vibra-kontra{grid-template-columns:1fr}}
+.vk-card{padding:1.5rem;border:1px solid;position:relative;overflow:hidden}
+.vk-card::after{content:'';position:absolute;top:0;right:0;width:3px;height:100%}
+.vk-card.nwa{border-color:rgba(200,80,80,.2);background:rgba(200,80,80,.04)}
+.vk-card.nwa::after{background:rgba(200,80,80,.4)}
+.vk-card.limye{border-color:rgba(212,175,55,.2);background:rgba(212,175,55,.04)}
+.vk-card.limye::after{background:rgba(212,175,55,.4)}
+.vk-freq{text-align:center;margin-bottom:.8rem;padding-bottom:.7rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.vk-wave{font-size:1.4rem;display:block;margin-bottom:.2rem}
+.vk-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;text-transform:uppercase;display:block}
+.vk-card.nwa .vk-label{color:rgba(200,80,80,.5)}
+.vk-card.limye .vk-label{color:rgba(212,175,55,.5)}
+.vk-effects{display:flex;flex-direction:column;gap:.4rem}
+.vk-eff{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.55);padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.vk-eff:last-child{border-bottom:none}
+.vk-card.nwa .vk-eff{color:rgba(200,120,120,.6)}
+.vk-card.limye .vk-eff{color:rgba(212,175,55,.55)}
+
+/* De Langaj */
+.langaj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.langaj-grid{grid-template-columns:1fr}}
+.lg-card{padding:1.5rem;border:1px solid}
+.lg-card.ego{border-color:rgba(200,80,80,.2);background:rgba(200,80,80,.03);border-left:3px solid rgba(200,80,80,.35)}
+.lg-card.nanm{border-color:rgba(212,175,55,.2);background:rgba(212,175,55,.03);border-left:3px solid rgba(212,175,55,.4)}
+.lg-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;display:block;margin-bottom:.7rem}
+.lg-card.ego .lg-label{color:rgba(200,80,80,.5)}
+.lg-card.nanm .lg-label{color:rgba(212,175,55,.45)}
+.lg-desc{font-size:.97rem;font-style:italic;color:rgba(255,255,255,.62);line-height:1.8;margin-bottom:.6rem}
+.lg-traits{display:flex;flex-direction:column;gap:.3rem}
+.lg-trait{font-size:.88rem;color:rgba(255,255,255,.45);padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+
+/* Lwa Koneksyon */
+.lwa-koneksyon{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:1.8rem;margin:2rem 0;text-align:center}
+.lk-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.8rem}
+.lk-text{font-size:clamp(1rem,2.5vw,1.1rem);font-style:italic;color:rgba(255,255,255,.75);line-height:1.9}
+.lk-text strong{color:#d4af37;font-style:normal}
+
+/* Pratik — 3 kesyon Gadyen */
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.gadyen-questions{display:flex;flex-direction:column;gap:.6rem;margin:1.2rem 0}
+.gq-item{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;border:1px solid rgba(212,175,55,.12);background:rgba(212,175,55,.03)}
+.gq-num{font-family:'Cinzel',serif;font-size:.75rem;color:rgba(212,175,55,.5);min-width:1.5rem;padding-top:.1rem}
+.gq-text{font-size:1rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.75}
+.gq-text strong{color:#d4af37;font-style:normal}
+.pratik-silans{background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.3);padding:1.2rem 1.4rem;margin-top:1rem;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.85}
+.pratik-silans strong{color:#d4af37;font-style:normal}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 4 · Leson 1</p>
+  <p class="hero-series">Langaj, Vibrasyon ak Relasyon Espirityèl — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Pouvwa Kreyatè Pawòl la<br><span>ak Sekrè Vibrasyon yo</span></h1>
+  <p class="hero-subtitle">Kòd Vibratwa · Langaj Kè a · Gadyen Pòtay la</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 4</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Tradisyon sajès yo montre nou Kreyatè a te sèvi ak yon zouti pou l deplwaye reyalite a: <strong>Li te pale</strong>. "Epi Bondye te di: Se pou limyè a fèt" — Pawòl la se premye zouti kreyasyon an. Poutèt lòm se yon kopi mikwostriktirèl Kreyatè a, <strong>pawòl pa l gen menm fòs kreyatris la tou nan nivo pa l</strong>.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Pawòl la kòm <span>yon Zouti Vibratwa</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Anndan Akademi Bnei Ohr, nou pa gade mo yo kòm senp mwayen pou nou pase yon enfòmasyon. <strong>Chak mo ou pwononse se yon Kòd Vibratwa</strong> ki gen yon enèji ak yon frekans byen fiks. Pawòl la fè panse a desann nan nivo aksyon an:</p>
+
+  <div class="vibra-flow">
+    <div class="vf-level vl-1">
+      <span class="vf-label">✡ Moach — Nivo Panse pi</span>
+      <p class="vf-text">Lide a rete anndan — enèji ki pa manifeste toujou</p>
+    </div>
+    <div class="vf-arrow">↓ Ou pwononse a ↓</div>
+    <div class="vf-level vl-2">
+      <span class="vf-label">✡ Pawòl — Sibstans Vibratwa</span>
+      <p class="vf-text">Panse a resevwa yon frekans, yon enèji ki deplwaye</p>
+    </div>
+    <div class="vf-arrow">↓ Li antre nan mond lan ↓</div>
+    <div class="vf-level vl-3">
+      <span class="vf-label">✡ Asiyah — Mond Aksyon an</span>
+      <p class="vf-text">Reyalite fizik la kòmanse chanje selon vibrasyon an</p>
+    </div>
+  </div>
+
+  <div class="vibra-kontra">
+    <div class="vk-card nwa">
+      <div class="vk-freq">
+        <span class="vk-wave">〰️</span>
+        <span class="vk-label">Frekans Nwa</span>
+      </div>
+      <div class="vk-effects">
+        <p class="vk-eff">Pawòl baze sou laperèz</p>
+        <p class="vk-eff">Kritik ak akizasyon</p>
+        <p class="vk-eff">→ Miltipliye koki yo (Klipot)</p>
+        <p class="vk-eff">→ Fèmen pòt Limyè a</p>
+      </div>
+    </div>
+    <div class="vk-card limye">
+      <div class="vk-freq">
+        <span class="vk-wave">✨</span>
+        <span class="vk-label">Frekans Limyè</span>
+      </div>
+      <div class="vk-effects">
+        <p class="vk-eff">Pawòl baze sou verite</p>
+        <p class="vk-eff">Ankourajman ak koneksyon</p>
+        <p class="vk-eff">→ Kase koki yo (Klipot)</p>
+        <p class="vk-eff">→ Libere etensèl yo</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Langaj Kè a <span>kont Langaj Ego a</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <div class="langaj-grid">
+    <div class="lg-card ego">
+      <span class="lg-label">✗ Langaj Ego a (Koki a)</span>
+      <p class="lg-desc">Pale pou defann yon imaj, bay tèt ou rezon, kontwole, oswa kache blesi dèyè agiman</p>
+      <div class="lg-traits">
+        <div class="lg-trait">Toujou ap divize: "mwen" kont "ou"</div>
+        <div class="lg-trait">Pa kreye koneksyon — kreye distans espirityèl</div>
+        <div class="lg-trait">Baze sou laperèz ak pwoteksyon ego</div>
+      </div>
+    </div>
+    <div class="lg-card nanm">
+      <span class="lg-label">✡ Langaj Kè a (Neshama)</span>
+      <p class="lg-desc">Pale ak yon entansyon pou w Bay — pou pote lapè, klate, oswa Tikkun nan lavi moun k ap koute w</p>
+      <div class="lg-traits">
+        <div class="lg-trait">Koute anvan ou pale</div>
+        <div class="lg-trait">Chache linite ak koneksyon</div>
+        <div class="lg-trait">Baze sou altrouyis ak verite</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Syans Koneksyon an <span>nan Relasyon yo</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Lwa Egalite de Fòm nan di nou de fòs ki gen menm kalite ap kole ansanm. Lè de moun ap kominike nan nivo ego, <em>de koki yo ap frape</em> — sa ki bay diskisyon ak kòlè. Men:</p>
+
+  <div class="lwa-koneksyon">
+    <span class="lk-label">✡ Lwa Koneksyon an nan Kominikasyon</span>
+    <p class="lk-text">Lè yon elèv aliyen vibrasyon pawòl li ak Nati Kreyatè a (Bonte ak Altrouyis), li kreye yon <strong>Espas Limyè</strong> nan mitan l ak lòt moun nan. Menmsi lòt moun nan ta nan ego l toujou, <strong>frekans elve pawòl ou a gen fòs pou l kalme ajitasyon ki nan kè l</strong> — paske Limyè a toujou pi fò pase koki a.</p>
+  </div>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">🚪</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Lasemenn — Gadyen Pòtay la ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">Pandan semèn sa a, mete yon <strong>"Gadyen"</strong> nan pòtay bouch ou. Anvan w pwononse yon pawòl (sitou nan sitiyasyon k ap nève w), poze tèt ou twa kesyon sa yo nan sèvo w (Moach):</p>
+    <div class="gadyen-questions">
+      <div class="gq-item">
+        <span class="gq-num">①</span>
+        <p class="gq-text"><strong>Èske sa m pral di a se verite?</strong></p>
+      </div>
+      <div class="gq-item">
+        <span class="gq-num">②</span>
+        <p class="gq-text"><strong>Èske li nesesè pou m di l kounye a?</strong></p>
+      </div>
+      <div class="gq-item">
+        <span class="gq-num">③</span>
+        <p class="gq-text"><strong>Ki entansyon k ap pouse m di l: èske se pou m Bay — oswa pou m defann ego m?</strong></p>
+      </div>
+    </div>
+    <div class="pratik-silans">
+      Si pawòl la pa pase tès sa a — <strong>fè silans</strong>, koute, epi chanje vibrasyon an anndan kè w anvan w pale.
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="etudes.html" class="nav-btn">← Modil yo</a>
+    <a href="etudes.html" class="nav-btn">Leson 2 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 4 · Leson 1 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
