@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 4 · Leson 2 — Langaj Jès yo ak Vibrasyon Kò a — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* Jès Koki vs Jès Limyè */
+.jes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.jes-grid{grid-template-columns:1fr}}
+.jes-card{padding:1.5rem;border:1px solid;position:relative}
+.jes-card.koki{border-color:rgba(200,80,80,.2);background:rgba(200,80,80,.04);border-left:3px solid rgba(200,80,80,.4)}
+.jes-card.limye{border-color:rgba(212,175,55,.2);background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4)}
+.jc-icon{font-size:1.8rem;display:block;margin-bottom:.5rem;text-align:center}
+.jc-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;text-transform:uppercase;display:block;margin-bottom:.6rem;text-align:center}
+.jes-card.koki .jc-label{color:rgba(200,80,80,.5)}
+.jes-card.limye .jc-label{color:rgba(212,175,55,.45)}
+.jc-examples{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.8rem}
+.jc-ex{font-size:.88rem;font-style:italic;color:rgba(255,255,255,.5);padding:.25rem 0}
+.jc-effect{font-size:.9rem;padding:.6rem .8rem;margin-top:.4rem}
+.jes-card.koki .jc-effect{background:rgba(200,80,80,.08);color:rgba(200,120,120,.7)}
+.jes-card.limye .jc-effect{background:rgba(212,175,55,.08);color:rgba(212,175,55,.7)}
+
+/* Je ak Men — 2 zòn espesyal */
+.zòn-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:2rem 0}
+@media(max-width:500px){.zòn-grid{grid-template-columns:1fr}}
+.zon-card{padding:1.6rem;border:1px solid rgba(212,175,55,.15);background:rgba(212,175,55,.03);text-align:center}
+.zon-card::before{content:'';display:block;width:50px;height:50px;border-radius:50%;margin:0 auto .8rem;display:flex;align-items:center;justify-content:center}
+.zc-symbol{font-size:2.2rem;display:block;margin-bottom:.6rem}
+.zc-heb{font-family:'Noto Serif Hebrew',serif;font-size:.95rem;color:rgba(212,175,55,.35);display:block;margin-bottom:.4rem}
+.zc-name{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;color:#d4af37;display:block;margin-bottom:.6rem}
+.zc-koneksyon{font-family:'Cinzel',serif;font-size:.46rem;letter-spacing:.22em;color:rgba(212,175,55,.35);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.zc-text{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.58);line-height:1.75}
+
+/* Men dwat vs gòch */
+.men-diagram{display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;align-items:center;margin:1.5rem 0}
+@media(max-width:480px){.men-diagram{grid-template-columns:1fr;text-align:center}}
+.men-card{padding:1.1rem;text-align:center;border:1px solid rgba(212,175,55,.1)}
+.men-card.dwat{background:rgba(212,175,55,.05);border-color:rgba(212,175,55,.2)}
+.men-card.goch{background:rgba(100,120,200,.04);border-color:rgba(100,120,200,.15)}
+.mc-heb{font-family:'Noto Serif Hebrew',serif;font-size:1rem;display:block;margin-bottom:.3rem}
+.men-card.dwat .mc-heb{color:rgba(212,175,55,.45)}
+.men-card.goch .mc-heb{color:rgba(140,160,255,.35)}
+.mc-name{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;display:block;margin-bottom:.3rem}
+.men-card.dwat .mc-name{color:#d4af37}
+.men-card.goch .mc-name{color:rgba(140,160,255,.6)}
+.mc-role{font-size:.85rem;font-style:italic;color:rgba(255,255,255,.5)}
+.men-center-txt{font-family:'Cinzel',serif;font-size:.55rem;color:rgba(212,175,55,.3);text-align:center;letter-spacing:.1em}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+/* Pratik */
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-steps{display:flex;flex-direction:column;gap:.7rem;margin:1rem 0}
+.pratik-step{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1.1rem;background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.25)}
+.ps-num{font-family:'Cinzel',serif;font-size:.7rem;color:rgba(212,175,55,.5);min-width:1.5rem}
+.ps-txt{font-size:1rem;font-style:italic;color:rgba(255,255,255,.68);line-height:1.8}
+.ps-txt strong{color:#d4af37;font-style:normal}
+.pratik-aksyon{background:rgba(212,175,55,.06);border-left:2px solid rgba(212,175,55,.4);padding:1rem 1.3rem;margin-top:1rem;font-size:1rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.8}
+.pratik-aksyon strong{color:#d4af37;font-style:normal}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 4 · Leson 2</p>
+  <p class="hero-series">Langaj, Vibrasyon ak Relasyon Espirityèl — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Langaj Jès yo ak<br><span>Vibrasyon Kò a nan Chèn Koneksyon an</span></h1>
+  <p class="hero-subtitle">Kò kòm Antèn · Pòtay Nanm (Je) · Zouti Don (Men) · Jès Konsyan</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 4</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Kò fizik nou an se yon <strong>antèn k ap voye ak resevwa vibrasyon san rete</strong>. Anvan menm yon pawòl soti, pozisyon kò w, fason w gade yon moun, ak jès w ap fè yo ak men w deja kode eta entèn Veso ou a — epi yo transmèt li bay tout sistèm nan.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Kò a kòm Iwa <span>"Lev" (Kè a)</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Kò fizik la pa gen yon volonte pa l — li se <strong>sèvitè kè a</strong>. Tout sa k ap bouyi anndan kè a (kòlè, laperèz, ògèy, oswa lanmou) ap tradui otomatikman deyò nan fòm jès fizik:</p>
+
+  <div class="jes-grid">
+    <div class="jes-card koki">
+      <span class="jc-icon">🔒</span>
+      <span class="jc-label">✗ Jès Koki yo (Ego a)</span>
+      <div class="jc-examples">
+        <div class="jc-ex">Bra kwaze sere</div>
+        <div class="jc-ex">Rega k ap kouri</div>
+        <div class="jc-ex">Kò ki tansyone</div>
+        <div class="jc-ex">Kontraksyon fizik</div>
+      </div>
+      <div class="jc-effect">"Mwen separe, mwen pè, mwen fèmen pòtay mwen."</div>
+    </div>
+    <div class="jes-card limye">
+      <span class="jc-icon">🌟</span>
+      <span class="jc-label">✡ Jès Limyè yo (Koneksyon)</span>
+      <div class="jc-examples">
+        <div class="jc-ex">Kò rilaks, men ouvè</div>
+        <div class="jc-ex">Rega ki poze ak respè</div>
+        <div class="jc-ex">Zepòl lage, kò ouvè</div>
+        <div class="jc-ex">Ekspansyon fizik</div>
+      </div>
+      <div class="jc-effect">Ouvri kanal kominikasyon espirityèl la anvan diskisyon an kòmanse.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Sekrè Rega a ak <span>Mouvman Men yo</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Nan anatomi espirityèl la, de zòn nan kò a gen yon enpòtans kapital nan transmisyon enèji:</p>
+
+  <div class="zòn-grid">
+    <div class="zon-card">
+      <span class="zc-symbol">👁️</span>
+      <span class="zc-heb">עַיִן</span>
+      <span class="zc-name">Pòtay Nanm nan — Je yo</span>
+      <span class="zc-koneksyon">↕ Konekte ak Neshama ak Moach</span>
+      <p class="zc-text">Yon rega vif, ki chita sou respè ak konpasyon, gen fòs pou l travèse koki ego lòt moun nan san li pa bezwen di yon mo. Li rekonèt etensèl diven ki nan lòt moun — sa ki fòse ego lòt la kalme l otomatikman.</p>
+    </div>
+    <div class="zon-card">
+      <span class="zc-symbol">🤲</span>
+      <span class="zc-heb">יָד</span>
+      <span class="zc-name">Zouti Don an — Men yo</span>
+      <span class="zc-koneksyon">↕ Fòs Dwat ak Gòch yo</span>
+      <p class="zc-text">Men yo manifeste polarite a nan kò a — fason w sèvi ak yo nan jès, salitasyon, ak kominikasyon dwe toujou montre yon ekilib kote se Entansyon pou Bay la k ap dirije.</p>
+    </div>
+  </div>
+
+  <div class="men-diagram">
+    <div class="men-card dwat">
+      <span class="mc-heb">יָמִין</span>
+      <span class="mc-name">Men Dwat (+)</span>
+      <p class="mc-role">Fòs pou n Bay — Entansyon Altrouyis</p>
+    </div>
+    <div class="men-center-txt">⟷<br>Ekilib</div>
+    <div class="men-card goch">
+      <span class="mc-heb">שְׂמֹאל</span>
+      <span class="mc-name">Men Gòch (−)</span>
+      <p class="mc-role">Fòs pou n Resevwa — Sibstans Veso a</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Aliyen Jès yo <span>ak Entansyon an</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pq-text">Lè w aprann kontwole kò w, lè w anpeche l fè jès agresif nan mitan yon tansyon, ou pa senpleman kontwole yon misk — <strong>w ap fòse enèji entèn ou an pou l rete nan Liy Mitan an</strong>. Ou itilize Moach (sèvo a) pou w kòmande aksyon kò w ak Limyè a.</p>
+  </div>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">🪞</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Lasemenn — Iwa Kò a ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">Pandan semèn sa a, fè yon gwo travay obsèvasyon sou pwòp kò w nan relasyon w ak moun:</p>
+    <div class="pratik-steps">
+      <div class="pratik-step">
+        <span class="ps-num">①</span>
+        <p class="ps-txt">Lè w ap pale ak yon moun, gade ki pozisyon kò w pran — <strong>Èske w tansyone? Èske bra w kwaze? Kote rega w poze?</strong></p>
+      </div>
+      <div class="pratik-step">
+        <span class="ps-num">②</span>
+        <p class="ps-txt">Si w wè w nan yon jès fèmen — <strong>rale yon respè pwofon, lage zepòl ou yo, louvri men w yo</strong>, epi mete yon entansyon lapè nan rega w</p>
+      </div>
+    </div>
+    <div class="pratik-aksyon">
+      <strong>Ekri nan kaye w</strong> kijan chanjman fizik sa a chanje jan lòt moun nan te reyaji avè w — <em>kò w se premye mesaj ou voye anvan ou di yon sèl mo.</em>
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="modil-4-leson-1.html" class="nav-btn">← Leson 1</a>
+    <a href="etudes.html" class="nav-btn">Modil yo →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 4 · Leson 2 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
