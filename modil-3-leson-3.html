@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 3 · Leson 3 — Lwa Rit ak Sik yo — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* 4 Sezon sik */
+.sezon-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:2rem 0}
+@media(max-width:500px){.sezon-grid{grid-template-columns:1fr}}
+.sezon-card{padding:1.3rem;border:1px solid;text-align:center;position:relative;overflow:hidden}
+.sezon-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px}
+.sezon-card.prentan{border-color:rgba(120,200,120,.2);background:rgba(120,200,120,.04)}
+.sezon-card.prentan::before{background:linear-gradient(to right,rgba(120,200,120,.4),transparent)}
+.sezon-card.ete{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.06)}
+.sezon-card.ete::before{background:linear-gradient(to right,rgba(212,175,55,.5),transparent)}
+.sezon-card.otòn{border-color:rgba(200,120,50,.2);background:rgba(200,120,50,.04)}
+.sezon-card.otòn::before{background:linear-gradient(to right,rgba(200,120,50,.4),transparent)}
+.sezon-card.ive{border-color:rgba(100,120,200,.2);background:rgba(100,120,200,.04)}
+.sezon-card.ive::before{background:linear-gradient(to right,rgba(100,120,200,.3),transparent)}
+.sc-icon{font-size:1.6rem;display:block;margin-bottom:.4rem}
+.sc-name{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.12em;display:block;margin-bottom:.4rem}
+.sezon-card.prentan .sc-name{color:rgba(120,200,120,.8)}
+.sezon-card.ete .sc-name{color:#d4af37}
+.sezon-card.otòn .sc-name{color:rgba(200,140,60,.8)}
+.sezon-card.ive .sc-name{color:rgba(140,160,255,.7)}
+.sc-desc{font-size:.88rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.65}
+
+/* Yereda L'Tzorech Aliya */
+.yereda-box{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.18);padding:1.8rem;margin:2rem 0}
+.yb-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.32em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:.5rem}
+.yb-heb{font-family:'Noto Serif Hebrew',serif;font-size:1rem;color:rgba(212,175,55,.3);display:block;margin-bottom:.8rem}
+.yb-text{font-size:1rem;color:rgba(255,255,255,.7);line-height:1.9;font-style:italic}
+.yb-text strong{color:#d4af37;font-style:normal}
+
+/* Ratzon V'Shuv */
+.ratzon-flow{display:flex;align-items:center;gap:.5rem;margin:2rem 0;flex-wrap:wrap}
+.rf-step{flex:1;min-width:130px;text-align:center;padding:1.2rem 1rem;border:1px solid rgba(212,175,55,.12)}
+.rf-step.monte{background:rgba(212,175,55,.06);border-color:rgba(212,175,55,.25)}
+.rf-step.desann{background:rgba(100,120,200,.05);border-color:rgba(100,120,200,.18)}
+.rf-icon{font-size:1.3rem;display:block;margin-bottom:.4rem}
+.rf-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:.4rem}
+.rf-step.monte .rf-label{color:rgba(212,175,55,.5)}
+.rf-step.desann .rf-label{color:rgba(140,160,255,.5)}
+.rf-text{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.55)}
+.rf-arrow{color:rgba(212,175,55,.2);font-size:1.3rem;flex-shrink:0}
+@media(max-width:480px){.rf-arrow{transform:rotate(90deg);width:100%;text-align:center}}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+/* Gid pou chak sezon */
+.gid-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.gid-grid{grid-template-columns:1fr}}
+.gid-card{padding:1.5rem;border:1px solid}
+.gid-card.ete-gid{border-color:rgba(212,175,55,.25);background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4)}
+.gid-card.ive-gid{border-color:rgba(100,120,200,.2);background:rgba(100,120,200,.04);border-left:3px solid rgba(100,120,200,.35)}
+.gd-header{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
+.gd-icon{font-size:1.2rem}
+.gd-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase}
+.gid-card.ete-gid .gd-label{color:#d4af37}
+.gid-card.ive-gid .gd-label{color:rgba(140,160,255,.7)}
+.gd-items{display:flex;flex-direction:column;gap:.5rem}
+.gd-item{display:flex;align-items:flex-start;gap:.6rem;font-size:.95rem;color:rgba(255,255,255,.62);font-style:italic;line-height:1.7}
+.gd-dot{min-width:.5rem;margin-top:.55rem;height:.5rem;border-radius:50%}
+.gid-card.ete-gid .gd-dot{background:rgba(212,175,55,.4)}
+.gid-card.ive-gid .gd-dot{background:rgba(140,160,255,.3)}
+
+/* Pratik */
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-steps{display:flex;flex-direction:column;gap:.7rem;margin:1rem 0}
+.pratik-step{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1.1rem;background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.25)}
+.ps-num{font-family:'Cinzel',serif;font-size:.7rem;color:rgba(212,175,55,.5);min-width:1.5rem}
+.ps-txt{font-size:1rem;font-style:italic;color:rgba(255,255,255,.68);line-height:1.8}
+.ps-txt strong{color:#d4af37;font-style:normal}
+.pratik-formil{background:rgba(212,175,55,.06);border-left:2px solid rgba(212,175,55,.4);padding:1rem 1.3rem;margin-top:1rem;font-size:1rem;color:rgba(255,255,255,.7);line-height:1.8}
+.pratik-formil strong{color:#d4af37;font-weight:400}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 3 · Leson 3</p>
+  <p class="hero-series">Lwa Inivèsèl ak Agrikilti Selès — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Lwa Rit ak Sik yo —<br><span>Sezon Kwasans yo nan Agrikilti Selès la</span></h1>
+  <p class="hero-subtitle">Yereda L'Tzorech Aliya · Ratzon V'Shuv · 4 Sezon Espirityèl</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 3</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Nan jaden fizik la, lanati pa janm rete nan yon sèl pozisyon. Gen prentan, lete, otòn, ak livè. Nan Akademi Bnei Ohr, nou aprann gen yon lwa inivèsèl ki rele <strong>Lwa Rit ak Sik yo</strong>: anyen pa rete fiks — tou sa k ap viv ap deplase nan yon mouvman lanmè (<em>li monte, li desann; li antre, li soti</em>).</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Dinamik "Desann pou n ka Monte" — <span>Yereda L'Tzorech Aliya</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Youn nan pi gwo erè elèv yo fè, se kwè depi yo kòmanse etidye, lavi yo dwe yon <strong>liy dwat k ap monte nan Limyè sèlman</strong>. Lè yon moman desann parèt, yo dekouraje epi yo kwè yo fè bak. Agrikilti Selès la montre nou yon lòt verite:</p>
+
+  <div class="sezon-grid">
+    <div class="sezon-card prentan">
+      <span class="sc-icon">🌸</span>
+      <span class="sc-name">Prentan</span>
+      <p class="sc-desc">Kòmansman — nouvo kwasans, nouvo entansyon, premye etensèl reveye</p>
+    </div>
+    <div class="sezon-card ete">
+      <span class="sc-icon">☀️</span>
+      <span class="sc-name">Lete — Sezon Limyè a</span>
+      <p class="sc-desc">Gwo enspirasyon, leson yo fasil, sansasyon koneksyon nan wo novo — moman Kreyatè a ap ba w enèji</p>
+    </div>
+    <div class="sezon-card otòn">
+      <span class="sc-icon">🍂</span>
+      <span class="sc-name">Otòn</span>
+      <p class="sc-desc">Rekòt — rekolte sa w te simen, ranmase fwi, prepare pou kachèt la</p>
+    </div>
+    <div class="sezon-card ive">
+      <span class="sc-icon">❄️</span>
+      <span class="sc-name">Livè — Sezon Kachèt la</span>
+      <p class="sc-desc">Santi w lou, ansyen blesi parèt pi fò — men li se yon sezon nesesè, pa yon echèk</p>
+    </div>
+  </div>
+
+  <div class="yereda-box">
+    <p class="yb-label">✡ Lwa Metafizik Fondamantal</p>
+    <span class="yb-heb">יְרִידָה לְצֹרֶךְ עֲלִיָּה</span>
+    <p class="yb-text"><strong>Pa gen okenn monte ki ka fèt san yon desann anvan.</strong> Desann nan se moman kote tè a ap prepare rasin yo, kote Veso a ap elaji pou l ka kenbe yon pi gwo vòltaj Limyè nan sezon k ap vini an.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Sik "Kouri ak Retounen" — <span>Ratzon V'Shuv</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Lwa Rit la manifeste anndan nou tou atravè yon fenomèn lespri nou rele <strong>Ratzon V'Shuv</strong> (Kouri ak Retounen):</p>
+
+  <div class="ratzon-flow">
+    <div class="rf-step monte">
+      <span class="rf-icon">⬆️</span>
+      <span class="rf-label">✡ Ratzon — Kouri</span>
+      <p class="rf-text">Nanm ou ap "kouri" vè anwo — vle konekte nèt ak Limyè a, soti nan limit matyè a</p>
+    </div>
+    <span class="rf-arrow">⟷</span>
+    <div class="rf-step desann">
+      <span class="rf-icon">⬇️</span>
+      <span class="rf-label">✡ Shuv — Retounen</span>
+      <p class="rf-text">Sistèm nan fòse w "retounen" — nan mond fizik la, responsablite w yo, travay ak kominote w la</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pq-text">Objektif la se pa kouri kite mond fizik la pou n al kache nan mistik. Se pran <strong>Limyè nou jwenn anwo a lè nou "kouri" a</strong>, pou nou <strong>pote l desann nan matyè a lè nou "retounen" an</strong>. Se konsa nou fè Tikkun mond lan.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Kijan pou n aji <span>nan chak Sezon?</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Sajès yon Chaver parèt nan fason li jere sik sa yo:</p>
+
+  <div class="gid-grid">
+    <div class="gid-card ete-gid">
+      <div class="gd-header">
+        <span class="gd-icon">☀️</span>
+        <span class="gd-label">Nan Sezon Ete (Limyè)</span>
+      </div>
+      <div class="gd-items">
+        <div class="gd-item"><div class="gd-dot"></div><span>Pa vante tèt ou, pa kwè w rive nèt</span></div>
+        <div class="gd-item"><div class="gd-dot"></div><span>Anrejistre konesans lan, fè aksyon don ak altrouyis</span></div>
+        <div class="gd-item"><div class="gd-dot"></div><span>Bati kaye pratik solid — <strong>w ap pile rezèv pou sezon livè a</strong></span></div>
+      </div>
+    </div>
+    <div class="gid-card ive-gid">
+      <div class="gd-header">
+        <span class="gd-icon">❄️</span>
+        <span class="gd-label">Nan Sezon Livè (Kachèt)</span>
+      </div>
+      <div class="gd-items">
+        <div class="gd-item"><div class="gd-dot"></div><span>Pa panike, epi pa abandone travay la</span></div>
+        <div class="gd-item"><div class="gd-dot"></div><span>Konnen se yon sik k ap pase — pratike Sètitid ak Pasyans</span></div>
+        <div class="gd-item"><div class="gd-dot"></div><span>Menmsi w pa santi Limyè a, <strong>kontinye poze aksyon</strong> — grenn lan ap jwenn fòs anba nèj la</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">🌿</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Lasemenn — Idantifye Sezon w ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">Chita ak tèt ou jodi a epi gade nan ki sezon w ye nan lavi espirityèl ak mantal ou kounye a:</p>
+    <div class="pratik-steps">
+      <div class="pratik-step">
+        <span class="ps-num">①</span>
+        <p class="ps-txt">Èske w santi w nan <strong>Prentan/Lete</strong> — enèji, klate, enspirasyon ak koneksyon?</p>
+      </div>
+      <div class="pratik-step">
+        <span class="ps-num">②</span>
+        <p class="ps-txt">Osinon èske w santi w nan <strong>Otòn/Ivè</strong> — kachèt, fènwa entèn, tès ki difisil?</p>
+      </div>
+      <div class="pratik-step">
+        <span class="ps-num">③</span>
+        <p class="ps-txt">Ekri sa w konstate a nan kaye w, <strong>san jijman</strong> — se yon obsèvasyon, pa yon jijman sou valè w</p>
+      </div>
+    </div>
+    <div class="pratik-formil">
+      <strong>Si w nan Ete:</strong> simen plis grenn Limyè — aksyon altrouyis, etid, koneksyon.<br><br>
+      <strong>Si w nan Ivè:</strong> kenbe fèm nan disiplin nan san w pa jije tèt ou — <em>Prentan an gen pou l rive kanmenm.</em>
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="modil-3-leson-2.html" class="nav-btn">← Leson 2</a>
+    <a href="etudes.html" class="nav-btn">Modil yo →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 3 · Leson 3 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
