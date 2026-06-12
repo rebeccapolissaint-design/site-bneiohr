@@ -17,7 +17,7 @@ export default {
       return new Response('Method Not Allowed', { status: 405 });
     }
 
-    // Read the request body
+    // Read request body (format Anthropic ki soti nan HTML yo)
     let body;
     try {
       body = await request.json();
@@ -28,21 +28,38 @@ export default {
       });
     }
 
-    // Call Anthropic API
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // Konvèti format Anthropic → format Gemini
+    const geminiBody = {
+      contents: body.messages.map(msg => ({
+        role: msg.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: msg.content }]
+      })),
+      generationConfig: {
+        maxOutputTokens: body.max_tokens || 1000
+      }
+    };
+
+    // Call Gemini API
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+
+    const response = await fetch(geminiUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify(body)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(geminiBody)
     });
 
-    const data = await response.json();
+    const geminiData = await response.json();
 
-    return new Response(JSON.stringify(data), {
-      status: response.status,
+    // Konvèti repons Gemini → format Anthropic pou HTML yo pa bezwen chanje
+    const anthropicFormat = {
+      content: [{
+        type: 'text',
+        text: geminiData.candidates?.[0]?.content?.parts?.[0]?.text || 'Pa gen repons.'
+      }]
+    };
+
+    return new Response(JSON.stringify(anthropicFormat), {
+      status: 200,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
