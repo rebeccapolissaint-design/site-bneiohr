@@ -40,7 +40,7 @@ export default {
     };
 
     // Call Gemini API
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key= AQ.Ab8RN6IxbbFNIrp4XQz2JpEtBtI5AUbCFhNMBd44pIbppQc_GQ`;
 
     const response = await fetch(geminiUrl, {
       method: 'POST',
