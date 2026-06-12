@@ -426,7 +426,7 @@ Bay yon evalyasyon pou CHAK repons. Pou chak youn, di: "✓ BON" oswa "⚠ AMELY
 
 "score" se konbyen repons ki "BON" (0-${nq}). "global" se yon ti mesaj global pou elèv la (max 2 fraz).`;
 
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('https://akademi.bneiohr.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
