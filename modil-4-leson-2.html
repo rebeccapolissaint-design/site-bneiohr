@@ -119,6 +119,22 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:sp
 footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
 .footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
 .footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+
+/* Evalyasyon */
+.eval-block{background:rgba(30,20,60,.5);border:1px solid rgba(120,100,200,.25);border-top:3px solid rgba(120,100,200,.4);padding:2rem;margin:4rem 0 2rem}
+.eval-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(120,100,200,.15)}
+.eval-icon{font-size:1.6rem}
+.eval-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(160,140,255,.8)}
+.eval-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-top:.2rem}
+.eval-questions{display:flex;flex-direction:column;gap:1.2rem;margin-top:1rem}
+.eq-item{border:1px solid rgba(120,100,200,.15);background:rgba(120,100,200,.04);padding:1.2rem 1.4rem}
+.eq-num{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.eq-q{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.85;margin-bottom:.8rem}
+.eq-q strong{color:rgba(180,160,255,.8);font-weight:400}
+.eq-textarea{width:100%;min-height:80px;background:rgba(0,0,0,.3);border:1px solid rgba(120,100,200,.2);border-radius:2px;color:rgba(255,255,255,.7);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.8rem 1rem;resize:vertical;line-height:1.7;outline:none;transition:border-color .3s}
+.eq-textarea:focus{border-color:rgba(120,100,200,.5);background:rgba(0,0,0,.4)}
+.eq-textarea::placeholder{color:rgba(255,255,255,.2);font-style:italic}
+
 </style>
 </head>
 <body>
@@ -262,6 +278,39 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,
     </div>
     <div class="pratik-aksyon">
       <strong>Ekri nan kaye w</strong> kijan chanjman fizik sa a chanje jan lòt moun nan te reyaji avè w — <em>kò w se premye mesaj ou voye anvan ou di yon sèl mo.</em>
+    </div>
+  </div>
+
+  <!-- EVALYASYON -->
+  <div class="eval-block">
+    <div class="eval-header">
+      <span class="eval-icon">✍️</span>
+      <div>
+        <h3 class="eval-title">Evalyasyon — Ekri Repons ou yo</h3>
+        <span class="eval-subtitle">✡ Sèvi ak Moach w (sèvo a) — pa jwe nan chans ✡</span>
+      </div>
+    </div>
+    <div class="eval-questions">
+        <div class="eq-item">
+          <span class="eq-num">✡ Kesyon 1</span>
+          <p class="eq-q">Poukisa nou di <strong>kò fizik lòm se yon antèn</strong> k ap voye ak resevwa vibrasyon san rete, menm anvan bouch li louvri?</p>
+          <textarea class="eq-textarea" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        </div>
+        <div class="eq-item">
+          <span class="eq-num">✡ Kesyon 2</span>
+          <p class="eq-q">Eksplike diferans ki genyen ant <strong>"Jès Koki yo" (Ego)</strong> ak <strong>"Jès Limyè yo" (Koneksyon)</strong> nan fason yo transmèt enèji Veso a.</p>
+          <textarea class="eq-textarea" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        </div>
+        <div class="eq-item">
+          <span class="eq-num">✡ Kesyon 3</span>
+          <p class="eq-q">Nan anatomi espirityèl la, poukisa <strong>je yo reprezante "Pòtay Nanm nan"</strong>, epi ki fòs yon rega vif genyen sou ego yon lòt moun?</p>
+          <textarea class="eq-textarea" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        </div>
+        <div class="eq-item">
+          <span class="eq-num">✡ Kesyon 4</span>
+          <p class="eq-q">Nan nivo metafizik, kisa <strong>men dwat la ak men gòch la</strong> reprezante, epi kòman nou dwe itilize yo nan Liy Mitan an?</p>
+          <textarea class="eq-textarea" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        </div>
     </div>
   </div>
 
