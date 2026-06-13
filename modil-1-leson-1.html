@@ -402,57 +402,54 @@ async function submitEval() {
   btn.disabled = true;
   btn.textContent = '⟳ Ap voye repons yo...';
 
-  const qs = Array.from(document.querySelectorAll('.eq-q')).map(el => el.innerText);
+  // Google Forms entry IDs
+  const FORM_ID = '1FAIpQLSfdjBQDMRq2fLqnMtMrMcUMJ6RytIIhg-wB7QAJe_jTfrJP2A';
+  const ENTRY_NOM = 'entry.339109215';
+  const ENTRY_K1  = 'entry.2055106032';
+  const ENTRY_K2  = 'entry.274550859';
+  const ENTRY_K3  = 'entry.166644136';
+  const ENTRY_K4  = 'entry.1757604024';
 
- // Google Forms entry IDs
-const FORM_ID = '1FAIpQLSfdjBQDMRq2fLqnMtMrMcUMJ6RytIIhg-wB7QAJe_jTfrJP2A';
-const ENTRY_NOM = 'entry.339109215';
-const ENTRY_K1  = 'entry.2055106032';
-const ENTRY_K2  = 'entry.274550859';
-const ENTRY_K3  = 'entry.166644136';
-const ENTRY_K4  = 'entry.1757604024';
+  const nomEtidyan = document.getElementById('nomEtidyan')?.value?.trim() || 'Etidyan M' + MODIL + 'L' + LESON;
 
-const nomEtidyan = document.getElementById('nomEtidyan'); // oswa id non etidyan an genyen an
+  const formData = new FormData();
+  formData.append(ENTRY_NOM, nomEtidyan);
+  formData.append(ENTRY_K1, reps[0] || '');
+  formData.append(ENTRY_K2, reps[1] || '');
+  formData.append(ENTRY_K3, reps[2] || '');
+  formData.append(ENTRY_K4, reps[3] || '');
 
-const formData = new FormData();
-formData.append(ENTRY_NOM, nomEtidyan ? nomEtidyan.value : '');
-formData.append(ENTRY_K1, reps[0]);
-formData.append(ENTRY_K2, reps[1]);
-formData.append(ENTRY_K3, reps[2]);
-formData.append(ENTRY_K4, reps[3]);
-
-try {
-    await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
+  try {
+    await fetch('https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
     });
-} catch(e) {
-    // no-cors toujou lanse yon erè, nou jis kite l pase
-}
+  } catch(e) {
+    // no-cors toujou lanse yon erè aparans — repons yo voye kanmenm
+  }
 
-for (let i = 1; i <= nq; i++) {
-    const fb = document.getElementById(`eq-feedback-${i}`);
+  for (let i = 1; i <= nq; i++) {
+    const fb = document.getElementById('fb'+i);
     if (fb) {
-        fb.className = 'eq-feedback ok';
-        fb.style.display = 'block';
-        fb.innerHTML = '<strong>✡ Repons sove ak siksè</strong>';
+      fb.className = 'eq-feedback ok';
+      fb.style.display = 'block';
+      fb.innerHTML = '<strong>✡ Repons ou a resevwa</strong> — Pwofesè a ap korije l epi reponn ou.';
     }
+  }
+
+  const grEl = document.getElementById('globalResult');
+  const scoreEl = document.getElementById('scoreDisplay');
+  const msgEl = document.getElementById('resultMsg');
+  if (scoreEl) scoreEl.textContent = '✡';
+  if (msgEl) msgEl.textContent = 'Mèsi! Repons ou yo voye bay Mèt la pou evalyasyon.';
+  if (grEl) grEl.style.display = 'block';
+
+  localStorage.setItem(LESON_KEY, '1');
+  checkModilComplete();
+  unlockNextBtn();
+  btn.textContent = '✡ Repons Voye — Ou ka kontinye';
 }
-
-const grEl = document.getElementById('grade-result');
-const scoreEl = document.getElementById('score-display');
-const msgEl = document.getElementById('msg-display');
-
-if (scoreEl) scoreEl.textContent = '100%';
-if (msgEl) msgEl.textContent = 'Mèsi! Repons ou yo voye bay Mèt la pou evalyasyon.';
-if (grEl) grEl.style.display = 'block';
-
-localStorage.setItem(LESON_KEY, '1');
-checkModilComplete();
-unlockNextBtn();
-btn.textContent = '✡ Repons Voye - Ou ka kontinyé';
-
 
 function checkModilComplete() {
   const maxLeson = MODIL <= 3 ? 4 : 2;

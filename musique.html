@@ -87,6 +87,44 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 </style>
 </head>
 <body>
+
+<!-- BANNIERE COUPE DU MONDE 2026 -->
+<div id="cdm-banner" style="
+  background: linear-gradient(135deg, #003087 0%, #003087 48%, #D21034 52%, #D21034 100%);
+  color: #fff;
+  text-align: center;
+  padding: .55rem 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2000;
+  border-bottom: 2px solid #d4af37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+  flex-wrap: wrap;
+">
+  <span style="font-size:1.1rem">🇭🇹</span>
+  <span>Bnei Ohr Sipòte Ayiti — Coupe du Monde 2026</span>
+  <span style="font-size:1.1rem">⚽</span>
+  <span style="font-size:1.1rem">🇭🇹</span>
+  <button onclick="document.getElementById('cdm-banner').style.display='none'" style="
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.4);
+    color: #fff;
+    font-size: .55rem;
+    letter-spacing: .1em;
+    padding: .2rem .5rem;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    margin-left: .5rem;
+  ">✕</button>
+</div>
+<!-- FIN BANNIERE -->
+
 <div id="stars"></div>
 <nav>
   <a href="index.html" class="nav-logo">
