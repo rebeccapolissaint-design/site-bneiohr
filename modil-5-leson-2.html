@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 5 · Leson 2 — Respirasyon kòm Kòd Koneksyon ak Pirifikasyon — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* Pon: Otomatik vs Konsyan */
+.pon-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.pon-grid{grid-template-columns:1fr}}
+.pon-card{padding:1.5rem;border:1px solid;position:relative}
+.pon-card.bèt{border-color:rgba(200,120,80,.2);background:rgba(200,120,80,.04);border-left:3px solid rgba(200,120,80,.3)}
+.pon-card.konsyan{border-color:rgba(212,175,55,.25);background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4)}
+.pon-icon{font-size:1.8rem;display:block;margin-bottom:.5rem;text-align:center}
+.pon-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;text-transform:uppercase;display:block;margin-bottom:.6rem;text-align:center}
+.pon-card.bèt .pon-label{color:rgba(200,120,80,.5)}
+.pon-card.konsyan .pon-label{color:rgba(212,175,55,.5)}
+.pon-items{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.8rem}
+.pon-item{font-size:.92rem;font-style:italic;color:rgba(255,255,255,.55);padding:.25rem 0;padding-left:.6rem;border-left:1px solid rgba(255,255,255,.08)}
+.pon-result{font-size:.9rem;padding:.6rem .8rem;margin-top:.4rem;line-height:1.7}
+.pon-card.bèt .pon-result{background:rgba(200,120,80,.06);color:rgba(200,120,80,.6)}
+.pon-card.konsyan .pon-result{background:rgba(212,175,55,.06);color:rgba(212,175,55,.6)}
+
+/* 2 Mouvman Respirasyon */
+.mouvman-grid{display:flex;flex-direction:column;gap:1rem;margin:2rem 0}
+.mv-card{display:grid;grid-template-columns:3.5rem 1fr;gap:1.2rem;align-items:start;padding:1.4rem;border:1px solid rgba(212,175,55,.1);background:rgba(212,175,55,.02);position:relative;overflow:hidden}
+.mv-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.mv-card.inspir::before{background:rgba(120,180,255,.4)}
+.mv-card.expir::before{background:rgba(212,175,55,.5)}
+.mv-symbol{text-align:center}
+.mv-icon{font-size:2rem;display:block;margin-bottom:.3rem}
+.mv-heb{font-family:'Noto Serif Hebrew',serif;font-size:.85rem;display:block}
+.mv-card.inspir .mv-heb{color:rgba(120,180,255,.35)}
+.mv-card.expir .mv-heb{color:rgba(212,175,55,.3)}
+.mv-name{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;display:block;margin-bottom:.2rem}
+.mv-card.inspir .mv-name{color:rgba(120,180,255,.8)}
+.mv-card.expir .mv-name{color:#d4af37}
+.mv-lwa{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.15em;display:inline-block;padding:.15rem .5rem;border:1px solid;margin-bottom:.5rem;text-transform:uppercase}
+.mv-card.inspir .mv-lwa{color:rgba(120,180,255,.5);border-color:rgba(120,180,255,.2)}
+.mv-card.expir .mv-lwa{color:rgba(212,175,55,.5);border-color:rgba(212,175,55,.2)}
+.mv-desc{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.6);line-height:1.8}
+.mv-desc strong{color:#d4af37;font-style:normal}
+
+/* Poz Silans — Liy Mitan */
+.poz-block{margin:2.5rem 0;padding:2rem;border:1px solid rgba(212,175,55,.15);background:rgba(212,175,55,.02);text-align:center;position:relative}
+.poz-block::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(to right,transparent,#d4af37,transparent)}
+.poz-cycle{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.pc-step{text-align:center;min-width:65px}
+.pc-icon{font-size:1.3rem;display:block;margin-bottom:.3rem}
+.pc-name{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.1em;text-transform:uppercase;line-height:1.5;display:block}
+.pc-step.inspir .pc-name{color:rgba(120,180,255,.5)}
+.pc-step.poz .pc-name{color:#d4af37}
+.pc-step.expir .pc-name{color:rgba(120,200,120,.5)}
+.pc-arrow{color:rgba(212,175,55,.2);font-size:1rem}
+.poz-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.12em;color:#d4af37;display:block;margin-bottom:.6rem;text-transform:uppercase}
+.poz-desc{font-size:1rem;font-style:italic;color:rgba(255,255,255,.6);line-height:1.85;max-width:500px;margin:0 auto}
+.poz-desc strong{color:#d4af37;font-style:normal}
+
+/* Kòd 4-4-4 */
+.kod444{display:flex;align-items:stretch;justify-content:center;gap:0;margin:2rem 0;border:1px solid rgba(212,175,55,.15);overflow:hidden}
+@media(max-width:480px){.kod444{flex-direction:column}}
+.k4-step{flex:1;padding:1.4rem 1rem;text-align:center;position:relative}
+.k4-step:not(:last-child){border-right:1px solid rgba(212,175,55,.1)}
+@media(max-width:480px){.k4-step:not(:last-child){border-right:none;border-bottom:1px solid rgba(212,175,55,.1)}}
+.k4-step.rale{background:rgba(120,180,255,.03)}
+.k4-step.kenbe{background:rgba(212,175,55,.04)}
+.k4-step.lage{background:rgba(120,200,120,.03)}
+.k4-num{font-family:'Cinzel',serif;font-size:2rem;display:block;margin-bottom:.3rem;line-height:1}
+.k4-step.rale .k4-num{color:rgba(120,180,255,.4)}
+.k4-step.kenbe .k4-num{color:rgba(212,175,55,.5)}
+.k4-step.lage .k4-num{color:rgba(120,200,120,.4)}
+.k4-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:.4rem}
+.k4-step.rale .k4-label{color:rgba(120,180,255,.5)}
+.k4-step.kenbe .k4-label{color:rgba(212,175,55,.5)}
+.k4-step.lage .k4-label{color:rgba(120,200,120,.5)}
+.k4-desc{font-size:.88rem;font-style:italic;color:rgba(255,255,255,.45);line-height:1.6}
+.k4-sek{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.2em;color:rgba(255,255,255,.2);text-transform:uppercase;display:block;margin-top:.4rem}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+/* Pratik */
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-steps{display:flex;flex-direction:column;gap:.7rem;margin:1rem 0}
+.pratik-step{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1.1rem;background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.25)}
+.ps-num{font-family:'Cinzel',serif;font-size:.7rem;color:rgba(212,175,55,.5);min-width:1.5rem}
+.ps-txt{font-size:1rem;font-style:italic;color:rgba(255,255,255,.68);line-height:1.8}
+.ps-txt strong{color:#d4af37;font-style:normal}
+.pratik-aksyon{background:rgba(212,175,55,.06);border-left:2px solid rgba(212,175,55,.4);padding:1rem 1.3rem;margin-top:1rem;font-size:1rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.8}
+.pratik-aksyon strong{color:#d4af37;font-style:normal}
+
+/* Evalyasyon */
+.eval-block{background:rgba(30,20,60,.5);border:1px solid rgba(120,100,200,.25);border-top:3px solid rgba(120,100,200,.4);padding:2rem;margin:4rem 0 2rem}
+.eval-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(120,100,200,.15)}
+.eval-icon{font-size:1.6rem}
+.eval-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(160,140,255,.8)}
+.eval-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-top:.2rem}
+.eval-questions{display:flex;flex-direction:column;gap:1.2rem;margin-top:1rem}
+.eq-item{border:1px solid rgba(120,100,200,.15);background:rgba(120,100,200,.04);padding:1.2rem 1.4rem}
+.eq-num{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.eq-q{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.85;margin-bottom:.8rem}
+.eq-q strong{color:rgba(180,160,255,.8);font-weight:400}
+.eq-textarea{width:100%;min-height:90px;background:rgba(0,0,0,.3);border:1px solid rgba(120,100,200,.2);border-radius:2px;color:rgba(255,255,255,.7);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.8rem 1rem;resize:vertical;line-height:1.7;outline:none;transition:border-color .3s}
+.eq-textarea:focus{border-color:rgba(120,100,200,.5);background:rgba(0,0,0,.4)}
+.eq-textarea::placeholder{color:rgba(255,255,255,.2);font-style:italic}
+.eq-feedback{display:none;margin-top:.8rem;padding:1rem 1.2rem;font-size:.95rem;line-height:1.8}
+.eq-feedback.ok{background:rgba(80,180,80,.08);border:1px solid rgba(80,180,80,.25);color:rgba(140,220,140,.85)}
+.eval-submit-wrap{margin-top:1.8rem;text-align:center}
+.eval-submit-btn{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.22em;color:rgba(160,140,255,.8);text-transform:uppercase;border:1px solid rgba(120,100,200,.4);background:rgba(120,100,200,.08);padding:.9rem 2rem;cursor:pointer;transition:all .3s;display:inline-block}
+.eval-submit-btn:hover:not(:disabled){background:rgba(120,100,200,.18);border-color:rgba(160,140,255,.6)}
+.eval-submit-btn:disabled{opacity:.45;cursor:not-allowed}
+.eval-global-result{display:none;margin-top:1.5rem;padding:1.4rem;text-align:center;border:1px solid rgba(212,175,55,.3);background:rgba(212,175,55,.06)}
+.egr-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.egr-score{font-family:'Cinzel',serif;font-size:1.4rem;color:#d4af37;display:block;margin-bottom:.5rem}
+.egr-msg{font-size:1rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.8}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 5 · Leson 2</p>
+  <p class="hero-series">Anatomi Enèjetik ak Gidans Vibrasyon Kò a — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Respirasyon an kòm<br><span>Kòd Koneksyon ak Pirifikasyon</span></h1>
+  <p class="hero-subtitle">Souf · Neshama · Pon ant de Mond yo</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 5</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Nan langaj sajès yo, mo ki vle di <strong>"Souf" la gen menm rasin ak mo ki vle di "Nanm" nan (Neshama)</strong>. Sa montre nou respirasyon an pa senpleman yon fonksyon mekanik pou nou pran oksijèn — li se <strong>kòd koneksyon dirèk ant mond fizik la ak mond espirityèl yo</strong>. Atravè respirasyon konsyan, yon Chaver gen pouvwa pou l netwaye pòtay enèji l yo epi kalme Lev pou l ka tande Moach.</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Souf la kòm Pon — <span>ant de Mond yo</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Respirasyon an se sèl fonksyon nan kò a ki gen yon <strong>doub nati</strong>: li ka mache otomatikman (san nou pa bezwen panse ak sa), men nou ka kontwole l ak volonte nou tou. Poutèt sa, li aji tankou yon pon ant de nivo yo:</p>
+
+  <div class="pon-grid">
+    <div class="pon-card bèt">
+      <span class="pon-icon">😰</span>
+      <span class="pon-label">Respirasyon Otomatik</span>
+      <div class="pon-items">
+        <div class="pon-item">Souf kout lè w pè</div>
+        <div class="pon-item">Souf ap sote lè w fache</div>
+        <div class="pon-item">Kò a sibi emosyon Lev la</div>
+        <div class="pon-item">Nati bèt la ap kòmande</div>
+      </div>
+      <div class="pon-result">Ego dirije — Koki ap fèmen — Blokaj Veso a</div>
+    </div>
+    <div class="pon-card konsyan">
+      <span class="pon-icon">🌬️</span>
+      <span class="pon-label">✡ Respirasyon Konsyan</span>
+      <div class="pon-items">
+        <div class="pon-item">Moach kòmande souf la</div>
+        <div class="pon-item">Souf ralanti epi poze</div>
+        <div class="pon-item">Kòd vibratwa koule anndan</div>
+        <div class="pon-item">Koki laperèz ak kòlè fann</div>
+      </div>
+      <div class="pon-result">✡ Ou pran kontwòl Veso w la — Limyè antre</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pq-text">Lè w <strong>fòse souf la ralanti epi poze</strong>, ou voye yon kòd vibrasyon anndan tout kò w k ap fann koki laperèz ak kòlè yo otomatikman. Ou pran kontwòl Veso w la.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">De Mouvman yo — <span>Lwa Polarite nan Respirasyon</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Menm jan Lwa Polarite a gen yon <strong>Fòs Dwat (Bay) ak yon Fòs Gòch (Resevwa)</strong>, de mouvman respirasyon yo ap swiv menm lwa sa a tou — chak ak yon entansyon espirityèl pwofon:</p>
+
+  <div class="mouvman-grid">
+    <div class="mv-card inspir">
+      <div class="mv-symbol">
+        <span class="mv-icon">🫁</span>
+        <span class="mv-heb">נְשִׁימָה</span>
+      </div>
+      <div class="mv-content">
+        <span class="mv-name">Enspirasyon — Pran Souf</span>
+        <span class="mv-lwa">Dezi pou Resevwa · Fòs Gòch</span>
+        <p class="mv-desc">Reprezante <strong>Dezi pou Resevwa enèji vital la</strong>. Nan pratik Akademi an, nou dwe fè l avèk entansyon — resevwa fòs ak klate nan men Kreyatè a, <em>pa pou ego nou</em>, men pou nou ka gen enèji pou nou sèvi lòt moun.</p>
+      </div>
+    </div>
+    <div class="mv-card expir">
+      <div class="mv-symbol">
+        <span class="mv-icon">💨</span>
+        <span class="mv-heb">נְשִׁיפָה</span>
+      </div>
+      <div class="mv-content">
+        <span class="mv-name">Ekspirasyon — Lage Souf</span>
+        <span class="mv-lwa">Fòs Don ak Transmisyon · Fòs Dwat</span>
+        <p class="mv-desc">Reprezante <strong>fòs Don ak Transmisyon an</strong>. Se moman kote n ap lage tout koki, tout tansyon, ak tout ego nou te rasanble. Se yon <em>ak abandòn</em> kote nou netwaye Veso a pou nou fè plas pou pwochen reyon Limyè a.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Syans ti Poz la — <span>Liy Mitan nan Respirasyon</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Nan pratik Bnei Ohr, pwen ki pi enpòtan nan respirasyon an se pa lè w ap rale oswa w ap lage souf la — men se <strong>ti moman poz ki genyen ant de mouvman sa yo</strong>.</p>
+
+  <div class="poz-block">
+    <div class="poz-cycle">
+      <div class="pc-step inspir">
+        <span class="pc-icon">🫁</span>
+        <span class="pc-name">Enspirasyon<br>Resevwa</span>
+      </div>
+      <span class="pc-arrow">→</span>
+      <div class="pc-step poz">
+        <span class="pc-icon">✡</span>
+        <span class="pc-name">POZ<br>Liy Mitan</span>
+      </div>
+      <span class="pc-arrow">→</span>
+      <div class="pc-step expir">
+        <span class="pc-icon">💨</span>
+        <span class="pc-name">Ekspirasyon<br>Lage</span>
+      </div>
+      <span class="pc-arrow">→</span>
+      <div class="pc-step poz">
+        <span class="pc-icon">✡</span>
+        <span class="pc-name">POZ<br>Liy Mitan</span>
+      </div>
+    </div>
+    <span class="poz-title">✡ Ti Poz la — Reprezantasyon Liy Mitan an ✡</span>
+    <p class="poz-desc">Moman silans total sa a, kote poumon yo pa ni plen ni vid, se <strong>reprezentasyon Liy Mitan an</strong>. Se nan ti espas sa a vibrasyon kò a al aliyen nèt ak gwo Silans Kreyatè a. Se la Gidans entèn lan pale pi klè.</p>
+  </div>
+
+  <!-- KÒD 4-4-4 -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">🌬️</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Semèn — Kòd 4-4-4 la ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1.2rem">De fwa pa jou (<strong>maten ak aswè</strong>), chita byen dwat, epi pratike respirasyon sa a pandan <strong>3 minit</strong>:</p>
+
+    <div class="kod444">
+      <div class="k4-step rale">
+        <span class="k4-num">4</span>
+        <span class="k4-label">Rale Souf</span>
+        <p class="k4-desc">Nan nen w dousman</p>
+        <span class="k4-sek">Segond · Pran enèji a</span>
+      </div>
+      <div class="k4-step kenbe">
+        <span class="k4-num">4</span>
+        <span class="k4-label">Kenbe</span>
+        <p class="k4-desc">Poumon plen — Poz total</p>
+        <span class="k4-sek">Segond · Aliyen nan Moach</span>
+      </div>
+      <div class="k4-step lage">
+        <span class="k4-num">4</span>
+        <span class="k4-label">Lage Souf</span>
+        <p class="k4-desc">Nan bouch dousman</p>
+        <span class="k4-sek">Segond · Lage koki yo</span>
+      </div>
+    </div>
+
+    <div class="pratik-aksyon">
+      <strong>Ekri nan kaye w</strong> kijan egzèsis sa a chanje nivo nè w ak klète panse w — <em>anvan w kòmanse jounen w oswa anvan w al dòmi.</em>
+    </div>
+  </div>
+
+  <!-- EVALYASYON -->
+  <div class="eval-block">
+    <div class="eval-header">
+      <span class="eval-icon">✍️</span>
+      <div>
+        <h3 class="eval-title">Evalyasyon — Ekri Repons ou yo</h3>
+        <span class="eval-subtitle">✡ Sèvi ak Moach w — pa jwe nan chans ✡</span>
+      </div>
+    </div>
+    <div class="eval-questions">
+      <div class="eq-item" id="eq1">
+        <span class="eq-num">✡ Kesyon 1</span>
+        <p class="eq-q">Poukisa nou di respirasyon an se <strong>"pon"</strong> ki konekte Nati otomatik lòm ak nivo Konsyans ki pi wo a?</p>
+        <textarea class="eq-textarea" id="rep1" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb1"></div>
+      </div>
+      <div class="eq-item" id="eq2">
+        <span class="eq-num">✡ Kesyon 2</span>
+        <p class="eq-q">Eksplike kisa <strong>de mouvman respirasyon yo</strong> (Enspirasyon ak Ekspirasyon) reprezante nan nivo Lwa Polarite a ak entansyon Veso a.</p>
+        <textarea class="eq-textarea" id="rep2" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb2"></div>
+      </div>
+      <div class="eq-item" id="eq3">
+        <span class="eq-num">✡ Kesyon 3</span>
+        <p class="eq-q">Kisa <strong>"ti moman poz"</strong> ki genyen nan mitan respirasyon an reprezante, epi poukisa li enpòtan pou Gidans entèn elèv la?</p>
+        <textarea class="eq-textarea" id="rep3" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb3"></div>
+      </div>
+      <div class="eq-item" id="eq4">
+        <span class="eq-num">✡ Kesyon 4</span>
+        <p class="eq-q">Dekri kijan yon elèv ka itilize <strong>souf li</strong> pou l kase yon koki emosyonèl (tankou yon gwo kòlè oswa yon panik) k ap monte nan kè l (Lev).</p>
+        <textarea class="eq-textarea" id="rep4" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb4"></div>
+      </div>
+    </div>
+    <div class="eval-submit-wrap">
+      <button class="eval-submit-btn" id="submitBtn" onclick="submitEval()">
+        ✡ Soumèt Repons yo pou Evalyasyon
+      </button>
+      <div class="eval-global-result" id="globalResult">
+        <span class="egr-label">✡ Rezilta Evalyasyon ou ✡</span>
+        <span class="egr-score" id="scoreDisplay"></span>
+        <p class="egr-msg" id="resultMsg"></p>
+      </div>
+    </div>
+  </div>
+
+<script>
+const MODIL = 5;
+const LESON = 2;
+const NEXT_HREF = 'modil-5-leson-3.html';
+const LESON_KEY = 'bnei_leson_M5L2';
+
+window.addEventListener('DOMContentLoaded', function() {
+  checkLock();
+  checkAlreadyPassed();
+});
+
+function checkLock() {
+  const prevUnlocked = localStorage.getItem('bnei_modil_4_unlocked');
+  if (!prevUnlocked) {
+    document.querySelector('.eval-block').innerHTML = `
+      <div style="text-align:center;padding:2rem">
+        <p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem">✡ Aksè Bloke ✡</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9">Ou dwe konplete tout leson <strong style="color:#d4af37">Modil 4</strong> anvan ou ka aksede Modil 5 la.</p>
+        <a href="etudes.html" style="display:inline-block;margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:rgba(212,175,55,.6);text-decoration:none;border:1px solid rgba(212,175,55,.25);padding:.8rem 1.5rem;text-transform:uppercase">← Retounen nan Modil yo</a>
+      </div>`;
+  }
+}
+
+function checkAlreadyPassed() {
+  const passed = localStorage.getItem(LESON_KEY);
+  if (passed) {
+    const btn = document.getElementById('submitBtn');
+    if (btn) {
+      btn.textContent = '✡ Leson sa a deja konplete — Ou ka soumèt ankò';
+      btn.disabled = false;
+    }
+    unlockNextBtn();
+  }
+}
+
+async function submitEval() {
+  const reps = [];
+  const nq = document.querySelectorAll('.eq-textarea').length;
+  for (let i = 1; i <= nq; i++) {
+    reps.push(document.getElementById('rep'+i)?.value?.trim() || '');
+  }
+  const empty = reps.filter(r => r.length < 3);
+  if (empty.length > 0) {
+    alert('Tanpri reponn tout kesyon yo anvan ou soumèt.');
+    return;
+  }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '⟳ Ap voye repons yo...';
+
+  const qs = Array.from(document.querySelectorAll('.eq-q')).map(el => el.innerText);
+  let sujet = encodeURIComponent('Bnei Ohr — Repons Modil ' + MODIL + ' Leson ' + LESON);
+  let corps = 'MODIL ' + MODIL + ' — LESON ' + LESON + '\n================================\n\n';
+  qs.forEach((q, i) => {
+    corps += 'KESYON ' + (i+1) + ': ' + q + '\nREPONS: ' + reps[i] + '\n\n';
+  });
+  corps = encodeURIComponent(corps);
+  window.location.href = 'mailto:bneiohr@gmail.com?subject=' + sujet + '&body=' + corps;
+
+  for (let i = 1; i <= nq; i++) {
+    const fb = document.getElementById('fb'+i);
+    if (fb) {
+      fb.className = 'eq-feedback ok';
+      fb.style.display = 'block';
+      fb.innerHTML = '<strong>✡ Repons ou a resevwa</strong> — Pwofesè a ap korije l epi reponn ou.';
+    }
+  }
+  const grEl = document.getElementById('globalResult');
+  const scoreEl = document.getElementById('scoreDisplay');
+  const msgEl = document.getElementById('resultMsg');
+  if (scoreEl) scoreEl.textContent = '✡';
+  if (msgEl) msgEl.textContent = 'Repons ou yo voye ba pwofesè a. Ou pral resevwa kòmantè pa email.';
+  if (grEl) grEl.style.display = 'block';
+
+  localStorage.setItem(LESON_KEY, '1');
+  unlockNextBtn();
+  btn.textContent = '✡ Repons Voye — Ou ka kontinye';
+}
+
+function unlockNextBtn() {
+  const navBottom = document.querySelector('.nav-bottom');
+  if (!navBottom) return;
+  navBottom.querySelectorAll('a').forEach(a => {
+    if (a.href.includes(NEXT_HREF) || a.textContent.includes('→')) {
+      a.style.opacity = '1';
+      a.style.pointerEvents = 'auto';
+      a.style.borderColor = 'rgba(212,175,55,.4)';
+      a.style.color = '#d4af37';
+    }
+  });
+}
+</script>
+
+  <div class="nav-bottom">
+    <a href="modil-5-leson-1.html" class="nav-btn">← Leson 1</a>
+    <a href="modil-5-leson-3.html" class="nav-btn" style="opacity:.35;pointer-events:none">Leson 3 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 5 · Leson 2 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
