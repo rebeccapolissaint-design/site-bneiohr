@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 6 · Leson 4 — Sanktyè Entèn la — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+.modil-final-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);padding:.5rem 1.2rem;margin-top:1rem;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.7);text-transform:uppercase}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* Sanktyè vizyal */
+.sanktye-block{margin:2rem 0;padding:2rem;border:1px solid rgba(212,175,55,.2);background:radial-gradient(ellipse at center, rgba(212,175,55,.05) 0%, rgba(0,0,0,0) 70%);text-align:center;position:relative}
+.sb-miray{font-size:2.5rem;display:block;margin-bottom:1rem}
+.sb-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.15em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.8rem}
+.sb-desc{font-size:1rem;font-style:italic;color:rgba(255,255,255,.6);line-height:1.9;max-width:480px;margin:0 auto}
+.sb-desc strong{color:#d4af37;font-style:normal}
+.sb-kavanah{margin-top:1.3rem;padding:1rem 1.3rem;background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.2);font-size:1rem;font-style:italic;color:rgba(255,255,255,.72);line-height:1.85}
+.sb-kavanah em{color:#d4af37;font-style:normal}
+
+/* Gaye vs Konsantre */
+.gaye-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.gaye-grid{grid-template-columns:1fr}}
+.gg-card{padding:1.4rem;border:1px solid}
+.gg-card.gaye{border-color:rgba(200,80,80,.2);background:rgba(200,80,80,.04);border-left:3px solid rgba(200,80,80,.35)}
+.gg-card.konsantre{border-color:rgba(212,175,55,.25);background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4)}
+.gg-icon{font-size:1.6rem;display:block;margin-bottom:.4rem;text-align:center}
+.gg-label{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:.6rem;text-align:center}
+.gg-card.gaye .gg-label{color:rgba(200,80,80,.5)}
+.gg-card.konsantre .gg-label{color:rgba(212,175,55,.5)}
+.gg-items{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.7rem}
+.gg-item{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.55);padding:.2rem 0 .2rem .6rem;border-left:1px solid rgba(255,255,255,.08)}
+.gg-efè{font-size:.88rem;padding:.5rem .7rem;line-height:1.7}
+.gg-card.gaye .gg-efè{background:rgba(200,80,80,.06);color:rgba(200,80,80,.6)}
+.gg-card.konsantre .gg-efè{background:rgba(212,175,55,.06);color:rgba(212,175,55,.65)}
+
+/* Silans: Vakyòm vs Plenitid */
+.silans-block{display:grid;grid-template-columns:1fr auto 1fr;gap:.8rem;align-items:center;margin:2rem 0}
+@media(max-width:480px){.silans-block{grid-template-columns:1fr;text-align:center}}
+.sl-side{padding:1.4rem 1.2rem;border:1px solid;text-align:center}
+.sl-side.vakyom{border-color:rgba(160,160,160,.15);background:rgba(160,160,160,.03)}
+.sl-side.plenitid{border-color:rgba(212,175,55,.2);background:rgba(212,175,55,.04)}
+.sl-icon{font-size:1.8rem;display:block;margin-bottom:.5rem}
+.sl-title{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.12em;display:block;margin-bottom:.5rem}
+.sl-side.vakyom .sl-title{color:rgba(160,160,160,.5)}
+.sl-side.plenitid .sl-title{color:#d4af37}
+.sl-desc{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.7}
+.sl-vs{font-family:'Cinzel',serif;font-size:.65rem;color:rgba(212,175,55,.2);text-align:center;letter-spacing:.2em}
+
+/* Poz Sanktyè 2 minit */
+.poz-sanktye{display:flex;flex-direction:column;gap:.6rem;margin:2rem 0;border:1px solid rgba(212,175,55,.15);background:rgba(212,175,55,.02);padding:1.5rem}
+.ps-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(212,175,55,.4);display:block;margin-bottom:1rem;text-align:center}
+.poz-step{display:flex;align-items:flex-start;gap:.8rem;padding:.7rem .9rem;background:rgba(0,0,0,.15);border-left:2px solid rgba(212,175,55,.2)}
+.poz-step-icon{font-size:1.1rem;min-width:1.5rem;text-align:center}
+.poz-step-text{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.62);line-height:1.8}
+.poz-step-text strong{color:#d4af37;font-style:normal}
+.poz-affirmasyon{text-align:center;margin-top:1rem;padding:1rem;background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.2);font-size:1rem;font-style:italic;color:rgba(255,255,255,.72);line-height:1.85}
+.poz-affirmasyon em{color:#d4af37;font-style:normal}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+/* Pratik */
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-steps{display:flex;flex-direction:column;gap:.7rem;margin:1rem 0}
+.pratik-step{display:flex;align-items:flex-start;gap:.9rem;padding:.9rem 1.1rem;background:rgba(0,0,0,.2);border-left:2px solid rgba(212,175,55,.25)}
+.ps-num{font-family:'Cinzel',serif;font-size:.7rem;color:rgba(212,175,55,.5);min-width:1.5rem}
+.ps-txt{font-size:1rem;font-style:italic;color:rgba(255,255,255,.68);line-height:1.8}
+.ps-txt strong{color:#d4af37;font-style:normal}
+.pratik-aksyon{background:rgba(212,175,55,.06);border-left:2px solid rgba(212,175,55,.4);padding:1rem 1.3rem;margin-top:1rem;font-size:1rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.8}
+.pratik-aksyon strong{color:#d4af37;font-style:normal}
+
+/* Evalyasyon */
+.eval-block{background:rgba(30,20,60,.5);border:1px solid rgba(120,100,200,.25);border-top:3px solid rgba(120,100,200,.4);padding:2rem;margin:4rem 0 2rem}
+.eval-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(120,100,200,.15)}
+.eval-icon{font-size:1.6rem}
+.eval-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(160,140,255,.8)}
+.eval-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-top:.2rem}
+.eval-questions{display:flex;flex-direction:column;gap:1.2rem;margin-top:1rem}
+.eq-item{border:1px solid rgba(120,100,200,.15);background:rgba(120,100,200,.04);padding:1.2rem 1.4rem}
+.eq-num{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.eq-q{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.85;margin-bottom:.8rem}
+.eq-q strong{color:rgba(180,160,255,.8);font-weight:400}
+.eq-textarea{width:100%;min-height:90px;background:rgba(0,0,0,.3);border:1px solid rgba(120,100,200,.2);border-radius:2px;color:rgba(255,255,255,.7);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.8rem 1rem;resize:vertical;line-height:1.7;outline:none;transition:border-color .3s}
+.eq-textarea:focus{border-color:rgba(120,100,200,.5);background:rgba(0,0,0,.4)}
+.eq-textarea::placeholder{color:rgba(255,255,255,.2);font-style:italic}
+.eq-feedback{display:none;margin-top:.8rem;padding:1rem 1.2rem;font-size:.95rem;line-height:1.8}
+.eq-feedback.ok{background:rgba(80,180,80,.08);border:1px solid rgba(80,180,80,.25);color:rgba(140,220,140,.85)}
+.eval-submit-wrap{margin-top:1.8rem;text-align:center}
+.eval-submit-btn{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.22em;color:rgba(160,140,255,.8);text-transform:uppercase;border:1px solid rgba(120,100,200,.4);background:rgba(120,100,200,.08);padding:.9rem 2rem;cursor:pointer;transition:all .3s;display:inline-block}
+.eval-submit-btn:hover:not(:disabled){background:rgba(120,100,200,.18);border-color:rgba(160,140,255,.6)}
+.eval-submit-btn:disabled{opacity:.45;cursor:not-allowed}
+.eval-global-result{display:none;margin-top:1.5rem;padding:1.4rem;text-align:center;border:1px solid rgba(212,175,55,.3);background:rgba(212,175,55,.06)}
+.egr-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.egr-score{font-family:'Cinzel',serif;font-size:1.4rem;color:#d4af37;display:block;margin-bottom:.5rem}
+.egr-msg{font-size:1rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.8}
+.modil-complete-banner{display:none;margin-top:2rem;padding:2rem;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.07);text-align:center}
+.mcb-star{font-size:2rem;display:block;margin-bottom:.8rem}
+.mcb-title{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.15em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.5rem}
+.mcb-text{font-size:1rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.8}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 6 · Leson 4</p>
+  <p class="hero-series">Disiplin Gidans lan ak Metriz Abitid yo — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Sanktyè Entèn la —<br><span>Bati Fòs Konsantrasyon ak Silans nan Sèvo a</span></h1>
+  <p class="hero-subtitle">Konsantrasyon · Kavanah · Silans kòm Plenitid · Sètitid Total</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 6 · Dènye Leson</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Konklizyon</span>
+  </div>
+  <div><span class="modil-final-badge">✡ Dènye Leson Modil 6 la ✡</span></div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Pi gwo travay yon elèv nan Akademi Bnei Ohr, se pa chache <strong>chanje mond deyò a</strong>, men se <strong>stabilize mond entèn li a</strong>. Pou anpeche ansyen abitid otomatik yo ak bri sosyete a anvayi Veso w, ou dwe aprann bati yon <strong>Sanktyè Entèn</strong> — yon espas Konsantrasyon total ou kreye anndan pwòp Sèvo w (Moach).</p>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Kisa Sanktyè Entèn la ye — <span>Baryè Limyè anndan Moach</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Sanktyè Entèn la se nivo konsyans kote ou <strong>sispann reyaji ak sa k ap pase deyò w</strong> oswa nan emosyon Lev la. Se yon espas kote sèl sa ki egziste se prezan an, klate a, ak koneksyon w ak Sous la.</p>
+
+  <div class="sanktye-block">
+    <span class="sb-miray">🛡️</span>
+    <span class="sb-title">✡ Baryè Sekirite Sanktyè a ✡</span>
+    <p class="sb-desc">Lè yon elèv devlope sanktyè sa a, li vin tankou yon moun ki chita <strong>dèyè yon vit</strong> — li wè ajitasyon mond lan, li tande bri koki yo (Klipot), men <strong>okenn frekans ba pa ka antre anndan sistèm li</strong> pou ba l strès oswa dekourajman.</p>
+    <div class="sb-kavanah">
+      Li pèmèt ou rete nan yon pozisyon <em>Sètitid total</em> — kote ou konnen tout sa k ap rive ap swiv Lwa Inivèsèl yo pou yon Tikkun (Koreksyon).
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Gwo Sekrè Konsantrasyon an — <span>Kavanah Piman Bouk</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Konsantrasyon an se <strong>fòs ki pèmèt ou rasanble tout reyon enèji lespri w pou w mete yo sou yon sèl pwen presi</strong>. Pifò moun gen lespri yo gaye — y ap travay men y ap panse ak pwoblèm kay, y ap pale men y ap gade telefòn. Gaye sa a bati plis koki epi gaspiye Abandans lan:</p>
+
+  <div class="gaye-grid">
+    <div class="gg-card gaye">
+      <span class="gg-icon">🌪️</span>
+      <span class="gg-label">✗ Lespri Gaye — Dispèsyon</span>
+      <div class="gg-items">
+        <div class="gg-item">Kò nan travay, lespri nan pwoblèm</div>
+        <div class="gg-item">Pale men gade telefòn</div>
+        <div class="gg-item">Fè yon bagay, panse ak lòt</div>
+        <div class="gg-item">Reyon enèji yo gaye</div>
+      </div>
+      <div class="gg-efè">Koki bati — Abandans gaspiye — Robo k ap sibi tan an</div>
+    </div>
+    <div class="gg-card konsantre">
+      <span class="gg-icon">✡</span>
+      <span class="gg-label">✡ Konsantrasyon — Kavanah</span>
+      <div class="gg-items">
+        <div class="gg-item">Tout sans fòme yon sèl Veso</div>
+        <div class="gg-item">Prezan total nan sa w ap fè</div>
+        <div class="gg-item">Senp travay tounen Alchimi</div>
+        <div class="gg-item">Reyon enèji rasanble</div>
+      </div>
+      <div class="gg-efè">✡ Jadinye k ap domine moman an — Fòs Alchimik nan chak aksyon</div>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p class="pq-text">Lè w fòse tout sans ou pou yo fè yon sèl Veso nan sa w ap fè — ou <strong>sispann yon robo k ap sibi tan an, ou vin yon Jadinye k ap domine moman an</strong>.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Silans la — <span>pa Vakyòm, men Plenitid</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Moun ki nan Nati otomatik yo <strong>pè silans</strong> paske pou yo menm silans vle di "anyen". Men pou yon elèv Bnei Ohr, silans sèvo a se pi gwo fòm Plenitid:</p>
+
+  <div class="silans-block">
+    <div class="sl-side vakyom">
+      <span class="sl-icon">😰</span>
+      <span class="sl-title">Silans = Vakyòm (Ego)</span>
+      <p class="sl-desc">Pè silans — toujou bezwen bri oswa mizik — kouri pou pwòp tèt li — ego a pa vle tande verite Neshama a.</p>
+    </div>
+    <div class="sl-vs">→</div>
+    <div class="sl-side plenitid">
+      <span class="sl-icon">✡</span>
+      <span class="sl-title">✡ Silans = Plenitid (Neshama)</span>
+      <p class="sl-desc">Bri ego a ak mask yo fin vante nèt — vrè vwa Gidans lan tande klèman — Konsyans nan Limyè Sètitid.</p>
+    </div>
+  </div>
+
+  <p class="para">Bati Sanktyè Entèn sa a chak jou, <strong>se sa k ap ba w garanti w ap rete solid nan Liy Mitan an</strong> — kèlkeswa jan Sezon Livè a ta parèt fò deyò a.</p>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">🏛️</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim — Konklizyon Modil 6</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Semèn — Konstriksyon Sanktyè a ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">De fwa pa jounen w, nan mitan ajitasyon travay ou oswa aktivite w, fè yon <strong>"Poz Sanktyè" pandan 2 minit</strong>:</p>
+
+    <div class="poz-sanktye">
+      <span class="ps-label">✡ Poz Sanktyè — 2 Minit ✡</span>
+      <div class="poz-step">
+        <span class="poz-step-icon">⏹️</span>
+        <p class="poz-step-text"><strong>Sispann</strong> tout sa w ap fè — ranje kò w dwat — fèmen je w si posib.</p>
+      </div>
+      <div class="poz-step">
+        <span class="poz-step-icon">🧠</span>
+        <p class="poz-step-text"><strong>Pote tout atansyon w</strong> anndan Sèvo w (Moach) — soti nan deyò — antre anndan.</p>
+      </div>
+      <div class="poz-step">
+        <span class="poz-step-icon">🌬️</span>
+        <p class="poz-step-text"><strong>Rale 3 souf dousman</strong> — chak ekspirasyon netwaye yon kouch koki.</p>
+      </div>
+      <div class="poz-step">
+        <span class="poz-step-icon">🛡️</span>
+        <p class="poz-step-text"><strong>Desine yon miray Limyè</strong> nan lespri w k ap separe w ak tout bri anviwònman an.</p>
+      </div>
+      <div class="poz-affirmasyon">
+        <em>"Mwen nan Sanktyè m — mwen nan Liy Mitan an — mwen an sekirite nan Limyè a."</em>
+      </div>
+    </div>
+
+    <div class="pratik-aksyon">
+      <strong>Ekri nan kaye w</strong> kijan ti pratik sa a ede w remete lòd ak fòs nan rès aktivite w yo — <em>ki diferans ou santi ant moman anvan Poz Sanktyè a ak moman apre li.</em>
+    </div>
+  </div>
+
+  <!-- EVALYASYON -->
+  <div class="eval-block">
+    <div class="eval-header">
+      <span class="eval-icon">✍️</span>
+      <div>
+        <h3 class="eval-title">Evalyasyon Finèl — Modil 6</h3>
+        <span class="eval-subtitle">✡ Sèvi ak tout sa ou aprann nan 4 leson Modil 6 yo ✡</span>
+      </div>
+    </div>
+    <div class="eval-questions">
+      <div class="eq-item" id="eq1">
+        <span class="eq-num">✡ Kesyon 1</span>
+        <p class="eq-q">Kisa <strong>Sanktyè Entèn la</strong> ye nan nivo Sèvo a (Moach), epi ki pwoteksyon li bay yon elèv kont koki deyò yo?</p>
+        <textarea class="eq-textarea" id="rep1" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb1"></div>
+      </div>
+      <div class="eq-item" id="eq2">
+        <span class="eq-num">✡ Kesyon 2</span>
+        <p class="eq-q">Poukisa <strong>dispèsyon lespri a</strong> (lè yon moun ap fè yon bagay epi l ap panse ak yon lòt) se yon fason k ap gaspiye enèji Veso li a?</p>
+        <textarea class="eq-textarea" id="rep2" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb2"></div>
+      </div>
+      <div class="eq-item" id="eq3">
+        <span class="eq-num">✡ Kesyon 3</span>
+        <p class="eq-q">Eksplike poukisa nou di <strong>silans Sèvo a pa yon vakyòm</strong> (espas vid), men se yon fòm Plenitid pou Nanm nan (Neshama).</p>
+        <textarea class="eq-textarea" id="rep3" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb3"></div>
+      </div>
+      <div class="eq-item" id="eq4">
+        <span class="eq-num">✡ Kesyon 4</span>
+        <p class="eq-q">Kòman yon elèv ka sèvi ak fòs <strong>Konsantrasyon an</strong> pou l transfòme yon senp responsablite chak jou an yon aksyon ki aliyen ak Limyè a?</p>
+        <textarea class="eq-textarea" id="rep4" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb4"></div>
+      </div>
+    </div>
+    <div class="eval-submit-wrap">
+      <button class="eval-submit-btn" id="submitBtn" onclick="submitEval()">
+        ✡ Soumèt Repons yo pou Evalyasyon
+      </button>
+      <div class="eval-global-result" id="globalResult">
+        <span class="egr-label">✡ Rezilta Evalyasyon ou ✡</span>
+        <span class="egr-score" id="scoreDisplay"></span>
+        <p class="egr-msg" id="resultMsg"></p>
+      </div>
+      <div class="modil-complete-banner" id="modilCompleteBanner">
+        <span class="mcb-star">✡</span>
+        <span class="mcb-title">Modil 6 Konplè — Bravo, Chaver!</span>
+        <p class="mcb-text">Ou fin travèse tout 4 leson Modil Disiplin Gidans lan — Abitid, Tan, Panse, ak Sanktyè. Ou gen zouti pou gouvène mond entèn ou ak solidite. Kontinye nan chèn Lumyè a.</p>
+      </div>
+    </div>
+  </div>
+
+<script>
+const MODIL = 6;
+const LESON = 4;
+const LESON_KEY = 'bnei_leson_M6L4';
+const NEXT_HREF = 'etudes.html';
+
+window.addEventListener('DOMContentLoaded', function() {
+  checkLock();
+  checkAlreadyPassed();
+});
+
+function checkLock() {
+  const prevUnlocked = localStorage.getItem('bnei_modil_5_unlocked');
+  if (!prevUnlocked) {
+    document.querySelector('.eval-block').innerHTML = `
+      <div style="text-align:center;padding:2rem">
+        <p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem">✡ Aksè Bloke ✡</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9">Ou dwe konplete tout leson <strong style="color:#d4af37">Modil 5</strong> anvan ou ka aksede Modil 6 la.</p>
+        <a href="etudes.html" style="display:inline-block;margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:rgba(212,175,55,.6);text-decoration:none;border:1px solid rgba(212,175,55,.25);padding:.8rem 1.5rem;text-transform:uppercase">← Retounen nan Modil yo</a>
+      </div>`;
+  }
+}
+
+function checkAlreadyPassed() {
+  const passed = localStorage.getItem(LESON_KEY);
+  if (passed) {
+    const btn = document.getElementById('submitBtn');
+    if (btn) {
+      btn.textContent = '✡ Leson sa a deja konplete — Ou ka soumèt ankò';
+      btn.disabled = false;
+    }
+    checkModilComplete();
+    unlockNextBtn();
+  }
+}
+
+async function submitEval() {
+  const reps = [];
+  const nq = document.querySelectorAll('.eq-textarea').length;
+  for (let i = 1; i <= nq; i++) {
+    reps.push(document.getElementById('rep'+i)?.value?.trim() || '');
+  }
+  const empty = reps.filter(r => r.length < 3);
+  if (empty.length > 0) {
+    alert('Tanpri reponn tout kesyon yo anvan ou soumèt.');
+    return;
+  }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '⟳ Ap voye repons yo...';
+
+  const qs = Array.from(document.querySelectorAll('.eq-q')).map(el => el.innerText);
+  let sujet = encodeURIComponent('Bnei Ohr — Repons Modil ' + MODIL + ' Leson ' + LESON + ' (Evalyasyon Finèl)');
+  let corps = 'MODIL ' + MODIL + ' — LESON ' + LESON + ' (EVALYASYON FINÈL)\n================================\n\n';
+  qs.forEach((q, i) => {
+    corps += 'KESYON ' + (i+1) + ': ' + q + '\nREPONS: ' + reps[i] + '\n\n';
+  });
+  corps = encodeURIComponent(corps);
+  window.location.href = 'mailto:bneiohr@gmail.com?subject=' + sujet + '&body=' + corps;
+
+  for (let i = 1; i <= nq; i++) {
+    const fb = document.getElementById('fb'+i);
+    if (fb) {
+      fb.className = 'eq-feedback ok';
+      fb.style.display = 'block';
+      fb.innerHTML = '<strong>✡ Repons ou a resevwa</strong> — Pwofesè a ap korije l epi reponn ou.';
+    }
+  }
+  const grEl = document.getElementById('globalResult');
+  const scoreEl = document.getElementById('scoreDisplay');
+  const msgEl = document.getElementById('resultMsg');
+  if (scoreEl) scoreEl.textContent = '✡';
+  if (msgEl) msgEl.textContent = 'Repons ou yo voye ba pwofesè a. Ou pral resevwa kòmantè pa email.';
+  if (grEl) grEl.style.display = 'block';
+
+  localStorage.setItem(LESON_KEY, '1');
+  checkModilComplete();
+  unlockNextBtn();
+  btn.textContent = '✡ Repons Voye — Modil 6 Konplè!';
+}
+
+function checkModilComplete() {
+  let allDone = true;
+  for (let l = 1; l <= 4; l++) {
+    if (!localStorage.getItem('bnei_leson_M6L' + l)) { allDone = false; break; }
+  }
+  if (allDone) {
+    localStorage.setItem('bnei_modil_6_unlocked', '1');
+    const banner = document.getElementById('modilCompleteBanner');
+    if (banner) banner.style.display = 'block';
+  }
+}
+
+function unlockNextBtn() {
+  const navBottom = document.querySelector('.nav-bottom');
+  if (!navBottom) return;
+  navBottom.querySelectorAll('a').forEach(a => {
+    if (a.href.includes(NEXT_HREF) || a.textContent.includes('→')) {
+      a.style.opacity = '1';
+      a.style.pointerEvents = 'auto';
+      a.style.borderColor = 'rgba(212,175,55,.4)';
+      a.style.color = '#d4af37';
+    }
+  });
+}
+</script>
+
+  <div class="nav-bottom">
+    <a href="modil-6-leson-3.html" class="nav-btn">← Leson 3</a>
+    <a href="etudes.html" class="nav-btn" style="opacity:.35;pointer-events:none">Modil yo →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 6 · Leson 4 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
