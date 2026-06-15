@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modil 6 · Leson 2 — Disiplin Tan an — Bnei Ohr</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Noto+Serif+Hebrew:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{overflow-y:auto;-webkit-overflow-scrolling:touch;background:#050505;color:#f0f0f0;font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+#stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#d4af37;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
+@keyframes twinkle{0%{opacity:0}100%{opacity:var(--o)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.04}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,#d4af37,transparent);top:-100px;left:-100px}
+.orb2{width:400px;height:400px;background:radial-gradient(circle,#d4af37,transparent);bottom:-80px;right:-80px}
+
+nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(5,5,5,.92);border-bottom:1px solid rgba(212,175,55,.15);backdrop-filter:blur(8px)}
+.nav-logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.nav-logo-heb{font-family:'Noto Serif Hebrew',serif;font-size:1.3rem;color:#d4af37;text-shadow:0 0 15px rgba(212,175,55,.4)}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.2em;color:#d4af37;text-transform:uppercase}
+.nav-back{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.2em;color:rgba(212,175,55,.5);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:#d4af37}
+.nav-back::before{content:'← '}
+
+.page-hero{padding:8rem 2rem 3rem;text-align:center;position:relative;z-index:1}
+.hero-cat{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.45em;color:rgba(212,175,55,.45);text-transform:uppercase;margin-bottom:.6rem}
+.hero-series{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.3);text-transform:uppercase;margin-bottom:1rem}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,4.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.3;margin-bottom:.5rem;max-width:800px;margin-left:auto;margin-right:auto}
+.hero-title span{color:#d4af37}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.2rem);font-style:italic;color:rgba(255,255,255,.4);margin-top:.6rem}
+.hero-divider{width:60px;height:1px;background:linear-gradient(to right,transparent,#d4af37,transparent);margin:1.5rem auto}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem}
+.meta-item{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase}
+.meta-sep{color:rgba(212,175,55,.2)}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:0 1.5rem 8rem;position:relative;z-index:1}
+
+.intro-block{background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4);border-right:1px solid rgba(212,175,55,.12);padding:2rem 2rem 2rem 1.8rem;margin-bottom:3rem}
+.intro-text{font-size:clamp(1.05rem,2.5vw,1.2rem);font-style:italic;line-height:2;color:rgba(255,255,255,.75)}
+.intro-text strong{color:#d4af37;font-style:normal}
+
+.sec-head{margin:3.5rem 0 1.5rem}
+.sec-num{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;color:rgba(212,175,55,.3);text-transform:uppercase;display:block;margin-bottom:.4rem}
+.sec-title{font-family:'Cinzel',serif;font-size:clamp(1.05rem,3vw,1.5rem);color:#d4af37;font-weight:400;line-height:1.3}
+.sec-title span{color:rgba(255,255,255,.7);font-size:.85em}
+.sec-divider{width:40px;height:1px;background:linear-gradient(to right,#d4af37,transparent);margin-top:.8rem}
+
+.para{font-size:clamp(1rem,2.5vw,1.13rem);line-height:2;color:rgba(255,255,255,.78);margin-bottom:1.6rem}
+.para strong{color:#d4af37;font-weight:400}
+.para em{color:rgba(255,255,255,.6)}
+
+/* Jounen Vizyal: Maten - Jounen - Aswè */
+.jounen-flow{display:flex;flex-direction:column;gap:.8rem;margin:2rem 0}
+.jf-card{display:grid;grid-template-columns:5rem 1fr;gap:1.2rem;align-items:start;padding:1.4rem;border:1px solid rgba(212,175,55,.1);background:rgba(212,175,55,.02);position:relative;overflow:hidden}
+.jf-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.jf-card.maten::before{background:rgba(255,200,80,.4)}
+.jf-card.jounen::before{background:rgba(212,175,55,.4)}
+.jf-card.aswè::before{background:rgba(120,100,200,.4)}
+.jf-time{text-align:center}
+.jf-icon{font-size:1.8rem;display:block;margin-bottom:.3rem}
+.jf-label{font-family:'Cinzel',serif;font-size:.42rem;letter-spacing:.12em;text-transform:uppercase;display:block}
+.jf-card.maten .jf-label{color:rgba(255,200,80,.5)}
+.jf-card.jounen .jf-label{color:rgba(212,175,55,.5)}
+.jf-card.aswè .jf-label{color:rgba(120,100,200,.5)}
+.jf-content{}
+.jf-title{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;display:block;margin-bottom:.4rem}
+.jf-card.maten .jf-title{color:rgba(255,200,80,.8)}
+.jf-card.jounen .jf-title{color:#d4af37}
+.jf-card.aswè .jf-title{color:rgba(160,140,255,.8)}
+.jf-desc{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.6);line-height:1.8}
+.jf-desc strong{color:#d4af37;font-style:normal}
+
+/* Pyèj vs Aliyman */
+.maten-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}
+@media(max-width:500px){.maten-grid{grid-template-columns:1fr}}
+.mg-card{padding:1.4rem;border:1px solid}
+.mg-card.pyèj{border-color:rgba(200,80,80,.2);background:rgba(200,80,80,.04);border-left:3px solid rgba(200,80,80,.35)}
+.mg-card.aliyan{border-color:rgba(212,175,55,.25);background:rgba(212,175,55,.04);border-left:3px solid rgba(212,175,55,.4)}
+.mg-icon{font-size:1.6rem;display:block;margin-bottom:.4rem;text-align:center}
+.mg-label{font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;display:block;margin-bottom:.6rem;text-align:center}
+.mg-card.pyèj .mg-label{color:rgba(200,80,80,.5)}
+.mg-card.aliyan .mg-label{color:rgba(212,175,55,.5)}
+.mg-items{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.7rem}
+.mg-item{font-size:.9rem;font-style:italic;color:rgba(255,255,255,.55);padding:.2rem 0 .2rem .6rem;border-left:1px solid rgba(255,255,255,.08)}
+.mg-efè{font-size:.88rem;padding:.5rem .7rem;line-height:1.7}
+.mg-card.pyèj .mg-efè{background:rgba(200,80,80,.06);color:rgba(200,80,80,.6)}
+.mg-card.aliyan .mg-efè{background:rgba(212,175,55,.06);color:rgba(212,175,55,.65)}
+
+/* Kavanah Maten */
+.kavanah-block{margin:2rem 0;padding:1.5rem;border:1px solid rgba(212,175,55,.2);background:rgba(212,175,55,.05);text-align:center}
+.kb-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.25em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-bottom:.7rem}
+.kb-text{font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.75);line-height:1.9}
+.kb-text em{color:#d4af37;font-style:normal}
+
+/* Enspeksyon Grenn */
+.grenn-block{display:flex;flex-direction:column;gap:.8rem;margin:2rem 0}
+.gr-item{display:grid;grid-template-columns:2.5rem 1fr;gap:.9rem;align-items:start;padding:1rem 1.2rem;border:1px solid rgba(120,100,200,.12);background:rgba(120,100,200,.03)}
+.gr-icon{font-size:1.2rem;text-align:center;padding-top:.2rem}
+.gr-title{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.1em;color:rgba(160,140,255,.7);display:block;margin-bottom:.3rem}
+.gr-text{font-size:.95rem;font-style:italic;color:rgba(255,255,255,.58);line-height:1.8}
+
+/* 2 Règ 15 minit */
+.regl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+@media(max-width:480px){.regl-grid{grid-template-columns:1fr}}
+.rg-card{padding:1.3rem;border:1px solid rgba(212,175,55,.15);background:rgba(212,175,55,.03);text-align:center}
+.rg-num{font-family:'Cinzel',serif;font-size:2rem;color:rgba(212,175,55,.25);display:block;margin-bottom:.3rem}
+.rg-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.15em;color:#d4af37;text-transform:uppercase;display:block;margin-bottom:.5rem}
+.rg-desc{font-size:.92rem;font-style:italic;color:rgba(255,255,255,.55);line-height:1.7}
+
+.pull-quote{border-left:2px solid rgba(212,175,55,.5);padding:1.2rem 1.5rem;margin:2.5rem 0;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:-.5rem;left:.8rem;font-family:'Cinzel',serif;font-size:3rem;color:rgba(212,175,55,.15);line-height:1}
+.pq-text{font-size:clamp(1.1rem,2.5vw,1.25rem);font-style:italic;line-height:1.9;color:rgba(255,255,255,.8)}
+.pq-text strong{color:#d4af37;font-style:normal}
+
+/* Pratik */
+.pratik-block{background:rgba(212,175,55,.05);border:1px solid rgba(212,175,55,.2);padding:2rem;margin:3rem 0}
+.pratik-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(212,175,55,.12)}
+.pratik-icon{font-size:1.6rem}
+.pratik-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:#d4af37}
+.pratik-subtitle{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.2em;color:rgba(212,175,55,.4);text-transform:uppercase;display:block;margin-top:.2rem}
+.pratik-aksyon{background:rgba(212,175,55,.06);border-left:2px solid rgba(212,175,55,.4);padding:1rem 1.3rem;margin-top:1rem;font-size:1rem;font-style:italic;color:rgba(255,255,255,.7);line-height:1.8}
+.pratik-aksyon strong{color:#d4af37;font-style:normal}
+
+/* Evalyasyon */
+.eval-block{background:rgba(30,20,60,.5);border:1px solid rgba(120,100,200,.25);border-top:3px solid rgba(120,100,200,.4);padding:2rem;margin:4rem 0 2rem}
+.eval-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(120,100,200,.15)}
+.eval-icon{font-size:1.6rem}
+.eval-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(160,140,255,.8)}
+.eval-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-top:.2rem}
+.eval-questions{display:flex;flex-direction:column;gap:1.2rem;margin-top:1rem}
+.eq-item{border:1px solid rgba(120,100,200,.15);background:rgba(120,100,200,.04);padding:1.2rem 1.4rem}
+.eq-num{font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.2em;color:rgba(120,100,200,.5);text-transform:uppercase;display:block;margin-bottom:.5rem}
+.eq-q{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.85;margin-bottom:.8rem}
+.eq-q strong{color:rgba(180,160,255,.8);font-weight:400}
+.eq-textarea{width:100%;min-height:90px;background:rgba(0,0,0,.3);border:1px solid rgba(120,100,200,.2);border-radius:2px;color:rgba(255,255,255,.7);font-family:'Cormorant Garamond',serif;font-size:1rem;padding:.8rem 1rem;resize:vertical;line-height:1.7;outline:none;transition:border-color .3s}
+.eq-textarea:focus{border-color:rgba(120,100,200,.5);background:rgba(0,0,0,.4)}
+.eq-textarea::placeholder{color:rgba(255,255,255,.2);font-style:italic}
+.eq-feedback{display:none;margin-top:.8rem;padding:1rem 1.2rem;font-size:.95rem;line-height:1.8}
+.eq-feedback.ok{background:rgba(80,180,80,.08);border:1px solid rgba(80,180,80,.25);color:rgba(140,220,140,.85)}
+.eval-submit-wrap{margin-top:1.8rem;text-align:center}
+.eval-submit-btn{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.22em;color:rgba(160,140,255,.8);text-transform:uppercase;border:1px solid rgba(120,100,200,.4);background:rgba(120,100,200,.08);padding:.9rem 2rem;cursor:pointer;transition:all .3s;display:inline-block}
+.eval-submit-btn:hover:not(:disabled){background:rgba(120,100,200,.18);border-color:rgba(160,140,255,.6)}
+.eval-submit-btn:disabled{opacity:.45;cursor:not-allowed}
+.eval-global-result{display:none;margin-top:1.5rem;padding:1.4rem;text-align:center;border:1px solid rgba(212,175,55,.3);background:rgba(212,175,55,.06)}
+.egr-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.5);text-transform:uppercase;display:block;margin-bottom:.6rem}
+.egr-score{font-family:'Cinzel',serif;font-size:1.4rem;color:#d4af37;display:block;margin-bottom:.5rem}
+.egr-msg{font-size:1rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.8}
+
+.nav-bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:4rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.12);flex-wrap:wrap}
+.nav-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(212,175,55,.6);text-decoration:none;text-transform:uppercase;border:1px solid rgba(212,175,55,.2);padding:.7rem 1.4rem;transition:all .3s}
+.nav-btn:hover{color:#d4af37;border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.05)}
+
+footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
+.footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
+.footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-heb">בְּנֵי אוֹר</span>
+    <span class="nav-logo-txt">Bnei Ohr</span>
+  </a>
+  <a href="etudes.html" class="nav-back">Modil yo</a>
+</nav>
+
+<div class="page-hero">
+  <p class="hero-cat">✡ Modil 6 · Leson 2</p>
+  <p class="hero-series">Disiplin Gidans lan ak Metriz Abitid yo — Akademi Bnei Ohr</p>
+  <h1 class="hero-title">Disiplin Tan an —<br><span>Bati yon Jounen Aliyen nan Liy Mitan an</span></h1>
+  <p class="hero-subtitle">Pòtay Maten · Jounen an Aksyon · Enspeksyon Grenn · Netwayaj Aswè</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta">
+    <span class="meta-item">✡ Bnei Ohr</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Modil 6</span>
+    <span class="meta-sep">—</span>
+    <span class="meta-item">Lekti Apwofondi</span>
+  </div>
+</div>
+
+<main class="article-wrap">
+
+  <div class="intro-block">
+    <p class="intro-text">Tan an tankou yon gwo rivyè k ap koule san rete. Si yon moun pa gen yon plan pou l gouvène tan l, <strong>rivyè a ap pote l ale nan ajitasyon ak nan fonksyonalite otomatik Nati bèt la</strong>. Nan Akademi Bnei Ohr, nou aprann <strong>Tan an se yon Veso enèjetik</strong> — kijan ou kòmanse jounen w ak kijan ou fini l ap detèmine si w ap vibre nan Liy Mitan an oswa anba koki yo.</p>
+  </div>
+
+  <!-- VIZ: 3 Pòtay Jounen -->
+  <div class="jounen-flow">
+    <div class="jf-card maten">
+      <div class="jf-time">
+        <span class="jf-icon">🌅</span>
+        <span class="jf-label">Maten</span>
+      </div>
+      <div class="jf-content">
+        <span class="jf-title">Pòtay Maten — Aliyen Moach</span>
+        <p class="jf-desc">Premye segonn yo detèmine tout jounen an. <strong>Silans + souf + entansyon</strong> anvan nenpòt ekran — ou branche antèn ou sou Limyè olye bri mond fizik la.</p>
+      </div>
+    </div>
+    <div class="jf-card jounen">
+      <div class="jf-time">
+        <span class="jf-icon">☀️</span>
+        <span class="jf-label">Jounen</span>
+      </div>
+      <div class="jf-content">
+        <span class="jf-title">Jounen an Aksyon — Kenbe Liy Mitan an</span>
+        <p class="jf-desc">Nan mitan travay ak responsablite yo (Asiyah). <strong>Ti Poz 1 minit regilye</strong> — fèmen je, rale souf, netwaye pòtay — anpeche koki yo miltipliye.</p>
+      </div>
+    </div>
+    <div class="jf-card aswè">
+      <div class="jf-time">
+        <span class="jf-icon">🌙</span>
+        <span class="jf-label">Aswè</span>
+      </div>
+      <div class="jf-content">
+        <span class="jf-title">Pòtay Aswè — Netwayaj ak Tikkun</span>
+        <p class="jf-desc">Enspeksyon Grenn anvan dòmi — <strong>analiz rapid, lage regrè yo, abandòn nan men Kreyatè a</strong> — Veso pwòp pare pou demen maten.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati I</span>
+    <h2 class="sec-title">Pòtay Maten an — <span>Aliyen Moach (Sèvo a)</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Moman ou fenk leve nan maten an se <strong>pwen ki pi enpòtan pou tout jounen an</strong>. Nan premye segonn sa yo, Veso w la vid epi li pare pou l resevwa premye frekans l ap kontre a:</p>
+
+  <div class="maten-grid">
+    <div class="mg-card pyèj">
+      <span class="mg-icon">📱</span>
+      <span class="mg-label">✗ Pyèj Koki Maten an</span>
+      <div class="mg-items">
+        <div class="mg-item">Telefòn imedyatman lè w leve</div>
+        <div class="mg-item">Rezo sosyal, nouvèl, mesaj stresan</div>
+        <div class="mg-item">Bri oditif ak vizyèl nan Moach</div>
+        <div class="mg-item">Antèn branche sou frekans ba</div>
+      </div>
+      <div class="mg-efè">Kè (Lev) pase jounen an nan laperèz, kòlè, konparezon</div>
+    </div>
+    <div class="mg-card aliyan">
+      <span class="mg-icon">✡</span>
+      <span class="mg-label">✡ Aliyman Limyè a</span>
+      <div class="mg-items">
+        <div class="mg-item">15 minit silans — zan ekran</div>
+        <div class="mg-item">Respirasyon 4-4-4 konsyan</div>
+        <div class="mg-item">Entansyon jounen nan Moach</div>
+        <div class="mg-item">Antèn branche sou Limyè</div>
+      </div>
+      <div class="mg-efè">✡ Jounen an kòmanse soti nan Sant Konsyans lan</div>
+    </div>
+  </div>
+
+  <div class="kavanah-block">
+    <span class="kb-label">✡ Kavanah Maten — Entansyon Jounen an ✡</span>
+    <p class="kb-text"><em>"Jodi a, m ap sèvi ak Sèvo m pou m dirije Kè m — epi m ap chache etensèl Limyè ki nan chak sitiyasyon."</em></p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati II</span>
+    <h2 class="sec-title">Jounen an Aksyon — <span>Kenbe Liy Mitan an</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Pandan jounen an, w ap nan mitan travay ou, fanmi w, ak responsablite w yo — <em>Mond Aksyon an (Asiyah)</em>. Se la gwo tès la ye. Disiplin tan an mande pou w pa kite anviwònman deyò a deklanche reyaksyon otomatik anndan w.</p>
+
+  <p class="para">Pou w fè sa, enstale <strong>Ti Poz regilye pandan jounen an</strong> — menmsi se pou 1 minit sèlman. Fèmen je w, rale yon souf pwofon, netwaye pòtay enèji w yo. Sa anpeche koki yo miltipliye nan mitan presyon yo.</p>
+
+  <div class="pull-quote">
+    <p class="pq-text">Yon jadinye konsyan pa tann jaden l fin plen move zèb anvan l netwaye — <strong>li fè ti netwayaj regilye chak jou pou l pa janm pèdi kontwòl jaden an</strong>. Se konsa yon Chaver dwe gouvène jounen l.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-head">
+    <span class="sec-num">✡ Pati III</span>
+    <h2 class="sec-title">Pòtay Aswè a — <span>Netwayaj ak Alchimi</span></h2>
+    <div class="sec-divider"></div>
+  </div>
+
+  <p class="para">Anvan w dòmi, fè yon <strong>"Enspeksyon Grenn"</strong> sou jounen ki sot pase a — olye w dòmi ak tout kòlè, regrè, oswa strès jounen an nan kè w:</p>
+
+  <div class="grenn-block">
+    <div class="gr-item">
+      <span class="gr-icon">🔍</span>
+      <div>
+        <span class="gr-title">Kesyon 1 — Bilan Ego a</span>
+        <p class="gr-text">Kote m te aji nan ego m jodi a? Ki sitiyasyon ki te fè m reyaji otomatikman san Moach mwen pa te antre?</p>
+      </div>
+    </div>
+    <div class="gr-item">
+      <span class="gr-icon">✡</span>
+      <div>
+        <span class="gr-title">Kesyon 2 — Bilan Limyè a</span>
+        <p class="gr-text">Kote m te reyalize Liy Mitan an jodi a? Ki moman kote Moach te dirije Lev epi m te aji nan Bay?</p>
+      </div>
+    </div>
+    <div class="gr-item">
+      <span class="gr-icon">🌙</span>
+      <div>
+        <span class="gr-title">Abandòn Finèl — Lage nan men Kreyatè a</span>
+        <p class="gr-text">Pran soufrans ak erè yo — mete entansyon pou w korije yo demen — epi <strong>lage souf ou nan yon abandòn total</strong>. Veso pwòp pare pou demen maten.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRATIK -->
+  <div class="pratik-block">
+    <div class="pratik-header">
+      <span class="pratik-icon">⏰</span>
+      <div>
+        <h3 class="pratik-title">Kaye Pratik pou Chaverim</h3>
+        <span class="pratik-subtitle">✡ Egzèsis Semèn — Ankadreman Tan an ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1.2rem">Pandan semèn sa a, aplike <strong>de règleman</strong> sa yo nan disiplin chak jou w:</p>
+
+    <div class="regl-grid">
+      <div class="rg-card">
+        <span class="rg-num">🌅</span>
+        <span class="rg-label">Règ 15 Minit Maten</span>
+        <p class="rg-desc">Lè w leve, pase 15 premye minit yo <strong>san okenn aparèy elektwonik</strong>. Respirasyon 4-4-4 + Kavanah jounen nan Moach.</p>
+      </div>
+      <div class="rg-card">
+        <span class="rg-num">🌙</span>
+        <span class="rg-label">Règ 15 Minit Aswè</span>
+        <p class="rg-desc">Anvan w dòmi, <strong>fèmen tout ekran 15 minit anvan</strong>. Enspeksyon Grenn + abandòn + dòmi ak kè poze.</p>
+      </div>
+    </div>
+
+    <div class="pratik-aksyon">
+      <strong>Ekri nan kaye w</strong> kijan de ti chanjman sa yo transfòme nivo enèji w pandan jounen an — <em>ki diferans ou santi ant yon jounen ki kòmanse ak telefòn ak yon jounen ki kòmanse ak silans?</em>
+    </div>
+  </div>
+
+  <!-- EVALYASYON -->
+  <div class="eval-block">
+    <div class="eval-header">
+      <span class="eval-icon">✍️</span>
+      <div>
+        <h3 class="eval-title">Evalyasyon — Ekri Repons ou yo</h3>
+        <span class="eval-subtitle">✡ Sèvi ak Moach w — pa jwe nan chans ✡</span>
+      </div>
+    </div>
+    <div class="eval-questions">
+      <div class="eq-item" id="eq1">
+        <span class="eq-num">✡ Kesyon 1</span>
+        <p class="eq-q">Poukisa nou di nan sajès Akademi an <strong>"Tan an se yon Veso enèjetik"</strong>?</p>
+        <textarea class="eq-textarea" id="rep1" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb1"></div>
+      </div>
+      <div class="eq-item" id="eq2">
+        <span class="eq-num">✡ Kesyon 2</span>
+        <p class="eq-q">Kisa k ap rive nan Veso yon elèv si <strong>premye aksyon li fè lè l leve</strong> nan maten se branche tèt li sou strès ak rezo sosyal yo?</p>
+        <textarea class="eq-textarea" id="rep2" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb2"></div>
+      </div>
+      <div class="eq-item" id="eq3">
+        <span class="eq-num">✡ Kesyon 3</span>
+        <p class="eq-q">Kòman yon elèv dwe aji <strong>pandan jounen l</strong> (nan mitan travay li ak presyon yo) pou l anpeche ansyen abitid koki yo pran kontwòl li?</p>
+        <textarea class="eq-textarea" id="rep3" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb3"></div>
+      </div>
+      <div class="eq-item" id="eq4">
+        <span class="eq-num">✡ Kesyon 4</span>
+        <p class="eq-q">Eksplike enpòtans <strong>"Enspeksyon Grenn"</strong> lan anvan w dòmi nan aswè, ak kijan sa ede nan travay Tikkun (Koreksyon) yon elèv.</p>
+        <textarea class="eq-textarea" id="rep4" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
+        <div class="eq-feedback" id="fb4"></div>
+      </div>
+    </div>
+    <div class="eval-submit-wrap">
+      <button class="eval-submit-btn" id="submitBtn" onclick="submitEval()">
+        ✡ Soumèt Repons yo pou Evalyasyon
+      </button>
+      <div class="eval-global-result" id="globalResult">
+        <span class="egr-label">✡ Rezilta Evalyasyon ou ✡</span>
+        <span class="egr-score" id="scoreDisplay"></span>
+        <p class="egr-msg" id="resultMsg"></p>
+      </div>
+    </div>
+  </div>
+
+<script>
+const MODIL = 6;
+const LESON = 2;
+const NEXT_HREF = 'modil-6-leson-3.html';
+const LESON_KEY = 'bnei_leson_M6L2';
+
+window.addEventListener('DOMContentLoaded', function() {
+  checkLock();
+  checkAlreadyPassed();
+});
+
+function checkLock() {
+  const prevUnlocked = localStorage.getItem('bnei_modil_5_unlocked');
+  if (!prevUnlocked) {
+    document.querySelector('.eval-block').innerHTML = `
+      <div style="text-align:center;padding:2rem">
+        <p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem">✡ Aksè Bloke ✡</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9">Ou dwe konplete tout leson <strong style="color:#d4af37">Modil 5</strong> anvan ou ka aksede Modil 6 la.</p>
+        <a href="etudes.html" style="display:inline-block;margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:rgba(212,175,55,.6);text-decoration:none;border:1px solid rgba(212,175,55,.25);padding:.8rem 1.5rem;text-transform:uppercase">← Retounen nan Modil yo</a>
+      </div>`;
+  }
+}
+
+function checkAlreadyPassed() {
+  const passed = localStorage.getItem(LESON_KEY);
+  if (passed) {
+    const btn = document.getElementById('submitBtn');
+    if (btn) {
+      btn.textContent = '✡ Leson sa a deja konplete — Ou ka soumèt ankò';
+      btn.disabled = false;
+    }
+    unlockNextBtn();
+  }
+}
+
+async function submitEval() {
+  const reps = [];
+  const nq = document.querySelectorAll('.eq-textarea').length;
+  for (let i = 1; i <= nq; i++) {
+    reps.push(document.getElementById('rep'+i)?.value?.trim() || '');
+  }
+  const empty = reps.filter(r => r.length < 3);
+  if (empty.length > 0) {
+    alert('Tanpri reponn tout kesyon yo anvan ou soumèt.');
+    return;
+  }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = '⟳ Ap voye repons yo...';
+
+  const qs = Array.from(document.querySelectorAll('.eq-q')).map(el => el.innerText);
+  let sujet = encodeURIComponent('Bnei Ohr — Repons Modil ' + MODIL + ' Leson ' + LESON);
+  let corps = 'MODIL ' + MODIL + ' — LESON ' + LESON + '\n================================\n\n';
+  qs.forEach((q, i) => {
+    corps += 'KESYON ' + (i+1) + ': ' + q + '\nREPONS: ' + reps[i] + '\n\n';
+  });
+  corps = encodeURIComponent(corps);
+  window.location.href = 'mailto:bneiohr@gmail.com?subject=' + sujet + '&body=' + corps;
+
+  for (let i = 1; i <= nq; i++) {
+    const fb = document.getElementById('fb'+i);
+    if (fb) {
+      fb.className = 'eq-feedback ok';
+      fb.style.display = 'block';
+      fb.innerHTML = '<strong>✡ Repons ou a resevwa</strong> — Pwofesè a ap korije l epi reponn ou.';
+    }
+  }
+  const grEl = document.getElementById('globalResult');
+  const scoreEl = document.getElementById('scoreDisplay');
+  const msgEl = document.getElementById('resultMsg');
+  if (scoreEl) scoreEl.textContent = '✡';
+  if (msgEl) msgEl.textContent = 'Repons ou yo voye ba pwofesè a. Ou pral resevwa kòmantè pa email.';
+  if (grEl) grEl.style.display = 'block';
+
+  localStorage.setItem(LESON_KEY, '1');
+  unlockNextBtn();
+  btn.textContent = '✡ Repons Voye — Ou ka kontinye';
+}
+
+function unlockNextBtn() {
+  const navBottom = document.querySelector('.nav-bottom');
+  if (!navBottom) return;
+  navBottom.querySelectorAll('a').forEach(a => {
+    if (a.href.includes(NEXT_HREF) || a.textContent.includes('→')) {
+      a.style.opacity = '1';
+      a.style.pointerEvents = 'auto';
+      a.style.borderColor = 'rgba(212,175,55,.4)';
+      a.style.color = '#d4af37';
+    }
+  });
+}
+</script>
+
+  <div class="nav-bottom">
+    <a href="modil-6-leson-1.html" class="nav-btn">← Leson 1</a>
+    <a href="modil-6-leson-3.html" class="nav-btn" style="opacity:.35;pointer-events:none">Leson 3 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-logo">בְּנֵי אוֹר</span>
+  <p class="footer-copy">✡ Bnei Ohr — Akademi — Modil 6 · Leson 2 ✡</p>
+</footer>
+
+<script>
+const s=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const el=document.createElement('div');
+  el.className='star';
+  const sz=Math.random()*1.5+.4;
+  const dur=(2+Math.random()*4).toFixed(1)+'s';
+  el.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${dur};--o:${(.15+Math.random()*.5).toFixed(2)};animation-delay:${(Math.random()*5).toFixed(1)}s`;
+  s.appendChild(el);
+}
+</script>
+</body>
+</html>
