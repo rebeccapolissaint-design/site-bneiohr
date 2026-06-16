@@ -315,149 +315,26 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,
     </div>
   </div>
 
-  <!-- EVALYASYON -->
-  <div class="eval-block">
-    <div class="eval-header">
-      <span class="eval-icon">✍️</span>
-      <div>
-        <h3 class="eval-title">Evalyasyon — Ekri Repons ou yo</h3>
-        <span class="eval-subtitle">✡ Sèvi ak Moach w — pa jwe nan chans ✡</span>
-      </div>
-    </div>
-    <div class="eval-questions">
-      <div class="eq-item" id="eq1">
-        <span class="eq-num">✡ Kesyon 1</span>
-        <p class="eq-q">Eksplike metoloji <strong>"ti chemen nan savann nan"</strong> pou w montre kijan yon abitid otomatik bati anndan lespri lòm.</p>
-        <textarea class="eq-textarea" id="rep1" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-        <div class="eq-feedback" id="fb1"></div>
-      </div>
-      <div class="eq-item" id="eq2">
-        <span class="eq-num">✡ Kesyon 2</span>
-        <p class="eq-q">Poukisa nou di yon moun k ap viv nan abitid otomatik li yo <strong>pa gen Lib Abit</strong> tout bon vre nan moman l ap aji a?</p>
-        <textarea class="eq-textarea" id="rep2" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-        <div class="eq-feedback" id="fb2"></div>
-      </div>
-      <div class="eq-item" id="eq3">
-        <span class="eq-num">✡ Kesyon 3</span>
-        <p class="eq-q">Kisa k ap pase anndan Veso yon elèv lè li deside <strong>kase yon ansyen abitid</strong>? Poukisa li santi yon gwo rezistans?</p>
-        <textarea class="eq-textarea" id="rep3" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-        <div class="eq-feedback" id="fb3"></div>
-      </div>
-      <div class="eq-item" id="eq4">
-        <span class="eq-num">✡ Kesyon 4</span>
-        <p class="eq-q">Dapre sajès Akademi an, poukisa nou <strong>pa dwe goumen dirèkteman ak yon move abitid</strong>, epi kisa nou dwe fè pou nou fè l disparèt?</p>
-        <textarea class="eq-textarea" id="rep4" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-        <div class="eq-feedback" id="fb4"></div>
-      </div>
-    </div>
-    <div class="eval-submit-wrap">
-      <button class="eval-submit-btn" id="submitBtn" onclick="submitEval()">
-        ✡ Soumèt Repons yo pou Evalyasyon
-      </button>
-      <div class="eval-global-result" id="globalResult">
-        <span class="egr-label">✡ Rezilta Evalyasyon ou ✡</span>
-        <span class="egr-score" id="scoreDisplay"></span>
-        <p class="egr-msg" id="resultMsg"></p>
-      </div>
-    </div>
-  </div>
-
 <script>
 const MODIL = 6;
 const LESON = 1;
-const NEXT_HREF = 'modil-6-leson-2.html';
-const LESON_KEY = 'bnei_leson_M6L1';
 
-window.addEventListener('DOMContentLoaded', function() {
-  checkLock();
-  checkAlreadyPassed();
-});
 
-function checkLock() {
-  const prevUnlocked = localStorage.getItem('bnei_modil_5_unlocked');
-  if (!prevUnlocked) {
-    document.querySelector('.eval-block').innerHTML = `
-      <div style="text-align:center;padding:2rem">
-        <p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem">✡ Aksè Bloke ✡</p>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9">Ou dwe konplete tout leson <strong style="color:#d4af37">Modil 5</strong> anvan ou ka aksede Modil 6 la.</p>
-        <a href="etudes.html" style="display:inline-block;margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:rgba(212,175,55,.6);text-decoration:none;border:1px solid rgba(212,175,55,.25);padding:.8rem 1.5rem;text-transform:uppercase">← Retounen nan Modil yo</a>
-      </div>`;
-  }
-}
 
-function checkAlreadyPassed() {
-  const passed = localStorage.getItem(LESON_KEY);
-  if (passed) {
-    const btn = document.getElementById('submitBtn');
-    if (btn) {
-      btn.textContent = '✡ Leson sa a deja konplete — Ou ka soumèt ankò';
-      btn.disabled = false;
-    }
-    unlockNextBtn();
-  }
-}
 
-async function submitEval() {
-  const reps = [];
-  const nq = document.querySelectorAll('.eq-textarea').length;
-  for (let i = 1; i <= nq; i++) {
-    reps.push(document.getElementById('rep'+i)?.value?.trim() || '');
-  }
-  const empty = reps.filter(r => r.length < 3);
-  if (empty.length > 0) {
-    alert('Tanpri reponn tout kesyon yo anvan ou soumèt.');
-    return;
-  }
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = '⟳ Ap voye repons yo...';
 
-  const qs = Array.from(document.querySelectorAll('.eq-q')).map(el => el.innerText);
-  let sujet = encodeURIComponent('Bnei Ohr — Repons Modil ' + MODIL + ' Leson ' + LESON);
-  let corps = 'MODIL ' + MODIL + ' — LESON ' + LESON + '\n================================\n\n';
-  qs.forEach((q, i) => {
-    corps += 'KESYON ' + (i+1) + ': ' + q + '\nREPONS: ' + reps[i] + '\n\n';
-  });
-  corps = encodeURIComponent(corps);
-  window.location.href = 'mailto:bneiohr@gmail.com?subject=' + sujet + '&body=' + corps;
 
-  for (let i = 1; i <= nq; i++) {
-    const fb = document.getElementById('fb'+i);
-    if (fb) {
-      fb.className = 'eq-feedback ok';
-      fb.style.display = 'block';
-      fb.innerHTML = '<strong>✡ Repons ou a resevwa</strong> — Pwofesè a ap korije l epi reponn ou.';
-    }
-  }
-  const grEl = document.getElementById('globalResult');
-  const scoreEl = document.getElementById('scoreDisplay');
-  const msgEl = document.getElementById('resultMsg');
-  if (scoreEl) scoreEl.textContent = '✡';
-  if (msgEl) msgEl.textContent = 'Repons ou yo voye ba pwofesè a. Ou pral resevwa kòmantè pa email.';
-  if (grEl) grEl.style.display = 'block';
 
-  localStorage.setItem(LESON_KEY, '1');
-  unlockNextBtn();
-  btn.textContent = '✡ Repons Voye — Ou ka kontinye';
-}
 
-function unlockNextBtn() {
-  const navBottom = document.querySelector('.nav-bottom');
-  if (!navBottom) return;
-  navBottom.querySelectorAll('a').forEach(a => {
-    if (a.href.includes(NEXT_HREF) || a.textContent.includes('→')) {
-      a.style.opacity = '1';
-      a.style.pointerEvents = 'auto';
-      a.style.borderColor = 'rgba(212,175,55,.4)';
-      a.style.color = '#d4af37';
-    }
-  });
-}
+
+
+
+
 </script>
 
   <div class="nav-bottom">
     <a href="etudes.html" class="nav-btn">← Modil yo</a>
-    <a href="modil-6-leson-2.html" class="nav-btn" style="opacity:.35;pointer-events:none">Leson 2 →</a>
+    <a href="modil-6-leson-2.html" class="nav-btn">Leson 2 →</a>
   </div>
 
 </main>

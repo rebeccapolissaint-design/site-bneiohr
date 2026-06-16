@@ -297,186 +297,27 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,
     </div>
   </div>
 
-
-  <!-- EVALYASYON -->
-  <div class="eval-block">
-    <div class="eval-header">
-      <span class="eval-icon">✍️</span>
-      <div>
-        <h3 class="eval-title">Evalyasyon — Ekri Repons ou yo</h3>
-        <span class="eval-subtitle">✡ Sèvi ak Moach w (sèvo a) — pa jwe nan chans ✡</span>
-      </div>
-    </div>
-    <div class="eval-questions">
-        <div class="eq-item" id="eq1">
-          <span class="eq-num">✡ Kesyon 1</span>
-          <p class="eq-q">Eksplike nan <strong>pwòp mo pa w</strong> kisa "Distans Espirityèl" la ye, epi di kisa k ap kreye distans sa a ant Lòm ak Kreyatè a.</p>
-          <textarea class="eq-textarea" id="rep1" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb1"></div>
-        </div>
-        <div class="eq-item" id="eq2">
-          <span class="eq-num">✡ Kesyon 2</span>
-          <p class="eq-q">Dapre <strong>Lwa Egalite de Fòm</strong> nan, kisa yon moun dwe chanje anndan l pou l ka pwoche pi pre Limyè Kreyatè a?</p>
-          <textarea class="eq-textarea" id="rep2" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb2"></div>
-        </div>
-        <div class="eq-item" id="eq3">
-          <span class="eq-num">✡ Kesyon 3</span>
-          <p class="eq-q">Bay yon egzanp nan lavi toulejou kote yon moun ap aji nan <strong>"Dezi pou Resevwa pou tèt li sèlman"</strong> (Egois), ak yon egzanp kote l ap aji nan <strong>"Dezi pou Resevwa pou l ka Bay"</strong> (Altruyis).</p>
-          <textarea class="eq-textarea" id="rep3" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb3"></div>
-        </div>
-        <div class="eq-item" id="eq4">
-          <span class="eq-num">✡ Kesyon 4</span>
-          <p class="eq-q">Kisa ki rive yon veso ki resevwa Abandans oswa Limyè <strong>san li pa gen menm kalite fòm</strong> ak moun k ap ba li l la?</p>
-          <textarea class="eq-textarea" id="rep4" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb4"></div>
-        </div>
-    </div>
-    <div class="eval-submit-wrap">
-      <button class="eval-submit-btn" id="submitBtn" onclick="submitEval()">
-        ✡ Soumèt Repons yo pou Evalyasyon
-      </button>
-      <div class="eval-global-result" id="globalResult">
-        <span class="egr-label">✡ Rezilta Evalyasyon ou ✡</span>
-        <span class="egr-score" id="scoreDisplay"></span>
-        <p class="egr-msg" id="resultMsg"></p>
-      </div>
-    </div>
-  </div>
-
 <script>
 const MODIL = 1;
 const LESON = 1;
-const NEXT_HREF = 'modil-1-leson-2.html';
-const LESON_KEY = 'bnei_leson_M1L1';
-const MODIL_KEY = 'bnei_modil_1_unlocked';
-const PREV_MODIL_KEY = 'bnei_modil_0_unlocked';
+
+
+
+
 const ANSWER_KEY = `Leson sa a kouvri: Distans Espirityèl = diferans kalite ant Kreyatè (Bay) ak Lòm (Resevwa). Lwa Egalite de Fòm = chanje entansyon pou bay, pa sèlman resevwa. Egzanp: manje paske grangou (ego) vs manje paske zanmi fè plezi (altruyis). Veso ki pa gen menm fòm ak Limyè a pa ka kenbe l — li brile oswa li rejete l.`;
 
 // Check progression lock on load
-window.addEventListener('DOMContentLoaded', function() {
-  checkLock();
-  checkAlreadyPassed();
-});
 
-function checkLock() {
-  if (MODIL === 1) return; // Modil 1 always open
-  const prevUnlocked = localStorage.getItem('bnei_modil_' + (MODIL-1) + '_unlocked');
-  if (!prevUnlocked) {
-    document.querySelector('.eval-block').innerHTML = `
-      <div style="text-align:center;padding:2rem">
-        <p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem">✡ Aksè Bloke ✡</p>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9">Ou dwe konplete tout leson <strong style="color:#d4af37">Modil ${MODIL-1}</strong> anvan ou ka aksede Modil ${MODIL} la.</p>
-        <a href="etudes.html" style="display:inline-block;margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:rgba(212,175,55,.6);text-decoration:none;border:1px solid rgba(212,175,55,.25);padding:.8rem 1.5rem;text-transform:uppercase">← Retounen nan Modil yo</a>
-      </div>`;
-  }
-}
 
-function checkAlreadyPassed() {
-  const passed = localStorage.getItem(LESON_KEY);
-  if (passed) {
-    const btn = document.getElementById('submitBtn');
-    if (btn) {
-      btn.textContent = '✡ Leson sa a deja konplete — Ou ka soumèt ankò';
-      btn.disabled = false;
-    }
-    unlockNextBtn();
-  }
-}
 
-async function submitEval() {
-  const reps = [];
-  const nq = document.querySelectorAll('.eq-textarea').length;
-  for (let i = 1; i <= nq; i++) {
-    reps.push(document.getElementById('rep'+i)?.value?.trim() || '');
-  }
 
-  const empty = reps.filter(r => r.length < 3);
-  if (empty.length > 0) {
-    alert('Tanpri reponn tout kesyon yo anvan ou soumèt.');
-    return;
-  }
 
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = '⟳ Ap voye repons yo...';
 
-  // Google Forms entry IDs
-  const FORM_ID = '1FAIpQLSfdjBQDMRq2fLqnMtMrMcUMJ6RytIIhg-wB7QAJe_jTfrJP2A';
-  const ENTRY_NOM = 'entry.339109215';
-  const ENTRY_K1  = 'entry.2055106032';
-  const ENTRY_K2  = 'entry.274550859';
-  const ENTRY_K3  = 'entry.166644136';
-  const ENTRY_K4  = 'entry.1757604024';
 
-  const nomEtidyan = document.getElementById('nomEtidyan')?.value?.trim() || 'Etidyan M' + MODIL + 'L' + LESON;
 
-  const formData = new FormData();
-  formData.append(ENTRY_NOM, nomEtidyan);
-  formData.append(ENTRY_K1, reps[0] || '');
-  formData.append(ENTRY_K2, reps[1] || '');
-  formData.append(ENTRY_K3, reps[2] || '');
-  formData.append(ENTRY_K4, reps[3] || '');
 
-  try {
-    await fetch('https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse', {
-      method: 'POST',
-      mode: 'no-cors',
-      body: formData
-    });
-  } catch(e) {
-    // no-cors toujou lanse yon erè aparans — repons yo voye kanmenm
-  }
 
-  for (let i = 1; i <= nq; i++) {
-    const fb = document.getElementById('fb'+i);
-    if (fb) {
-      fb.className = 'eq-feedback ok';
-      fb.style.display = 'block';
-      fb.innerHTML = '<strong>✡ Repons ou a resevwa</strong> — Pwofesè a ap korije l epi reponn ou.';
-    }
-  }
 
-  const grEl = document.getElementById('globalResult');
-  const scoreEl = document.getElementById('scoreDisplay');
-  const msgEl = document.getElementById('resultMsg');
-  if (scoreEl) scoreEl.textContent = '✡';
-  if (msgEl) msgEl.textContent = 'Mèsi! Repons ou yo voye bay Mèt la pou evalyasyon.';
-  if (grEl) grEl.style.display = 'block';
-
-  localStorage.setItem(LESON_KEY, '1');
-  checkModilComplete();
-  unlockNextBtn();
-  btn.textContent = '✡ Repons Voye — Ou ka kontinye';
-}
-
-function checkModilComplete() {
-  const maxLeson = MODIL <= 3 ? 4 : 2;
-  let allDone = true;
-  for (let l = 1; l <= maxLeson; l++) {
-    if (!localStorage.getItem('bnei_leson_M' + MODIL + 'L' + l)) {
-      allDone = false; break;
-    }
-  }
-  if (allDone) {
-    localStorage.setItem('bnei_modil_' + MODIL + '_unlocked', '1');
-  }
-}
-
-function unlockNextBtn() {
-  const navBottom = document.querySelector('.nav-bottom');
-  if (!navBottom) return;
-  const links = navBottom.querySelectorAll('a');
-  links.forEach(a => {
-    if (a.href.includes(NEXT_HREF) || a.textContent.includes('→')) {
-      a.style.opacity = '1';
-      a.style.pointerEvents = 'auto';
-      a.style.borderColor = 'rgba(212,175,55,.4)';
-      a.style.color = '#d4af37';
-    }
-  });
-}
 </script>
 
   <div class="nav-bottom">

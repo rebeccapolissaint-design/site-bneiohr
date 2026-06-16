@@ -296,180 +296,27 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,
     </div>
   </div>
 
-
-  <!-- EVALYASYON -->
-  <div class="eval-block">
-    <div class="eval-header">
-      <span class="eval-icon">✍️</span>
-      <div>
-        <h3 class="eval-title">Evalyasyon — Ekri Repons ou yo</h3>
-        <span class="eval-subtitle">✡ Sèvi ak Moach w (sèvo a) — pa jwe nan chans ✡</span>
-      </div>
-    </div>
-    <div class="eval-questions">
-        <div class="eq-item" id="eq1">
-          <span class="eq-num">✡ Kesyon 1</span>
-          <p class="eq-q">Kisa ki te lakòz <strong>"Kraze Veso yo" (Shevirat HaKelim)</strong> nan kòmansman an? Ki konpòtman veso yo ki te deklanche kriz sa a?</p>
-          <textarea class="eq-textarea" id="rep1" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb1"></div>
-        </div>
-        <div class="eq-item" id="eq2">
-          <span class="eq-num">✡ Kesyon 2</span>
-          <p class="eq-q">Kisa <strong>"Etensèl Limyè" (Nitzotzot)</strong> yo ye, kote yo tonbe apre kriz la, epi kisa ki fè yon moun santi yon gwo vid entèn anndan l jodi a?</p>
-          <textarea class="eq-textarea" id="rep2" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb2"></div>
-        </div>
-        <div class="eq-item" id="eq3">
-          <span class="eq-num">✡ Kesyon 3</span>
-          <p class="eq-q">Kisa <strong>Tikkun (Koreksyon)</strong> vle di? Èske sa vle di nou dwe detwi Dezi pou Resevwa a? Eksplike repons ou an.</p>
-          <textarea class="eq-textarea" id="rep3" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb3"></div>
-        </div>
-        <div class="eq-item" id="eq4">
-          <span class="eq-num">✡ Kesyon 4</span>
-          <p class="eq-q">Kòman yon elèv ka itilize yon <strong>blesi oswa yon echèk</strong> nan lavi l pou l fè yon travay Tikkun pou sistèm nan?</p>
-          <textarea class="eq-textarea" id="rep4" placeholder="Ekri repons ou a isit la nan pwòp mo pa w..."></textarea>
-          <div class="eq-feedback" id="fb4"></div>
-        </div>
-    </div>
-    <div class="eval-submit-wrap">
-      <button class="eval-submit-btn" id="submitBtn" onclick="submitEval()">
-        ✡ Soumèt Repons yo pou Evalyasyon
-      </button>
-      <div class="eval-global-result" id="globalResult">
-        <span class="egr-label">✡ Rezilta Evalyasyon ou ✡</span>
-        <span class="egr-score" id="scoreDisplay"></span>
-        <p class="egr-msg" id="resultMsg"></p>
-      </div>
-    </div>
-  </div>
-
 <script>
 const MODIL = 1;
 const LESON = 4;
-const NEXT_HREF = 'etudes.html';
-const LESON_KEY = 'bnei_leson_M1L4';
-const MODIL_KEY = 'bnei_modil_1_unlocked';
-const PREV_MODIL_KEY = 'bnei_modil_0_unlocked';
+
+
+
+
 const ANSWER_KEY = `Leson sa a kouvri: Shevirat HaKelim = Veso yo te vle anpile Limyè pou tèt yo sèlman (egoyism pi), sa ki kreye fòs rejeksyon ki fè yo eksploze. Etensèl = moso Limyè ki tonbe nan matyè — vid entèn se etensèl k ap rele Sous li. Tikkun = chanje entansyon (pa detwi dezi), vire aksyon pèsonèl pou sèvi lòt. Blesi ka tounen sajès pou ede lòt moun.`;
 
 // Check progression lock on load
-window.addEventListener('DOMContentLoaded', function() {
-  checkLock();
-  checkAlreadyPassed();
-});
 
-function checkLock() {
-  if (MODIL === 1) return; // Modil 1 always open
-  const prevUnlocked = localStorage.getItem('bnei_modil_' + (MODIL-1) + '_unlocked');
-  if (!prevUnlocked) {
-    document.querySelector('.eval-block').innerHTML = `
-      <div style="text-align:center;padding:2rem">
-        <p style="font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(212,175,55,.4);text-transform:uppercase;margin-bottom:1rem">✡ Aksè Bloke ✡</p>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.5);line-height:1.9">Ou dwe konplete tout leson <strong style="color:#d4af37">Modil ${MODIL-1}</strong> anvan ou ka aksede Modil ${MODIL} la.</p>
-        <a href="etudes.html" style="display:inline-block;margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.22em;color:rgba(212,175,55,.6);text-decoration:none;border:1px solid rgba(212,175,55,.25);padding:.8rem 1.5rem;text-transform:uppercase">← Retounen nan Modil yo</a>
-      </div>`;
-  }
-}
 
-function checkAlreadyPassed() {
-  const passed = localStorage.getItem(LESON_KEY);
-  if (passed) {
-    const btn = document.getElementById('submitBtn');
-    if (btn) {
-      btn.textContent = '✡ Leson sa a deja konplete — Ou ka soumèt ankò';
-      btn.disabled = false;
-    }
-    unlockNextBtn();
-  }
-}
 
-async function submitEval() {
-  const reps = [];
-  const nq = document.querySelectorAll('.eq-textarea').length;
-  for (let i = 1; i <= nq; i++) {
-    reps.push(document.getElementById('rep'+i)?.value?.trim() || '');
-  }
 
-  const empty = reps.filter(r => r.length < 3);
-  if (empty.length > 0) {
-    alert('Tanpri reponn tout kesyon yo anvan ou soumèt.');
-    return;
-  }
 
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = '⟳ Ap voye repons yo...';
 
-  const qs = Array.from(document.querySelectorAll('.eq-q')).map(el => el.innerText);
 
-  // Build email body
-  let sujet = encodeURIComponent('Bnei Ohr — Repons Modil ' + MODIL + ' Leson ' + LESON);
-  let corps = 'MODIL ' + MODIL + ' — LESON ' + LESON + '
-';
-  corps += '================================
 
-';
-  qs.forEach((q, i) => {
-    corps += 'KESYON ' + (i+1) + ': ' + q + '
-';
-    corps += 'REPONS: ' + reps[i] + '
 
-';
-  });
-  corps = encodeURIComponent(corps);
 
-  // Open mail client
-  window.location.href = 'mailto:bneiohr@gmail.com?subject=' + sujet + '&body=' + corps;
 
-  // Show confirmation to student
-  for (let i = 1; i <= nq; i++) {
-    const fb = document.getElementById('fb'+i);
-    fb.className = 'eq-feedback ok';
-    fb.style.display = 'block';
-    fb.innerHTML = '<strong>✡ Repons ou a resevwa</strong> — Pwofesè a ap korije l epi reponn ou.';
-  }
-
-  const grEl = document.getElementById('globalResult');
-  const scoreEl = document.getElementById('scoreDisplay');
-  const msgEl = document.getElementById('resultMsg');
-  scoreEl.textContent = '✡';
-  msgEl.textContent = 'Repons ou yo voye ba pwofesè a. Ou pral resevwa kòmantè pa email.';
-  grEl.style.display = 'block';
-
-  // Mark lesson as complete and unlock next
-  localStorage.setItem(LESON_KEY, '1');
-  checkModilComplete();
-  unlockNextBtn();
-  btn.textContent = '✡ Repons Voye — Ou ka kontinye';
-}
-
-function checkModilComplete() {
-  const maxLeson = MODIL <= 3 ? 4 : 2;
-  let allDone = true;
-  for (let l = 1; l <= maxLeson; l++) {
-    if (!localStorage.getItem('bnei_leson_M' + MODIL + 'L' + l)) {
-      allDone = false; break;
-    }
-  }
-  if (allDone) {
-    localStorage.setItem('bnei_modil_' + MODIL + '_unlocked', '1');
-  }
-}
-
-function unlockNextBtn() {
-  const navBottom = document.querySelector('.nav-bottom');
-  if (!navBottom) return;
-  const links = navBottom.querySelectorAll('a');
-  links.forEach(a => {
-    if (a.href.includes(NEXT_HREF) || a.textContent.includes('→')) {
-      a.style.opacity = '1';
-      a.style.pointerEvents = 'auto';
-      a.style.borderColor = 'rgba(212,175,55,.4)';
-      a.style.color = '#d4af37';
-    }
-  });
-}
 </script>
 
   <div class="nav-bottom">
