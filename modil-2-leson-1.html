@@ -146,6 +146,30 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,
 .egr-msg{font-size:1rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.8}
 .nav-btn-locked{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(255,255,255,.2);text-transform:uppercase;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.2);padding:.7rem 1.4rem;cursor:not-allowed;opacity:.5}
 
+
+/* Rityèl Alchimik */
+.rituel-block{background:rgba(212,100,30,.04);border:1px solid rgba(230,126,34,.25);border-top:3px solid rgba(230,126,34,.5);padding:2rem;margin:3rem 0}
+.rituel-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(230,126,34,.15)}
+.rituel-icon{font-size:1.6rem}
+.rituel-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(230,150,60,.9)}
+.rituel-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(230,126,34,.45);text-transform:uppercase;display:block;margin-top:.2rem}
+.rituel-materiel{background:rgba(0,0,0,.2);border-left:2px solid rgba(230,126,34,.3);padding:1rem 1.4rem;margin:1.2rem 0 1.8rem}
+.rituel-mat-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:.7rem}
+.rituel-mat-list{list-style:none;padding:0}
+.rituel-mat-list li{font-size:.98rem;color:rgba(255,255,255,.65);line-height:1.8;padding-left:1.2rem;position:relative;font-style:italic}
+.rituel-mat-list li::before{content:'·';position:absolute;left:0;color:rgba(230,126,34,.5)}
+.rituel-steps-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.rituel-step{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;margin-bottom:.8rem;background:rgba(230,126,34,.03);border:1px solid rgba(230,126,34,.1)}
+.rituel-step-num{font-family:'Cinzel',serif;font-size:1rem;color:rgba(230,126,34,.5);min-width:2rem;padding-top:.1rem}
+.rituel-step-content{flex:1}
+.rituel-step-title{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;color:rgba(230,150,60,.8);margin-bottom:.5rem}
+.rituel-step-content p{font-size:.98rem;color:rgba(255,255,255,.7);line-height:1.85}
+.rituel-step-content strong{color:rgba(230,150,60,.85);font-weight:400}
+.rituel-step-content em{color:rgba(255,255,255,.55)}
+.rituel-vokalizasyon{background:rgba(230,126,34,.06);border:1px solid rgba(230,126,34,.2);border-left:3px solid rgba(230,126,34,.4);padding:1rem 1.2rem;margin-top:.8rem;display:flex;align-items:flex-start;gap:.8rem}
+.rituel-vok-icon{font-size:1.1rem;padding-top:.1rem}
+.rituel-vok-text{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.85;font-style:italic;margin:0}
+
 </style>
 </head>
 <body>
@@ -321,6 +345,64 @@ const ANSWER_KEY = `Leson sa a kouvri: Klipah = koki pwoteksyon ego a ki fòme d
 
 
 </script>
+  <!-- RITYÈL ALCHIMIK -->
+  <div class="rituel-block">
+    <div class="rituel-header">
+      <span class="rituel-icon">🧘</span>
+      <div>
+        <h3 class="rituel-title">Rityèl Alchimik — Aliyen Kat Nivo yo</h3>
+        <span class="rituel-subtitle">✡ Pratik Maten ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1.2rem">Rityèl sa a sèvi pou aliyen kat nivo Veso a chak maten, tankou yon mizisyen k ap akòde yon gita anvan li jwe l.</p>
+
+    <div class="rituel-steps">
+      <span class="rituel-steps-label">✡ Etap Rityèl la</span>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">①</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Pozisyon an</strong>
+          <p>Chita byen dwat, pye w plat atè, de men w poze sou kwis ou, <strong>pla men yo vire anlè</strong>.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">②</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Aliyen Kat Poto yo</strong>
+          <p>Fèmen je w, epi pase lòd sa yo nan konsyans ou youn apre lòt :</p>
+          <div style="margin-top:.8rem;display:flex;flex-direction:column;gap:.5rem">
+            <div style="padding:.7rem 1rem;background:rgba(230,126,34,.04);border-left:2px solid rgba(230,126,34,.2);font-size:.97rem;color:rgba(255,255,255,.65);line-height:1.8">
+              <strong style="color:rgba(230,150,60,.7)">Kò fizik</strong> — mande l pou l rete kalm e an bòn sante
+            </div>
+            <div style="padding:.7rem 1rem;background:rgba(230,126,34,.04);border-left:2px solid rgba(230,126,34,.2);font-size:.97rem;color:rgba(255,255,255,.65);line-height:1.8">
+              <strong style="color:rgba(230,150,60,.7)">Kè a (emosyon)</strong> — mande l pou l vibre nan lanmou ak lapè
+            </div>
+            <div style="padding:.7rem 1rem;background:rgba(230,126,34,.04);border-left:2px solid rgba(230,126,34,.2);font-size:.97rem;color:rgba(255,255,255,.65);line-height:1.8">
+              <strong style="color:rgba(230,150,60,.7)">Lespri a (panse)</strong> — mande l pou l gen klate ak disènman
+            </div>
+            <div style="padding:.7rem 1rem;background:rgba(230,126,34,.04);border-left:2px solid rgba(230,126,34,.2);font-size:.97rem;color:rgba(255,255,255,.65);line-height:1.8">
+              <strong style="color:rgba(230,150,60,.7)">Nanm nan</strong> — louvri l pou l resevwa Limyè Kreyatè a
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">③</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Deklarasyon Aliman an</strong>
+          <p>Di pawòl sa yo an silans men ak anpil fòs :</p>
+          <div class="rituel-vokalizasyon">
+            <span class="rituel-vok-icon">🗣</span>
+            <p class="rituel-vok-text">«Veso m aliyen. Kò m, kè m, lespri m ak nanm mwen fè yon sèl nan sèvis Limyè Inivèsèl la.»</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="nav-bottom">
     <a href="etudes.html" class="nav-btn">← Modil yo</a>
