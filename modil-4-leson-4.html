@@ -159,6 +159,36 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:sp
 footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
 .footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
 .footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+
+/* Rityèl Alchimik */
+.rituel-block{background:rgba(212,100,30,.04);border:1px solid rgba(230,126,34,.25);border-top:3px solid rgba(230,126,34,.5);padding:2rem;margin:3rem 0}
+.rituel-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(230,126,34,.15)}
+.rituel-icon{font-size:1.6rem}
+.rituel-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(230,150,60,.9)}
+.rituel-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(230,126,34,.45);text-transform:uppercase;display:block;margin-top:.2rem}
+.rituel-steps-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.rituel-step{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;margin-bottom:.8rem;background:rgba(230,126,34,.03);border:1px solid rgba(230,126,34,.1)}
+.rituel-step-num{font-family:'Cinzel',serif;font-size:1rem;color:rgba(230,126,34,.5);min-width:2rem;padding-top:.1rem}
+.rituel-step-content{flex:1}
+.rituel-step-title{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;color:rgba(230,150,60,.8);margin-bottom:.5rem}
+.rituel-step-content p{font-size:.98rem;color:rgba(255,255,255,.7);line-height:1.85}
+.rituel-step-content strong{color:rgba(230,150,60,.85);font-weight:400}
+.rituel-step-content em{color:rgba(255,255,255,.55)}
+.rituel-vokalizasyon{background:rgba(230,126,34,.06);border:1px solid rgba(230,126,34,.2);border-left:3px solid rgba(230,126,34,.4);padding:1rem 1.2rem;margin-top:.8rem;display:flex;align-items:flex-start;gap:.8rem}
+.rituel-vok-icon{font-size:1.1rem;padding-top:.1rem}
+.rituel-vok-text{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.85;font-style:italic;margin:0}
+.rituel-konsekrasyon{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.3);border-top:3px solid rgba(212,175,55,.6);padding:2rem;margin:3rem 0}
+.rituel-konsekrasyon .rituel-title{color:rgba(212,175,55,.95)}
+.rituel-konsekrasyon .rituel-subtitle{color:rgba(212,175,55,.5)}
+.rituel-konsekrasyon .rituel-steps-label{color:rgba(212,175,55,.55)}
+.rituel-konsekrasyon .rituel-step{background:rgba(212,175,55,.03);border-color:rgba(212,175,55,.12)}
+.rituel-konsekrasyon .rituel-step-num{color:rgba(212,175,55,.6)}
+.rituel-konsekrasyon .rituel-step-title{color:rgba(212,175,55,.85)}
+.rituel-konsekrasyon .rituel-step-content strong{color:rgba(212,175,55,.8)}
+.rituel-konsekrasyon .rituel-vokalizasyon{background:rgba(212,175,55,.06);border-color:rgba(212,175,55,.25);border-left-color:rgba(212,175,55,.5)}
+.rituel-konsekrasyon .rituel-vok-text{font-size:1.05rem;color:rgba(255,255,255,.85)}
+.rituel-konsekrasyon-header{border-bottom-color:rgba(212,175,55,.2)}
+
 </style>
 </head>
 <body>
@@ -344,6 +374,58 @@ const LESON = 4;
 
 
 </script>
+  <!-- RITYÈL KONSEKRASYON — FINAL NIVO 1 -->
+  <div class="rituel-block rituel-konsekrasyon">
+    <div class="rituel-header rituel-konsekrasyon-header">
+      <span class="rituel-icon">👑</span>
+      <div>
+        <h3 class="rituel-title">Rityèl Konsekrasyon — Gwo Rad Pite Veso a</h3>
+        <span class="rituel-subtitle">✡ Konsekrasyon Nivo 1 ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1.2rem">Rityèl sa a se yon <strong>gwo zak fòmèl</strong>. Fè l nan yon nuit kote w pou kont ou nan chanm ou, apre w fin pran yon <strong>douch pwòp</strong> epi ou mete yon <strong>rad blan</strong> sou ou.</p>
+
+    <div class="rituel-steps">
+      <span class="rituel-steps-label">✡ Etap Rityèl la</span>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">①</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Preparasyon Espas la</strong>
+          <p>Limen yon <strong>bouji blan</strong> nan mitan chanm nan. Mete yon <strong>vè dlo pwòp</strong> bò kote l.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">②</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Pozisyon Gwo Alyans lan</strong>
+          <p>Kanpe fas an <strong>Lès</strong>, leve de bra w anlè nan <em>fòm yon Veso</em> — de bra yo louvri nan de kote tèt ou, pla men yo ap gade anlè.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">③</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Gwo Priyè Konsekrasyon an</strong>
+          <p>Pwononse pawòl sa yo ak <strong>tout fòs nanm ou</strong>, ak yon vwa ki tranble tout chanm nan :</p>
+          <div class="rituel-vokalizasyon">
+            <span class="rituel-vok-icon">🗣</span>
+            <p class="rituel-vok-text">«O gwo Kreyatè Inivèsèl, anba Lòd YHWH, Melchizédek ak Yeshua. Mwen kanpe devan W aswè a tankou yon Veso ki pare. Mwen pase 4 modil netwayaj yo, mwen chwazi wout pite a, bèl pawòl yo, ak Liy Mitan an. Aswè a, mwen konsakre kò m, kè m, lespri m ak nanm mwen pou sèvis Limyè a. Mwen pare pou m desann nan rasin tè m ak gwo kosmoloji a. Se pou gwo rad pite a kouvri m depi kounye a ak pou tout tan. Amèn!»</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">④</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Bwè Dlo Alyans lan</strong>
+          <p>Bwè vè dlo a nèt nan <strong>3 gwo bòn swif</strong>, epi <em>etenn bouji a ak de dwèt ou</em> — pa soufle l.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="nav-bottom">
     <a href="modil-4-leson-3.html" class="nav-btn">← Leson 3</a>

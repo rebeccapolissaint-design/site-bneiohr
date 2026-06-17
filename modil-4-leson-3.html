@@ -144,6 +144,36 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:sp
 footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
 .footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
 .footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+
+/* Rityèl Alchimik */
+.rituel-block{background:rgba(212,100,30,.04);border:1px solid rgba(230,126,34,.25);border-top:3px solid rgba(230,126,34,.5);padding:2rem;margin:3rem 0}
+.rituel-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(230,126,34,.15)}
+.rituel-icon{font-size:1.6rem}
+.rituel-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(230,150,60,.9)}
+.rituel-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(230,126,34,.45);text-transform:uppercase;display:block;margin-top:.2rem}
+.rituel-steps-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.rituel-step{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;margin-bottom:.8rem;background:rgba(230,126,34,.03);border:1px solid rgba(230,126,34,.1)}
+.rituel-step-num{font-family:'Cinzel',serif;font-size:1rem;color:rgba(230,126,34,.5);min-width:2rem;padding-top:.1rem}
+.rituel-step-content{flex:1}
+.rituel-step-title{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;color:rgba(230,150,60,.8);margin-bottom:.5rem}
+.rituel-step-content p{font-size:.98rem;color:rgba(255,255,255,.7);line-height:1.85}
+.rituel-step-content strong{color:rgba(230,150,60,.85);font-weight:400}
+.rituel-step-content em{color:rgba(255,255,255,.55)}
+.rituel-vokalizasyon{background:rgba(230,126,34,.06);border:1px solid rgba(230,126,34,.2);border-left:3px solid rgba(230,126,34,.4);padding:1rem 1.2rem;margin-top:.8rem;display:flex;align-items:flex-start;gap:.8rem}
+.rituel-vok-icon{font-size:1.1rem;padding-top:.1rem}
+.rituel-vok-text{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.85;font-style:italic;margin:0}
+.rituel-konsekrasyon{background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.3);border-top:3px solid rgba(212,175,55,.6);padding:2rem;margin:3rem 0}
+.rituel-konsekrasyon .rituel-title{color:rgba(212,175,55,.95)}
+.rituel-konsekrasyon .rituel-subtitle{color:rgba(212,175,55,.5)}
+.rituel-konsekrasyon .rituel-steps-label{color:rgba(212,175,55,.55)}
+.rituel-konsekrasyon .rituel-step{background:rgba(212,175,55,.03);border-color:rgba(212,175,55,.12)}
+.rituel-konsekrasyon .rituel-step-num{color:rgba(212,175,55,.6)}
+.rituel-konsekrasyon .rituel-step-title{color:rgba(212,175,55,.85)}
+.rituel-konsekrasyon .rituel-step-content strong{color:rgba(212,175,55,.8)}
+.rituel-konsekrasyon .rituel-vokalizasyon{background:rgba(212,175,55,.06);border-color:rgba(212,175,55,.25);border-left-color:rgba(212,175,55,.5)}
+.rituel-konsekrasyon .rituel-vok-text{font-size:1.05rem;color:rgba(255,255,255,.85)}
+.rituel-konsekrasyon-header{border-bottom-color:rgba(212,175,55,.2)}
+
 </style>
 </head>
 <body>
@@ -356,6 +386,50 @@ const LESON = 3;
 
 
 </script>
+  <!-- RITYÈL ALCHIMIK -->
+  <div class="rituel-block">
+    <div class="rituel-header">
+      <span class="rituel-icon">🌱</span>
+      <div>
+        <h3 class="rituel-title">Rityèl Alchimik — Netwaye Tè a anvan Grenn lan Plante</h3>
+        <span class="rituel-subtitle">✡ Pratik Reparatè ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1.2rem">Yon pratik pou korije yon erè ou te fè nan jounen an <strong>anvan efè a retounen sou ou</strong>. Pa kite solèy la kouche sou li san w pa repare l.</p>
+
+    <div class="rituel-steps">
+      <span class="rituel-steps-label">✡ Etap Rityèl la</span>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">①</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Deteksyon Erè a</strong>
+          <p>Rekonèt klèman move pawòl oswa move aksyon ou te fè nan jounen an. Pa kache l nan tèt ou — <em>nonmen l dirèkteman nan konsyans ou</em>.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">②</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Pratik Reparatè a</strong>
+          <p>Chita an silans, poze de men w sou jenou w. Refè sèn nan nan lespri w, men fwa sa a, imajine w ap aji ak <strong>anpil dousè, pite ak sajès</strong> nan plas move zak la.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">③</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Vokalizasyon an</strong>
+          <p>Di avèk senserite :</p>
+          <div class="rituel-vokalizasyon">
+            <span class="rituel-vok-icon">🗣</span>
+            <p class="rituel-vok-text">«Kreyatè Inivèsèl, mwen wè erè mwen te fè a. Mwen mande pou dlo pite a lave efè negatif zak sa a te ka pwodwi. Depi kounye a, mwen pran angajman pou m veye sou Veso m pou m pa janm simen vye grenn ankò nan lakou lavi a.»</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="nav-bottom">
     <a href="modil-4-leson-2.html" class="nav-btn">← Leson 2</a>
