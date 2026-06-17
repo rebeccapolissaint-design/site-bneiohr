@@ -155,6 +155,30 @@ footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,
 .egr-msg{font-size:1rem;font-style:italic;color:rgba(255,255,255,.65);line-height:1.8}
 .nav-btn-locked{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;color:rgba(255,255,255,.2);text-transform:uppercase;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.2);padding:.7rem 1.4rem;cursor:not-allowed;opacity:.5}
 
+
+/* Rityèl Alchimik */
+.rituel-block{background:rgba(212,100,30,.04);border:1px solid rgba(230,126,34,.25);border-top:3px solid rgba(230,126,34,.5);padding:2rem;margin:3rem 0}
+.rituel-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(230,126,34,.15)}
+.rituel-icon{font-size:1.6rem}
+.rituel-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(230,150,60,.9)}
+.rituel-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(230,126,34,.45);text-transform:uppercase;display:block;margin-top:.2rem}
+.rituel-materiel{background:rgba(0,0,0,.2);border-left:2px solid rgba(230,126,34,.3);padding:1rem 1.4rem;margin:1.2rem 0 1.8rem}
+.rituel-mat-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:.7rem}
+.rituel-mat-list{list-style:none;padding:0}
+.rituel-mat-list li{font-size:.98rem;color:rgba(255,255,255,.65);line-height:1.8;padding-left:1.2rem;position:relative;font-style:italic}
+.rituel-mat-list li::before{content:'·';position:absolute;left:0;color:rgba(230,126,34,.5)}
+.rituel-steps-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.rituel-step{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;margin-bottom:.8rem;background:rgba(230,126,34,.03);border:1px solid rgba(230,126,34,.1)}
+.rituel-step-num{font-family:'Cinzel',serif;font-size:1rem;color:rgba(230,126,34,.5);min-width:2rem;padding-top:.1rem}
+.rituel-step-content{flex:1}
+.rituel-step-title{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;color:rgba(230,150,60,.8);margin-bottom:.5rem}
+.rituel-step-content p{font-size:.98rem;color:rgba(255,255,255,.7);line-height:1.85}
+.rituel-step-content strong{color:rgba(230,150,60,.85);font-weight:400}
+.rituel-step-content em{color:rgba(255,255,255,.55)}
+.rituel-vokalizasyon{background:rgba(230,126,34,.06);border:1px solid rgba(230,126,34,.2);border-left:3px solid rgba(230,126,34,.4);padding:1rem 1.2rem;margin-top:.8rem;display:flex;align-items:flex-start;gap:.8rem}
+.rituel-vok-icon{font-size:1.1rem;padding-top:.1rem}
+.rituel-vok-text{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.85;font-style:italic;margin:0}
+
 </style>
 </head>
 <body>
@@ -319,6 +343,67 @@ const ANSWER_KEY = `Leson sa a kouvri: Distans Espirityèl = diferans kalite ant
 
 
 </script>
+  <!-- RITYÈL ALCHIMIK -->
+  <div class="rituel-block">
+    <div class="rituel-header">
+      <span class="rituel-icon">🕯️</span>
+      <div>
+        <h3 class="rituel-title">Rityèl Alchimik — Leson 1</h3>
+        <span class="rituel-subtitle">✡ Pratik Jounen ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1rem">Rityèl sa a trè senp, li pa gen okenn fòmil majik, men li sèvi pou netwaye Veso fizik la ak sèvo a <strong>(Moach)</strong> pou kòmanse jounen an nan pite.</p>
+
+    <div class="rituel-materiel">
+      <span class="rituel-mat-label">✡ Materyèl ki Nesesè</span>
+      <ul class="rituel-mat-list">
+        <li>Dlo pwòp (si posib nan yon kivèt oswa anba yon tiyo k ap koule)</li>
+        <li>Silans total pandan 5 minit</li>
+      </ul>
+    </div>
+
+    <div class="rituel-steps">
+      <span class="rituel-steps-label">✡ Etap Rityèl la</span>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">①</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Lave Men yo an Konsyans</strong>
+          <p>Chak maten lè w leve, anvan w manyen anyen oswa anvan w kòmanse etidye, ale nan dlo a. Pandan w ap lave de men w yo, pa fè l tankou yon jès mekanik. Konsantre tout atansyon w sou dlo a k ap koule sou po w.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">②</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Deklarasyon Pite a (Vokalizasyon)</strong>
+          <p>Pandan dlo a ap pase sou men w, repete nan sèvo w oswa ak yon vwa tou ba :</p>
+          <div class="rituel-vokalizasyon">
+            <span class="rituel-vok-icon">🗣</span>
+            <p class="rituel-vok-text">«Menm jan dlo sa a ap lave men fizik mwen yo, se konsa tou mwen mande pou Limyè a pirifye kè m ak panse m, pou m ka poze sèlman bèl aksyon jodi a.»</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">③</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Koneksyon de Pla Men yo</strong>
+          <p>Apre w fin siye men w yo ak yon sèvjèt pwòp, chita byen dwat. Kole de pla men w yo ansanm nan nivo kè w <strong>(Lev)</strong>, dwèt yo ap gade anlè. Rete konsa an silans pandan <strong>2 minit</strong>.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">④</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Alchimi Panse a</strong>
+          <p>Imajine yon kouran lapè k ap soti nan sèvo w <strong>(Moach)</strong>, k ap desann nan men w yo pou l al ranpli tout kò w. Soti nan pozisyon sa a ak yon sèl entansyon : <em>mwen sispann aji nan egois, mwen louvri jounen m pou m ka pote yon bon pawòl oswa yon soutyen bay yon moun.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <div class="nav-bottom">
     <a href="etudes.html" class="nav-btn">← Modil yo</a>
