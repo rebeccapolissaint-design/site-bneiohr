@@ -144,6 +144,25 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:sp
 footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
 .footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
 .footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+
+/* Rityèl Alchimik */
+.rituel-block{background:rgba(212,100,30,.04);border:1px solid rgba(230,126,34,.25);border-top:3px solid rgba(230,126,34,.5);padding:2rem;margin:3rem 0}
+.rituel-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(230,126,34,.15)}
+.rituel-icon{font-size:1.6rem}
+.rituel-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(230,150,60,.9)}
+.rituel-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(230,126,34,.45);text-transform:uppercase;display:block;margin-top:.2rem}
+.rituel-steps-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.rituel-step{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;margin-bottom:.8rem;background:rgba(230,126,34,.03);border:1px solid rgba(230,126,34,.1)}
+.rituel-step-num{font-family:'Cinzel',serif;font-size:1rem;color:rgba(230,126,34,.5);min-width:2rem;padding-top:.1rem}
+.rituel-step-content{flex:1}
+.rituel-step-title{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;color:rgba(230,150,60,.8);margin-bottom:.5rem}
+.rituel-step-content p{font-size:.98rem;color:rgba(255,255,255,.7);line-height:1.85}
+.rituel-step-content strong{color:rgba(230,150,60,.85);font-weight:400}
+.rituel-step-content em{color:rgba(255,255,255,.55)}
+.rituel-vokalizasyon{background:rgba(230,126,34,.06);border:1px solid rgba(230,126,34,.2);border-left:3px solid rgba(230,126,34,.4);padding:1rem 1.2rem;margin-top:.8rem;display:flex;align-items:flex-start;gap:.8rem}
+.rituel-vok-icon{font-size:1.1rem;padding-top:.1rem}
+.rituel-vok-text{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.85;font-style:italic;margin:0}
+
 </style>
 </head>
 <body>
@@ -331,6 +350,42 @@ const LESON = 1;
 
 
 </script>
+  <!-- RITYÈL ALCHIMIK -->
+  <div class="rituel-block">
+    <div class="rituel-header">
+      <span class="rituel-icon">💧</span>
+      <div>
+        <h3 class="rituel-title">Rityèl Alchimik — Transfòmasyon Dife Kòlè a</h3>
+        <span class="rituel-subtitle">✡ Pratik nan Moman Kòlè ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1.2rem">Aksyon an depi w santi <strong>gwo kòlè a ap monte</strong> nan lestonmak ou epi l ap chache kontwole bouch ou.</p>
+
+    <div class="rituel-steps">
+      <span class="rituel-steps-label">✡ Etap Rityèl la</span>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">①</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Jès la</strong>
+          <p><strong>Fèmen bouch ou nèt</strong> (pa di yon mo). Ale bò yon tiyo dlo oswa pran yon gode dlo frèt. Lave de men w ak de ponyèt ou, epi <em>pase dlo frèt sou de tanp ou</em> (bò je w yo).</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">②</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Pawòl Pite a</strong>
+          <p>Gade nan direksyon <strong>Lès</strong>, rale yon souf byen fon epi di nan kè w :</p>
+          <div class="rituel-vokalizasyon">
+            <span class="rituel-vok-icon">🗣</span>
+            <p class="rituel-vok-text">«Mwen refize bay koki yo dife sa a pou yo boule Veso m. Mwen pran fòs kòlè sa a, mwen mete l anba kontwòl lespri m pou l tounen yon gwo limyè detèminasyon pou m fè sa ki dwat.»</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="nav-bottom">
     <a href="etudes.html" class="nav-btn">← Modil yo</a>
