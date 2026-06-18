@@ -173,6 +173,25 @@ nav{position:fixed;top:0;width:100%;z-index:1000;display:flex;justify-content:sp
 footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(212,175,55,.1);position:relative;z-index:1}
 .footer-logo{font-family:'Noto Serif Hebrew',serif;font-size:1.4rem;color:rgba(212,175,55,.4);display:block;margin-bottom:.5rem}
 .footer-copy{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(212,175,55,.2);text-transform:uppercase}
+
+/* Rityèl Alchimik */
+.rituel-block{background:rgba(212,100,30,.04);border:1px solid rgba(230,126,34,.25);border-top:3px solid rgba(230,126,34,.5);padding:2rem;margin:3rem 0}
+.rituel-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:1px solid rgba(230,126,34,.15)}
+.rituel-icon{font-size:1.6rem}
+.rituel-title{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:rgba(230,150,60,.9)}
+.rituel-subtitle{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.2em;color:rgba(230,126,34,.45);text-transform:uppercase;display:block;margin-top:.2rem}
+.rituel-steps-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.25em;color:rgba(230,126,34,.5);text-transform:uppercase;display:block;margin-bottom:1.2rem}
+.rituel-step{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem;margin-bottom:.8rem;background:rgba(230,126,34,.03);border:1px solid rgba(230,126,34,.1)}
+.rituel-step-num{font-family:'Cinzel',serif;font-size:1rem;color:rgba(230,126,34,.5);min-width:2rem;padding-top:.1rem}
+.rituel-step-content{flex:1}
+.rituel-step-title{display:block;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.08em;color:rgba(230,150,60,.8);margin-bottom:.5rem}
+.rituel-step-content p{font-size:.98rem;color:rgba(255,255,255,.7);line-height:1.85}
+.rituel-step-content strong{color:rgba(230,150,60,.85);font-weight:400}
+.rituel-step-content em{color:rgba(255,255,255,.55)}
+.rituel-vokalizasyon{background:rgba(230,126,34,.06);border:1px solid rgba(230,126,34,.2);border-left:3px solid rgba(230,126,34,.4);padding:1rem 1.2rem;margin-top:.8rem;display:flex;align-items:flex-start;gap:.8rem}
+.rituel-vok-icon{font-size:1.1rem;padding-top:.1rem}
+.rituel-vok-text{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.85;font-style:italic;margin:0}
+
 </style>
 </head>
 <body>
@@ -369,6 +388,50 @@ const LESON = 2;
 
 
 </script>
+  <!-- RITYÈL ALCHIMIK -->
+  <div class="rituel-block">
+    <div class="rituel-header">
+      <span class="rituel-icon">🌿</span>
+      <div>
+        <h3 class="rituel-title">Rityèl Alchimik — Batèm Dife ak Lè pou Objè yo</h3>
+        <span class="rituel-subtitle">✡ Pratik Netwayaj ✡</span>
+      </div>
+    </div>
+    <p class="para" style="margin-bottom:1.2rem">Pou netwaye nenpòt <strong>objè, rad, oswa kado</strong> ou resevwa anvan w itilize yo.</p>
+
+    <div class="rituel-steps">
+      <span class="rituel-steps-label">✡ Etap Rityèl la</span>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">①</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Preparasyon an</strong>
+          <p>Pran objè a (oswa rad la apre w fin lave l nan dlo ak savon).</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">②</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Jès la</strong>
+          <p>Pase objè a <strong>3 fwa</strong> anlè lafimen yon ti lansan pi (lafimen natirèl), <em>oswa</em> kite l pase yon jounen nèt anba <strong>reyon Solèy la k ap leve nan Lès</strong>.</p>
+        </div>
+      </div>
+
+      <div class="rituel-step">
+        <span class="rituel-step-num">③</span>
+        <div class="rituel-step-content">
+          <strong class="rituel-step-title">Vokalizasyon an</strong>
+          <p>Poze men w sou objè a epi di :</p>
+          <div class="rituel-vokalizasyon">
+            <span class="rituel-vok-icon">🗣</span>
+            <p class="rituel-vok-text">«O non Kreyatè Inivèsèl la, mwen efase tout ansyen memwa lou ak tout vye anprent koki ki te rete nan matyè sa a. Mwen konsakre l nan pite pou l sèvi sèlman amoni ak klate nan kay mwen.»</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="nav-bottom">
     <a href="modil-5-leson-1.html" class="nav-btn">← Leson 1</a>
